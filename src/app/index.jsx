@@ -11,7 +11,7 @@ function App() {
     <>
       <Header></Header>
 
-<CoursLists></CoursLists>
+      <CoursLists></CoursLists>
     </>
   )
 }
