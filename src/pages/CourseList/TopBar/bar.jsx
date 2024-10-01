@@ -5,10 +5,11 @@ const Bar = () => {
 
     return (
         <>
-        <div class="mx-auto flex  flex-row justify-center bg-[#FBF6F6] rounded-xl shadow-md w-11/12 h-16">
-            <div className="p-4 text-right">
-            <h2 className="text-2xl font-bold -mt-16">لیست دوره‌ها</h2>
+        <div class="mx-auto flex  flex-row mt-36 justify-center bg-[#FBF6F6] rounded-xl shadow-md w-11/12 h-16">
+            <div className="p-4 text-right -mt-28 h-full">
+            <h2 className="text-2xl font-bold ml-10 ">لیست دوره‌ها</h2>
             </div>
+            
             <Search></Search>
             <Dropdown></Dropdown>
 

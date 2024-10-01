@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "./Card";
-// import { Footer } from "../Footer/Footer";
-// import { Header } from "../../components/Header/header";
 import axios from "axios";
 // import { useLocation } from "react-router-dom";
-import { Bar } from "./TopBar/bar";
 const CoursLists = () => {
   const [Course, setCourseList] = useState([]);
   // const location = useLocation()
@@ -25,8 +22,7 @@ const CoursLists = () => {
 
   return (
     
-    <div class=" justify-center bg-white rounded-2xl shadow-md py-14 px-0 max-w-full h-full">
-          <Bar></Bar>
+    <div class=" justify-center bg-white rounded-2xl shadow-md py-14 px-0 max-w-full mt-4">
 
       <div className="grid grid-cols-3 items-center mt-28  gap-5">
         {Course.map((item) => (
