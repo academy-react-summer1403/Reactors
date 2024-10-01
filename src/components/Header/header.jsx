@@ -4,7 +4,7 @@ const Header = () => {
 
     return (
         <header>
-            <nav class="bg-white border-gray-200 px-4 lg:px-1 py-2.5 dark:bg-emerald-200">
+            <nav class="bg-white border-gray-200 px-4 lg:px-1 py-2.5 dark:bg-[#A4F6DE]">
                 <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
 
                     <a href="https://flowbite.com" class="flex items-center">
@@ -17,19 +17,19 @@ const Header = () => {
                     <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                         <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x lg:mt-0 ml-40">
                             <li>
-                                <a href="#" class="text-gray-800 dark:text-teal-950 dark:hover:text-green-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-slate-100 focus:outline-none dark:focus:ring-gray-800">درباره ما</a>
+                                <a href="#" class="text-gray-800 dark:text-teal-950 dark:hover:text-[#158B68] hover:bg-[#6D676757] focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-slate-100 focus:outline-none dark:focus:ring-gray-800">درباره ما</a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-gray-800 dark:text-teal-950 dark:hover:text-green-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-slate-100 focus:outline-none dark:focus:ring-gray-800">مقالات</a>
+                                <a href="#" class="text-gray-800 dark:text-teal-950 dark:hover:text-[#158B68] hover:bg-[#6D676757] focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-slate-100 focus:outline-none dark:focus:ring-gray-800">مقالات</a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-gray-800 dark:text-teal-950 dark:hover:text-green-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-slate-100 focus:outline-none dark:focus:ring-gray-800">دوره ها</a>
+                                <a href="#" class="text-gray-800 dark:text-teal-950 dark:hover:text-[#158B68] hover:bg-[#6D676757] focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-slate-100 focus:outline-none dark:focus:ring-gray-800">دوره ها</a>
                             </li>
 
                             <li>
-                                <a href="#" class="text-gray-800 dark:text-teal-950 dark:hover:text-green-600 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-slate-100 focus:outline-none dark:focus:ring-gray-800">صفحه اصلی</a>
+                                <a href="#" class="text-gray-800 dark:text-teal-950 dark:hover:text-[#158B68] hover:bg-[#6D676757] focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-slate-100 focus:outline-none dark:focus:ring-gray-800">صفحه اصلی</a>
                             </li>
 
                         </ul>

@@ -4,7 +4,7 @@ const Footer = () => {
     return (
 
 
-        <footer class="bg-white dark:bg-green-200">
+        <footer class="bg-white dark:bg-[#A4F6DE]">
             <div class="mx-auto w-full max-w-screen-xl p-12 py-6 lg:py-8">
                 <div class="md:flex md:justify-between">
                     <div class="grid grid-cols-2 gap-8 sm:gap-0 sm:grid-cols-3">
@@ -24,7 +24,7 @@ const Footer = () => {
                                 <form class="max-w-md mx-auto">
                                     <div class="relative">
                                         <input type="search" id="default-search" class="block w-full p-4  text-sm text-gray-900 border  rounded-2xl bg-gray-50" placeholder="example@gmail.com" required />
-                                        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">ثبت</button>
+                                        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-[#41A789] hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">ثبت</button>
                                     </div>
                                 </form>
 
