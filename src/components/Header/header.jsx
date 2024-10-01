@@ -11,7 +11,7 @@ const Header = () => {
                     </a>
                     <div class="flex items-center lg:order-2  ">
                         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-black">آکادامی اچ وان</span>
-                        <img src="https://cdn-icons-png.flaticon.com/512/6395/6395489.png" class="mr-2 h-6 sm:h-9" alt="Flowbite Logo" />
+                        <img src="https://cdn-icons-png.flaticon.com/512/6395/6395489.png" class="mr-2 h-6 sm:h-9" alt="Logo" />
                     </div>
 
                     <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">

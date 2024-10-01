@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "./Card";
 // import { Footer } from "../Footer/Footer";
-import { Header } from "../../components/Header/header";
+// import { Header } from "../../components/Header/header";
 import axios from "axios";
 // import { useLocation } from "react-router-dom";
 
