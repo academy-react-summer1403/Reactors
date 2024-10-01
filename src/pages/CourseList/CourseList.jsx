@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card } from "./Card";
 import axios from "axios";
 // import { useLocation } from "react-router-dom";
+import Filter from "./Filter/Filter";
 const CoursLists = () => {
   const [Course, setCourseList] = useState([]);
   // const location = useLocation()
@@ -40,7 +41,7 @@ const CoursLists = () => {
           
         ))}
       
-
+      <Filter></Filter>
       </div>
 
       <div class="mt-4 ml-[32rem]">
