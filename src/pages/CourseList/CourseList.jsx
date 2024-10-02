@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "./Card";
 import axios from "axios";
-// import { useLocation } from "react-router-dom";
 import Filter from "./Filter/Filter";
-const CoursLists = () => {
-  const [Course, setCourseList] = useState([]);
-  // const location = useLocation()
+import { getCoursList } from "../../core/services/api/course";
+import { CardWrapper } from "../../components/CardWarpper/CardWarpper";
 
-  // console.log('location',location)
+const CoursLists = () => {
+  
+  const [course, setCourseList] = useState([]);
+
 
   const getCours = async () => {
-    console.log("Fetching started...");
-    const res = await axios.get('https://66e2c174494df9a478e2f521.mockapi.io/cards/list')
-    setCourseList(res.data)
+    const courses = await getCoursList(0);
+    setCourseList(courses.courseFilterDtos);
+    console.log(courses,"Course");
   }
 
   useEffect(() => {
@@ -25,24 +26,9 @@ const CoursLists = () => {
     
     <div class=" justify-center bg-white rounded-2xl shadow-md py-14 px-0 max-w-full mt-4">
 
-      <div className="grid grid-cols-3 items-center mt-28  gap-5">
-        {Course.map((item) => (
-          <Card
-            key={item.id}
-            img={item.img}
-            title={item.title}
-            price={item.price}
-            id={item.id}
-            desription={item.description}
-            readMore={item.readMore}
-            reserv={item.reserv}
+      <CardWrapper course={course}/>
 
-          />
-          
-        ))}
-      
-      <Filter></Filter>
-      </div>
+
 
       <div class="mt-4 ml-[32rem]">
         <ul class="flex items-center -space-x-px h-8 text-sm ">

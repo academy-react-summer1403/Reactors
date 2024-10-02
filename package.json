@@ -14,7 +14,9 @@
     "flowbite-react": "^0.10.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.2"
+    "react-router-dom": "^6.26.2",
+    "react-storage-complete": "^1.1.10",
+    "storage-service": "^0.1.19"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

@@ -3,7 +3,7 @@ import React from "react";
 const Search = ()=>{
     return(
 
-<form class="max-w-lg mx-auto -ml-28 mt-2">
+<form class="max-w-lg mx-auto ml-[-37rem] mt-2">
 <div class="flex ">
     <div class="relative w-full">
         <input type="search" id="search-dropdown" class="block p-2 w-72 ml-0 h-11 z-20 text-sm text-gray-900 bg-[#ffff] rounded-3xl border border-[#158B68]" placeholder="Search..." required />

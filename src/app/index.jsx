@@ -7,7 +7,7 @@ import { Header } from '../components/Header/header'
 import { Footer } from '../components/Footer/footer'
 import { Bar } from '../pages/CourseList/TopBar/bar'
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <>
