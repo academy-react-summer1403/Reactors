@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Form, Formik } from 'formik'
 import { HiOutlineFingerPrint } from "react-icons/hi2"
 
@@ -11,12 +12,12 @@ import { FormInputsHolder } from '../../../../components/common/Auth/Styled Auth
 import { ButtonHolder } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledButtonHolder'
 import { ConfirmButton } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledConfirmButton'
 
-const LoginVerification = () => {
+const SignUpVerification = () => {
     return (
         <Formik initialValues={{ verificationCode: "" }}>
             <Form className="w-full h-[80%] flex justify-center">
                 <FormSection>
-                    <FormTitle> ورود به سیستم </FormTitle>
+                    <FormTitle> ثبت نام </FormTitle>
                     <FormInputsHolder>
                         <FormInput name="verificationCode" placeholder="کد تایید" icon={<HiOutlineFingerPrint className="w-10 h-[30px] text-[#158B68]" />} />
                     </FormInputsHolder>
@@ -30,4 +31,4 @@ const LoginVerification = () => {
     )
 }
 
-export { LoginVerification }
+export { SignUpVerification }

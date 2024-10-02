@@ -5,7 +5,11 @@ import { AuthCover } from '../../../components/common/Auth/AuthCover'
 import { FormBody } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormBody'
 import { HomePageIcon } from '../../../components/common/Auth/HomePageIcon'
 import { LoginVerification } from '../../../pages/Auth/Login/Login Verification'
-import { LoginByEmail } from '../../../pages/Auth/Login/Login by Email'
+import { SignUp } from '../../../pages/Auth/Sign Up'
+import { FinalRegistration } from '../../../pages/Auth/Sign Up/Final Registration'
+import { SignUpVerification } from '../../../pages/Auth/Sign Up/Sign Up Verification'
+import { ForgetPassword } from '../../../pages/Auth/Forget Password'
+import { ChangePassword } from '../../../pages/Auth/Forget Password/Change Password'
 
 const AuthLayout = () => {
     return (
@@ -15,9 +19,13 @@ const AuthLayout = () => {
                 <AuthCover />
                 <FormBody>
                     <HomePageIcon />
-                    {/* <Login /> */}
+                    <Login />
                     {/* <LoginVerification /> */}
-                    <LoginByEmail />
+                    {/* <SignUp /> */}
+                    {/* <FinalRegistration /> */}
+                    {/* <SignUpVerification /> */}
+                    {/* <ForgetPassword /> */}
+                    {/* <ChangePassword /> */}
                 </FormBody>
             </AuthBody>
         </div>
