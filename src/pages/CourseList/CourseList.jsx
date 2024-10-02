@@ -4,6 +4,7 @@ import axios from "axios";
 import Filter from "./Filter/Filter";
 import { getCoursList } from "../../core/services/api/course";
 import { CardWrapper } from "../../components/CardWarpper/CardWarpper";
+import Swiper from "swiper";
 
 const CoursLists = () => {
   
@@ -27,6 +28,7 @@ const CoursLists = () => {
     <div class=" justify-center bg-white rounded-2xl shadow-md py-14 px-0 max-w-full mt-4">
 
       <CardWrapper course={course}/>
+      
 
 
 
