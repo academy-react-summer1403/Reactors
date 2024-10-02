@@ -11,7 +11,7 @@ import './styles.css';
 // import required modules
 import { Pagination } from 'swiper/modules';
 
-export default function App() {
+export default function slider () {
   return (
     <>
       <Swiper

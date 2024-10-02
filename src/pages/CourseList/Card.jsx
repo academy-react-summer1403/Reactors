@@ -7,11 +7,11 @@ const Card = ({ img, title, desription, id, readMore, reserv }) => {
   return (
     <div
       onClick={() => navigate("/detail/" + id)}
-      className=" mx-auto  justify-center bg-[#FBF6F6] rounded-2xl shadow-lg shadow-slate-600/80 w-3/6  h-full"
+      className=" mx-auto justify-center bg-[#FBF6F6] rounded-2xl shadow-lg shadow-slate-600/80 w-[61%]  h-full"
     >
 
       <img
-        className="object-center -mt-24 ml-0 p-9 max-w-full max-h-full"
+        className="object-center  mt-[-66px]  p-[3.25rem] "
         src={"https://platri.de/wp-content/uploads/2024/01/Angular-Framework-e1649312852136.png"}
       // src={img }
 

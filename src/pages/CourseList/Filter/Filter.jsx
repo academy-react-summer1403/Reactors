@@ -15,8 +15,10 @@ const Filter = () => {
     setPriceRange('');
   };
 
+  
+
   return (
-    <div className="p-6 bg-[#FBF6F6] shadow-md rounded-lg text-right">
+    <div className="p-6 bg-[#FBF6F6] shadow-md rounded-lg text-right w-[278px] ml-[977px] mb-[954px] mt-[-1315px]">
       {/* بخش تکنولوژی */}
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2 ">
@@ -25,7 +27,7 @@ const Filter = () => {
         <select
           value={technology}
           onChange={(e) => setTechnology(e.target.value)}
-          className="block w-full bg-[#FBF6F6] border border-gray-300 rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500"
+          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500"
         >
           <option value="">انتخاب تکنولوژی</option>
           <option value="React">React</option>
@@ -43,7 +45,7 @@ const Filter = () => {
         <select
           value={deliveryType}
           onChange={(e) => setDeliveryType(e.target.value)}
-          className="block w-full bg-[#FBF6F6] border border-gray-300 rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500"
+          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500"
         >
           <option value="">انتخاب نوع برگزاری</option>
           <option value="Online">Online</option>
@@ -60,7 +62,7 @@ const Filter = () => {
         <select
           value={courseLevel}
           onChange={(e) => setCourseLevel(e.target.value)}
-          className="block w-full bg-[#FBF6F6] border border-gray-300 rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500"
+          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500"
         >
           <option value="">انتخاب سطح دوره</option>
           <option value="Beginner">Beginner</option>
@@ -80,14 +82,14 @@ const Filter = () => {
           max="1000000"
           value={priceRange}
           onChange={(e) => setPriceRange(e.target.value)}
-          className="w-full"
+          className="w-full "
         />
       </div>
 
       {/* دکمه پاک کردن فیلترها */}
       <button
         onClick={clearFilters}
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-[#5BE1B9] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         پاک کردن فیلتر ها
       </button>
