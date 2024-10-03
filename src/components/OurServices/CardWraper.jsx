@@ -1,7 +1,7 @@
 import { Card } from "./Card"
 import { useState } from "react"
 import aks1 from "../../images/service1.png"
-import aks2 from "../../images/sevice2.png"
+import aks2 from "../../images/sevice22.png"
 import aks3 from "../../images/sevice3.png"
 import aks4 from "../../images/sevice4.png"
 import aks5 from "../../images/sevice5.png"
