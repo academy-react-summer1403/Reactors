@@ -36,7 +36,7 @@ const Login = () => {
         console.log(result)
 
         if (result.success) {
-            setItem(result.token)
+            setItem("token", result.token)
             toast.success("خوش آمدید")
         }
     }
@@ -58,7 +58,7 @@ const Login = () => {
                     <FormTitle> ورود به سیستم </FormTitle>
                     <FormInputsHolder>
                         <FormInput name="phoneNumber" placeholder="شماره همراه" icon={<IoPhonePortraitOutline className="w-10 h-[30px] text-[#158B68]" />} />
-                        <FormInput name="password" placeholder="رمز عبور" icon={<HiOutlineKey className="w-10 h-[30px] text-[#158B68]" />} />
+                        <FormInput name="password" type="password" placeholder="رمز عبور" icon={<HiOutlineKey className="w-10 h-[30px] text-[#158B68]" />} />
                     </FormInputsHolder>
                     <FormCheckbox name="rememberMe" id="rememberMe" labelText="مرا به خاطر بسپار" />
                     <ButtonHolder>
