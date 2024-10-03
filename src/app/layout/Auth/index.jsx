@@ -19,10 +19,10 @@ const AuthLayout = () => {
                 <AuthCover />
                 <FormBody>
                     <HomePageIcon />
-                    {/* <Login /> */}
+                    <Login />
                     {/* <LoginVerification /> */}
                     {/* <SignUp /> */}
-                    <FinalRegistration />
+                    {/* <FinalRegistration /> */}
                     {/* <SignUpVerification /> */}
                     {/* <ForgetPassword /> */}
                     {/* <ChangePassword /> */}

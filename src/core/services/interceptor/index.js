@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clearStorage, getItem, removeItem } from "../common/storage.services";
+import { clearStorage, getItem, removeItem } from "../../utils/storage.services";
 
 const baseURL = import.meta.env.VITE_BASE_URL
 
