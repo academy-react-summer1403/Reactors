@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Form, Formik } from 'formik'
 import { HiOutlineKey } from "react-icons/hi2"
 import { MdOutlineVerifiedUser } from "react-icons/md"
+import { useDispatch } from 'react-redux'
 
 import { FormInput } from '../../../../components/common/Auth/FormInput'
+import { handleImage } from '../../../../redux/auth'
 
 import { FormSection } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledFormSection'
 import { FormTitle } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledFormTitle'
@@ -12,7 +14,16 @@ import { FormInputsHolder } from '../../../../components/common/Auth/Styled Auth
 import { ButtonHolder } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledButtonHolder'
 import { ConfirmButton } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledConfirmButton'
 
+import image from '../../../../assets/images/newPass.svg'
+
 const ChangePassword = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(handleImage(image))
+    }, [])
+
     return (
         <Formik initialValues={{ password: "", repeatPassword: "" }}>
             <Form className="w-full h-[80%] flex justify-center">

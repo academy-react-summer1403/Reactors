@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Form, Formik } from 'formik'
 import { LuAtSign } from "react-icons/lu"
+import { useDispatch } from 'react-redux'
 
 import { FormInput } from '../../../components/common/Auth/FormInput'
 import { BackButton } from '../../../components/common/Auth/BackButton'
+import { handleImage } from '../../../redux/auth'
 
 import { FormSection } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormSection'
 import { FormTitle } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormTitle'
@@ -12,7 +14,16 @@ import { FormInputsHolder } from '../../../components/common/Auth/Styled Auth/St
 import { ButtonHolder } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledButtonHolder'
 import { ConfirmButton } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledConfirmButton'
 
+import image from '../../../assets/images/forgot.svg'
+
 const ForgetPassword = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(handleImage(image))
+    }, [])
+
     return (
         <Formik initialValues={{ email: "" }}>
             <Form className="w-full h-[80%] flex justify-center">

@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Form, Formik } from 'formik'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { HiOutlineKey } from "react-icons/hi2"
+import { useDispatch } from 'react-redux'
 
+import { loginAPI } from '../../../core/services/api/auth.js'
 import { FormInput } from '../../../components/common/Auth/FormInput'
 import { FormCheckbox } from '../../../components/common/Auth/FormCheckbox'
 import { BackButton } from '../../../components/common/Auth/BackButton'
 import { LoginLinks } from '../../../components/Auth/LoginLinks'
+import { handleImage } from '../../../redux/auth.jsx'
 
 import { FormTitle } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormTitle'
 import { FormSection } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormSection'
@@ -18,8 +21,28 @@ import { ConfirmButton } from '../../../components/common/Auth/Styled Auth/Style
 import image from '../../../assets/images/login.svg'
 
 const Login = () => {
+
+    const dispatch = useDispatch()
+
+    const loginUser = async (values) => {
+        const user = {
+            phoneOrGmail: values.phoneNumber,
+            password: values.password,
+            rememberMe: values.rememberMe
+        }
+        const result = await loginAPI(user)
+        console.log(result)
+
+        if (result.success) alert("با موفقیت انجام شد")
+        else alert("!!!")
+    }
+
+    useEffect(() => {
+        dispatch(handleImage(image))
+    }, [])
+
     return (
-        <Formik initialValues={{ phoneNumber: "", password: "", rememberMe: false }}>
+        <Formik initialValues={{ phoneNumber: "", password: "", rememberMe: false }} onSubmit={(values) => loginUser(values)} >
             <Form className="w-full flex justify-center">
                 <FormSection>
                     <FormTitle> ورود به سیستم </FormTitle>
@@ -29,7 +52,7 @@ const Login = () => {
                     </FormInputsHolder>
                     <FormCheckbox name="rememberMe" id="rememberMe" labelText="مرا به خاطر بسپار" />
                     <ButtonHolder>
-                        <ConfirmButton> تایید </ConfirmButton>
+                        <ConfirmButton type='submit'> تایید </ConfirmButton>
                         <BackButton title="بازگشت به صفحه اصلی" />
                     </ButtonHolder>
                     <LoginLinks />

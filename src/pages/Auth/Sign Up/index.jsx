@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Form, Formik } from 'formik'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
+import { useDispatch } from 'react-redux'
 
+import { sendVerifyMessage } from '../../../core/services/api/auth'
 import { FormInput } from '../../../components/common/Auth/FormInput'
 import { BackButton } from '../../../components/common/Auth/BackButton'
+import { handleImage } from '../../../redux/auth'
 
 import { FormSection } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormSection'
 import { FormTitle } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormTitle'
@@ -12,9 +15,29 @@ import { FormInputsHolder } from '../../../components/common/Auth/Styled Auth/St
 import { ButtonHolder } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledButtonHolder'
 import { ConfirmButton } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledConfirmButton'
 
+import image from '../../../assets/images/register.svg'
+
 const SignUp = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(handleImage(image))
+    }, [])
+
+    const verifyUser = async (values) => {
+        const userPhoneNumber = {
+            phoneNumber: values.phoneNumber
+        }
+        const result = await sendVerifyMessage(userPhoneNumber)
+        console.log(result)
+
+        if (result.success) alert ("عالیه")
+        else alert ("!!!")
+    }
+
     return (
-        <Formik initialValues={{ phoneNumber: "" }}>
+        <Formik initialValues={{ phoneNumber: "" }} onSubmit={(values) => verifyUser(values)} >
             <Form className="w-full h-[80%] flex justify-center">
                 <FormSection>
                     <FormTitle> ثبت نام </FormTitle>

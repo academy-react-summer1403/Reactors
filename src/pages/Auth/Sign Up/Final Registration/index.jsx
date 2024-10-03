@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Form, Formik } from 'formik'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { HiOutlineKey } from "react-icons/hi2"
 import { LuAtSign } from "react-icons/lu"
 import { MdOutlineVerifiedUser } from "react-icons/md"
+import { useDispatch } from 'react-redux'
 
 import { FormInput } from '../../../../components/common/Auth/FormInput'
 import { FormCheckbox } from '../../../../components/common/Auth/FormCheckbox'
+import { handleImage } from '../../../../redux/auth'
 
 import { FormTitle } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledFormTitle'
 import { FormSection } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledFormSection'
@@ -15,9 +17,18 @@ import { FormInputsHolder } from '../../../../components/common/Auth/Styled Auth
 import { ButtonHolder } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledButtonHolder'
 import { ConfirmButton } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledConfirmButton'
 
+import image from '../../../../assets/images/finalRegister.svg'
+
 const FinalRegistration = () => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(handleImage(image))
+    }, [])
+
     return (
-        <Formik initialValues={{ phoneNumber: "", email: "", password: "", repeatPassword: "" , agreement: false }}>
+        <Formik initialValues={{ phoneNumber: "", email: "", password: "", repeatPassword: "", agreement: false }}>
             <Form className="w-full flex justify-center">
                 <FormSection>
                     <FormTitle> ثبت نام </FormTitle>
