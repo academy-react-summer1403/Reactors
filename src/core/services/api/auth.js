@@ -17,3 +17,21 @@ export const sendVerifyMessage = async (phoneNumber) => {
         return false
     }
 }
+
+export const verifyMessage = async (verifyCode) => {
+    try {
+        const response = await http.post("/Sign/VerifyMessage", verifyCode)
+        return response
+    } catch (error) {
+        return false
+    }
+}
+
+export const finalRegisteration = async (userData) => {
+    try {
+        const response = await http.post("/Sign/Register", userData)
+        return response
+    } catch (error) {
+        return false
+    }
+}

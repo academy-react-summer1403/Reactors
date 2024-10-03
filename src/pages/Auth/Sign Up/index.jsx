@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { sendVerifyMessage } from '../../../core/services/api/auth'
 import { FormInput } from '../../../components/common/Auth/FormInput'
 import { BackButton } from '../../../components/common/Auth/BackButton'
-import { handleImage } from '../../../redux/auth'
+import { handleImage, handlePhoneNumber } from '../../../redux/auth'
 
 import { FormSection } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormSection'
 import { FormTitle } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormTitle'
@@ -21,20 +21,20 @@ const SignUp = () => {
 
     const dispatch = useDispatch()
 
+    const verifyUser = async (values) => {
+        const result = await sendVerifyMessage({ phoneNumber: values.phoneNumber })
+        console.log(result)
+
+        if (result.success) {
+            alert("عالیع")
+            dispatch(handlePhoneNumber(values.phoneNumber))
+
+        } else alert("!!!")
+    }
+
     useEffect(() => {
         dispatch(handleImage(image))
     }, [])
-
-    const verifyUser = async (values) => {
-        const userPhoneNumber = {
-            phoneNumber: values.phoneNumber
-        }
-        const result = await sendVerifyMessage(userPhoneNumber)
-        console.log(result)
-
-        if (result.success) alert ("عالیه")
-        else alert ("!!!")
-    }
 
     return (
         <Formik initialValues={{ phoneNumber: "" }} onSubmit={(values) => verifyUser(values)} >
@@ -44,8 +44,8 @@ const SignUp = () => {
                     <FormInputsHolder>
                         <FormInput name="phoneNumber" placeholder="شماره همراه" icon={<IoPhonePortraitOutline className="w-10 h-[30px] text-[#158B68]" />} />
                     </FormInputsHolder>
-                    <ButtonHolder style={{marginTop: "80px"}}>
-                        <ConfirmButton> ورود </ConfirmButton>
+                    <ButtonHolder style={{ marginTop: "80px" }}>
+                        <ConfirmButton type='submit'> ورود </ConfirmButton>
                         <BackButton title="بازگشت به صفحه قبل" />
                     </ButtonHolder>
                 </FormSection>

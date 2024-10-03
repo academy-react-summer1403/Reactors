@@ -19,6 +19,8 @@ import { ButtonHolder } from '../../../components/common/Auth/Styled Auth/Styled
 import { ConfirmButton } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledConfirmButton'
 
 import image from '../../../assets/images/login.svg'
+import { setItem } from '../../../core/utils/storage.services.js'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Login = () => {
 
@@ -33,8 +35,10 @@ const Login = () => {
         const result = await loginAPI(user)
         console.log(result)
 
-        if (result.success) alert("با موفقیت انجام شد")
-        else alert("!!!")
+        if (result.success) {
+            setItem(result.token)
+            toast.success("خوش آمدید")
+        }
     }
 
     useEffect(() => {
@@ -42,8 +46,14 @@ const Login = () => {
     }, [])
 
     return (
-        <Formik initialValues={{ phoneNumber: "", password: "", rememberMe: false }} onSubmit={(values) => loginUser(values)} >
+        <Formik
+            initialValues={{ phoneNumber: "", password: "", rememberMe: false }}
+            onSubmit={(values) => {
+                loginUser(values)
+            }}
+        >
             <Form className="w-full flex justify-center">
+                <Toaster />
                 <FormSection>
                     <FormTitle> ورود به سیستم </FormTitle>
                     <FormInputsHolder>

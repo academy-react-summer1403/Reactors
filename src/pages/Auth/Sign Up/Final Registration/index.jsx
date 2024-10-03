@@ -5,8 +5,9 @@ import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { HiOutlineKey } from "react-icons/hi2"
 import { LuAtSign } from "react-icons/lu"
 import { MdOutlineVerifiedUser } from "react-icons/md"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { finalRegisteration } from '../../../../core/services/api/auth'
 import { FormInput } from '../../../../components/common/Auth/FormInput'
 import { FormCheckbox } from '../../../../components/common/Auth/FormCheckbox'
 import { handleImage } from '../../../../redux/auth'
@@ -21,14 +22,28 @@ import image from '../../../../assets/images/finalRegister.svg'
 
 const FinalRegistration = () => {
 
+    const { phoneNumber } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
+
+    const register = async (values) => {
+        const userData = {
+            password: values.password,
+            gmail: values.email,
+            phoneNumber: values.phoneNumber
+        }
+        const result = await finalRegisteration(userData)
+        console.log(result)
+    }
 
     useEffect(() => {
         dispatch(handleImage(image))
     }, [])
 
     return (
-        <Formik initialValues={{ phoneNumber: "", email: "", password: "", repeatPassword: "", agreement: false }}>
+        <Formik
+            initialValues={{ phoneNumber: phoneNumber, email: "", password: "", repeatPassword: "", agreement: false }}
+            onSubmit={(values) => register(values)}
+        >
             <Form className="w-full flex justify-center">
                 <FormSection>
                     <FormTitle> ثبت نام </FormTitle>
@@ -40,7 +55,7 @@ const FinalRegistration = () => {
                     </FormInputsHolder>
                     <FormCheckbox name="agreement" id="agreement" labelText="من با تمام اظهارات موافقم" />
                     <ButtonHolder>
-                        <ConfirmButton> ادامه </ConfirmButton>
+                        <ConfirmButton type="submit"> ادامه </ConfirmButton>
                     </ButtonHolder>
                 </FormSection>
             </Form>
