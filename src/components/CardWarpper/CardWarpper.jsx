@@ -7,7 +7,6 @@ const CardWrapper = ({ course }) => {
             <div className="grid grid-cols-3 items-center mt-4 gap-5  p">
                 {course.map((item) => {
                     return <Card
-                        // key={item.id}
                         data={item}
                          />
                 })}

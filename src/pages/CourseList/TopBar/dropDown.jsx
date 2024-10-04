@@ -9,7 +9,7 @@ const Dropdown = () => {
 
   return (
     <div className="relative inline-block text-left right-36 top-3">
-      <div class='relative w-full flex'>
+      <div className='relative w-full flex'>
         <button
           onClick={toggleDropdown}
           type="button"
