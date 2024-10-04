@@ -45,7 +45,7 @@ const SignUpVerification = () => {
                     </FormInputsHolder>
                     <ButtonHolder style={{ marginTop: "80px" }}>
                         <ConfirmButton> ورود </ConfirmButton>
-                        <BackButton title="بازگشت به صفحه قبل" />
+                        <BackButton title="بازگشت به صفحه قبل" url="/authentication/signup" />
                     </ButtonHolder>
                 </FormSection>
             </Form>

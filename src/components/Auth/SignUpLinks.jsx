@@ -1,5 +1,5 @@
 import React from 'react'
-import { LinksHolder } from '../common/Auth/Styled Auth/StyledLinksHolder'
+import { LinksHolder } from '../common/Auth/Styled Form/StyledLinksHolder'
 import { Link } from 'react-router-dom'
 
 const SignUpLinks = () => {
