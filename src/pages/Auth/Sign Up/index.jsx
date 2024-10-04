@@ -16,20 +16,25 @@ import { ButtonHolder } from '../../../components/common/Auth/Styled Form/Styled
 import { ConfirmButton } from '../../../components/common/Auth/Styled Form/StyledConfirmButton'
 
 import image from '../../../assets/images/register.svg'
+import SignUpLinks from '../../../components/Auth/SignUpLinks'
+import { useNavigate } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 
 const SignUp = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const verifyUser = async (values) => {
         const result = await sendVerifyMessage({ phoneNumber: values.phoneNumber })
         console.log(result)
 
         if (result.success) {
-            alert("عالیع")
-            dispatch(handlePhoneNumber(values.phoneNumber))
-
-        } else alert("!!!")
+            if (result.message !== "درخواست نامعتبر") {
+                dispatch(handlePhoneNumber(values.phoneNumber))
+                navigate("/authentication/verify-user")
+            } else toast.error("این کاربر ثبت نام شده است")
+        } 
     }
 
     useEffect(() => {
@@ -39,6 +44,7 @@ const SignUp = () => {
     return (
         <Formik initialValues={{ phoneNumber: "" }} onSubmit={(values) => verifyUser(values)} >
             <Form className="w-full h-[80%] flex justify-center">
+                <Toaster />
                 <FormSection>
                     <FormTitle> ثبت نام </FormTitle>
                     <FormInputsHolder>
@@ -46,8 +52,9 @@ const SignUp = () => {
                     </FormInputsHolder>
                     <ButtonHolder style={{ marginTop: "80px" }}>
                         <ConfirmButton type='submit'> ورود </ConfirmButton>
-                        <BackButton title="بازگشت به صفحه قبل" />
+                        <BackButton title="بازگشت به صفحه اصلی" url="/" />
                     </ButtonHolder>
+                    <SignUpLinks />
                 </FormSection>
             </Form>
         </Formik>

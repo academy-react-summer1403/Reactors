@@ -4,7 +4,8 @@ const auth = createSlice({
     name: "auth",
     initialState: {
         image: "",
-        phoneNumber: ""
+        phoneNumber: "",
+        userId: ""
     },
     reducers: {
         handleImage: (state, action) => {
@@ -12,9 +13,12 @@ const auth = createSlice({
         },
         handlePhoneNumber: (state, action) => {
             state.phoneNumber = action.payload
+        },
+        handleUserId: (state, action) => {
+            state.userId = action.payload
         }
     }
 })
 
-export const { handleImage, handlePhoneNumber } = auth.actions
+export const { handleImage, handlePhoneNumber, handleUserId } = auth.actions
 export default auth.reducer

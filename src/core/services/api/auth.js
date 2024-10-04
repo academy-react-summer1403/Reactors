@@ -35,3 +35,30 @@ export const finalRegisteration = async (userData) => {
         return false
     }
 }
+
+export const forgetPassword = async (email) => {
+    try {
+        const response = await http.post("/Sign/ForgetPassword", email)
+        return response
+    } catch (error) {
+        return false
+    }
+}
+
+export const getConfigValue = async (configValue) => {
+    try {
+        const response = http.get("/Sign/Reset/" + configValue)
+        return response
+    } catch (error) {
+        return false
+    }
+}
+
+export const changePassword = async (newPassword) => {
+    try {
+        const response = await http.post("/Sign/Reset", newPassword)
+        return response
+    } catch (error) {
+        return false
+    }
+}

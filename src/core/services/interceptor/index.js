@@ -1,5 +1,6 @@
 import axios from "axios";
 import { clearStorage, getItem, removeItem } from "../../utils/storage.services";
+import toast from "react-hot-toast";
 
 const baseURL = import.meta.env.VITE_BASE_URL
 
@@ -9,12 +10,15 @@ const instance = axios.create({
 
 
 const onSuccess = (response) => {
+    if (!response.success) toast.error("کاربر یافت نشد. لطفا مقادیر را به درستی وارد کنید!")
     return response.data;
 };
 
 
 const onError = (err) => {
     console.log(err);
+
+    if (err.message === "Network Error") toast.error("اتصال اینترنت خود را چک کنید")
 
     if (err.response.status === 401){
         clearStorage()
@@ -23,7 +27,7 @@ const onError = (err) => {
     }
 
         if (err.response.status >= 400 && err.response.status < 500) {
-            alert("Client error: " + err.response.status);
+            toast.error("درخواست نامعتبر است")
         }
 
     return Promise.reject(err);

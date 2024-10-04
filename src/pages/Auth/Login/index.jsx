@@ -4,8 +4,11 @@ import { Form, Formik } from 'formik'
 import { IoPhonePortraitOutline } from 'react-icons/io5'
 import { HiOutlineKey } from "react-icons/hi2"
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 
 import { loginAPI } from '../../../core/services/api/auth.js'
+import { setItem } from '../../../core/utils/storage.services.js'
 import { FormInput } from '../../../components/common/Auth/FormInput'
 import { FormCheckbox } from '../../../components/common/Auth/FormCheckbox'
 import { BackButton } from '../../../components/common/Auth/BackButton'
@@ -19,12 +22,11 @@ import { ButtonHolder } from '../../../components/common/Auth/Styled Form/Styled
 import { ConfirmButton } from '../../../components/common/Auth/Styled Form/StyledConfirmButton.jsx'
 
 import image from '../../../assets/images/login.svg'
-import { setItem } from '../../../core/utils/storage.services.js'
-import toast, { Toaster } from 'react-hot-toast'
 
 const Login = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const loginUser = async (values) => {
         const user = {
@@ -38,6 +40,7 @@ const Login = () => {
         if (result.success) {
             setItem("token", result.token)
             toast.success("خوش آمدید")
+            navigate("/")
         }
     }
 
@@ -63,7 +66,7 @@ const Login = () => {
                     <FormCheckbox name="rememberMe" id="rememberMe" labelText="مرا به خاطر بسپار" />
                     <ButtonHolder>
                         <ConfirmButton type='submit'> تایید </ConfirmButton>
-                        <BackButton title="بازگشت به صفحه اصلی" />
+                        <BackButton title="بازگشت به صفحه اصلی" url="/" />
                     </ButtonHolder>
                     <LoginLinks />
                 </FormSection>
