@@ -1,10 +1,11 @@
 import React from 'react'
 import { LinksHolder } from '../common/Auth/Styled Auth/StyledLinksHolder'
+import { Link } from 'react-router-dom'
 
 const SignUpLinks = () => {
     return (
         <LinksHolder>
-            <a href="#"> من از قبل عضو هستم </a>
+            <Link to={"/authentication"}> من از قبل عضو هستم </Link>
         </LinksHolder>
     )
 }

@@ -1,11 +1,12 @@
 import React from 'react'
-import { LinksHolder } from '../common/Auth/Styled Auth/Styled Form/StyledLinksHolder'
+import { LinksHolder } from '../common/Auth/Styled Form/StyledLinksHolder'
+import { Link } from 'react-router-dom'
 
 const LoginLinks = () => {
     return (
         <LinksHolder className="flex justify-between mt-[30px] underline">
-            <a href="#"> یک حساب کاربری ایجاد کنید </a>
-            <a href="#"> فراموشی رمز </a>
+            <Link to={"/authentication/signup"}> یک حساب کاربری ایجاد کنید </Link>
+            <Link to={"/authentication/forget-password"}> فراموشی رمز </Link>
         </LinksHolder>
     )
 }
