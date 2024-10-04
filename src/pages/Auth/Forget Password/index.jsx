@@ -8,11 +8,11 @@ import { FormInput } from '../../../components/common/Auth/FormInput'
 import { BackButton } from '../../../components/common/Auth/BackButton'
 import { handleImage } from '../../../redux/auth'
 
-import { FormSection } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormSection'
-import { FormTitle } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormTitle'
-import { FormInputsHolder } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledFormInputsHolder'
-import { ButtonHolder } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledButtonHolder'
-import { ConfirmButton } from '../../../components/common/Auth/Styled Auth/Styled Form/StyledConfirmButton'
+import { FormSection } from '../../../components/common/Auth/Styled Form/StyledFormSection'
+import { FormTitle } from '../../../components/common/Auth/Styled Form/StyledFormTitle'
+import { FormInputsHolder } from '../../../components/common/Auth/Styled Form/StyledFormInputsHolder'
+import { ButtonHolder } from '../../../components/common/Auth/Styled Form/StyledButtonHolder'
+import { ConfirmButton } from '../../../components/common/Auth/Styled Form/StyledConfirmButton'
 
 import image from '../../../assets/images/forgot.svg'
 

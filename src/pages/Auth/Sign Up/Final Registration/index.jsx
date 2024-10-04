@@ -12,11 +12,11 @@ import { FormInput } from '../../../../components/common/Auth/FormInput'
 import { FormCheckbox } from '../../../../components/common/Auth/FormCheckbox'
 import { handleImage } from '../../../../redux/auth'
 
-import { FormTitle } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledFormTitle'
-import { FormSection } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledFormSection'
-import { FormInputsHolder } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledFormInputsHolder'
-import { ButtonHolder } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledButtonHolder'
-import { ConfirmButton } from '../../../../components/common/Auth/Styled Auth/Styled Form/StyledConfirmButton'
+import { FormTitle } from '../../../../components/common/Auth/Styled Form/StyledFormTitle'
+import { FormSection } from '../../../../components/common/Auth/Styled Form/StyledFormSection'
+import { FormInputsHolder } from '../../../../components/common/Auth/Styled Form/StyledFormInputsHolder'
+import { ButtonHolder } from '../../../../components/common/Auth/Styled Form/StyledButtonHolder'
+import { ConfirmButton } from '../../../../components/common/Auth/Styled Form/StyledConfirmButton'
 
 import image from '../../../../assets/images/finalRegister.svg'
 
