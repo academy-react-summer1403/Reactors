@@ -53,7 +53,7 @@ const Filter = () => {
 
 
   return (
-    <div className="p-6 bg-[#FBF6F6] shadow-md rounded-lg text-right w-[210px] ml-[1063px] mb-[2366px] mt-[-2506px]">
+    <div className="p-6 bg-[#FBF6F6] shadow-md rounded-lg text-right w-[210px] ml-[1063px] mb-[1712px] mt-[-1949px]">
       {/* بخش تکنولوژی */}
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2 ">تکنولوژی</label>

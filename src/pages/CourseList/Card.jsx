@@ -66,8 +66,8 @@ const Card = ({ data }) => {
       </h1> */}
 
 
-
-      {/* <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
+{/* 
+      <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
         {levelName}
       </h1> */}
 

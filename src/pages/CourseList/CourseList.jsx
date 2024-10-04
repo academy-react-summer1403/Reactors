@@ -5,89 +5,129 @@ import Filter from "./Filter/Filter";
 import { getCoursList } from "../../core/services/api/course";
 import { CardWrapper } from "../../components/CardWarpper/CardWarpper";
 import Search from "./TopBar/Search";
-// import Filter from "./Filter/Filter";
-import CourseSlider from "../../components/Slider/Slider";
+import { Button, IconButton } from "@material-tailwind/react";
+import { ArrowRightIcon, ArrowLeftIcon, ArrowRightCircleIcon, ChevronDoubleRightIcon, ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation'
+import "../../app/App.css"
+import { Navigation } from 'swiper/modules';
+import { ChevronRightIcon } from "@heroicons/react/16/solid";
+import { ChevronLeftIcon } from "@heroicons/react/16/solid";
 
 const CoursLists = () => {
 
-  const [course, setCourseList] = useState([]);
+    const [course, setCourseList] = useState([]);
+
+    const [active, setActive] = useState(1);
+
+    const getItemProps = (index) =>
+    ({
+        variant: active === index ? "filled" : "text",
+        color: "gray",
+        onClick: () => setActive(index),
+        className: "rounded-full",
+    });
+
+    const next = () => {
+        if (active === 5) return;
+
+        setActive(active + 1);
+    };
+
+    const prev = () => {
+        if (active === 1) return;
+
+        setActive(active - 1);
+    };
 
 
     const getCours = async () => {
-      const courses = await getCoursList(0);
-      setCourseList(courses.courseFilterDtos);
-      console.log(courses, "Course");
+        const courses = await getCoursList(0);
+        setCourseList(courses.courseFilterDtos);
+        console.log(courses, "Course");
     }
 
     useEffect(() => {
-      getCours();
+        getCours();
     }, []);
 
 
 
     return (
 
-      <>
+        <>
 
-      <div className=" justify-center bg-white rounded-[30px] shadow-2xl py-14 px-0 w-[1016px] h-[2517px] ml-[27px] mt-4">
+            <div className=" justify-center bg-white rounded-[30px] shadow-2xl py-14 px-0 w-[1016px] h-[1951px] ml-[27px] mt-4">
 
-        <CardWrapper course={course} />
+                <CardWrapper course={course} />
 
-        {/* search */}
+                {/* search */}
 
-        <Search></Search>
-
-        
-        
-        
+                <Search></Search>
 
 
 
 
-        <div className="mt-4 ml-[21rem]">
-          <ul className="flex items-center -space-x-px h-8 text-sm ">
-            <li>
-              <a href="#" className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                <span className="sr-only">Previous</span>
-                <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
-                </svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-            </li>
-            <li>
-              <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-            </li>
-            <li>
-              <a href="#" aria-current="page" className="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-            </li>
-            <li>
-              <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-            </li>
-            <li>
-              <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-            </li>
-            <li>
-              <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                <span className="sr-only">Next</span>
-                <svg className="w-2.5 h-2.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </div>
 
-      </div>
-      <Filter></Filter>
-      <CourseSlider></CourseSlider>
 
-      </>
+
+
+                <div className="flex items-center gap-4 ml-[280px] mt-[-105px]">
+                    <Button
+                        variant="text"
+                        className="flex items-center gap-2 rounded-full "
+                        onClick={prev}
+                        disabled={active === 1}
+                    >
+                        <ChevronDoubleLeftIcon strokeWidth={2} className="h-4 w-4 text-[#5BE1B9]" />
+                    </Button>
+                    <div className="flex items-center gap-2 ">
+                        <IconButton {...getItemProps(1)}>1</IconButton>
+                        <IconButton {...getItemProps(2)}>2</IconButton>
+                        <IconButton {...getItemProps(3)}>3</IconButton>
+                        <IconButton {...getItemProps(4)}>4</IconButton>
+                        <IconButton {...getItemProps(5)}>5</IconButton>
+                    </div>
+                    <Button
+                        variant="text"
+                        className="flex items-center gap-2 rounded-full text-[#158B68]"
+                        onClick={next}
+                        disabled={active === 5}
+                    >
+                        <ChevronDoubleRightIcon strokeWidth={2} className="h-4 w-4 text-[#5BE1B9]" />
+                    </Button>
+                </div>
+
+            </div>
+            <Filter></Filter>
+
+            <div className="w-full h-[150px]   ">
+
+                <h1 className="text-center text-[34px]  ">دوره های برتر</h1>
+
+                <h2 className="text-center text-[20px] mt-5 "> ساختن دنیایی بهتر، یک دوره در یک زمان</h2>
+
+            </div>
+
+            <Swiper
+                slidesPerView={3}
+                spaceBetween={30}
+                navigation={true}
+                modules={[Navigation]}
+                dir="ltr"
+            >
+                {course.map((item) => {
+                    return <SwiperSlide> <Card
+                        data={item}
+                    /> </SwiperSlide>
+                })}
+
+            </Swiper>
+
+        </>
     );
-  };
+};
 
-  export { CoursLists };
-
+export { CoursLists };
 
