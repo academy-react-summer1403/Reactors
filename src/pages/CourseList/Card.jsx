@@ -1,25 +1,131 @@
 import React from 'react'
 // import { useNavigate } from 'react-router-dom';
+import like from '../../assets/like.png'
+import disLike from '../../assets/disLike.png'
+import Star from '../../assets/Star.png'
 
-const Card = ({ img, title, desription, id, readMore, reserv }) => {
+
+const Card = ({ data }) => {
+  const { teacherName, classRoomName, statusName, levelName, cost, currentRegistrants, likeCount, commandCount, userIsLiked, userLikedId, userFavorite, userFavoriteId, courseRate, title, describe, tumbImageAddress, lastUpdate, courseId, technologyList, dissLikeCount, currentUserDissLike, currentUserSetRate, currentUserRateNumber, readMore, reserv } = data
   //   const navigate = useNavigate()
 
   return (
     <div
-      onClick={() => navigate("/detail/" + id)}
-      className=" mx-auto justify-center bg-[#FBF6F6] rounded-2xl shadow-lg shadow-slate-600/80 w-[61%]  h-full"
+      onClick={() => navigate("/detail/" + courseId)}
+      className=" justify-center mb-[100px] bg-[#FBF6F6] rounded-2xl shadow-lg shadow-slate-600/80 w-full  min-h-[287px] px-[26px] pb-10"
     >
 
       <img
-        className="object-center  mt-[-66px]  p-[3.25rem] "
-        src={"https://platri.de/wp-content/uploads/2024/01/Angular-Framework-e1649312852136.png"}
-      // src={img }
-
+        className="aspect-video rounded-t-2xl object-cover object-center "
+        src={tumbImageAddress}
       />
 
-      <div className="text-right">
-        <small className="text-black text-sm">آشنایی با برنامه نویسی با وردپرس</small>
+      <div class="pl-[2px] w-full flex flex-row flex-nowrap border border-black justify-start gap-6" >
+
+        <p className="rounded-[12px]  px-3 py-2 bg-[#BFF4E4] text-xs font-medium text-[#158B68] ml-[164px] mt-[15px]">
+          {statusName}
+        </p>
+        
+        
+        <p className=" flex flex-col flex-nowrap text-xs font-medium text-[#089E71]  pb-2 mt-[-33px] ">
+          <img src={like}/>
+          <div>{likeCount}</div>
+        </p>
+
+
+        <p className=" text-xs font-medium text-[#089E71]  pb-2 ">
+          <img src={disLike} />          
+         <div>{dissLikeCount}</div> 
+
+        </p>
+
+        <p className=" text-xs font-medium text-[#089E71] pb-2 ">
+          <img src={Star} />          
+         <div> {courseRate}</div>
+
+        </p>
+
       </div>
+
+
+      <div className="text-right mt-[9px]">
+        {title}
+      </div>
+
+
+      <p className=" text-xs font-medium text-[#676464]  pb-2 text-right ">
+        {teacherName}
+      </p>
+
+
+
+      {/* <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
+        {commandCount}
+      </h1> */}
+
+      {/* <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
+        {classRoomName}
+      </h1> */}
+
+
+
+      {/* <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
+        {levelName}
+      </h1> */}
+
+      {/* <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
+        {currentRegistrants}
+      </h1> */}
+
+
+
+
+
+      {/* <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {userIsLiked}
+      </div>
+
+      <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {userLikedId}
+      </div>
+
+      <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {userIsLiked}
+      </div>
+
+      <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {userFavorite}
+      </div>
+
+      <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {userFavoriteId}
+      </div> */}
+
+
+      {/* <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {lastUpdate}
+      </div> */}
+
+      {/* <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
+        {technologyList}
+      </h1> */}
+
+
+
+      {/* <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {currentUserDissLike}
+      </div>
+
+      <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {currentUserSetRate}
+      </div>
+      
+      <div className=" text-xs font-medium text-slate-600 pb-2 ">
+        {currentUserRateNumber}
+      </div> */}
+
+
+
 
 
 
@@ -35,24 +141,36 @@ const Card = ({ img, title, desription, id, readMore, reserv }) => {
         
       </div> */}
 
+
+
       <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
-        {title}
+        {/* {title} */}
       </h1>
 
-      <p className="  text-sm tracking-tight font-light text-slate-400 leading-6">
-        {desription}
+      <p className="  text-sm tracking-tight font-light text-slate-400 leading-6 text-right">
+        {describe}
       </p>
-      <div>
-        <button class="py-2.5 px-5 me-2  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100"
-          onClick={() => navigate("/ProductDetail/" + id)}>
+
+      <p className=" text-[20px] font-medium border border-b-0 text-[#E11818] pb-2 text-right ">
+        <span class="text-[#12926C]">
+          هزینه تمام دوره:
+        </span>
+        {cost}
+
+      </p>
+      <div class="flex justify-between" >
+        <button class="py-2.5  px-5 ml-[3px]  text-sm font-medium text-gray-900 bg-[#5BE1B9] rounded-lg border  hover:bg-emerald-400 "
+          onClick={() => navigate("/ProductDetail/" + courseId)}>
+          {reserv} رزرو دوره
+        </button>
+
+        <button class="py-2.5 px-5 ml-[3px] text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 "
+          onClick={() => navigate("/ProductDetail/" + courseId)}>
           {readMore}جزئیات دوره
         </button>
 
-        <button class="py-2.5  px-5 me-2  text-sm font-medium text-gray-900 bg-[#5BE1B9] rounded-lg border  hover:bg-emerald-400 "
-          onClick={() => navigate("/ProductDetail/" + id)}>
-          {reserv}رزرو
-        </button>
-      </div> 
+
+      </div>
     </div>
   );
 }

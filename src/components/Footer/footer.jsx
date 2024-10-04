@@ -23,7 +23,7 @@ const Footer = () => {
 
                                 <form class="max-w-md mx-auto">
                                     <div class="relative">
-                                        <input type="search" id="default-search" class="block w-full p-4  text-sm text-gray-900 border  rounded-2xl bg-gray-50" placeholder="example@gmail.com" required />
+                                        <input type="text"  class="block w-full p-4  text-sm text-gray-900 border  rounded-2xl bg-gray-50" placeholder="example@gmail.com" required />
                                         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-[#41A789] hover:bg-emerald-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">ثبت</button>
                                     </div>
                                 </form>

@@ -6,15 +6,11 @@ import { getCoursList } from "../../core/services/api/course";
 import { CardWrapper } from "../../components/CardWarpper/CardWarpper";
 import Search from "./TopBar/Search";
 // import Filter from "./Filter/Filter";
+import CourseSlider from "../../components/Slider/Slider";
 
 const CoursLists = () => {
 
   const [course, setCourseList] = useState([]);
-  const [searchItem, setSearchItem] = useState('')
-
-  const handleInputChange = (e) => {
-    const searchTerm = e.target.value;
-    setSearchItem(searchTerm)}
 
 
     const getCours = async () => {
@@ -33,13 +29,15 @@ const CoursLists = () => {
 
       <>
 
-      <div class=" justify-center bg-white rounded-2xl shadow-2xl py-14 px-0 w-[949px] mt-4">
+      <div class=" justify-center bg-white rounded-[37px] shadow-2xl py-14 px-0 w-[1016px] h-[2517px] ml-[41px] mt-4">
 
         <CardWrapper course={course} />
 
         {/* search */}
 
         <Search></Search>
+
+        
         
         
 
@@ -84,6 +82,7 @@ const CoursLists = () => {
 
       </div>
       <Filter></Filter>
+      <CourseSlider></CourseSlider>
 
       </>
     );
