@@ -6,14 +6,12 @@ import { getCoursList } from "../../core/services/api/course";
 import { CardWrapper } from "../../components/CardWarpper/CardWarpper";
 import Search from "./TopBar/Search";
 import { Button, IconButton } from "@material-tailwind/react";
-import { ArrowRightIcon, ArrowLeftIcon, ArrowRightCircleIcon, ChevronDoubleRightIcon, ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
+import {ChevronDoubleRightIcon, ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation'
 import "../../app/App.css"
 import { Navigation } from 'swiper/modules';
-import { ChevronRightIcon } from "@heroicons/react/16/solid";
-import { ChevronLeftIcon } from "@heroicons/react/16/solid";
 
 const CoursLists = () => {
 

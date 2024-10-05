@@ -150,7 +150,7 @@ const Card = ({ data }) => {
         {describe}
       </p>
 
-      <p className=" text-[20px] font-medium border border-b-0 text-[#E11818] pb-2 text-right ">
+      <p className=" text-[20px] font-medium  border-t-[1px] text-[#E11818] pb-2 text-right ">
         <span className="text-[#12926C] ml-[30px]">
           هزینه تمام دوره:
         </span>

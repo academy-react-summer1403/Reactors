@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getCoursList } from '../../../core/services/api/course';
+import { data } from 'autoprefixer';
 
 const Search = () => {
-    // const [SarchCourse, setSarchCourse] = useState([]);
-
-    // const getSarchCourse = async () => {
-    //     const SarchCourse = await getCoursList();
-    //     setSarchCourse(SarchCourse);
-    //     console.log(SarchCourse, "CourseSearch");
-    // }
-    // useEffect(() => {
-    //     getSarchCourse();
-    // }, []);
-
     return (
 
         <form className="max-w-lg mx-auto ml-[-37rem] mt-2">
@@ -25,6 +15,7 @@ const Search = () => {
                         </svg>
                         <span className="sr-only">Search</span>
                     </button>
+
                 </div>
             </div>
         </form>
