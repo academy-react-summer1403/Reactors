@@ -35,5 +35,5 @@ const CourseSlice = createSlice({
     }
 })
 
-export const { describe, handletechName,handletypeName,handletitle,handledescribe,SortType,PageNumber } = CourseSlice.actions
+export const { handlelevelName,handletechName,handletypeName,handletitle,handledescribe,handleSortType,handlePageNumber } = CourseSlice.actions
 export default CourseSlice.reducer
