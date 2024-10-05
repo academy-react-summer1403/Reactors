@@ -12,8 +12,11 @@ import 'swiper/css';
 import 'swiper/css/navigation'
 import "../../app/App.css"
 import { Navigation } from 'swiper/modules';
+import { useSelector } from "react-redux";
 
 const CoursLists = () => {
+
+    const {typeName}= useSelector((state)=>{return state.Courses})
 
     const [course, setCourseList] = useState([]);
 
@@ -41,14 +44,16 @@ const CoursLists = () => {
 
 
     const getCours = async () => {
-        const courses = await getCoursList(0);
+        const courses = await getCoursList(typeName);
         setCourseList(courses.courseFilterDtos);
         console.log(courses, "Course");
+        
     }
 
     useEffect(() => {
         getCours();
-    }, []);
+
+    }, [typeName]);
 
 
 

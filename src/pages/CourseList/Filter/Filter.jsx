@@ -3,7 +3,6 @@ import { getCoursLevel } from '../../../core/services/api/getCourseLevel';
 import { getCourseTypes } from '../../../core/services/api/getCourseType';
 import { getCourseTech } from '../../../core/services/api/getCourseTech';
 import { handletypeName, handletechName, handlelevelName } from '../../../Redux/CourseSlice';
-
 import { useDispatch } from 'react-redux';
 
 const Filter = () => {
@@ -18,6 +17,8 @@ const Filter = () => {
   const [CourseLevel, setCoursLevel] = useState([]);
 
   const [CourseTech, setCourseTech] = useState([]);
+
+  const dispatch = useDispatch();
 
 
 
@@ -52,7 +53,13 @@ const Filter = () => {
     if (name === 'levelName') dispatch(handlelevelName(value));
     else if (name === 'techName') dispatch(handletechName(value));
     else if (name === 'typeName') dispatch(handletypeName(value));
+    console.log(name, value);
   };
+
+  const handleCourseType = (e) =>{
+    const { value } = e.target;
+    dispatch(handletypeName(value));
+  }
 
 
   useEffect(() => {
@@ -87,7 +94,7 @@ const Filter = () => {
         <label className="block text-gray-700 text-sm font-bold mb-2">نوع برگزاری</label>
         <select
           value={null}
-          onChange={handleFilterChange}
+          onChange={handleCourseType}
           className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseType?.map((item) => {
             return <option value={item.id}
