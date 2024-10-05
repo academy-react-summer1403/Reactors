@@ -18,6 +18,14 @@ const Filter = () => {
 
   const [CourseTech, setCourseTech] = useState([]);
 
+  const [CostDown, setCostDown] = useState([]);
+
+  const [CostUp, setCostUp] = useState([]);
+
+  // const [priceRange, handleCost] = useState([]);
+
+
+
   const dispatch = useDispatch();
 
 
@@ -46,19 +54,58 @@ const Filter = () => {
     setCourseTech(CourseTech);
     console.log(CourseTech, "CourseTech");
 
+    // const CostDown = await getCostDown();
+    // setCostDown(CostDown);
+    // console.log(CostDown, "CostDown");
+
+
+    // const CostUp = await getCostUp();
+    // setCostUp(CostUp);
+    // console.log(CostUp, "CostUp");
+
+    // const Cost = await getCost();
+    // setCost(Cost);
+    // console.log(Cost, "Cost");
+
+
   }
 
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'levelName') dispatch(handlelevelName(value));
-    else if (name === 'techName') dispatch(handletechName(value));
-    else if (name === 'typeName') dispatch(handletypeName(value));
-    console.log(name, value);
-  };
+  // const handleFilterChange = (e) => {
+  //   const { name, value } = e.target;
+  //   if (name === 'levelName') dispatch(handlelevelName(value));
+  //   else if (name === 'techName') dispatch(handletechName(value));
+  //   else if (name === 'typeName') dispatch(handletypeName(value));
+  //   console.log(name, value);
+  // };
 
-  const handleCourseType = (e) =>{
+  const handleCourseType = (e) => {
     const { value } = e.target;
     dispatch(handletypeName(value));
+  }
+
+  const handleCoursLevel = (e) => {
+    const { value } = e.target;
+    dispatch(handlelevelName(value));
+  }
+
+  const handleTechName = (e) => {
+    const { value } = e.target;
+    dispatch(handletechName(value));
+  }
+
+  // const handleCostDown= (e) =>{
+  //   const { value } = e.target;
+  //   dispatch(handleCostDown(value));
+  // }
+
+  // const handleCostUp= (e) =>{
+  //   const { value } = e.target;
+  //   dispatch(handleCostUp(value));
+  // }
+
+  const handleCost = (e) => {
+    const { value } = e.target;
+    dispatch(handleCost(value));
   }
 
 
@@ -78,12 +125,12 @@ const Filter = () => {
         <label className="block text-gray-700 text-sm font-bold mb-2 ">تکنولوژی</label>
         <select
           value={null}
-          onChange={handleFilterChange}
-          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
+          onChange={handleTechName}
+          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2  text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseTech?.map((item) => {
-            return <option value={item.id}
-
-            >{item.techName}</option>
+            return <option value={item.id}>
+              {item.techName}
+            </option>
           })}
           <option value="">انتخاب تکنولوژی</option>
         </select>
@@ -110,7 +157,7 @@ const Filter = () => {
         <label className="block text-gray-700 text-sm font-bold mb-2">سطح دور</label>
         <select
           value={null}
-          onChange={handleFilterChange}
+          onChange={handleCoursLevel}
           className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseLevel?.map((item) => {
             return <option value={item.id}
@@ -128,7 +175,7 @@ const Filter = () => {
           type="range"
           min="0"
           max="100000"
-          value={priceRange}
+          value={null}
           onChange={(e) => setPriceRange(e.target.value)}
           className="w-full "
         />

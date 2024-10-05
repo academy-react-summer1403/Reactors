@@ -1,53 +1,39 @@
 import React, { useState } from "react";
+import { handleSort } from '../../../Redux/CourseSlice';
+import { useDispatch } from "react-redux";
+
 
 const Dropdown = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+
+  const [CourseSort, setCourseSort] = useState([]);
+
+  const handCourseleSort = (e) => {
+    const { value } = e.target;
+    dispatch(handleSort(value));
+  }
+
 
   return (
-    <div className="relative inline-block text-left right-4 top-[17px]">
-      <div className='relative w-full flex'>
-        <button
-          onClick={toggleDropdown}
-          type="button"
-          className="inline-flex justify-center w-full rounded-3xl border border-[#158B68] shadow-sm px-[70px] py-2 bg-white text-sm font-medium text-[#158B68] hover:bg-gray-50 focus:outline-none"
-        >
-          مرتب سازی
-        </button>
-      </div>
 
-      {isOpen && (
-        <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-          <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-black hover:bg-gray-100"
-              role="menuitem"
-            >
-              Option 1
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              role="menuitem"
-            >
-              Option 2
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              role="menuitem"
-            >
-              Option 3
-            </a>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+
+    <form class="max-w-[700px] mx-auto pl-[500px] pt-[12px] text-right ">
+      <select value={null} onChange={handCourseleSort} class="bg-[#ffff] border border-[#158B68] text-right text-[#158B68] gray-900 text-sm rounded-lg focus:ring-[#158B68] focus:border-[#158B68] block w-full p-[13px] ">
+        <option selected>مرتب سازی</option>
+        {CourseSort?.map((item) => {
+          return <option value={item.id}>
+            {item.Sort}
+          </option>
+        })}        
+        <option value="CA">قیمت</option>
+        <option value="FR">محبوب ترین</option>
+        <option value="DE">بروز ترین</option>
+      </select>
+    </form>
+
+
+  )
 };
 
 export default Dropdown;

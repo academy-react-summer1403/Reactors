@@ -14,9 +14,20 @@ import "../../app/App.css"
 import { Navigation } from 'swiper/modules';
 import { useSelector } from "react-redux";
 
+
 const CoursLists = () => {
 
     const {typeName}= useSelector((state)=>{return state.Courses})
+    const {techName}= useSelector((state)=>{return state.Courses})
+    const {levelName}= useSelector((state)=>{return state.Courses})
+    const {CostDown}= useSelector((state)=>{return state.Courses})
+    const {CostUp}= useSelector((state)=>{return state.Courses})
+    const {PageNumber}= useSelector((state)=>{return state.Courses})
+    const {title}= useSelector((state)=>{return state.Courses})
+    const {Sort}= useSelector((state)=>{return state.Courses})
+
+
+
 
     const [course, setCourseList] = useState([]);
 
@@ -44,16 +55,21 @@ const CoursLists = () => {
 
 
     const getCours = async () => {
-        const courses = await getCoursList(typeName);
+        const courses = await getCoursList(typeName,levelName,techName,CostDown,CostUp,PageNumber,title,Sort);
         setCourseList(courses.courseFilterDtos);
         console.log(courses, "Course");
         
     }
 
+
     useEffect(() => {
         getCours();
 
-    }, [typeName]);
+    }, [typeName,levelName,techName,CostDown,CostUp,PageNumber,title,Sort]
+
+
+);
+
 
 
 
