@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getCoursLevel } from '../../../core/services/api/getCourseLevel';
 import { getCourseTypes } from '../../../core/services/api/getCourseType';
 import { getCourseTech } from '../../../core/services/api/getCourseTech';
-// import { fetchCourses,setCourseLevel,setCourseType,setCourseTech } from "../../app/Store/CourseSlice";
-// import { fetchCourses, setCourseType, setCourseTech } from '../../../app/Store/Provider';
+import { handletypeName, handletechName, handlelevelName } from '../../../Redux/CourseSlice';
 
+import { useDispatch } from 'react-redux';
 
 const Filter = () => {
   // حالت های انتخابی برای فیلترها
@@ -20,14 +20,9 @@ const Filter = () => {
   const [CourseTech, setCourseTech] = useState([]);
 
 
-  // const handleFilterChange = (e) => {
-  //   const { name, value } = e.target;
-  //   if (name === 'category') dispatch(setCategory(value));
-  //   else if (name === 'level') dispatch(setLevel(value));
-  //   else if (name === 'search') dispatch(setSearch(value));
-  // };
 
-  // تابع برای پاک کردن فیلترها
+
+
   const clearFilters = () => {
     setTechnology('');
     setDeliveryType('');
@@ -52,6 +47,13 @@ const Filter = () => {
 
   }
 
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    if (name === 'levelName') dispatch(handlelevelName(value));
+    else if (name === 'techName') dispatch(handletechName(value));
+    else if (name === 'typeName') dispatch(handletypeName(value));
+  };
+
 
   useEffect(() => {
     getFilter();
@@ -68,8 +70,8 @@ const Filter = () => {
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2 ">تکنولوژی</label>
         <select
-          value={technology}
-          onChange={(handleFilterChange) => setTechnology(handleFilterChange.target.value)}
+          value={null}
+          onChange={handleFilterChange}
           className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseTech?.map((item) => {
             return <option value={item.id}
@@ -84,8 +86,8 @@ const Filter = () => {
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">نوع برگزاری</label>
         <select
-          value={deliveryType}
-          onChange={(e) => setDeliveryType(e.target.value)}
+          value={null}
+          onChange={handleFilterChange}
           className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseType?.map((item) => {
             return <option value={item.id}
@@ -101,7 +103,7 @@ const Filter = () => {
         <label className="block text-gray-700 text-sm font-bold mb-2">سطح دور</label>
         <select
           value={null}
-          onChange={(e) => setCourseLevel(e.target.value)}
+          onChange={handleFilterChange}
           className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseLevel?.map((item) => {
             return <option value={item.id}
@@ -132,6 +134,13 @@ const Filter = () => {
       >
         پاک کردن فیلتر ها
       </button>
+
+      {/* {course.map((item) => {
+        return <Card
+          // key={item.id}
+          data={item}>
+        </Card>
+      })} */}
 
 
     </div>
