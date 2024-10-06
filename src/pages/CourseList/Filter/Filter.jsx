@@ -24,13 +24,7 @@ const Filter = () => {
 
   // const [priceRange, handleCost] = useState([]);
 
-
-
   const dispatch = useDispatch();
-
-
-
-
 
   const clearFilters = () => {
     setTechnology('');
@@ -88,7 +82,7 @@ const Filter = () => {
     dispatch(handlelevelName(value));
   }
 
-  const handleTechName = (e) => {
+  const handleCourstechName = (e) => {
     const { value } = e.target;
     dispatch(handletechName(value));
   }
@@ -119,19 +113,17 @@ const Filter = () => {
 
 
   return (
-    <div className="p-6 bg-[#FBF6F6] shadow-md rounded-lg text-right w-[210px] ml-[1063px] mb-[1712px] mt-[-1949px]">
+    <div className="p-6 bg-[#FBF6F6] shadow-md rounded-lg text-right w-[210px] ml-[1063px] mb-[1909px] mt-[-2302px]">
       {/* بخش تکنولوژی */}
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2 ">تکنولوژی</label>
         <select
           value={null}
-          onChange={handleTechName}
+          onChange={handleCourstechName}
           className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2  text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseTech?.map((item) => {
             return <option value={item.id}>
-              {item.techName}
-            </option>
-          })}
+              {item.techName}</option>})}
           <option value="">انتخاب تکنولوژی</option>
         </select>
       </div>
@@ -143,11 +135,7 @@ const Filter = () => {
           value={null}
           onChange={handleCourseType}
           className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
-          {CourseType?.map((item) => {
-            return <option value={item.id}
-
-            >{item.typeName}</option>
-          })}
+          {CourseType?.map((item) => {return<option value={item.id}> {item.typeName} </option>})}
           <option value="">انتخاب نوع برگزاری</option>
         </select>
       </div>

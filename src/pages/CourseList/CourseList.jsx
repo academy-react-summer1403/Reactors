@@ -4,9 +4,8 @@ import axios from "axios";
 import Filter from "./Filter/Filter";
 import { getCoursList } from "../../core/services/api/course";
 import { CardWrapper } from "../../components/CardWarpper/CardWarpper";
-import Search from "./TopBar/Search";
 import { Button, IconButton } from "@material-tailwind/react";
-import {ChevronDoubleRightIcon, ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
+import { ChevronDoubleRightIcon, ChevronDoubleLeftIcon } from "@heroicons/react/24/outline";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation'
@@ -17,14 +16,14 @@ import { useSelector } from "react-redux";
 
 const CoursLists = () => {
 
-    const {typeName}= useSelector((state)=>{return state.Courses})
-    const {techName}= useSelector((state)=>{return state.Courses})
-    const {levelName}= useSelector((state)=>{return state.Courses})
-    const {CostDown}= useSelector((state)=>{return state.Courses})
-    const {CostUp}= useSelector((state)=>{return state.Courses})
-    const {PageNumber}= useSelector((state)=>{return state.Courses})
-    const {title}= useSelector((state)=>{return state.Courses})
-    const {Sort}= useSelector((state)=>{return state.Courses})
+    const { typeName } = useSelector((state) => { return state.Courses })
+    const { techName } = useSelector((state) => { return state.Courses })
+    const { levelName } = useSelector((state) => { return state.Courses })
+    const { CostDown } = useSelector((state) => { return state.Courses })
+    const { CostUp } = useSelector((state) => { return state.Courses })
+    const { PageNumber } = useSelector((state) => { return state.Courses })
+    const { title } = useSelector((state) => { return state.Courses })
+    const { StatusName } = useSelector((state) => { return state.Courses })
 
 
 
@@ -55,20 +54,18 @@ const CoursLists = () => {
 
 
     const getCours = async () => {
-        const courses = await getCoursList(typeName,levelName,techName,CostDown,CostUp,PageNumber,title,Sort);
+        const courses = await getCoursList(typeName, levelName, techName, CostDown, CostUp, PageNumber, title,StatusName);
         setCourseList(courses.courseFilterDtos);
         console.log(courses, "Course");
-        
+
     }
 
 
     useEffect(() => {
         getCours();
 
-    }, [typeName,levelName,techName,CostDown,CostUp,PageNumber,title,Sort]
-
-
-);
+    }, [typeName, levelName, techName, CostDown, CostUp, PageNumber, title,StatusName]
+    );
 
 
 
@@ -77,13 +74,13 @@ const CoursLists = () => {
 
         <>
 
-            <div className=" justify-center bg-white rounded-[30px] shadow-2xl py-14 px-0 w-[1016px] h-[1951px] ml-[27px] mt-4">
+            <div className=" justify-center bg-white rounded-[30px] shadow-2xl py-14 w-[1016px] px-4 ml-[27px] mt-4">
 
                 <CardWrapper course={course} />
 
                 {/* search */}
 
-                <Search></Search>
+                {/* <Search></Search> */}
 
 
 
@@ -92,7 +89,7 @@ const CoursLists = () => {
 
 
 
-                <div className="flex items-center gap-4 ml-[280px] mt-[-105px]">
+                <div className="flex items-center gap-4 pl-[323px]">
                     <Button
                         variant="text"
                         className="flex items-center gap-2 rounded-full "
@@ -119,7 +116,10 @@ const CoursLists = () => {
                 </div>
 
             </div>
+
+            {/* Filter */}
             <Filter></Filter>
+            {/* Slider */}
 
             <div className="w-full h-[150px]   ">
 

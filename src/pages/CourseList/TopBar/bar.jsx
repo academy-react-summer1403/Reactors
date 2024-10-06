@@ -2,8 +2,26 @@ import React from "react";
 import Search from "./Search";
 import Dropdown from "./dropDown";
 import ChangeBar from "./changeBar";
+import { useEffect,useState } from "react";
+import { getCoursList } from "../../../core/services/api/course";
+import { useSelector } from "react-redux";
 
 const Bar = () => {
+    const { statusName } = useSelector((state) => { return state.Courses })
+
+
+    const [course, setCourseList] = useState([]);
+
+    const getCours = async () => {
+        const course = await getCoursList();
+        setCourseList(course.courseFilterDtos);
+        console.log(course, "CourseStatuse");
+    }
+
+
+    useEffect(() => {
+        getCours();
+    }, [statusName]);
 
     return (
         <>
