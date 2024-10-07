@@ -18,12 +18,6 @@ const Filter = () => {
 
   const [CourseTech, setCourseTech] = useState([]);
 
-  const [CostDown, setCostDown] = useState([]);
-
-  const [CostUp, setCostUp] = useState([]);
-
-  // const [priceRange, handleCost] = useState([]);
-
   const dispatch = useDispatch();
 
   const clearFilters = () => {
@@ -47,30 +41,12 @@ const Filter = () => {
     const CourseTech = await getCourseTech();
     setCourseTech(CourseTech);
     console.log(CourseTech, "CourseTech");
-
-    // const CostDown = await getCostDown();
-    // setCostDown(CostDown);
-    // console.log(CostDown, "CostDown");
-
-
-    // const CostUp = await getCostUp();
-    // setCostUp(CostUp);
-    // console.log(CostUp, "CostUp");
-
-    // const Cost = await getCost();
-    // setCost(Cost);
-    // console.log(Cost, "Cost");
-
-
   }
 
-  // const handleFilterChange = (e) => {
-  //   const { name, value } = e.target;
-  //   if (name === 'levelName') dispatch(handlelevelName(value));
-  //   else if (name === 'techName') dispatch(handletechName(value));
-  //   else if (name === 'typeName') dispatch(handletypeName(value));
-  //   console.log(name, value);
-  // };
+  useEffect(() => {
+    getFilter();
+  }, []);
+
 
   const handleCourseType = (e) => {
     const { value } = e.target;
@@ -87,25 +63,8 @@ const Filter = () => {
     dispatch(handletechName(value));
   }
 
-  // const handleCostDown= (e) =>{
-  //   const { value } = e.target;
-  //   dispatch(handleCostDown(value));
-  // }
-
-  // const handleCostUp= (e) =>{
-  //   const { value } = e.target;
-  //   dispatch(handleCostUp(value));
-  // }
-
-  const handleCost = (e) => {
-    const { value } = e.target;
-    dispatch(handleCost(value));
-  }
 
 
-  useEffect(() => {
-    getFilter();
-  }, []);
 
 
 
@@ -113,28 +72,27 @@ const Filter = () => {
 
 
   return (
-    <div className="p-6 bg-[#FBF6F6] shadow-md rounded-lg text-right w-[210px] ml-[1063px] mb-[1909px] mt-[-2302px]">
+    <div className="w-[200px] h-[380px] bg-[#FBF6F6] shadow-md rounded-lg text-center  ml-[1063px] mb-[1848px] mt-[-2192px]">
       {/* بخش تکنولوژی */}
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2 ">تکنولوژی</label>
+        <label className="block text-gray-700 text-sm font-bold text-right  mb-2 ">تکنولوژی</label>
         <select
           value={null}
           onChange={handleCourstechName}
-          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2  text-gray-700 focus:outline-none focus:border-indigo-500">
-          {CourseTech?.map((item) => {
-            return <option value={item.id}>
-              {item.techName}</option>})}
-          <option value="">انتخاب تکنولوژی</option>
+          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-center  text-gray-700 focus:outline-none focus:border-indigo-500">
+          <option value={null}>انتخاب تکنولوژی</option>
+
+          {CourseTech?.map((item) => {return <option value={item.id}>{item.techName}</option>})}
         </select>
       </div>
 
       {/* بخش نوع برگزاری */}
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">نوع برگزاری</label>
+        <label className="block text-gray-700 text-sm font-bold text-right mb-2">نوع برگزاری</label>
         <select
           value={null}
           onChange={handleCourseType}
-          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
+          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-center text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseType?.map((item) => {return<option value={item.id}> {item.typeName} </option>})}
           <option value="">انتخاب نوع برگزاری</option>
         </select>
@@ -142,11 +100,11 @@ const Filter = () => {
 
       {/* بخش سطح دوره */}
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">سطح دور</label>
+        <label className="block text-gray-700 text-sm font-bold text-right mb-2">سطح دور</label>
         <select
           value={null}
           onChange={handleCoursLevel}
-          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-right text-gray-700 focus:outline-none focus:border-indigo-500">
+          className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-center text-gray-700 focus:outline-none focus:border-indigo-500">
           {CourseLevel?.map((item) => {
             return <option value={item.id}
 
@@ -158,7 +116,7 @@ const Filter = () => {
       </div>
 
       {/* بخش قیمت */}
-      <div className="mb-6"> <label className="block text-gray-700 text-sm font-bold mb-2">رنج قیمت: ريال{priceRange}</label>
+      <div className="mb-6"> <label className="block text-gray-700 text-sm text-right font-bold mb-2">رنج قیمت: ريال{priceRange}</label>
         <input
           type="range"
           min="0"

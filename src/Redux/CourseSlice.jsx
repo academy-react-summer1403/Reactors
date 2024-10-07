@@ -6,12 +6,11 @@ const CourseSlice = createSlice({
         levelName: "",
         techName: "",
         typeName:"",
-        CostDown: "",
-        CostUp:"",
-        title: "",
-        describe:"",
+        SearchInput: "",
         PageNumber:"",
-        statusName:"",
+        SortingCol:"",
+        SortingType:"DESC",
+
     },
     reducers: {
         handlelevelName: (state, action) => {
@@ -23,29 +22,22 @@ const CourseSlice = createSlice({
         handletypeName: (state, action) => {
             state.typeName = action.payload
         },
-        handletitle: (state, action) => {
-            state.title = action.payload
+        handleSearchInput: (state, action) => {
+            state.SearchInput = action.payload
         },
-        handledescribe: (state, action) => {
-            state.describe = action.payload
+        handlePageNumber: (state, action) => {
+            state.PageNumber = action.payload
+        },        
+        handleSortingCol: (state, action) => {
+            state.SortingCol = action.payload
         },
-        // handlePageNumber: (state, action) => {
-        //     state.PageNumber = action.payload
-        // },
-        // handleCostDown: (state, action) => {
-        //     state.CostDown = action.payload
-        // },
-        // handleCostUp: (state, action) => {
-        //     state.CostUp = action.payload
-        // },
-        
-        handlestatusName: (state, action) => {
-            state.statusName = action.payload
+        handleSortingType: (state, action) => {
+            state.SortingType = action.payload
         },
         
         
     }
 })
 
-export const {handlestatusName, handlelevelName,handletechName,handletypeName,handletitle,handledescribe,handlePageNumber,handleCostDown,handleCostUp } = CourseSlice.actions
+export const {handleSortingCol,handleSortingType, handlelevelName,handletechName,handletypeName,handleSearchInput,handlePageNumber} = CourseSlice.actions
 export default CourseSlice.reducer

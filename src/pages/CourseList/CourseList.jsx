@@ -12,49 +12,41 @@ import 'swiper/css/navigation'
 import "../../app/App.css"
 import { Navigation } from 'swiper/modules';
 import { useSelector } from "react-redux";
+import { handlePageNumber } from "../../Redux/CourseSlice";
+import PaginationWrapper from "../../components/Pagination/Pagination";
 
 
 const CoursLists = () => {
 
-    const { typeName } = useSelector((state) => { return state.Courses })
-    const { techName } = useSelector((state) => { return state.Courses })
-    const { levelName } = useSelector((state) => { return state.Courses })
-    const { CostDown } = useSelector((state) => { return state.Courses })
-    const { CostUp } = useSelector((state) => { return state.Courses })
-    const { PageNumber } = useSelector((state) => { return state.Courses })
-    const { title } = useSelector((state) => { return state.Courses })
-    const { StatusName } = useSelector((state) => { return state.Courses })
+    const { typeName, techName, levelName, PageNumber, SearchInput, statusName, SortingCol, SortingType } = useSelector((state) => { return state.Courses })
+
+
 
 
 
 
     const [course, setCourseList] = useState([]);
 
+    // console.log(course , "check course")
+
+
     const [active, setActive] = useState(1);
 
-    const getItemProps = (index) =>
-    ({
-        variant: active === index ? "filled" : "text",
-        color: "gray",
-        onClick: () => setActive(index),
-        className: "rounded-full",
-    });
+    const [PageN, setPageN] = useState([]);
 
-    const next = () => {
-        if (active === 5) return;
+    // const handlePagination = (e) => {
+    //     // if (newPage > 0 && newPage <= totalPages){}
+    //     const { value } = e.target;
+    //     dispatch(handlePageNumber(value));
+    // } 
 
-        setActive(active + 1);
-    };
 
-    const prev = () => {
-        if (active === 1) return;
 
-        setActive(active - 1);
-    };
+
 
 
     const getCours = async () => {
-        const courses = await getCoursList(typeName, levelName, techName, CostDown, CostUp, PageNumber, title,StatusName);
+        const courses = await getCoursList(typeName, levelName, techName, PageNumber, SearchInput, SortingCol, SortingType);
         setCourseList(courses.courseFilterDtos);
         console.log(courses, "Course");
 
@@ -62,10 +54,13 @@ const CoursLists = () => {
 
 
     useEffect(() => {
+        console.log(SearchInput, 'SearchInput')
         getCours();
 
-    }, [typeName, levelName, techName, CostDown, CostUp, PageNumber, title,StatusName]
+    }, [typeName, levelName, techName, SearchInput, PageNumber, SortingCol, SortingType]
     );
+
+
 
 
 
@@ -77,48 +72,11 @@ const CoursLists = () => {
             <div className=" justify-center bg-white rounded-[30px] shadow-2xl py-14 w-[1016px] px-4 ml-[27px] mt-4">
 
                 <CardWrapper course={course} />
-
-                {/* search */}
-
-                {/* <Search></Search> */}
-
-
-
-
-
-
-
-
-                <div className="flex items-center gap-4 pl-[323px]">
-                    <Button
-                        variant="text"
-                        className="flex items-center gap-2 rounded-full "
-                        onClick={prev}
-                        disabled={active === 1}
-                    >
-                        <ChevronDoubleLeftIcon strokeWidth={2} className="h-4 w-4 text-[#5BE1B9]" />
-                    </Button>
-                    <div className="flex items-center gap-2 ">
-                        <IconButton {...getItemProps(1)}>1</IconButton>
-                        <IconButton {...getItemProps(2)}>2</IconButton>
-                        <IconButton {...getItemProps(3)}>3</IconButton>
-                        <IconButton {...getItemProps(4)}>4</IconButton>
-                        <IconButton {...getItemProps(5)}>5</IconButton>
-                    </div>
-                    <Button
-                        variant="text"
-                        className="flex items-center gap-2 rounded-full text-[#158B68]"
-                        onClick={next}
-                        disabled={active === 5}
-                    >
-                        <ChevronDoubleRightIcon strokeWidth={2} className="h-4 w-4 text-[#5BE1B9]" />
-                    </Button>
-                </div>
-
+                <PaginationWrapper count={10} />
             </div>
 
-            {/* Filter */}
-            <Filter></Filter>
+                <Filter></Filter>
+
             {/* Slider */}
 
             <div className="w-full h-[150px]   ">
@@ -136,11 +94,12 @@ const CoursLists = () => {
                 modules={[Navigation]}
                 dir="ltr"
             >
-                {course.map((item) => {
-                    return <SwiperSlide> <Card
+                {course.map((item, index) => {
+                    return <SwiperSlide key={index}> <Card
                         data={item}
                     /> </SwiperSlide>
                 })}
+
 
             </Swiper>
 
