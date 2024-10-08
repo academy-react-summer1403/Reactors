@@ -152,12 +152,12 @@ const Card = ({ data }) => {
       </p>
 
       <div className="flex justify-between pt-[10px] px-[28px]" >
-        <button className=" py-[10px]  px-5   text-sm font-medium text-gray-900 bg-[#5BE1B9] rounded-lg border  hover:bg-emerald-400 "
+        <button className=" py-[10px]  pl-[2.25rem] pr-[2.3rem]   text-sm font-medium text-gray-900 bg-[#5BE1B9] rounded-lg border  hover:bg-emerald-400 "
           onClick={() => navigate("/ProductDetail/" + courseId)}>
           {reserv} رزرو دوره
         </button>
 
-        <button className="py-[10px]   px-5  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 "
+        <button className="py-[10px] pl-[1.3rem] pr-[2.3rem]  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 "
           onClick={() => navigate("/ProductDetail/" + courseId)}>
           {readMore}جزئیات دوره
         </button>

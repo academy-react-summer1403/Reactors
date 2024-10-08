@@ -10,6 +10,8 @@ const SortDictionary = {
   hardest: { SortingCol: "LevelName", SortingType: "DESC" },
   easiest: { SortingCol: "LevelName", SortingType: "ASC" }
 }
+
+
 const Dropdown = () => {
   const dispatch = useDispatch();
 

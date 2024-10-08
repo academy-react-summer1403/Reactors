@@ -12,67 +12,33 @@ import 'swiper/css/navigation'
 import "../../app/App.css"
 import { Navigation } from 'swiper/modules';
 import { useSelector } from "react-redux";
-import { handlePageNumber } from "../../Redux/CourseSlice";
 import PaginationWrapper from "../../components/Pagination/Pagination";
-
+import { handlePageNumber } from "../../Redux/CourseSlice";
 
 const CoursLists = () => {
 
-    const { typeName, techName, levelName, PageNumber, SearchInput, statusName, SortingCol, SortingType } = useSelector((state) => { return state.Courses })
-
-
-
-
-
+    const { typeName, techName, levelName, PageNumber, SearchInput, SortingCol, SortingType,CostUp,CostDown } = useSelector((state) => { return state.Courses })
 
     const [course, setCourseList] = useState([]);
 
-    // console.log(course , "check course")
-
-
-    const [active, setActive] = useState(1);
-
-    const [PageN, setPageN] = useState([]);
-
-    // const handlePagination = (e) => {
-    //     // if (newPage > 0 && newPage <= totalPages){}
-    //     const { value } = e.target;
-    //     dispatch(handlePageNumber(value));
-    // } 
-
-
-
-
-
-
     const getCours = async () => {
-        const courses = await getCoursList(typeName, levelName, techName, PageNumber, SearchInput, SortingCol, SortingType);
+        const courses = await getCoursList(typeName, levelName, techName, PageNumber, SearchInput, SortingCol, SortingType,CostUp,CostDown);
         setCourseList(courses.courseFilterDtos);
         console.log(courses, "Course");
-
     }
 
-
     useEffect(() => {
-        console.log(SearchInput, 'SearchInput')
         getCours();
-
-    }, [typeName, levelName, techName, SearchInput, PageNumber, SortingCol, SortingType]
+    }, [typeName, levelName, techName, SearchInput, PageNumber, SortingCol, SortingType,CostUp,CostDown]
+    
     );
 
-
-
-
-
-
     return (
-
         <>
-
             <div className=" justify-center bg-white rounded-[30px] shadow-2xl py-14 w-[1016px] px-4 ml-[27px] mt-4">
 
                 <CardWrapper course={course} />
-                <PaginationWrapper count={10} />
+                <PaginationWrapper count={10} PageNumber={handlePageNumber} />
             </div>
 
                 <Filter></Filter>
@@ -99,10 +65,7 @@ const CoursLists = () => {
                         data={item}
                     /> </SwiperSlide>
                 })}
-
-
             </Swiper>
-
         </>
     );
 };
