@@ -3,16 +3,17 @@ import React from 'react'
 import like from '../../assets/like.png'
 import disLike from '../../assets/disLike.png'
 import Star from '../../assets/Star.png'
+import CourseRate from "../../assets/Image/CourseRate.png"
 
 
 const Card = ({ data }) => {
-  const { teacherName, classRoomName, statusName, levelName, cost, currentRegistrants, likeCount, commandCount, userIsLiked, userLikedId, userFavorite, userFavoriteId, courseRate, title, describe, tumbImageAddress, lastUpdate, courseId, technologyList, dissLikeCount, currentUserDissLike, currentUserSetRate, currentUserRateNumber, readMore, reserv } = data
+  const { teacherName, classRoomName, statusName, levelName, cost, currentRegistrants, likeCount, commandCount, userIsLiked, userLikedId, userFavorite, userFavoriteId, courseRate, title, describe, tumbImageAddress, lastUpdate, courseId, dissLikeCount, currentUserDissLike, currentUserSetRate, currentUserRateNumber, readMore, reserv } = data
   //   const navigate = useNavigate()
 
   return (
     <div
       onClick={() => navigate("/detail/" + courseId)}
-      className=" justify-center mb-[100px] bg-[#FBF6F6] rounded-2xl shadow-lg shadow-slate-600/80 w-full h-[567px]  min-h-[287px]"
+      className=" justify-center mb-[100px] bg-[#FBF6F6] rounded-2xl shadow-lg shadow-slate-600/80 w-full min-h-[602px]"
     >
 
       <img
@@ -39,7 +40,7 @@ const Card = ({ data }) => {
 
         <p className=" text-xs font-medium mt-[-30px]  text-[#089E71]">
           <img className="w-[20px] h-[18px]" src={Star} />
-          {courseRate}
+          {userIsLiked}
         </p>
 
 
@@ -72,7 +73,7 @@ const Card = ({ data }) => {
       </h1> */}
 
 
-      {/*       
+{/*             
       <h1 className=" text-xs font-medium text-slate-600 pb-2 ">
         {levelName}
       </h1> */}
@@ -85,11 +86,15 @@ const Card = ({ data }) => {
 
 
 
-      {/* <div className=" text-xs font-medium text-slate-600 pb-2 ">
-        {userIsLiked}
+      <div className=" text-xs font-medium text-slate-600 pl-[12px] mt-[5px] ">
+        <span className='pl-[1.5rem]'>
+          {courseRate}
+        </span>
+        <img className="w-[21px] h-[20px] mt-[-20px]" src={CourseRate} />
+
       </div>
 
-      <div className=" text-xs font-medium text-slate-600 pb-2 ">
+      {/* <div className=" text-xs font-medium text-slate-600 pb-2 ">
         {userLikedId}
       </div>
 
@@ -106,7 +111,7 @@ const Card = ({ data }) => {
       </div> */}
 
 
-      {/* <div className=" text-xs font-medium text-slate-600 pb-2 ">
+      {/* <div className=" text-xs font-medium pl-[12px] text-slate-600">
         {lastUpdate}
       </div> */}
 
@@ -129,22 +134,11 @@ const Card = ({ data }) => {
       </div> */}
 
 
-
-
-
-
-
-
-
-
-
-
-
-      <p className="h-[115px] mt-10 text-sm tracking-tight font-light text-slate-400 leading-6 text-right pr-[10px]">
+      <p className="h-[115px] mt-10 text-[15px] tracking-tight font-light text-slate-400 leading-6 text-right pr-[10px]">
         {describe}
       </p>
 
-      <p className=" h-[45px] text-[20px] font-medium  border-t-[1px] text-[#E11818] text-right pr-[10px] ">
+      <p className=" h-[45px] text-[18px] border-t-[1px] text-[#E11818] text-right pr-[10px] ">
         <span className="text-[#12926C] ">
           هزینه تمام دوره:
         </span>

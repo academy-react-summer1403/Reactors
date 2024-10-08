@@ -11,37 +11,54 @@ import 'swiper/css';
 import 'swiper/css/navigation'
 import "../../app/App.css"
 import { Navigation } from 'swiper/modules';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PaginationWrapper from "../../components/Pagination/Pagination";
 import { handlePageNumber } from "../../Redux/CourseSlice";
 
+
+
 const CoursLists = () => {
 
-    const { typeName, techName, levelName, PageNumber, SearchInput, SortingCol, SortingType,CostUp,CostDown } = useSelector((state) => { return state.Courses })
+    const dispatch = useDispatch();
+
+    const { typeName, techName, levelName, PageNumber, SearchInput, SortingCol, SortingType, CostUp, CostDown } = useSelector((state) => { return state.Courses })
 
     const [course, setCourseList] = useState([]);
 
     const getCours = async () => {
-        const courses = await getCoursList(typeName, levelName, techName, PageNumber, SearchInput, SortingCol, SortingType,CostUp,CostDown);
+        const courses = await getCoursList(typeName, levelName, techName, PageNumber, SearchInput, SortingCol, SortingType, CostUp, CostDown);
         setCourseList(courses.courseFilterDtos);
         console.log(courses, "Course");
     }
 
+    const handleChangePage = (event, newPage) => {
+        console.log("page :", newPage);
+        dispatch(handlePageNumber(newPage));
+    };
+
     useEffect(() => {
         getCours();
-    }, [typeName, levelName, techName, SearchInput, PageNumber, SortingCol, SortingType,CostUp,CostDown]
-    
+    }, [typeName, levelName, techName, SearchInput, PageNumber, SortingCol, SortingType, CostUp, CostDown]
+
     );
 
     return (
         <>
-            <div className=" justify-center bg-white rounded-[30px] shadow-2xl py-14 w-[1016px] px-4 ml-[27px] mt-4">
+            <div className=" justify-center bg-white rounded-[30px] shadow-2xl py-14 w-[1016px] min-h-[602px] px-4 ml-[27px] mt-4">
 
                 <CardWrapper course={course} />
-                <PaginationWrapper count={10} PageNumber={handlePageNumber} />
+                <PaginationWrapper count={10}
+                    handleChangePage={handleChangePage}
+                />
             </div>
 
-                <Filter></Filter>
+            <div className="pt-[-100px] shrink-0 ">
+
+            <Filter></Filter>
+
+            </div>
+
+            {/* <Filter></Filter> */}
 
             {/* Slider */}
 

@@ -7,13 +7,11 @@ const CourseSlice = createSlice({
         techName: "",
         typeName: "",
         SearchInput: "",
-        PageNumber: "",
+        PageNumber: "1",
         SortingCol: "",
         SortingType: "DESC",
-        CostUp:"",
-        CostDown:"",
-
-
+        CostUp: "1000000000",
+        CostDown: "0",
     },
     reducers: {
         handlelevelName: (state, action) => {
@@ -44,8 +42,16 @@ const CourseSlice = createSlice({
             state.CostDown = action.payload
         },
 
+        handleClearAllFilters: (state, action) => {
+            state.levelName = ""
+            state.techName = ""
+            state.typeName = ""
+            state.CostUp = "1000000000"
+            state.CostDown = "0"
+        },
+
     }
 })
 
-export const { handleCostDown,handleCostUp, handleSortingCol, handleSortingType, handlelevelName, handletechName, handletypeName, handleSearchInput, handlePageNumber } = CourseSlice.actions
+export const { handleClearAllFilters,handleCostUp, handleCostDown, handleSortingCol, handleSortingType, handlelevelName, handletechName, handletypeName, handleSearchInput, handlePageNumber } = CourseSlice.actions
 export default CourseSlice.reducer
