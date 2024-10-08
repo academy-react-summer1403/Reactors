@@ -13,7 +13,7 @@ const Card = ({ data }) => {
   return (
     <div
       onClick={() => navigate("/detail/" + courseId)}
-      className=" justify-center mb-[100px] bg-[#FBF6F6] rounded-2xl shadow-lg shadow-slate-600/80 w-full min-h-[602px]"
+      className=" justify-center mb-[100px] bg-[#FBF6F6] rounded-2xl shadow-lg shadow-slate-600/80 w-full h-[602px]"
     >
 
       <img
@@ -21,7 +21,7 @@ const Card = ({ data }) => {
         src={tumbImageAddress}
       />
 
-      <p className="rounded-[12px] float-right bg-[#BFF4E4] text-xs font-medium text-[#158B68] h-[35px] pl-[13px] pr-[6px] mt-[10px] pt-[10px] w-[100px]">
+      <p className="rounded-[12px] float-right bg-[#BFF4E4] text-xs font-medium text-[#158B68] h-[35px] pl-[13px] pr-[6px] mt-[10px] mr-[10px] pt-[10px] w-[100px]">
         {statusName}
       </p>
 

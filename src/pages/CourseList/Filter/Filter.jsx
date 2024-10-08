@@ -71,7 +71,7 @@ const Filter = () => {
 
 
   return (
-    <div className="flex flex-col h-[500px] w-[200px] bg-[#FBF6F6] shadow-md rounded-lg text-center  ml-[1063px] mb-[1848px] mt-[-2192px]">
+    <div className="flex flex-col j h-[500px] w-[200px] bg-[#FBF6F6] shadow-md rounded-lg text-center  ml-[1063px] translate-y-[-144rem]">
       {/* بخش تکنولوژی */}
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold text-right  mb-2 ">تکنولوژی</label>

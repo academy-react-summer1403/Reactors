@@ -52,7 +52,7 @@ const CoursLists = () => {
                 />
             </div>
 
-            <div className="pt-[-100px] shrink-0 ">
+            <div className="pt-[-100px] flex flex-col items-start">
 
             <Filter></Filter>
 
@@ -62,7 +62,7 @@ const CoursLists = () => {
 
             {/* Slider */}
 
-            <div className="w-full h-[150px]   ">
+            <div className="w-full h-[150px] mt-[-465px]   ">
 
                 <h1 className="text-center text-[34px]  ">دوره های برتر</h1>
 
