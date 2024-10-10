@@ -10,20 +10,28 @@ const OptionsHolder = () => {
     return (
         <div className="bg-[#A4F6DE] h-full px-10 pt-10 pb-40 overflow-y-scroll">
             <ul className="w-full flex flex-col gap-[10px] text-xl text-[#158B68]">
-                {/* <DashboardOptions title="پیشخوان" icon={<GrAppsRounded />} /> */}
                 {
                     [
-                        ["پیشخوان", <GrAppsRounded />]
-                        ["ویرایش پروفایل", <FaRegUser />]
-                        ["دوره های من", <HiOutlineVideoCamera />]
-                        ["دوره های رزرو", <HiOutlineShoppingBag />]
-                        ["مورد علاقه ها", <FaRegHeart />]
-                        ["نظرات من", <BiCommentDetail />]
-                        ["تغییر رمز", <HiOutlineKey />]
-                        ["بازگشت به خانه", <HiOutlineHome />]
-                        ["خروج", <HiOutlineLogout />]
+                        ["پیشخوان", <GrAppsRounded />],
+                        ["ویرایش پروفایل", <FaRegUser />],
+                        ["دوره های من", <HiOutlineVideoCamera />],
+                        ["دوره های رزرو", <HiOutlineShoppingBag />],
+                        ["مورد علاقه ها", <FaRegHeart />],
+                        ["نظرات من", <BiCommentDetail />],
+                        ["تغییر رمز", <HiOutlineKey />],
+
                     ].map((item, key) => <DashboardOptions key={key} title={item[0]} icon={item[1]} />)
                 }
+
+                <div className="mt-20 flex flex-col gap-[10px]">
+                    {
+                        [
+                            ["بازگشت به خانه", <HiOutlineHome />],
+                            ["خروج", <HiOutlineLogout />],
+                        ].map((item, key) => <DashboardOptions key={key} title={item[0]} icon={item[1]} />)
+                    }
+                </div>
+
             </ul>
         </div>
     )

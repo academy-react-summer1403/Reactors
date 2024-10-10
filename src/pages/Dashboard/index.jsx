@@ -86,7 +86,6 @@ const Dashboard = () => {
             <div className="w-full h-full flex flex-col ">
                 <div className="w-full h-[100px] py-[20px] pr-[15px] pl-[35px] flex justify-between items-center bg-[#A4F6DE] shadow-[0px_10px_3px_0_#00000024]">
 
-
                     <div className="flex gap-2 items-center text-2xl">
                         <div className="size-[50px] flex justify-center items-center">
                             <svg className="w-full h-full" width="47" height="73" viewBox="0 0 47 73" fill="none" xmlns="http://www.w3.org/2000/svg">

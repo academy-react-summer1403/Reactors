@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CompanyName = () => {
+const H1Academy = () => {
     return (
         <div className="flex gap-2 items-center text-2xl">
             <div className="size-[50px] flex justify-center items-center">
@@ -14,4 +14,4 @@ const CompanyName = () => {
     )
 }
 
-export { CompanyName }
+export { H1Academy }
