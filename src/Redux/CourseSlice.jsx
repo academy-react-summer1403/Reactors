@@ -12,6 +12,7 @@ const CourseSlice = createSlice({
         SortingType: "DESC",
         CostUp: "1000000000",
         CostDown: "0",
+        CardView : true,
     },
     reducers: {
         handlelevelName: (state, action) => {
@@ -41,6 +42,9 @@ const CourseSlice = createSlice({
         handleCostDown: (state, action) => {
             state.CostDown = action.payload
         },
+        handleCardView: (state, action) => {
+            state.CardView = action.payload
+        },
 
         handleClearAllFilters: (state, action) => {
             state.levelName = ""
@@ -53,5 +57,5 @@ const CourseSlice = createSlice({
     }
 })
 
-export const { handleClearAllFilters,handleCostUp, handleCostDown, handleSortingCol, handleSortingType, handlelevelName, handletechName, handletypeName, handleSearchInput, handlePageNumber } = CourseSlice.actions
+export const { handleCardView,handleClearAllFilters,handleCostUp, handleCostDown, handleSortingCol, handleSortingType, handlelevelName, handletechName, handletypeName, handleSearchInput, handlePageNumber } = CourseSlice.actions
 export default CourseSlice.reducer

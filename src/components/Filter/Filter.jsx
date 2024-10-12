@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getCoursLevel } from '../../../core/services/api/getCourseLevel';
-import { getCourseTypes } from '../../../core/services/api/getCourseType';
-import { getCourseTech } from '../../../core/services/api/getCourseTech';
-import { handletypeName, handletechName, handlelevelName, handleCostUp, handleCostDown, handleClearAllFilters } from '../../../Redux/CourseSlice';
+import { getCoursLevel } from '../../core/services/api/getCourseLevel';
+import { getCourseTypes } from '../../core/services/api/getCourseType';
+import { getCourseTech } from '../../core/services/api/getCourseTech';
+import { handletypeName, handletechName, handlelevelName, handleCostUp, handleCostDown, handleClearAllFilters } from '../../Redux/CourseSlice';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
@@ -12,12 +12,6 @@ function valuetext(value) {
   return `${value}`;
 }
 const Filter = () => {
-  // حالت های انتخابی برای فیلترها
-  const [technology, setTechnology] = useState('');
-  const [deliveryType, setDeliveryType] = useState('');
-  const [courseLevel, setCourseLevel] = useState('');
-  const [priceRange, setPriceRange] = useState('');
-
   const [CourseType, setCourseType] = useState([]);
 
   const [CourseLevel, setCoursLevel] = useState([]);
@@ -71,8 +65,8 @@ const Filter = () => {
 
 
   return (
-    <div className="flex flex-col j h-[500px] w-[200px] bg-[#FBF6F6] shadow-md rounded-lg text-center  ml-[1063px] translate-y-[-144rem]">
-      {/* بخش تکنولوژی */}
+    <div className="flex flex-col  h-[500px] w-[200px] bg-[#FBF6F6] shadow-md rounded-lg text-center ">
+
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold text-right  mb-2 ">تکنولوژی</label>
         <select
@@ -85,7 +79,6 @@ const Filter = () => {
         </select>
       </div>
 
-      {/* بخش نوع برگزاری */}
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold text-right mb-2">نوع برگزاری</label>
         <select
@@ -97,7 +90,6 @@ const Filter = () => {
         </select>
       </div>
 
-      {/* بخش سطح دوره */}
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold text-right mb-2">سطح دور</label>
         <select
@@ -114,7 +106,6 @@ const Filter = () => {
         </select>
       </div>
 
-      {/* بخش قیمت */}
       <div className="mb-6" >
         <label className="block text-gray-700 text-sm text-right font-bold mb-2">رنج قیمت: ريال {CostDown} تا {CostUp}</label>
         <Box sx={{ width: 200 }}>

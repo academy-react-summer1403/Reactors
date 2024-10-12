@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { handleSortingCol, handleSortingType } from "../../../Redux/CourseSlice";
+import { handleSortingCol, handleSortingType } from "../../Redux/CourseSlice";
 
 const SortDictionary = {
   newest: { SortingCol: "insertDate", SortingType: "DESC" },
@@ -20,13 +20,13 @@ const Dropdown = () => {
     dispatch(handleSortingCol(SortDictionary[value].SortingCol))
     dispatch(handleSortingType(SortDictionary[value].SortingType))
   }
-
+// "flex items-center gap-[90px] justify-between  rounded-full border border-darkGreen text-darkGreen p-7 text-2xl"
   return (
-    <form class="max-w-[700px] mx-auto pl-[500px] pt-[12px] text-right ">
-      <select
+    <form >
+      <select className=" gap-9 rounded-full border border-[#158B68] bg-[#FFFFFF] px-5 py-3"
         value={null}
         onChange={handleSortChange}
-        class="bg-[#ffff] border border-[#158B68] text-right text-[#158B68] gray-900 text-sm rounded-lg focus:ring-[#158B68] focus:border-[#158B68] block w-full p-[13px] ">
+        class="flex items-center gap-[90px] justify-between  rounded-full border border-darkGreen text-[#158B68]  text-2xl">
         <option value={null} >مرتب سازی</option>
         <option value="newest">جدید ترین</option>
         <option value="oldest">قدیمی ترین</option>
