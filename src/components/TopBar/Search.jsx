@@ -18,7 +18,7 @@ const Search = () => {
           <Field
             name="search"
             type="text"
-            className="text-sm bg-transparent px-8 py-5 min-w-[290px]"
+            className="text-sm bg-transparent px-8 py-3 min-w-[290px]"
             placeholder="سرچ کن..."
             required
           />

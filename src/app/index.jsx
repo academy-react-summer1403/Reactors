@@ -6,14 +6,14 @@ import { CoursLists } from '../components/CourseList'
 import { Header } from '../components/Header/header'
 import { Footer } from '../components/Footer/footer'
 import { Bar } from '../components/TopBar/bar'
+import CoursesList from '../pages/CoursesList'
 function App() {
 
   return (
     <>
       <Header/>
-      {/* <Bar></Bar> */}
-      <CoursLists></CoursLists>
-      <Footer></Footer>
+      <CoursesList/>
+      <Footer/>
 
     </>
   )

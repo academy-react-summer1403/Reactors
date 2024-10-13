@@ -28,14 +28,14 @@ const Card = ({ data }) => {
   return (
     <div
       onClick={() => navigate("/detail/" + courseId)}
-      className="flex flex-col items-center bg-[#FBF6F6]  shadow-lg shadow-slate-600/80 rounded-[34px] h-[620px] w-[332px] min-h-[300px] min-w-[250px]"
+      className="flex flex-col items-center bg-[#FBF6F6]  shadow-lg shadow-slate-600/80 rounded-[34px]  min-h-[392px] min-w-[250px]"
     >
       <img
         className="flex justify-center pb-4 rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px]   min-w-full min-h-[200px] "
         src={tumbImageAddress}
       />
 
-      <div className="flex justify-between flex-row-reverse items-center px-4 text-sm min-w-full gap-2">
+      <div className="flex justify-between flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
         <div className="flex justify-between flex-row-reverse gap-2">
           <p className="text-[#089E71]">
             <img className="flex items-center" src={like} />
@@ -53,7 +53,7 @@ const Card = ({ data }) => {
           </p>
         </div>
 
-        <div className="flex justify-between items-center px-4 pb-2 rounded-[12px] bg-[#BFF4E4] ">
+        <div className="flex justify-between items-center px-4 pb-2 text-[12px] text-[#158B68] rounded-[12px] bg-[#BFF4E4] ">
           <p className=" pt-[2px]">{statusName}</p>
         </div>
 
@@ -63,19 +63,22 @@ const Card = ({ data }) => {
         {title}
       </h2>
 
-      <div className="flex justify-between items-center text-sm w-full px-4 pb-4">
-        <h3 className="text-[#8C9F9A]"> مدرس : {teacherName}</h3>
-        <span className="pr-[175px]">{courseRate}</span>
+      <div className="flex justify-between flex-row items-center text-sm w-full px-4 pb-4">
+        <div className="">
+        <div className="text-[#8C9F9A] text-[12px] w-[100px]">{teacherName}</div>
+
+        </div>
+        <span className="pr-[137px]">{courseRate}</span>
         <img src={CourseRate} />
       </div>
 
-      <div className="flex justify-between items-center text-sm w-full px-4 pb-4">
+      <div className="flex justify-between items-center text-[12px] w-full px-4 pb-4">
         {/* {lastUpdate} */}
         {/* {modifiedDate} */}
         {dateModifire(lastUpdate)}
       </div>
 
-      <p className="flex justify-between items-center text-[12px] text-[#6D6767] w-full h-[80px] px-4 pb-4">
+      <p className="flex justify-between items-center text-[12px] text-[#6D6767] w-full min-h-[80px] px-4 pb-4">
         {describe}
       </p>
 
@@ -84,16 +87,16 @@ const Card = ({ data }) => {
         {cost}تومان
       </p>
 
-      <div className="flex justify-between gap-2">
+      <div className="flex justify-between gap-2 pb-[7px]">
         <button
-          className="bg-[#5BE1B9] text-black py-2 w-[140px] rounded-lg"
+          className="bg-[#5BE1B9] text-black py-2 w-[129px] rounded-lg"
           onClick={() => navigate("/ProductDetail/" + courseId)}
         >
           {reserv} رزرو دوره
         </button>
 
         <button
-          className="bg-white border border-[#5BE1B9] text-black py-2 w-[140px] rounded-lg"
+          className="bg-white border border-[#5BE1B9] text-black py-2 w-[129px] rounded-lg"
           onClick={() => navigate("/ProductDetail/" + courseId)}
         >
           {readMore}جزئیات دوره
