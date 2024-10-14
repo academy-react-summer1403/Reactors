@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "./Card";
-import axios from "axios";
-import Filter from "./Filter/Filter";
 import { getCoursList } from "../core/services/api/course";
 import { CardWrapper } from "./CardWarpper/CardWarpper";
-import { Button, IconButton } from "@material-tailwind/react";
-import {
-  ChevronDoubleRightIcon,
-  ChevronDoubleLeftIcon,
-} from "@heroicons/react/24/outline";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "../app/App.css";
-import { Navigation } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import PaginationWrapper from "./Pagination/Pagination";
 import { handlePageNumber } from "../Redux/CourseSlice";
-import { Dropdown } from "flowbite-react";
-import ChangeBar from "./TopBar/changeBar";
-import Search from "./TopBar/Search";
-import { Bar } from "./TopBar/bar";
+
 
 const CoursLists = () => {
   const dispatch = useDispatch();
