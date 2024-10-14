@@ -84,10 +84,11 @@ const Filter = () => {
         </div>
 
         <div className="pb-4">
-          <label className="block text-gray-700 text-sm font-bold text-right  pb-2 ">
+          <label className="block text-gray-700 text-sm text-right  pb-2 ">
             تکنولوژی :
           </label>
           <select
+          
             value={techName}
             onChange={handleCourstechName}
             className="block w-full bg-[#FBF6F6] border border-[#5BE1B9] rounded-md shadow-sm px-4 py-2 text-center  text-gray-700 focus:outline-none focus:border-indigo-500"
@@ -101,7 +102,7 @@ const Filter = () => {
         </div>
 
         <div className="pb-4">
-          <label className="block text-gray-700 text-sm font-bold text-right pb-2">
+          <label className="block text-gray-700 text-sm text-right pb-2">
             نوع برگزاری :
           </label>
           <select
@@ -112,12 +113,13 @@ const Filter = () => {
             {CourseType?.map((item) => {
               return <option value={item.id}> {item.typeName} </option>;
             })}
+            
             <option value="">انتخاب نوع برگزاری</option>
           </select>
         </div>
 
         <div className="pb-4">
-          <label className="block text-gray-700 text-sm font-bold text-right pb-2">
+          <label className="block text-gray-700 text-sm text-right pb-2">
             سطح دوره :
           </label>
           <select
@@ -136,7 +138,7 @@ const Filter = () => {
           <label className=" text-gray-700 text-sm text-right font-bold pb-2">
             رنج قیمت: ريال {CostDown} تا {CostUp}
           </label>
-          <Box sx={{ width: 200 }}>
+          <Box sx={{ width: 208 }}>
             <Slider
               getAriaLabel={() => "price range"}
               value={[CostDown, CostUp]}

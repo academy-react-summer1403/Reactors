@@ -106,7 +106,6 @@ const CoursLists = () => {
           {course.map((item, index) => {
             return (
               <SwiperSlide key={index}>
-                {" "}
                 <Card data={item} />{" "}
               </SwiperSlide>
             );

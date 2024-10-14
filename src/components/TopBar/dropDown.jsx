@@ -23,11 +23,11 @@ const Dropdown = () => {
   return (
     <form>
       <select
-        className=" gap-9 rounded-full border border-[#158B68] bg-[#FFFFFF] px-7 py-3"
+        className=" gap-9 rounded-full border border-[#158B68] text-[16px] bg-[#FFFFFF] px-14 py-4"
         value={null}
         onChange={handleSortChange}
         >
-        <option className="border-[#158B68] bg-[#FFFFFF]" value={null}>مرتب سازی</option>
+        <option className="border-[#158B68]  bg-[#FFFFFF]" value={null}>مرتب سازی</option>
         <option value="newest">جدید ترین</option>
         <option value="oldest">قدیمی ترین</option>
         <option value="cheap">ارزان ترین</option>

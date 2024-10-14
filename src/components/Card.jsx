@@ -5,6 +5,7 @@ import disLike from "../assets/disLike.png";
 import Star from "../assets/Star.png";
 import CourseRate from "../assets/Image/CourseRate.png";
 import dateModifire from "../core/utils/dateModifier";
+import notfoundImage from "../assets/Image/notfoundImage.webp";
 
 const Card = ({ data }) => {
   const {
@@ -28,11 +29,12 @@ const Card = ({ data }) => {
   return (
     <div
       onClick={() => navigate("/detail/" + courseId)}
-      className="flex flex-col items-center bg-[#FBF6F6]  shadow-lg shadow-slate-600/80 rounded-[34px]  min-h-[392px] min-w-[250px]"
+      className="flex flex-col items-center bg-[#FBF6F6]  shadow-lg shadow-slate-600/80 rounded-[30px]  min-h-[392px] min-w-[250px]"
     >
       <img
-        className="flex justify-center pb-4 rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px]   min-w-full min-h-[200px] "
-        src={tumbImageAddress}
+        className="flex justify-center pb-4 rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px] min-w-full min-h-[200px] "
+        src={tumbImageAddress ? tumbImageAddress : notfoundImage}
+        // ${techName ? `&TechCount=1&ListTech=${techName}` :""}
       />
 
       <div className="flex justify-between flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
@@ -56,7 +58,6 @@ const Card = ({ data }) => {
         <div className="flex justify-between items-center px-4 pb-2 text-[12px] text-[#158B68] rounded-[12px] bg-[#BFF4E4] ">
           <p className=" pt-[2px]">{statusName}</p>
         </div>
-
       </div>
 
       <h2 className="flex justify-between items-center text-[20px] w-full px-4 pb-4">
@@ -65,16 +66,15 @@ const Card = ({ data }) => {
 
       <div className="flex justify-between flex-row items-center text-sm w-full px-4 pb-4">
         <div className="">
-        <div className="text-[#8C9F9A] text-[12px] w-[100px]">{teacherName}</div>
-
+          <div className="text-[#8C9F9A] text-[12px] w-[100px]">
+            {teacherName}
+          </div>
         </div>
         <span className="pr-[137px]">{courseRate}</span>
         <img src={CourseRate} />
       </div>
 
-      <div className="flex justify-between items-center text-[12px] w-full px-4 pb-4">
-        {/* {lastUpdate} */}
-        {/* {modifiedDate} */}
+      <div className="flex justify-between items-center text-[12px] text-[#158B68] w-full px-4 pb-4">
         {dateModifire(lastUpdate)}
       </div>
 
@@ -89,14 +89,14 @@ const Card = ({ data }) => {
 
       <div className="flex justify-between gap-2 pb-[7px]">
         <button
-          className="bg-[#5BE1B9] text-black py-2 w-[129px] rounded-lg"
+          className="bg-[#5BE1B9] text-black py-2 w-[112px] rounded-lg"
           onClick={() => navigate("/ProductDetail/" + courseId)}
         >
           {reserv} رزرو دوره
         </button>
 
         <button
-          className="bg-white border border-[#5BE1B9] text-black py-2 w-[129px] rounded-lg"
+          className="bg-white border border-[#5BE1B9] text-black py-2 w-[112px] rounded-lg"
           onClick={() => navigate("/ProductDetail/" + courseId)}
         >
           {readMore}جزئیات دوره

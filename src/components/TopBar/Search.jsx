@@ -18,14 +18,14 @@ const Search = () => {
           <Field
             name="search"
             type="text"
-            className="text-sm bg-transparent px-8 py-3 min-w-[290px]"
-            placeholder="سرچ کن..."
+            className="text-sm bg-transparent px-8 py-4 min-w-[290px] text-[16px]"
+            placeholder="جستجو..."
             required
           />
           <button
             type="submit"
           >
-            <div className="flex items-center justify-center bg-[#A4F6DE] px-5 py-4">
+            <div className="flex items-center justify-center bg-[#A4F6DE] px-5 py-5">
               <img src={search} />
             </div>
           </button>

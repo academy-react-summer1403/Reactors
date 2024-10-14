@@ -9,18 +9,22 @@ const ChangeBar = ({ course }) => {
   const { CardView } = useSelector((state) => state.Courses);
 
   return (
-    <div className="flex items-center gap-9 rounded-full border border-[#158B68] px-3 bg-[#FFFFFF] py-2">
-      <img
-        onClick={() => dispatch(handleCardView(false))}
-        className={`${CardView ? " text-white" : "bg-slte-400"}`}
-        src={left}
-      />
+    <div className="flex flex-row items-center rounded-full border border-[#158B68] px-4 bg-[#FFFFFF] py-4">
+      <div className="px-2">
+        <img
+          onClick={() => dispatch(handleCardView(true))}
+          className={`${CardView ? "" : ""}`}
+          src={right}
+        />
+      </div>
 
-      <img
-        onClick={() => dispatch(handleCardView(true))}
-        className={`${!CardView ? "text-white" : "bg-gay-300"}`}
-        src={right}
-      />
+      <div className="px-2">
+        <img
+          onClick={() => dispatch(handleCardView(false))}
+          className={`${!CardView ? "" : ""}`}
+          src={left}
+        />
+      </div>
     </div>
   );
 };
