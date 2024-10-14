@@ -4,6 +4,7 @@ import { DashboardPartsBody } from '../../../common/Dashboard/Styled DashboardPa
 import { DashboardPartsTitle } from '../../../common/Dashboard/Styled DashboardPages/StyledDashboardPartsTitle'
 
 import Profile from '../../../../assets/images/profile.png'
+import { EditButton } from '../../../common/Dashboard/Styled DashboardPages/StyledEditButton'
 
 const UserInformation = () => {
     return (
@@ -31,9 +32,8 @@ const UserInformation = () => {
                         <p> 2150938952 </p>
                     </div>
                 </div>
-
-                <button className="py-[10px] px-5 bg-[#12926C] text-white rounded-[50px]"> ویرایش </button>
-
+                
+                <EditButton> ویرایش </EditButton>
             </div>
         </DashboardPartsBody>
     )
