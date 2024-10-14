@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dashboard } from '../../../pages/Dashboard'
+
 import { UserInformation } from '../../../components/Dashboard/Dashcoard Header/UserInformation'
 import { OptionsHolder } from '../../../components/Dashboard/Dashboard Options'
 import { HeaderBody } from '../../../components/common/Header/Styled Header/StyledHeaderBody'
@@ -12,6 +12,7 @@ import { HiOutlineMoon, HiOutlineShoppingBag } from 'react-icons/hi'
 import { ShopBasketSapn } from '../../../components/common/Header/Header Options/Styled Header Options/StyledShopBasketSpan'
 import { DashboardPageHolder } from '../../../components/Dashboard/Dashboard Pages/Styled Dashboard Pages/StyledDashboardPageHolder'
 import { Counter } from '../../../pages/Dashboard/Counter'
+import { EditProfile } from '../../../pages/Dashboard/Edit Profile'
 
 const DashboardLayout = () => {
     return (
@@ -21,7 +22,7 @@ const DashboardLayout = () => {
                 <OptionsHolder />
             </div>
             <div className="w-full h-full flex flex-col">
-                <HeaderBody className="bg-[#A4F6DE] shadow-[0px_10px_3px_0_#00000024]">
+                <HeaderBody className="bg-[#A4F6DE] shadow-[0px_10px_3px_0_#00000024] z-10">
                     <H1Academy />
                     <HeaderOptionsHolder>
                         <HeaderOptions icon={<HiOutlineEyeDropper />} />
@@ -32,7 +33,7 @@ const DashboardLayout = () => {
                 </HeaderBody>
                 <div className="h-full p-5 overflow-y-scroll">
                     <DashboardPageHolder>
-                        <Counter />
+                        <EditProfile /> 
                     </DashboardPageHolder>
                 </div>
             </div>

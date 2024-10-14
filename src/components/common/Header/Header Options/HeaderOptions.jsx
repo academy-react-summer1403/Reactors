@@ -1,5 +1,4 @@
 import React from 'react'
-import { HiOutlineEyeDropper } from 'react-icons/hi2'
 
 const HeaderOptions = ({ icon, span }) => {
     return (
