@@ -79,38 +79,13 @@ const CoursLists = () => {
 
   return (
     <>
-      {/* <div className="w-full py-9 px-16 flex justify-between items-center">
-        <Bar></Bar>
-      </div> */}
 
       <div className="flex flex-col min-h-screen bg-[#FFFFFF] gap-3 p-4 rounded-[30px] shadow-2xl">
         <CardWrapper course={course} />
         <PaginationWrapper count={10} handleChangePage={handleChangePage} />
       </div>
 
-      <div className="flex flex-col items-start"></div>
 
-      {/* <Filter></Filter> */}
-
-      {/* Slider */}
-
-
-
-        {/* <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
-          navigation={true}
-          modules={[Navigation]}
-          dir="ltr"
-        >
-          {course.map((item, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <Card data={item} />{" "}
-              </SwiperSlide>
-            );
-          })}
-        </Swiper> */}
     </>
   );
 };

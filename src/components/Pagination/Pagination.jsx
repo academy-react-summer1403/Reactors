@@ -8,7 +8,7 @@ const PaginationWrapper = ({ count ,handleChangePage }) => {
 
 
     return (
-        <div dir='ltr' className='w-full flex  items-center justify-center'>
+        <div dir='ltr' className='w-full flex  items-center justify-center pt-[15px]'>
             <Pagination count={count} variant='outline' onChange={handleChangePage}/>
         </div>
     )

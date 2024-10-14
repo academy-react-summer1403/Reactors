@@ -29,7 +29,7 @@ const Card = ({ data }) => {
   return (
     <div
       onClick={() => navigate("/detail/" + courseId)}
-      className="flex flex-col items-center bg-[#FBF6F6]  shadow-lg shadow-slate-600/80 rounded-[30px]  min-h-[392px] min-w-[250px]"
+      className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full"
     >
       <img
         className="flex justify-center pb-4 rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px] min-w-full min-h-[200px] "
@@ -66,11 +66,11 @@ const Card = ({ data }) => {
 
       <div className="flex justify-between flex-row items-center text-sm w-full px-4 pb-4">
         <div className="">
-          <div className="text-[#8C9F9A] text-[12px] w-[100px]">
+          <div className="text-[#8C9F9A] text-[12px] w-full ">
             {teacherName}
           </div>
         </div>
-        <span className="pr-[137px]">{courseRate}</span>
+        <span className="pr-[137px] ">{courseRate}</span>
         <img src={CourseRate} />
       </div>
 
@@ -82,21 +82,21 @@ const Card = ({ data }) => {
         {describe}
       </p>
 
-      <p className=" text-center text-red-500  text-base pb-4 border-t min-w-[90%] border-[#158B68] ">
+      <p className=" text-center text-red-500  text-base pb-4 border-t w-full border-[#158B68] ">
         <span className="text-[#12926C] pl-[10px] ">هزینه تمام دوره:</span>
         {cost}تومان
       </p>
 
-      <div className="flex justify-between gap-2 pb-[7px]">
+      <div className="flex justify-between w-[90%] gap-2 pb-[10px]">
         <button
-          className="bg-[#5BE1B9] text-black py-2 w-[112px] rounded-lg"
+          className="bg-[#5BE1B9] text-black py-2 w-[80%] rounded-lg"
           onClick={() => navigate("/ProductDetail/" + courseId)}
         >
           {reserv} رزرو دوره
         </button>
 
         <button
-          className="bg-white border border-[#5BE1B9] text-black py-2 w-[112px] rounded-lg"
+          className="bg-white border border-[#5BE1B9] text-black py-2 w-[80%] rounded-lg"
           onClick={() => navigate("/ProductDetail/" + courseId)}
         >
           {readMore}جزئیات دوره
