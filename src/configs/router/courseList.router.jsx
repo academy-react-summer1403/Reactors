@@ -1,6 +1,6 @@
 import CoursesList from "../../pages/CoursesList";
 
 export const course = {
-    path : "/courseList",
+    path : "/CourseList",
     element : <CoursesList/>,
 }
