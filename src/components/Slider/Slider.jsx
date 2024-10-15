@@ -8,24 +8,24 @@ import 'swiper/css/pagination';
 
 import './styles.css';
 
-import { getCourseTop } from '../../core/services/api/getCourseTop';
-import { Card } from '../Card';
+// import { getCourseTop } from '../../core/services/api/getCourseTop';
+// import { Card } from '../Card';
 
 // import required modules
 import { Navigation } from 'swiper/modules';
 
 export default function Slider() {
-  const [courseTop, setCourseTop] = useState([]);
+  // const [courseTop, setCourseTop] = useState([]);
 
-  const getCoursesTop = async () => {
-    const courseTop = await getCourseTop();
-    setCourseTop(courseTop);
-    console.log(courseTop, "courseTop");
-  };
+  // const getCoursesTop = async () => {
+  //   const courseTop = await getCourseTop();
+  //   setCourseTop(courseTop);
+  //   console.log(courseTop, "courseTop");
+  // };
 
-  useEffect(() => {
-    getCoursesTop();
-  }, []);
+  // useEffect(() => {
+  //   getCoursesTop();
+  // }, []);
 
   return (
     <>
@@ -37,14 +37,16 @@ export default function Slider() {
         height={400}
         
       >
-          {courseTop.map((item, index) => {
+          {/* {courseTop.map((item, index) => {
             return (
               <SwiperSlide  key={index}>
                 <Card data={item} />
                 
               </SwiperSlide>
             );
-          })}
+          })} */}
+
+          <SwiperSlide></SwiperSlide>
       </Swiper>
     </>
   );

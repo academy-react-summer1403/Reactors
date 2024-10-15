@@ -3,6 +3,7 @@ import { Header } from "../../components/common/Hearder/Header";
 import { Footer } from "../../components/common/Footer/Footer";
 import BlogList from "../../components/BlogList/blogList";
 import Bar from "../../components/TopBar/Bar/Bar";
+import Slider from "../../components/Slider/Slider";
 
 const NewsList = () => {
   return (
@@ -27,7 +28,7 @@ const NewsList = () => {
           dir="rtl"
           className="flex flex-row-reverse pl-[9.3rem] pr-[9.3rem] pb-[10px] "
         >
-          {/* <Slider></Slider> */}
+            <Slider></Slider>
         </div>
       </div>
 
