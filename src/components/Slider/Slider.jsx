@@ -1,18 +1,11 @@
-import React, { useRef, useState,useEffect } from 'react';
+import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
 
-import './styles.css';
-
-// import { getCourseTop } from '../../core/services/api/getCourseTop';
-// import { Card } from '../Card';
-
-// import required modules
-import { Navigation } from 'swiper/modules';
+import "./styles.css";
 
 export default function Slider() {
   // const [courseTop, setCourseTop] = useState([]);
@@ -29,24 +22,16 @@ export default function Slider() {
 
   return (
     <>
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        modules={[Navigation]}
-        width={990}
-        height={400}
-        
-      >
-          {/* {courseTop.map((item, index) => {
-            return (
-              <SwiperSlide  key={index}>
-                <Card data={item} />
-                
-              </SwiperSlide>
-            );
-          })} */}
-
-          <SwiperSlide></SwiperSlide>
+      <Swiper watchSlidesProgress={true} slidesPerView={3} className="mySwiper">
+        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>
       </Swiper>
     </>
   );
