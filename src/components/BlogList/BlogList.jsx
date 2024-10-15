@@ -5,7 +5,7 @@ const BlogList = () => {
 
   return (
     <div>
-      <div className="flex flex-col min-h-[400px] bg-[#FFFFFF] gap-3 p-4 rounded-[30px] shadow-2xl">
+      <div className="flex flex-col min-h-[400px] border border-[#EFEFEF] bg-[#FFFFFF] gap-3 p-4 rounded-[30px] shadow-2xl">
 
       </div>
     </div>
