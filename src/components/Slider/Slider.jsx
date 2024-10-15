@@ -1,6 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { getSameNews } from "../../core/services/api/getSameNews";
+import { Card } from "../Card/Card";
 
 // Import Swiper styles
 import "swiper/css";
@@ -8,30 +10,28 @@ import "swiper/css";
 import "./styles.css";
 
 export default function Slider() {
-  // const [courseTop, setCourseTop] = useState([]);
+  const [sameNews, setSameNews] = useState([]);
 
-  // const getCoursesTop = async () => {
-  //   const courseTop = await getCourseTop();
-  //   setCourseTop(courseTop);
-  //   console.log(courseTop, "courseTop");
-  // };
+  const getNews = async () => {
+    const sameNews = await getSameNews();
+    setSameNews(sameNews);
+    console.log(sameNews, "courseTop");
+  };
 
-  // useEffect(() => {
-  //   getCoursesTop();
-  // }, []);
+  useEffect(() => {
+    getNews();
+  }, []);
 
   return (
     <>
       <Swiper watchSlidesProgress={true} slidesPerView={3} className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        {sameNews.map((item, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <Card data={item} />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { handleSearchInput } from "../../Redux/CourseSlice";
+import { useDispatch } from "react-redux";
+import { handleSearchInput } from "../../../Redox/NewsSlice";
 import { Field, Form, Formik } from "formik";
 import search from "../../../assets/Image/search.png";
 
 const Search = () => {
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-//   const handleSearchChange = (e) => {
-//     dispatch(handleSearchInput(e.search));
-//   };
+  const handleSearchChange = (e) => {
+    dispatch(handleSearchInput(e.search));
+  };
 
   return (
     <div>
-      <Formik  initialValues={{ search: "" }}>
+      <Formik onSubmit={handleSearchChange}  initialValues={{ search: "" }}>
         <Form className="rounded-full flex items-center justify-between bg-[#FFFF] border overflow-hidden border-[#158B68]">
           <Field
             name="search"

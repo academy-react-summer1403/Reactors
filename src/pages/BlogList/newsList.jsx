@@ -20,7 +20,7 @@ const NewsList = () => {
       </div>
 
       <div className="w-full">
-        <h2 className="text-center text-[20px] pt-[111px] pb-[111px] ">
+        <h2 className="text-center text-[20px] pt-[47px] pb-[37px] ">
           <h1 className="text-center text-[34px]  ">اخبار و مقالات مشابه</h1>
           ساختن دنیایی بهتر، یک دوره در یک زمان
         </h2>
