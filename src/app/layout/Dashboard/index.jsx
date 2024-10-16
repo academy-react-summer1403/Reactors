@@ -13,6 +13,8 @@ import { ShopBasketSapn } from '../../../components/common/Header/Header Options
 import { DashboardPageHolder } from '../../../components/Dashboard/Dashboard Pages/Styled Dashboard Pages/StyledDashboardPageHolder'
 import { Counter } from '../../../pages/Dashboard/Counter'
 import { EditProfile } from '../../../pages/Dashboard/Edit Profile'
+import { MyCourses } from '../../../pages/Dashboard/My Courses'
+import { ChangePassword } from '../../../pages/Dashboard/Change Password'
 
 const DashboardLayout = () => {
     return (
@@ -33,7 +35,10 @@ const DashboardLayout = () => {
                 </HeaderBody>
                 <div className="h-full p-5 overflow-y-scroll">
                     <DashboardPageHolder>
-                        <EditProfile /> 
+                        <Counter />
+                        {/* <EditProfile /> */}
+                        {/* <MyCourses /> */}
+                        {/* <ChangePassword /> */}
                     </DashboardPageHolder>
                 </div>
             </div>
