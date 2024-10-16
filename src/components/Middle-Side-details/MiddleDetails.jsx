@@ -83,7 +83,7 @@ const MiddleDetails = () => {
       >
         {() => (
           <Form className="flex flex-col gap-4">
-            <div className="flex border-2 border-[#A4F6DE] rounded-[15px] ">
+            <div className="flex  rounded-[15px] ">
               <button
                 type="button"
                 className="w-1/2 py-2 text-center rounded-[15px] bg-[#A4F6DE]"
@@ -92,7 +92,7 @@ const MiddleDetails = () => {
               </button>
               <button
                 type="button"
-                className="w-1/2 py-2 text-center "
+                className="w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[15px] text-center "
               >
                 نظرات کاربران
               </button>

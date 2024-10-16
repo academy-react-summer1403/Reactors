@@ -6,7 +6,7 @@ const LeftDetails = () => {
       <div className="flex flex-col w-full min-w-64 gap-6">
         {" "}
         {/* دایو 1: اطلاعات دوره */}
-        <div className="flex flex-col bg-white p-6 gap-2 rounded-[26px] shadow-md text-[#12926C]">
+        <div className="flex flex-col bg-white p-4 gap-2 rounded-[26px]  text-[#12926C]">
           <h3>مدرس دوره : </h3>
           <p>هزینه تمام دوره : </p>
           <p>تکنولوژی دوره :</p>
@@ -15,14 +15,14 @@ const LeftDetails = () => {
           <p>وضعیت دوره :</p>
         </div>
         {/* دایو 2: اطلاعات آماری دوره */}
-        <div className="bg-white p-6 space-y-2 rounded-[26px] shadow-md text-[#12926C]">
+        <div className="bg-white p-4 space-y-2 rounded-[26px]  text-[#12926C]">
           <h3>مدت زمان :</h3>
           <p>تعداد ویدیوها :</p>
           <p>تعداد نظرات :</p>
           <p>امتیاز دوره :</p>
         </div>
         {/* دایو 3: اطلاعات تاریخی */}
-        <div className="bg-white p-6 space-y-2 rounded-[26px] shadow-md text-[#12926C]">
+        <div className="bg-white p-4 space-y-2 rounded-[26px]  text-[#12926C]">
           <h3>تاریخ بروزرسانی :</h3>
           <p>شروع دوره :</p>
           <p>پایان دوره :</p>
@@ -34,7 +34,7 @@ const LeftDetails = () => {
           </button>
         </div>
         {/* دایو 4: درباره استاد */}
-        <div className="bg-white p-6 rounded-[26px] shadow-md flex items-center gap-4">
+        <div className="bg-white p-4 rounded-[26px]  flex items-center gap-4">
           <div className="space-y-4">
             <h3 className="pr-16">درباره استاد</h3>
             <div className="flex flex-row gap-3 pr-6">
