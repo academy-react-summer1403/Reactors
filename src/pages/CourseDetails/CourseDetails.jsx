@@ -18,7 +18,7 @@ const CourseDetails = () => {
         </div>
       </div>
 
-      {/* <Slider/> */}
+      <Slider/>
       <Footer/>
     </>
   );

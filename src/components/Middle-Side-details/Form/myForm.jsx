@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field } from 'formik';
 
-const myForm = () => {
+const MyForm = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
     <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
@@ -57,4 +57,4 @@ const myForm = () => {
   )
 }
 
-export default myForm
+export default MyForm

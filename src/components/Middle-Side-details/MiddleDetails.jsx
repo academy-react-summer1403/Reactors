@@ -4,10 +4,11 @@ import disLike from "../../assets/Image/dislike.png";
 import Star from "../../assets/Image/star.png";
 import bg from "../../assets/Image/Cd-bg.png";
 import download from "../../assets/Image/download.png";
-import myForm from "./Form/myForm";
+import { Formik, Form, Field } from 'formik';
 
 const MiddleDetails = () => {
   return (
+    
     <div className="min-h-screen bg-[#FBF6F6] rounded-[40px] flex justify-center p-6">
       {/* گرید اصلی */}
       <div className="flex flex-col w-full min-w-[300px]  gap-6">
@@ -40,22 +41,13 @@ const MiddleDetails = () => {
                   </button>
                 </div>
               </div>
-              <div className="text-gray-700 w-full h-[300px]">
+              <div className="text-gray-700 ">
                 لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
                 توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود. تکه های
                 لاتین متن نشان می دهد که یک پروژه در حال توسعه است. لورم ایپسوم
                 فقط برای توسعه دهندگان وب نیست. طراحان گرافیک نیز از آن با نرم
                 افزارهای مختلفی مانند فوتوشاپ استفاده می کنند. لورم ایپسوم محبوب
                 ترین و استانداردترین متن ساختگی است که توسط توسعه دهندگان وب،
-                تایپوگراف ها و طراحان استفاده می شود. تکه های لاتین متن نشان می
-                دهد که یک پروژه در حال توسعه است. لورم ایپسوم فقط برای توسعه
-                دهندگان وب نیست. طراحان گرافیک نیز از آن با نرم افزارهای مختلفی
-                مانند فوتوشاپ استفاده می کنند. لورم ایپسوم محبوب ترین و
-                استانداردترین متن ساختگی است که توسط توسعه دهندگان وب، تایپوگراف
-                ها و طراحان استفاده می شود. تکه های لاتین متن نشان می دهد که یک
-                پروژه در حال توسعه است. لورم ایپسوم فقط برای توسعه دهندگان وب
-                نیست. طراحان گرافیک نیز از آن با نرم افزارهای مختلفی مانند
-                فوتوشاپ استفاده می کنند.
               </div>
             </div>
           </div>
@@ -83,9 +75,54 @@ const MiddleDetails = () => {
 
           {/* دایو اضافی */}
           <div className="bg-white p-6 flex-col rounded-[30px] shadow-md">
-            <h2 className="font-bold text-lg">اطلاعات اضافی</h2>
-            <p>اینجا اطلاعات اضافی قرار می‌گیرد.</p>
-            <myForm></myForm>
+          <Formik
+        initialValues={{ title: '', text: '' }}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        {() => (
+          <Form className="flex flex-col gap-4">
+            <div className="flex border-2 border-[#A4F6DE] rounded-[15px] ">
+              <button
+                type="button"
+                className="w-1/2 py-2 text-center rounded-[15px] bg-[#A4F6DE]"
+              >
+                ثبت نظر
+              </button>
+              <button
+                type="button"
+                className="w-1/2 py-2 text-center "
+              >
+                نظرات کاربران
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Field
+                name="title"
+                placeholder="عنوان"
+                className="p-2 border-2 border-[#158B68] rounded-md "
+              />
+              <Field
+                name="text"
+                as="textarea"
+                placeholder="متن"
+                rows="4"
+                className="p-2 border-2 border-[#158B68] rounded-md text-[#807A7A]"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="py-5 bg-[#5BE1B9] text-black rounded-[15px]"
+            >
+              ثبت کردن
+            </button>
+          </Form>
+        )}
+      </Formik>
+            
           </div>
         </div>
       </div>
