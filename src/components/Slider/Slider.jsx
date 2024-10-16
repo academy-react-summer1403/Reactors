@@ -1,3 +1,4 @@
+
 import React, { useRef, useState,useEffect } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import './styles.css';
+
 
 import { getCourseTop } from '../../core/services/api/getCourseTop';
 import { Card } from '../Card';
