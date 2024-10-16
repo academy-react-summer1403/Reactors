@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+
+import React, { useRef, useState,useEffect } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -8,42 +9,44 @@ import 'swiper/css/pagination';
 
 import './styles.css';
 
+
+import { getCourseTop } from '../../core/services/api/getCourseTop';
+import { Card } from '../Card';
+
 // import required modules
-import { Pagination } from 'swiper/modules';
+import { Navigation } from 'swiper/modules';
 
 export default function Slider() {
-  // const [sameNews, setSameNews] = useState([]);
+  const [courseTop, setCourseTop] = useState([]);
 
-  // const getNews = async () => {
-  //   const sameNews = await getSameNews();
-  //   setSameNews(sameNews);
-  //   console.log(sameNews, "courseTop");
-  // };
+  const getCoursesTop = async () => {
+    const courseTop = await getCourseTop();
+    setCourseTop(courseTop);
+    console.log(courseTop, "courseTop");
+  };
 
-  // useEffect(() => {
-  //   getNews();
-  // }, []);
+  useEffect(() => {
+    getCoursesTop();
+  }, []);
 
   return (
     <>
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
+        modules={[Navigation]}
+        width={990}
+        height={400}
+        
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+          {courseTop.map((item, index) => {
+            return (
+              <SwiperSlide  key={index}>
+                <Card data={item} />
+                
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </>
   );

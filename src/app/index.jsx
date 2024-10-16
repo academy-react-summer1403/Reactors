@@ -1,16 +1,12 @@
-import { useState } from 'react'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import CourseDetails from '../pages/CourseDetails/CourseDetails'
 
+import "./App.css";
+import CoursesList from "../pages/CoursesList";
 function App() {
-
   return (
     <>
-    <CourseDetails/>
+      <CoursesList />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

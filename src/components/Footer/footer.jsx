@@ -1,5 +1,5 @@
 import React from "react";
-import h1 from "../../../assets/Image/h1.png";
+import h1 from "../../assets/Image/h1.png";
 
 const Footer = () => {
   return (
@@ -213,6 +213,5 @@ const Footer = () => {
     </footer>
   );
 };
-
 
 export { Footer };
