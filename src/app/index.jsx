@@ -1,12 +1,11 @@
-import './App.css'
-import NewsList from '../pages/BlogList/newsList'
-
+import "./App.css";
+import CoursesList from "../pages/CoursesList";
 function App() {
   return (
     <>
-    <NewsList/>
+      <CoursesList />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
