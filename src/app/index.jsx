@@ -1,12 +1,14 @@
+import React from 'react'
+import { Login } from '../pages/Auth/Login'
+import { AuthLayout } from './layout/Auth'
+import { Outlet } from 'react-router-dom'
 
-import "./App.css";
-import CoursesList from "../pages/CoursesList";
-function App() {
-  return (
-    <>
-      <CoursesList />
-    </>
-  );
+const App = () => {
+    return (
+        <div>
+            <Outlet />
+        </div>
+    )
 }
 
-export default App;
+export default App

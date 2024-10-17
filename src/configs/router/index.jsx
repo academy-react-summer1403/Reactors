@@ -8,7 +8,7 @@ export const router = createBrowserRouter ([
         path : "/",
         element : <App/>,
         children : [
-
+         
             course
         ],
     }
