@@ -13,8 +13,8 @@ const CounterCourses = ({ title }) => {
             </DashboardPartsTitle>
             <div className="p-3 w-full h-full">
                 <div className="bg-white w-full h-full rounded-[10px] flex gap-[15px] p-[10px] justify-center items-center shadow-[10px_10px_5px_0_#00000029]">
-                    <div>
-                        <img src={CourseImg} alt="عکس دوره" />
+                    <div className="flex justify-center items-center shrink-0 w-40 max-[1550px]:w-36">
+                        <img src={CourseImg} alt="عکس دوره" className="w-[90%]" />
                     </div>
                     <div className="flex flex-col gap-3 justify-center text-nowrap">
                         <p> عنوان: دوره </p>

@@ -8,13 +8,13 @@ import { EditButton } from '../../../common/Dashboard/Styled DashboardPages/Styl
 
 const UserInformation = () => {
     return (
-        <DashboardPartsBody className="flex-col w-1/2">
+        <DashboardPartsBody className="flex-col w-1/2 max-[900px]:w-full">
             <DashboardPartsTitle className="py-5">
                 <p> اطلاعات کاربری </p>
             </DashboardPartsTitle>
-            <div className="h-full flex flex-col items-center justify-evenly">
+            <div className="h-full flex flex-col items-center justify-evenly max-[900px]:py-5 max-[900px]:gap-5">
                 <div className="flex flex-col items-center">
-                    <div className="">
+                    <div className="max-[900px]:mt-5">
                         <img src={Profile} alt="" className="mb-[12px]" />
                     </div>
                     <p> نام و نام خانوادگی </p>

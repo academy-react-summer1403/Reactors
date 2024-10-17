@@ -15,11 +15,13 @@ import { Counter } from '../../../pages/Dashboard/Counter'
 import { EditProfile } from '../../../pages/Dashboard/Edit Profile'
 import { MyCourses } from '../../../pages/Dashboard/My Courses'
 import { ChangePassword } from '../../../pages/Dashboard/Change Password'
+import { Outlet } from 'react-router-dom'
+
 
 const DashboardLayout = () => {
     return (
         <div className="w-full h-full flex text-[#22445D] text-[18px]">
-            <div className="w-[400px] h-full flex flex-col text-nowrap">
+            <div className="w-[400px] h-full flex flex-col text-nowrap max-[1400px]:w-[300px] max-[1100px]:hidden">
                 <UserInformation />
                 <OptionsHolder />
             </div>
@@ -35,10 +37,7 @@ const DashboardLayout = () => {
                 </HeaderBody>
                 <div className="h-full p-5 overflow-y-scroll">
                     <DashboardPageHolder>
-                        <Counter />
-                        {/* <EditProfile /> */}
-                        {/* <MyCourses /> */}
-                        {/* <ChangePassword /> */}
+                        <Outlet />
                     </DashboardPageHolder>
                 </div>
             </div>

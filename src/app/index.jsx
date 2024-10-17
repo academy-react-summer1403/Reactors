@@ -1,10 +1,11 @@
 import React from 'react'
 import { DashboardLayout } from './layout/Dashboard'
+import { Outlet } from 'react-router-dom'
 
 const App = () => {
     return (
         <div className="w-screen h-screen">
-            <DashboardLayout />
+            <Outlet />
         </div>
     )
 }

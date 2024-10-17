@@ -3,7 +3,7 @@ import { DashboardPartsBody } from '../../../common/Dashboard/Styled DashboardPa
 
 const ProfileProgress = () => {
     return (
-        <DashboardPartsBody className="p-5 justify-center items-center">
+        <DashboardPartsBody className="p-5 justify-center flex-grow items-center">
             <p> درصد تکمیل پروفایل </p>
         </DashboardPartsBody>
     )

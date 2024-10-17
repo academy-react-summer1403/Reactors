@@ -1,60 +1,43 @@
 import React from 'react'
 
-import CourseImg from '../../../assets/images/courseImg2.png'
 import { DashboardPartsBody } from '../../../components/common/Dashboard/Styled DashboardPages/StyledDashboardPartsBody'
 import { DashboardPartsTitle } from '../../../components/common/Dashboard/Styled DashboardPages/StyledDashboardPartsTitle'
+import { TableHeader } from '../../../components/common/Dashboard/Styled DashboardPages/StyledTableHeader'
+import { TableBody } from '../../../components/common/Dashboard/Styled DashboardPages/StyledTableBody'
+import { TableRow } from '../../../components/common/Dashboard/Styled DashboardPages/StyledTableRow'
+import { TableFirstTitle } from '../../../components/common/Dashboard/Styled DashboardPages/StyledTableFirstTitle'
+import { TableLastTitle } from '../../../components/common/Dashboard/Styled DashboardPages/StyledTableLastTitle'
+import { TableCell } from '../../../components/common/Dashboard/Styled DashboardPages/StyledTableCell'
+
+import CourseImg from '../../../assets/images/courseImg2.png'
 
 const MyCourses = () => {
     return (
-        <table className="w-full h-full bg-[#FBF6F6] border-separate border-spacing-5">
-            <thead className="bg-[#A4F6DE]">
-                <tr>
-                    <th className="py-6 px-10"> نام دوره </th>
-                    <th className="py-6 px-10"> نام استاد </th>
-                    <th className="py-6 px-10"> نام ترم </th>
-                    <th className="py-6 px-10"> نام گروه </th>
-                    <th className="py-6 px-10"> تاریخ شروع </th>
-                    <th className="py-6 px-10"> وضعیت پرداخت </th>
-                </tr>
-            </thead>
-            <tbody className="text-center">
-                <tr className="bg-white rounded-[25px]">
-                    <td className="flex justify-center items-center gap-10 py-5 px-10">
-                        <img src={CourseImg} alt="" className="w-[80px]" />
+        <DashboardPartsBody className="flex flex-col">
+            <DashboardPartsTitle className="py-6 px-9 min-w-[700px]" style={{ fontSize: "20px" }}>
+                <TableHeader>
+                    <TableFirstTitle> نام دوره </TableFirstTitle>
+                    <p> نام استاد </p>
+                    <p> نام ترم </p>
+                    <p> نام گروه </p>
+                    <p> تاریخ شروع </p>
+                    <TableLastTitle> وضعیت پرداخت </TableLastTitle>
+                </TableHeader>
+            </DashboardPartsTitle>
+            <TableBody>
+                <TableRow>
+                    <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
+                        <img src={CourseImg} alt="" className="w-16" />
                         نکست جی اس
-                    </td>
-                    <td> استاد بحر </td>
-                    <td> بهار </td>
-                    <td> سه شنبه </td>
-                    <td> 1403/03/16 </td>
-                    <td> پرداخت نشده </td>
-                </tr>
-
-                <tr className="bg-white rounded-[25px] ">
-                    <td className="flex justify-center items-center gap-10 py-5 px-10">
-                        <img src={CourseImg} alt="" className="w-[80px]" />
-                        نکست جی اس
-                    </td>
-                    <td> استاد بحر </td>
-                    <td> بهار </td>
-                    <td> سه شنبه </td>
-                    <td> 1403/03/16 </td>
-                    <td> پرداخت نشده </td>
-                </tr>
-
-                <tr className="bg-white rounded-[25px] ">
-                    <td className="flex justify-center items-center gap-10 py-5 px-10">
-                        <img src={CourseImg} alt="" className="w-[80px]" />
-                        نکست جی اس
-                    </td>
-                    <td> استاد بحر </td>
-                    <td> بهار </td>
-                    <td> سه شنبه </td>
-                    <td> 1403/03/16 </td>
-                    <td> پرداخت نشده </td>
-                </tr>
-            </tbody>
-        </table>
+                    </TableCell>
+                    <TableCell> استاد بحر </TableCell>
+                    <TableCell> بهار </TableCell>
+                    <TableCell> سه شنبه </TableCell>
+                    <TableCell> 1403/03/16 </TableCell>
+                    <TableCell> پرداخت نشده </TableCell>
+                </TableRow>
+            </TableBody>
+        </DashboardPartsBody>
     )
 }
 

@@ -10,14 +10,14 @@ const Counter = () => {
     return (
         <div className="w-full h-full">
             <div className="flex flex-col gap-5">
-                <div className="flex gap-5 justify-center">
+                <div className="flex gap-5 justify-center max-[850px]:flex-wrap">
                     <WelcomeUser />
                     <CounterCourses title="جدیدترین دوره ها" />
                 </div>
 
-                <div className="flex gap-5">
+                <div className="flex gap-5 max-[900px]:flex-wrap max-[900px]:justify-center">
                     <UserInformation />
-                    <div className="flex flex-col gap-5 w-1/2">
+                    <div className="flex flex-col gap-5 w-1/2 max-[900px]:w-full">
                         <CoursesStatus />
                         <div className="flex gap-5">
                             <ProfileProgress />
