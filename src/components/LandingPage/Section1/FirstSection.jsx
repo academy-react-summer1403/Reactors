@@ -17,7 +17,7 @@ const FirstSection = () => {
       {/* Section 1: Header */}
       <div className="flex flex-col md:flex-row-reverse bg-[#A4F6DE] justify-between items-center">
         <div className="w-full md:w-1/2 px-11">
-          <img src={bgL} className="w-full pt-7" />
+          <img src={bgL} className="w-full py-7" />
         </div>
         <div className="w-full md:w-1/2 text-right px-24 pb-16">
           <h1 className="text-4xl font-bold py-10">آموزشگاه اچ وان</h1>
@@ -28,7 +28,7 @@ const FirstSection = () => {
             دهندگان وب نیست. طراحان گرافیک نیز از آن با نرم افزارهای مختلفی
             مانند فوتوشاپ استفاده می کنند.
           </p>
-          <button className="bg-[#12926C] text-white px-4 py-2 rounded-[51px]">
+          <button className="bg-[#12926C] text-white px-4 py-3 rounded-[51px]">
             شروع یادگیری
           </button>
         </div>
