@@ -19,7 +19,6 @@ const Dropdown = () => {
     dispatch(handleSortingCol(SortDictionary[value].SortingCol));
     dispatch(handleSortingType(SortDictionary[value].SortingType));
   };
-  // "flex items-center gap-[90px] justify-between  rounded-full border border-darkGreen text-darkGreen p-7 text-2xl"
   return (
     <form>
       <select

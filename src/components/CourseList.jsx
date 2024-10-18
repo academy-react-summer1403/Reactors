@@ -42,7 +42,6 @@ const CoursLists = () => {
       CostDown
     );
     setCourseList(courses.courseFilterDtos);
-    console.log(courses, "Course");
   };
 
   const handleChangePage = (event, newPage) => {

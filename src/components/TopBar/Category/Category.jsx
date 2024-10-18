@@ -1,42 +1,50 @@
 import React from "react";
-// import { useDispatch } from "react-redux";
-// import { handlenewsCatregoryName } from "../../../Redox/NewsSlice";
-
-// const SortDictionary = {
-//   newest: { SortingCol: "insertDate", SortingType: "DESC" },
-//   oldest: { SortingCol: "insertDate", SortingType: "ASC" },
-//   cheap: { SortingCol: "Cost", SortingType: "ASC" },
-//   expensive: { SortingCol: "Cost", SortingType: "DESC" },
-//   hardest: { SortingCol: "LevelName", SortingType: "DESC" },
-//   easiest: { SortingCol: "LevelName", SortingType: "ASC" },
-// };
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { handlecategoryName } from "../../../Redux/NewsSlice";
+import { useDispatch } from "react-redux";
+import { getNewsCategory } from "../../../core/services/api/getNewsCategory";
 const Category = () => {
-  // const dispatch = useDispatch();
+  const [NewsCategory, setNewsCategory] = useState([]);
 
-  // const handleSortChange = (e) => {
-  //   const { value } = e.target;
-  //   dispatch(handleSortingCol(SortDictionary[value].SortingCol));
-  //   dispatch(handleSortingType(SortDictionary[value].SortingType));
-  // };
+  const { categoryName } = useSelector((state) => {
+    return state.news;
+  });
+  const dispatch = useDispatch();
+
+  const getCategory = async () => {
+    const NewsCategory = await getNewsCategory();
+    setNewsCategory(NewsCategory);
+
+    // console.log(NewsCategory , "NewsCategory");
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  const handleCategory = (e) => {
+    const { value } = e.target;
+    dispatch(handlecategoryName(value));
+  };
 
   return (
-    <div>
-      <form>
+    <form>
+      <div>
         <select
-          className=" gap-9 rounded-full border border-[#158B68] text-[16px] bg-[#FFFFFF] px-14 py-4"
-          value={null}
-          // onChange={handleSortChange}
+          className=" gap-9 rounded-full border border-[#158B68] w-[208px] text-[16px] bg-[#FFFFFF] px-14 py-4"
+          value={categoryName}
+          onChange={handleCategory}
         >
           <option className="border-[#158B68]" value={null}>
             دسته بندی
           </option>
-          <option value="test"> تستی</option>
-          <option value="genius"> نابغه</option>
-          <option value="researchNews">اخبار پژوهشگاه</option>
-          <option value="scientific">علمی</option>
+          {NewsCategory?.map((item) => {
+            return <option value={item.id}>{item.categoryName}</option>;
+          })}
         </select>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 

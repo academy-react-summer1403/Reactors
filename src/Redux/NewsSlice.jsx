@@ -4,10 +4,11 @@ const NewsSlice = createSlice({
     name: "news",
     initialState: {
         SearchInput: "",
-        PageNumber: "1",
+        PageNumber: "10",
         SortingCol: "",
         SortingType: "DESC",
-        newsCatregoryName : "",
+        categoryName: "",
+
     },
     reducers: {
         handleSearchInput: (state, action) => {
@@ -22,12 +23,12 @@ const NewsSlice = createSlice({
         handleSortingType: (state, action) => {
             state.SortingType = action.payload
         },
-        handlenewsCatregoryName: (state, action) => {
-            state.newsCatregoryName = action.payload
+        handlecategoryName: (state, action) => {
+            state.categoryName = action.payload
         },
 
     }
 })
 
-export const { handlenewsCatregoryName,handleSortingCol, handleSortingType, handleSearchInput, handlePageNumber } = NewsSlice.actions
+export const { handlecategoryName,handleSortingCol, handleSortingType, handleSearchInput, handlePageNumber } = NewsSlice.actions
 export default NewsSlice.reducer

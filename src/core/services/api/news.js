@@ -2,11 +2,11 @@ import { baseUrl } from "../../../configs";
 import http from "../interceptor"; //axios//
 // import axios from "axios";
 
-export const getNews = async (PageNumber,SearchInput,SortingCol,SortingType) => {
+export const getNews = async (PageNumber,SearchInput,SortingCol,SortingType,categoryName) => {
     try {
         console.log("Fetching started...");
         const result = await http.get
-        (`/News?PageNumber=1&RowsOfPage=10&SortingCol=InsertDate&SortType=DESC&NewsCategoryId=${SearchInput ? `&Query=${SearchInput}` : ""}`);
+        (`/News?PageNumber=1&RowsOfPage=${PageNumber}${SortingCol ? `&SortingCol=${SortingCol}` :""}${SortingType ? `&SortType=${SortingType}` :""}${categoryName ? `&NewsCategoryId=${categoryName}`  :""}${SearchInput ? `&Query=${SearchInput}` : ""}`);
         return result;
     } catch (error) {   
         console.log(error);
