@@ -45,14 +45,14 @@ const EditProfile = () => {
                             <EditProfileInput inputTitle="نام" name="firstName" />
                             <EditProfileInput inputTitle="نام خانوادگی" name="lastName" />
                         </div>
-                        <EditProfileInput inputTitle="شماره همراه" name="phoneNumber" />
+                        <EditProfileInput inputTitle="شماره همراه" name="phoneNumber" value={userInfo.phoneNumber} />
                         <div className="flex gap-5">
                             <EditProfileInput inputTitle="شماره ملی" name="nationalCode" />
                             <EditProfileInput inputTitle="تاریخ تولد" name="birthday" type="date" />
                         </div>
                         <EditProfileInput inputTitle="آدرس منزل" name="homeAddress" />
                         <div className="flex gap-5">
-                            <EditProfileInput inputTitle="ایمیل" name="email" />
+                            <EditProfileInput inputTitle="ایمیل" name="email" value={userInfo.email} />
                             <EditProfileInput inputTitle="جنسیت" name="gender" style={{ width: "30%" }} />
                         </div>
                         <EditProfileInput inputTitle="درباره من" name="userAbout" />
