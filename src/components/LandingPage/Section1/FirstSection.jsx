@@ -4,6 +4,12 @@ import karbar from "../../../assets/Image/karbar.png";
 import mask from "../../../assets/Image/mask.png";
 import video from "../../../assets/Image/video.png";
 import note from "../../../assets/Image/note.png";
+import figure from "../../../assets/Image/figure.png";
+import chart from "../../../assets/Image/chart.png";
+import map from "../../../assets/Image/map.png";
+import office from "../../../assets/Image/office.png";
+import analyze from "../../../assets/Image/analyze.png";
+import project from "../../../assets/Image/project.png";
 
 const FirstSection = () => {
   return (
@@ -37,40 +43,58 @@ const FirstSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
-            <img src={karbar} className=" pb-2" />
-            <div className="flex flex-row">
-              <p>اساتید حرفه ای</p>
-              <p>52</p>
+            <img src={figure} className=" pb-2" />
+            <div className="flex flex-col">
+              <p>اساتید مجرب</p>
+              <p className="text-[10px] py-4">
+                لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+                توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+              </p>
             </div>
           </div>
           <div className="flex flex-col items-center">
-            <img src={mask} className="pb-2" />
-            <p>دانشجو</p>
-            <p>81</p>
+            <img src={chart} className="pb-2" />
+            <p>مشاوره رایگان</p>
+            <p className="text-[10px] py-4">
+              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+            </p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={video} className=" pb-2" />
-            <p>دوره آموزشی</p>
+            <img src={map} className=" pb-2" />
+            <p>فرصت های شغلی</p>
 
-            <p>182</p>
+            <p className="text-[10px] py-4">
+              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+            </p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={note} className=" mb-2" />
-            <p>مقاله آموزشی</p>
+            <img src={office} className=" mb-2" />
+            <p>ارائه مدرک معتبر</p>
 
-            <p>28</p>
+            <p className="text-[10px] py-4">
+              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+            </p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={video} className=" pb-2" />
-            <p>دوره آموزشی</p>
+            <img src={analyze} className=" pb-2" />
+            <p>دوره های جامع و متنوع</p>
 
-            <p>182</p>
+            <p className="text-[10px] py-4">
+              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+            </p>
           </div>
           <div className="flex flex-col items-center">
-            <img src={note} className=" mb-2" />
-            <p>مقاله آموزشی</p>
+            <img src={project} className=" mb-2" />
+            <p>آموزش پروژه محور</p>
 
-            <p>28</p>
+            <p className="text-[10px] py-4">
+              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+            </p>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@ const Landing = () => {
     <>
     <Header/>
     <LandingPage/>
-    {/* <Footer/> */}
+    <Footer/>
       
     </>
   )
