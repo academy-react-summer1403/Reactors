@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { handleSortingCol, handleSortingType } from "../../../Redox/NewsSlice";
+import { handleSortingCol, handleSortingType } from "../../../Redux/NewsSlice";
 
 
 const SortDictionary = {

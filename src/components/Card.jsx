@@ -78,7 +78,7 @@ const Card = ({ data }) => {
         {dateModifire(lastUpdate)}
       </div>
 
-      <p className="flex justify-between items-center text-[12px] text-[#6D6767] w-full min-h-[80px] px-4 pb-4">
+      <p className="flex justify-between items-center h-[100px] text-[12px] text-[#6D6767] w-full  px-4 pb-4">
         {describe}
       </p>
 

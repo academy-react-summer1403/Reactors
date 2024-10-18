@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { handleSearchInput } from "../../../Redox/NewsSlice";
 import { Field, Form, Formik } from "formik";
 import search from "../../../assets/Image/search.png";
+import { handleSearchInput } from "../../../Redux/NewsSlice";
 
 const Search = () => {
   const dispatch = useDispatch();
