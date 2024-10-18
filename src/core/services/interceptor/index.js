@@ -2,7 +2,7 @@ import axios from "axios";
 import { clearStorage, getItem, removeItem } from "../../utils/storage.services";
 import toast from "react-hot-toast";
 
-const baseURL = import.meta.env.VITE_BASE_URL
+const baseURL = "https://classapi.sepehracademy.ir/api"
 
 const instance = axios.create({
     baseURL: baseURL,
@@ -10,7 +10,7 @@ const instance = axios.create({
 
 
 const onSuccess = (response) => {
-    if (!response.success) toast.error("کاربر یافت نشد. لطفا مقادیر را به درستی وارد کنید!")
+    toast.success("عملیات با موفقیت انجام شد")
     return response.data;
 };
 

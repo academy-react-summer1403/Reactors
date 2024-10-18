@@ -7,14 +7,11 @@ import { store } from './redux'
 import { router } from './configs/router'
 
 import './index.css'
-import { RouterProvider } from 'react-router-dom'
-import { router } from './configs/router'
-
 
 createRoot(document.getElementById('root')).render(
-    <StrictMode>
+    // <StrictMode>
         <Provider store={store}>
             <RouterProvider router={router} />
         </Provider>
-    </StrictMode>,
+    // </StrictMode>,
 )

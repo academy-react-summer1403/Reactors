@@ -1,5 +1,4 @@
 import React from 'react'
-import { DashboardLayout } from './layout/Dashboard'
 import { Outlet } from 'react-router-dom'
 
 const App = () => {

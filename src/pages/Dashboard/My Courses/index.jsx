@@ -36,6 +36,50 @@ const MyCourses = () => {
                     <TableCell> 1403/03/16 </TableCell>
                     <TableCell> پرداخت نشده </TableCell>
                 </TableRow>
+                <TableRow>
+                    <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
+                        <img src={CourseImg} alt="" className="w-16" />
+                        نکست جی اس
+                    </TableCell>
+                    <TableCell> استاد بحر </TableCell>
+                    <TableCell> بهار </TableCell>
+                    <TableCell> سه شنبه </TableCell>
+                    <TableCell> 1403/03/16 </TableCell>
+                    <TableCell> پرداخت نشده </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
+                        <img src={CourseImg} alt="" className="w-16" />
+                        نکست جی اس
+                    </TableCell>
+                    <TableCell> استاد بحر </TableCell>
+                    <TableCell> بهار </TableCell>
+                    <TableCell> سه شنبه </TableCell>
+                    <TableCell> 1403/03/16 </TableCell>
+                    <TableCell> پرداخت نشده </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
+                        <img src={CourseImg} alt="" className="w-16" />
+                        نکست جی اس
+                    </TableCell>
+                    <TableCell> استاد بحر </TableCell>
+                    <TableCell> بهار </TableCell>
+                    <TableCell> سه شنبه </TableCell>
+                    <TableCell> 1403/03/16 </TableCell>
+                    <TableCell> پرداخت نشده </TableCell>
+                </TableRow>
+                <TableRow>
+                    <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
+                        <img src={CourseImg} alt="" className="w-16" />
+                        نکست جی اس
+                    </TableCell>
+                    <TableCell> استاد بحر </TableCell>
+                    <TableCell> بهار </TableCell>
+                    <TableCell> سه شنبه </TableCell>
+                    <TableCell> 1403/03/16 </TableCell>
+                    <TableCell> پرداخت نشده </TableCell>
+                </TableRow>
             </TableBody>
         </DashboardPartsBody>
     )

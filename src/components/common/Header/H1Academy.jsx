@@ -1,10 +1,8 @@
 import React from 'react'
-import { CgMenuRightAlt } from 'react-icons/cg'
 
 const H1Academy = () => {
     return (
         <div className="flex gap-2 items-center text-2xl">
-            <CgMenuRightAlt className="hidden size-10 text-[#158B68] max-[1100px]:block" />
             <div className="size-[50px] flex justify-center items-center">
                 <svg className="w-full h-full" width="47" height="73" viewBox="0 0 47 73" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.9833 0.546528L1.18911 10.7399C0.696453 11.1665 0.413609 11.7863 0.414105 12.438V57.3228C0.408726 58.2038 0.919323 59.0064 1.71955 59.375C2.51978 59.7435 3.46161 59.6097 4.12757 59.0329L15.9203 48.8321C16.4126 48.4058 16.6954 47.7866 16.6953 47.1355V2.25065C16.6978 1.37134 16.1866 0.571575 15.3874 0.204701C14.5883 -0.162174 13.6485 -0.0285528 12.9833 0.546528Z" fill="#00A19A" />

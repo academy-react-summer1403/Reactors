@@ -25,7 +25,7 @@ const OptionsHolder = () => {
 
                 <div className="mt-20 flex flex-col gap-[10px]">
                     <DashboardOptions title="بازگشت به خانه" icon={<HiOutlineHome />} url="/" />
-                    <DashboardOptions title="خروج" icon={<HiOutlineLogout />} url="#" />
+                    <DashboardOptions title="خروج" icon={<HiOutlineLogout />} />
                 </div>
 
             </ul>

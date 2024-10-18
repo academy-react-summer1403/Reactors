@@ -9,7 +9,7 @@ const TwoStepPassword = () => {
                 <p> امنیت </p>
             </DashboardPartsTitle>
             <div className="p-6 flex items-end justify-center gap-5">
-                <label className="switch">
+                <label className="switch shrink-0">
                     <input type="checkbox" />
                     <span className="slider round"></span>
                 </label>
