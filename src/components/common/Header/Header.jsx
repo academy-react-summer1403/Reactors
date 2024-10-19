@@ -83,8 +83,12 @@ const Header = () => {
 
               <li>
                 <NavLink
-                  href="#"
-                  className="text-gray-800 dark:text-teal-950 dark:hover:text-[#158B68] hover:bg-[#6D676757]  font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5  dark:hover:bg-slate-100 "
+                  to="/AboutUs"
+                  className={({ isActive }) =>
+                    `${
+                      isActive && "bg-[#6D676757] text-[#158B68]"
+                    } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
+                  }
                 >
                   درباره ما
                 </NavLink>

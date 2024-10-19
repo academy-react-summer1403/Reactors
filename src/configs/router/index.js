@@ -5,6 +5,7 @@ import { courseList } from "./courseList.router.jsx";
 import { newsList } from "./newsList.router.jsx";
 import { auth } from "./auth.router.jsx";
 import { courseDetails } from "./courseDetails.router.jsx";
+import { aboutus } from "./aboutUs.router.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
             newsList,
             auth,
             courseDetails,
+            aboutus,
         ]
     }
 ])
