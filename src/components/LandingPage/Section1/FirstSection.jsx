@@ -35,14 +35,14 @@ const FirstSection = () => {
       </div>
 
       {/* Section 2: خدمات ما */}
-      <div className="text-center pt-16">
+      <div className="text-center pt-16 px-28">
         <h2 className="text-[30px] pb-2">خدمات ما</h2>
         <p className="text-[15px] pb-8">
           ما فرصت آماده شدن برای زندگی را فراهم می‌کنیم
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center">
+          <div className="flex flex-row items-center">
             <img src={figure} className=" pb-2" />
             <div className="flex flex-col">
               <p>اساتید مجرب</p>
@@ -52,56 +52,62 @@ const FirstSection = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-row items-center">
             <img src={chart} className="pb-2" />
-            <p>مشاوره رایگان</p>
-            <p className="text-[10px] py-4">
-              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
-              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
-            </p>
+            <div className="flex flex-col">
+              <p>مشاوره رایگان</p>
+              <p className="text-[10px] py-4">
+                لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+                توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-row items-center">
             <img src={map} className=" pb-2" />
-            <p>فرصت های شغلی</p>
-
-            <p className="text-[10px] py-4">
-              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
-              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
-            </p>
+            <div className="flex flex-col">
+              <p>فرصت های شغلی</p>
+              <p className="text-[10px] py-4">
+                لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+                توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-row items-center">
             <img src={office} className=" mb-2" />
-            <p>ارائه مدرک معتبر</p>
-
-            <p className="text-[10px] py-4">
-              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
-              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
-            </p>
+            <div className="flex flex-col">
+              <p>ارائه مدرک معبتر</p>
+              <p className="text-[10px] py-4">
+                لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+                توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-row items-center">
             <img src={analyze} className=" pb-2" />
-            <p>دوره های جامع و متنوع</p>
-
-            <p className="text-[10px] py-4">
-              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
-              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
-            </p>
+            <div className="flex flex-col">
+              <p>دوره های جامع و متنوع</p>
+              <p className="text-[10px] py-4">
+                لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+                توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-row items-center">
             <img src={project} className=" mb-2" />
-            <p>آموزش پروژه محور</p>
-
-            <p className="text-[10px] py-4">
-              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
-              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
-            </p>
+            <div className="flex flex-col">
+              <p>آموزش پروژه محور</p>
+              <p className="text-[10px] py-4">
+                لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
+                توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود{" "}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Section 3: Footer */}
       <div className="p-7 ">
-        <div className="p-16 bg-[#5BE1B9] text-[#158B68] rounded-[32px] text-center">
+        <div className="p-16  bg-[#5BE1B9] text-[#158B68] rounded-[32px] text-center">
           <div className="flex flex-row justify-around">
             <div className="flex flex-col items-center">
               <img src={karbar} className=" pb-2" />
