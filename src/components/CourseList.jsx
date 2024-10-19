@@ -66,7 +66,7 @@ const CoursLists = () => {
   return (
     <>
 
-      <div className="flex flex-col min-h-screen bg-[#FFFFFF] gap-3 p-4 rounded-[30px] shadow-2xl">
+      <div className="flex flex-col min-h-[400px]  border border-[#EFEFEF] bg-white gap-3 p-4 rounded-[30px] shadow-2xl">
         <CardWrapper course={course} />
         <PaginationWrapper count={10} handleChangePage={handleChangePage} />
       </div>

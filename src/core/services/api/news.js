@@ -6,7 +6,7 @@ export const getNews = async (PageNumber,SearchInput,SortingCol,SortingType,cate
     try {
         console.log("Fetching started...");
         const result = await http.get
-        (`/News?PageNumber=1&RowsOfPage=${PageNumber}${SortingCol ? `&SortingCol=${SortingCol}` :""}${SortingType ? `&SortType=${SortingType}` :""}${categoryName ? `&NewsCategoryId=${categoryName}`  :""}${SearchInput ? `&Query=${SearchInput}` : ""}`);
+        (`/News?PageNumber=${PageNumber}&RowsOfPage=10${SortingCol ? `&SortingCol=${SortingCol}` :""}${SortingType ? `&SortType=${SortingType}` :""}${categoryName ? `&NewsCategoryId=${categoryName}`  :""}${SearchInput ? `&Query=${SearchInput}` : ""}`);
         return result;
     } catch (error) {   
         console.log(error);

@@ -5,7 +5,7 @@ import Search from "../Search/Search";
 const Bar = () => {
   return (
     <div>
-      <div className="flex items-center gap-5 pr-14">
+      <div className="flex items-center gap-5 px-5">
         <DropDown></DropDown>
         <Category></Category>
 

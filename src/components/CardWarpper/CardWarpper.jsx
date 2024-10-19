@@ -10,8 +10,8 @@ const CardWrapper = ({ course }) => {
     <>
       <div
         className={`${
-          CardView ? "grid-cols-3" : "grid-cols-2"
-        } grid  items-center gap-5 `}
+          CardView ? "grid lg:grid-cols-3" : "sm:grid-cols-2"
+        } grid items-center gap-5 `}
       >
         {course.map((item) => {
           if (CardView) {

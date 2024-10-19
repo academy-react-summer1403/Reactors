@@ -4,7 +4,7 @@ const NewsSlice = createSlice({
     name: "news",
     initialState: {
         SearchInput: "",
-        PageNumber: "10",
+        PageNumber: "1",
         SortingCol: "",
         SortingType: "DESC",
         categoryName: "",
