@@ -6,6 +6,7 @@ import Star from "../assets/Star.png";
 import CourseRate from "../assets/Image/CourseRate.png";
 import dateModifire from "../core/utils/dateModifier";
 import notfoundImage from "../assets/Image/notfoundImage.webp";
+import { Link, NavLink } from "react-router-dom";
 
 const Card = ({ data }) => {
   const {
@@ -99,7 +100,17 @@ const Card = ({ data }) => {
           className="bg-white border border-[#5BE1B9] text-black py-2 w-[80%] rounded-lg"
           onClick={() => navigate("/ProductDetail/" + courseId)}
         >
-          {readMore}جزئیات دوره
+          <Link
+            to={"/CourseDetails"}
+            className={({ isActive }) =>
+              `${
+                isActive && "bg-[#6D676757] text-[#158B68]"
+              } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
+            }
+          >
+            جزئیات دوره
+          </Link>
+          {readMore}
         </button>
       </div>
     </div>

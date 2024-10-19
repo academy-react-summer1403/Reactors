@@ -33,7 +33,7 @@ const Header = () => {
             <ul className="flex flex-col  font-medium lg:flex-row lg:space-x  pr-[147px]">
               <li>
                 <NavLink
-                  to="/"
+                  to="/Home"
                   className={({isActive}) => `${isActive && "bg-[#6D676757] text-[#158B68]"} text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `}
                 >
                   صفحه اصلی
