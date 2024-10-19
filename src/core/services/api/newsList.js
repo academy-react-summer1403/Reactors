@@ -1,10 +1,10 @@
 import { baseUrl } from "../../../configs";
 import http from "../interceptor"; //axios//
 
-export const getTeacher = async () => {
+export const getNewsList = async () => {
     try {
         console.log("Fetching started...");
-        const result = await http.get(`/Home/GetTeachers`);
+        const result = await http.get(`/News/GetListNewsCategory`);
     
       return result;
     } catch (error) {   

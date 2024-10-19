@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState,useEffect } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -10,22 +10,25 @@ import './styles.css';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
+import { getCourseList } from '../../core/services/api/courseList';
+import Card from '../LandingPage/Teachers/Card/Card';
 
 export default function Slider() {
-  // const [sameNews, setSameNews] = useState([]);
+  const [course, setcourse] = useState([]);
 
-  // const getNews = async () => {
-  //   const sameNews = await getSameNews();
-  //   setSameNews(sameNews);
-  //   console.log(sameNews, "courseTop");
-  // };
+  const getcourses = async () => {
+    const course = await getCourseList();
+    setcourse(course);
+    console.log(course, "courseTop");
+  };
 
-  // useEffect(() => {
-  //   getNews();
-  // }, []);
+  useEffect(() => {
+    getcourses();
+  }, []);
 
   return (
     <>
+    
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
@@ -35,15 +38,14 @@ export default function Slider() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+          {course.map((item, index) => {
+            return (
+              <SwiperSlide  key={index}>
+                <Card data={item} />
+                
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </>
   );

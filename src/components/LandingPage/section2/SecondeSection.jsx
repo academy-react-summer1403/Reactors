@@ -5,8 +5,6 @@ import UI from "../../../assets/Image/UI.png";
 import js from "../../../assets/Image/triangle.png";
 import UiUx from "../../../assets/Image/UiUx.png";
 
-
-
 const SecondeSection = () => {
   const categories = [
     {
@@ -35,6 +33,8 @@ const SecondeSection = () => {
       sessions: 25,
     },
   ];
+
+  
   return (
     <div className="flex flex-col items-center justify-center p-8">
       <h2 className="text-2xl font-bold text-gray-700 pb-4">دسته بندی</h2>
@@ -51,7 +51,7 @@ const SecondeSection = () => {
               src={category.Image}
               className="w-16 h-16 object-contain"
             />
-            <h3 className="text-lg font-semibold text-gray-600 pt-4">
+            <h3 className="text-lg  text-gray-600 pt-4">
               {category.title}
             </h3>
             <p className="text-gray-400 pt-2">{category.sessions} جلسه</p>
