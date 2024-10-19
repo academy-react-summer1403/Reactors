@@ -11,6 +11,6 @@ const App = () => {
             <MainPagesLayout/>
         </div>
     )
-}
+  }
 
 export default App
