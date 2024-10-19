@@ -7,8 +7,8 @@ import { MainPagesLayout } from './layout/Main Pages'
 const App = () => {
     return (
         <div>
-            <Outlet />
-            {/* <MainPagesLayout/> */}
+            {/* <Outlet /> */}
+            <MainPagesLayout/>
         </div>
     )
 }

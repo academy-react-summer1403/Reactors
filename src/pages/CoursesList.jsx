@@ -9,7 +9,7 @@ import { Footer } from "../components/Footer/footer";
 const CoursesList = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <div className="flex flex-col justify-between items-center">
         <h2 className="text-[30px] pt-[50px]">لیست دوره ها </h2>
@@ -34,7 +34,7 @@ const CoursesList = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
