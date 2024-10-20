@@ -10,6 +10,7 @@ import map from "../../../assets/Image/map.png";
 import office from "../../../assets/Image/office.png";
 import analyze from "../../../assets/Image/analyze.png";
 import project from "../../../assets/Image/project.png";
+import { Link } from "react-router-dom";
 
 const FirstSection = () => {
   return (
@@ -29,7 +30,16 @@ const FirstSection = () => {
             مانند فوتوشاپ استفاده می کنند.
           </p>
           <button className="bg-[#12926C] text-white px-4 py-3 rounded-[51px]">
-            شروع یادگیری
+            <Link
+              to={"/CourseList"}
+              className={({ isActive }) =>
+                `${
+                  isActive && "bg-[#6D676757] text-[#158B68]"
+                } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
+              }
+            >
+              شروع یادگیری
+            </Link>
           </button>
         </div>
       </div>
@@ -112,24 +122,24 @@ const FirstSection = () => {
             <div className="flex flex-col items-center">
               <img src={karbar} className=" pb-2" />
               <p>اساتید حرفه ای</p>
-              <p>52</p>
+              <p className="text-[30px]">52</p>
             </div>
             <div className="flex flex-col items-center">
               <img src={mask} className="pb-2" />
               <p>دانشجو</p>
-              <p>81</p>
+              <p className="text-[30px]">81</p>
             </div>
             <div className="flex flex-col items-center">
-              <img src={video} className=" pb-2" />
+              <img src={video} className=" pb-6" />
               <p>دوره آموزشی</p>
 
-              <p>182</p>
+              <p className="text-[30px]">182</p>
             </div>
             <div className="flex flex-col items-center">
-              <img src={note} className=" mb-2" />
+              <img src={note} className=" pb-4" />
               <p>مقاله آموزشی</p>
 
-              <p>28</p>
+              <p className="text-[30px]">28</p>
             </div>
           </div>
         </div>

@@ -1,9 +1,6 @@
 import React from "react";
-// import profile from "../../../assets/Image/profile.png";
 import h1 from "../../../assets/Image/h1.png";
-// import basket from "../../../assets/Image/basket.png";
 import { Link, NavLink } from "react-router-dom";
-
 import search from "../../../assets/Image/search.png";
 
 const Header = () => {

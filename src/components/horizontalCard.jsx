@@ -7,6 +7,8 @@ import { handleCardView } from "../Redux/CourseSlice";
 import dateModifier from "../core/utils/dateModifier";
 import notfoundImage from "../assets/Image/notfoundImage.webp";
 import dateModifire from "../core/utils/dateModifier";
+import { Link } from "react-router-dom";
+
 
 const HorizontalCard = ({ data }) => {
   const {
@@ -42,10 +44,8 @@ const HorizontalCard = ({ data }) => {
 
         {/* Course Content */}
         <div className="flex flex-col items-end w-full px-4 gap-2">
-          
           <div className="text-[15px]">{title}</div>
           <div className="flex justify-between flex-row items-center px-4 py-[1px] text-sm min-w-full gap-2">
-            
             <div className="flex justify-between flex-row gap-2">
               <p className="text-[#089E71]">
                 <img className="flex items-center" src={like} />
@@ -89,7 +89,17 @@ const HorizontalCard = ({ data }) => {
               className="bg-white border border-[#5BE1B9] text-black py-2 w-[112px] rounded-lg"
               onClick={() => navigate("/ProductDetail/" + courseId)}
             >
-              {readMore}جزئیات دوره
+              <Link
+                to={"/CourseDetails"}
+                className={({ isActive }) =>
+                  `${
+                    isActive && "bg-[#6D676757] text-[#158B68]"
+                  } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
+                }
+              >
+                جزئیات دوره
+              </Link>
+              {readMore} 
             </button>
           </div>
         </div>

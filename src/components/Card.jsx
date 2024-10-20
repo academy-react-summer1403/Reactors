@@ -6,7 +6,7 @@ import Star from "../assets/Star.png";
 import CourseRate from "../assets/Image/CourseRate.png";
 import dateModifire from "../core/utils/dateModifier";
 import notfoundImage from "../assets/Image/notfoundImage.webp";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Card = ({ data }) => {
   const {

@@ -3,7 +3,7 @@ import { Field } from 'formik'
 
 const FormCheckbox = ({ name, id, labelText }) => {
     return (
-        <div className="flex gap-[15px] mt-[25px]">
+        <div className="flex gap-[15px] py-3">
             <div className="w-7 h-7 border-2 border-[#158B68] rounded-[2px]">
                 <Field type="checkbox" name={name} id={id} className="w-full h-full" />
             </div>

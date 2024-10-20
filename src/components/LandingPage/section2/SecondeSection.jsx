@@ -37,7 +37,7 @@ const SecondeSection = () => {
   
   return (
     <div className="flex flex-col items-center justify-center p-8">
-      <h2 className="text-2xl font-bold text-gray-700 pb-4">دسته بندی</h2>
+      <h2 className="text-[30px] text-gray-700 pb-4">دسته بندی</h2>
       <p className="text-gray-500 pb-6">
         ما فرصت آماده شدن برای زندگی را فراهم می‌کنیم
       </p>

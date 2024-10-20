@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import sug from "../../../assets/Image/sug.png"
+import sug from "../../../assets/Image/sug.png";
 
 const Suggestion = () => {
   const formik = useFormik({
@@ -73,7 +73,7 @@ const Suggestion = () => {
         </div>
         <button
           type="submit"
-          className="bg-[#5BE1B9] text-[#21394B] py-2 rounded hover:bg-blue-600 focus:outline-none"
+          className="bg-[#5BE1B9] text-[#21394B] py-2 rounded focus:outline-none"
         >
           ارسال
         </button>
