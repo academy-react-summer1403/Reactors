@@ -21,7 +21,7 @@ const FirstSection = () => {
           <img src={bgL} className="w-full py-7" />
         </div>
         <div className="w-full md:w-1/2 text-right px-24 pb-16">
-          <h1 className="text-4xl font-bold py-10">آموزشگاه اچ وان</h1>
+          <h1 className="text-4xl py-10">آموزشگاه اچ وان</h1>
           <p className="pb-6">
             لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط توسعه
             دهندگان وب، تایپوگراف ها و طراحان استفاده می شود. تکه های لاتین متن
