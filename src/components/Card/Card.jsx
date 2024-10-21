@@ -4,6 +4,7 @@ import like from "../../assets/Image/like.png";
 import disLike from "../../assets/Image/dislike.png";
 import Star from "../../assets/Image/star.png";
 import rate from "../../assets/Image/rate.png";
+import { Link } from "react-router-dom";
 // import dateModifire from "../core/utils/dateModifier";
 
 const Card = ({ data }) => {
@@ -18,14 +19,12 @@ const Card = ({ data }) => {
     currentLikeCount,
     currentUserRateNumber,
     currentDissLikeCount,
-    readMore,
-    reserv,
+    id
   } = data;
   // const navigate = useNavigate()
 
   return (
     <div
-      onClick={() => navigate("/detail/" + courseId)}
       className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full"
     >
       <img
@@ -83,11 +82,9 @@ const Card = ({ data }) => {
         {miniDescribe}
       </p>
 
-      <div
-        className=" text-[#807A7A] flex pr-[119px] border-t border-[#158B68] py-2 w-[90%]"
-        onClick={() => navigate("/ProductDetail/" + courseId)}
-      >
-        {reserv} جزئیات دوره
+      <div className=" text-[#807A7A] flex pr-[119px] border-t border-[#158B68] py-2 w-[90%]">
+      <Link to={"/NewsDetails/" + id}>جزئیات دوره</Link>
+
       </div>
     </div>
   );

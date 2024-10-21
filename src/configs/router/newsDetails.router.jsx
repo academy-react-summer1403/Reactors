@@ -1,5 +1,5 @@
 import NewsDetails from "../../pages/newsDetails/NewsDetails";
 export const newsDetails = {
-  path: "/NewsDetails",
+  path: "/NewsDetails/:id",
   element: <NewsDetails />,
 };

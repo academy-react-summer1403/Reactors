@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NewsContainer from "../../components/News Details/NewsContainer/NewsContainer";
 import Slider from "../../components/News Details/Slider/Slider";
 import { Header } from "../../components/common/Header/Header";
 import { Footer } from "../../components/common/Footer/Footer";
+import { useParams } from "react-router-dom";
+import { getNewsId } from "../../core/services/api/getNewsID";
 
 const NewsDetails = () => {
+  const [newsDetail, setNewsDetail] = useState([]);
+  const { id } = useParams();
+
+  const getNewsDetails = async () => {
+    const newsDetail = await getNewsId(id);
+    setNewsDetail(newsDetail);
+  };
+
+  console.log("news Id :", id);
+
+  console.log(newsDetail, "newsDetail : ");
+
+  useEffect(() => {
+    getNewsDetails();
+  }, []);
   return (
     <>
       <Header />
       <div className="flex flex-col px-16 py-[70px] ">
-        <NewsContainer />
+        <NewsContainer newsDetail={newsDetail}/>
       </div>
       <div className="flex flex-col py-[37px]">
         <div className="pb-[80px]">

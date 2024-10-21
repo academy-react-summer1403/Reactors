@@ -11,7 +11,14 @@ import key from "../../../assets/Image/key.png";
 import NewsUserComment from "./User Comment/UserComment";
 import Comment from "./Form/Comment";
 
-const NewsContainer = () => {
+const NewsContainer = ({newsDetail}) => {
+  const {
+    likeCount,
+    dissLikeCount,
+    autor,
+    addUserFullName,
+  } = newsDetail;
+  
   const [cardType, setCardType] = useState("userReview");
 
   const handleReviewForm = () => {
@@ -67,11 +74,13 @@ const NewsContainer = () => {
           <div className="flex flex-row-reverse justify-between items-center">
             <div className="flex flex-row-reverse gap-4">
               <span>
-                {" "}
                 <img src={like} />
+               <p className="text-black">{likeCount}</p> 
               </span>
+
               <span>
                 <img src={disLike} />
+                {dissLikeCount}
               </span>
               <span>
                 <img src={Star} />
@@ -80,7 +89,7 @@ const NewsContainer = () => {
             <div className="flex flex-row gap-11 py-8">
               <div className="flex flex-row-reverse gap-3">
                 <span className="text-[13px] text-[#126F94] w-full">
-                  نام نویسنده :{" "}
+                  نام نویسنده :{addUserFullName}
                 </span>
                 <img src={author} />
               </div>
