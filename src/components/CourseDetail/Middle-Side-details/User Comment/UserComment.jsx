@@ -1,6 +1,10 @@
 import React from "react";
-import like from "../../../assets/Image/like.png";
-import disLike from "../../../assets/Image/dislike.png";
+import like from "../../../../assets/Image/like.png";
+import disLike from "../../../../assets/Image/dislike.png";
+import user from "../../../../assets/Image/user.png";
+import reply from "../../../../assets/Image/reply.png";
+
+
 
 const UserComment = () => {
   return (
@@ -31,7 +35,7 @@ const UserComment = () => {
           <span>2024-10-15 | 12:45 </span>
         </div>
       </div>
-      <div className="p-4 pt-0 flex flex-row-reverse gap-6">
+      <div className="p-4 pt-1 flex flex-row-reverse gap-6">
         <p className="text-[14px] text-[#158B68]">پاسخ ها</p>
         <p className="text-[14px] text-[#158B68]">پاسخ دادن</p>
       </div>

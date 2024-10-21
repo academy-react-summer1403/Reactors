@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import like from "../../../assets/Image/like.png";
 import disLike from "../../../assets/Image/dislike.png";
 import Star from "../../../assets/Image/star.png";
 import Cdbg from "../../../assets/Image/Cdbg.png";
 import download from "../../../assets/Image/download.png";
-
-import { Formik, Form, Field } from "formik";
+import Comment from "./Form/Comment";
+import UserComment from "./User Comment/UserComment";
 
 const MiddleDetails = ({ courseDetail }) => {
+  const [cardType, setCardType] = useState("userReview");
+
+  const handleReviewForm = () => {
+    setCardType("reviewForm");
+  };
+
+  const handleUserReview = () => {
+    setCardType("userReview");
+  };
+
   const {
     title,
     imageAddress,
@@ -79,53 +89,31 @@ const MiddleDetails = ({ courseDetail }) => {
 
           {/* دایو اضافی */}
           <div className="bg-white p-6 flex-col rounded-[30px] shadow-md">
-            <Formik
-              initialValues={{ title: "", text: "" }}
-              onSubmit={(values) => {
-                console.log(values);
-              }}
-            >
-              {() => (
-                <Form className="flex flex-col gap-4">
-                  <div className="flex  rounded-[15px] ">
-                    <button
-                      type="button"
-                      className="w-1/2 py-2 text-center rounded-[15px] bg-[#A4F6DE]"
-                    >
-                      ثبت نظر
-                    </button>
-                    <button
-                      type="button"
-                      className="w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[15px] text-center "
-                    >
-                      نظرات کاربران
-                    </button>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <Field
-                      name="title"
-                      placeholder="عنوان"
-                      className="p-2 border-2 border-[#158B68] rounded-md "
-                    />
-                    <Field
-                      name="text"
-                      as="textarea"
-                      placeholder="متن"
-                      rows="4"
-                      className="p-2 border-2 border-[#158B68] rounded-md text-[#807A7A]"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="py-5 bg-[#5BE1B9] text-black rounded-[15px]"
-                  >
-                    ثبت کردن
-                  </button>
-                </Form>
-              )}
-            </Formik>
+            <div className="flex pb-10  ">
+              <button
+                type="button"
+                onClick={handleReviewForm}
+                className={
+                  cardType === "reviewForm"
+                    ? "w-1/2 py-2 text-center rounded-[5px] bg-[#A4F6DE]"
+                    : "w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[5px] text-center"
+                }
+              >
+                ثبت نظر
+              </button>
+              <button
+                type="button"
+                onClick={handleUserReview}
+                className={
+                  cardType === "userReview"
+                    ? "w-1/2 py-2 text-center rounded-[5px] bg-[#A4F6DE]"
+                    : "w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[5px] text-center"
+                }
+              >
+                نظرات کاربران
+              </button>
+            </div>
+            {cardType === "userReview" ? <UserComment /> : <Comment />}
           </div>
         </div>
       </div>

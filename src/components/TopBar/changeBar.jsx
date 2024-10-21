@@ -4,7 +4,7 @@ import left from "../../assets/left.png";
 import { useDispatch, useSelector } from "react-redux";
 import { handleCardView } from "../../Redux/CourseSlice";
 
-const ChangeBar = ({ course }) => {
+const ChangeBar = () => {
   const dispatch = useDispatch();
   const { CardView } = useSelector((state) => state.Courses);
 

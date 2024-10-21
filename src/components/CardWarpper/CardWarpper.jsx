@@ -20,10 +20,6 @@ const CardWrapper = ({ course }) => {
             return <HorizontalCard data={item} />;
           }
         })}
-
-        {/* {course.map((item) => {
-          return <CourseDetail data={item} />;
-        })} */}
       </div>
     </>
   );
