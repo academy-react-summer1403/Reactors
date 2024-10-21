@@ -11,17 +11,10 @@ const MiddleDetails = ({ courseDetail }) => {
   const {
     title,
     imageAddress,
-    miniDescribe,
     likeCount,
     dissLikeCount,
     isUserFavorite,
     describe,
-    capacity,
-    techs,
-    courseLevelName,
-    commentCount,
-    currentRate,
-    insertDate,
   } = courseDetail;
 
   return (
@@ -32,7 +25,6 @@ const MiddleDetails = ({ courseDetail }) => {
         <div className=" flex-col rounded-[30px] flex items-center justify-center p-6 ">
           <img
             className="w-full h-[340px] object-cover rounded-[30px]"
-
             src={imageAddress ? imageAddress : Cdbg}
           />
         </div>
