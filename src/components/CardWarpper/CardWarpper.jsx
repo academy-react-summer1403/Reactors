@@ -15,11 +15,15 @@ const CardWrapper = ({ course }) => {
       >
         {course.map((item) => {
           if (CardView) {
-            return <Card data={item} />;
+            return <Card key={item.courseId} data={item} />;
           } else {
             return <HorizontalCard data={item} />;
           }
         })}
+
+        {/* {course.map((item) => {
+          return <CourseDetail data={item} />;
+        })} */}
       </div>
     </>
   );

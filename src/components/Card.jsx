@@ -1,5 +1,4 @@
 import React from "react";
-// import { useNavigate } from 'react-router-dom';
 import like from "../assets/like.png";
 import disLike from "../assets/disLike.png";
 import Star from "../assets/Star.png";
@@ -22,20 +21,13 @@ const Card = ({ data }) => {
     lastUpdate,
     courseId,
     dissLikeCount,
-    readMore,
-    reserv,
   } = data;
-  // const navigate = useNavigate()
 
   return (
-    <div
-      onClick={() => navigate("/detail/" + courseId)}
-      className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full"
-    >
+    <div className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
       <img
         className="flex justify-center pb-4 rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px] min-w-full min-h-[200px] "
         src={tumbImageAddress ? tumbImageAddress : notfoundImage}
-        // ${techName ? `&TechCount=1&ListTech=${techName}` :""}
       />
 
       <div className="flex justify-between flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
@@ -89,28 +81,12 @@ const Card = ({ data }) => {
       </p>
 
       <div className="flex justify-between w-[90%] gap-2 pb-[10px]">
-        <button
-          className="bg-[#5BE1B9] text-black py-2 w-[80%] rounded-lg"
-          onClick={() => navigate("/ProductDetail/" + courseId)}
-        >
-          {reserv} رزرو دوره
+        <button className="bg-[#5BE1B9] text-black py-2 w-[80%] rounded-lg">
+          رزرو دوره
         </button>
 
-        <button
-          className="bg-white border border-[#5BE1B9] text-black py-2 w-[80%] rounded-lg"
-          onClick={() => navigate("/ProductDetail/" + courseId)}
-        >
-          <Link
-            to={"/CourseDetails"}
-            className={({ isActive }) =>
-              `${
-                isActive && "bg-[#6D676757] text-[#158B68]"
-              } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
-            }
-          >
-            جزئیات دوره
-          </Link>
-          {readMore}
+        <button className="bg-white border border-[#5BE1B9] text-black py-2 w-[80%] rounded-lg">
+          <Link to={"/CourseDetails/" + courseId}>جزئیات دوره</Link>
         </button>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import CourseDetails from "../../pages/CourseDetails/CourseDetails"
 export const courseDetails = {
-    path : "/CourseDetails",
+    path : "/CourseDetails/:courseId",
     element : <CourseDetails/>,
 }
