@@ -9,23 +9,6 @@ import 'swiper/css/pagination';
 import './styles.css';
 
 // import { getCourseTop } from '../../core/services/api/getCourseTop';
-// import { Card } from '../Card';
-// // import { Navigation } from 'swiper/modules';
-
-// export default function Slider() {
-//   const [courseTop, setCourseTop] = useState([]);
-
-//   const getCoursesTop = async () => {
-//     const courseTop = await getCourseTop();
-//     setCourseTop(courseTop);
-//     console.log(courseTop, "courseTop");
-//   };
-
-//   useEffect(() => {
-//     getCoursesTop();
-//   },[]);
-
-// import { Pagination } from 'swiper/modules';
 import { getCourseList } from '../../core/services/api/courseList';
 import Card from '../LandingPage/Teachers/Card/Card';
 
@@ -57,10 +40,6 @@ export default function Slider() {
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
-        // pagination={{
-        //   clickable: true,
-        // }}
-        // modules={[Pagination]}
         className="mySwiper"
       >
           {course.map((item, index) => {

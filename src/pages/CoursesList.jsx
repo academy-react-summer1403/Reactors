@@ -5,6 +5,7 @@ import Filter from "../components/Filter/Filter";
 import Slider from "../components/Slider/Slider";
 import { Header } from "../components/Header/header";
 import { Footer } from "../components/Footer/footer";
+import CardSlider from "../components/Slider/CourseList Slider/CardSlider";
 
 const CoursesList = () => {
   return (
@@ -30,7 +31,7 @@ const CoursesList = () => {
             dir="rtl"
             className="flex flex-row-reverse pl-[9.3rem] pr-[9.3rem] pb-[10px] "
           >
-            <Slider></Slider>
+            <CardSlider/>
           </div>
         </div>
       </div>
