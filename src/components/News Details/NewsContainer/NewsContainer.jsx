@@ -1,18 +1,27 @@
-import React from "react";
-import bgUp from "../../assets/Image/bgUp.png";
-import like from "../../assets/Image/like.png";
-import disLike from "../../assets/Image/dislike.png";
-import Star from "../../assets/Image/star.png";
+import React, { useState } from "react";
+import bgUp from "../../../assets/Image/bgUp.png";
+import like from "../../../assets/Image/like.png";
+import disLike from "../../../assets/Image/dislike.png";
+import Star from "../../../assets/Image/star.png";
 
-import author from "../../assets/Image/author.png";
-import view from "../../assets/Image/view.png";
-import calender from "../../assets/Image/calender.png";
-import key from "../../assets/Image/key.png";
-
-import user from "../../assets/Image/user.png";
-import reply from "../../assets/Image/reply.png";
+import author from "../../../assets/Image/author.png";
+import view from "../../../assets/Image/view.png";
+import calender from "../../../assets/Image/calender.png";
+import key from "../../../assets/Image/key.png";
+import NewsUserComment from "./User Comment/UserComment";
+import Comment from "./Form/Comment";
 
 const NewsContainer = () => {
+  const [cardType, setCardType] = useState("userReview");
+
+  const handleReviewForm = () => {
+    setCardType("reviewForm");
+  };
+
+  const handleUserReview = () => {
+    setCardType("userReview");
+  };
+
   return (
     <div className="min-h-screen bg-[#FBF6F6] rounded-[40px] flex justify-center p-6 ">
       <div className="flex flex-col w-full min-w-[100px]  gap-6">
@@ -100,47 +109,31 @@ const NewsContainer = () => {
         <div className="flex flex-row rounded-[15px] px-28 py-3">
           <button
             type="button"
-            className="w-1/2 py-4 text-center rounded-[10px] bg-[#A4F6DE]"
+                onClick={handleReviewForm}
+                className={
+                  cardType === "reviewForm"
+                    ? "w-1/2 py-2 text-center rounded-[5px] bg-[#A4F6DE]"
+                    : "w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[5px] text-center"
+                }
           >
             ثبت نظر
           </button>
           <button
             type="button"
-            className="w-1/2 py-4 border-2 border-[#A4F6DE] rounded-[10px] text-center "
-          >
+            onClick={handleUserReview}
+            className={
+              cardType === "userReview"
+                ? "w-1/2 py-2 text-center rounded-[5px] bg-[#A4F6DE]"
+                : "w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[5px] text-center"
+            }          >
             نظرات کاربران
           </button>
         </div>
+
         <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <div>
-                <img src={user} />
-              </div>
-              <h2 className="text-[15px]">عنوان : عنوان نظر</h2>
-            </div>
-            <div className="flex flex-row gap-4">
-              <img src={like} />
-              <img src={disLike} />
-              <img src={reply} />
-            </div>
-          </div>
-          <div className="text-gray-700 pt-5 min-h-[110px]">
-            لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط توسعه
-            دهندگان وب، تایپوگراف ها و طراحان استفاده می شود. تکه های لاتین متن
-            نشان می دهد که یک پروژه در حال توسعه است. لورم ایپسوم فقط برای توسعه
-            دهندگان وب نیست. طراحان گرافیک نیز از آن با نرم افزارهای مختلفی
-            مانند فوتوشاپ استفاده می کنند. لورم ایپسوم محبوب ترین و
-            استانداردترین متن ساختگی است که توسط توسعه دهندگان وب،
-          </div>
-          <div className="flex flex-row-reverse justify-between items-center text-xs text-gray-500">
-            <span>2024-10-15 | 12:45 </span>
-          </div>
+          {/* <NewsUserComment /> */}
+          {cardType === "userReview" ? <NewsUserComment /> : <Comment />}
         </div>
-        <div className="p-4 pt-0 flex flex-row-reverse gap-6">
-            <p className="text-[14px] text-[#158B68]">پاسخ ها</p>
-            <p className="text-[14px] text-[#158B68]">پاسخ دادن</p>
-          </div>
       </div>
     </div>
   );
