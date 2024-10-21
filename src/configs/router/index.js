@@ -7,6 +7,7 @@ import { auth } from "./auth.router.jsx";
 import { courseDetails } from "./courseDetails.router.jsx";
 import { aboutus } from "./aboutUs.router.jsx";
 import { error } from "./Error.router.jsx";
+import { newsDetails } from "./newsDetails.router.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
             courseDetails,
             aboutus,
             error,
+            newsDetails
         ]
     }
 ])

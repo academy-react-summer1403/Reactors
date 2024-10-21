@@ -1,13 +1,13 @@
 import React from "react";
-// import { Header } from "../../components/common/Header/Header";
-// import { Footer } from "../../components/common/Footer/Footr";
 import NewsContainer from "../../components/News Details/NewsContainer/NewsContainer";
 import Slider from "../../components/News Details/Slider/Slider";
+import { Header } from "../../components/common/Header/Header";
+import { Footer } from "../../components/common/Footer/Footer";
 
 const NewsDetails = () => {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div className="flex flex-col px-16 py-[70px] ">
         <NewsContainer />
       </div>
@@ -23,7 +23,7 @@ const NewsDetails = () => {
         <Slider></Slider>
       </div>
 
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

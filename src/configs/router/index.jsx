@@ -5,11 +5,12 @@ import { courseList } from "./courseList.router";
 import { newsList } from "./newsList.router";
 import { auth } from "./auth.router";
 import { LandingPage } from "./Landing.router";
+import { NewsDetails } from "./newsDetails.router";
 
 export const router = createBrowserRouter ([
     {
         path : "/",
         element : <App/>,
-        children : [LandingPage,auth,newsList,courseList]
+        children : [NewsDetails,LandingPage,auth,newsList,courseList]
     }
 ])
