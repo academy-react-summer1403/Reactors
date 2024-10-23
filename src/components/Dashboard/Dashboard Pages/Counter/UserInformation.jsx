@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { DashboardPartsBody } from '../../../common/Dashboard/Styled DashboardPages/StyledDashboardPartsBody'
 import { DashboardPartsTitle } from '../../../common/Dashboard/Styled DashboardPages/StyledDashboardPartsTitle'
@@ -12,7 +13,7 @@ const UserInformation = () => {
     const { firstName, lastName, phoneNumber, email, nationalCode } = useSelector((state) => state.userInfo)
 
     return (
-        <DashboardPartsBody className="flex-col w-1/2 max-[900px]:w-full">
+        <DashboardPartsBody className="flex-col w-[45%] max-[900px]:w-full">
             <DashboardPartsTitle className="py-5">
                 <p> اطلاعات کاربری </p>
             </DashboardPartsTitle>
@@ -24,7 +25,7 @@ const UserInformation = () => {
                     <p> {firstName + " " + lastName} </p>
                 </div>
 
-                <div className="flex gap-5 justify-center">
+                <div className="flex gap-5 justify-center max-xl:text-[16px] max-[1100px]:text-[18px]">
                     <div className="flex flex-col gap-5">
                         <p> تلفن همراه: </p>
                         <p> ایمیل:  </p>
@@ -37,7 +38,9 @@ const UserInformation = () => {
                     </div>
                 </div>
 
-                <EditButton> ویرایش </EditButton>
+                <EditButton style={{ padding: 0 }}>
+                    <Link to={"/dashboard/edit-profile"} className="block w-full h-full py-[8px] px-6"> ویرایش </Link>
+                </EditButton>
             </div>
         </DashboardPartsBody>
     )

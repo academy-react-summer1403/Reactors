@@ -1,4 +1,8 @@
 import { DashboardLayout } from "../../app/layout/Dashboard";
+import { MyFavoriteCourses } from "../../components/Dashboard/Dashboard Pages/Favorites/MyFavoriteCourses";
+import { MyFavoriteArticles } from "../../components/Dashboard/Dashboard Pages/Favorites/MyFavoritesArticles";
+import { MyArticleComments } from "../../components/Dashboard/Dashboard Pages/My Comments/MyArticleComments";
+import { MyCourseComments } from "../../components/Dashboard/Dashboard Pages/My Comments/MyCourseComments";
 import { ChangePassword } from "../../pages/Dashboard/Change Password";
 import { Counter } from "../../pages/Dashboard/Counter";
 import { EditProfile } from "../../pages/Dashboard/Edit Profile";
@@ -29,11 +33,11 @@ export const dashboard = {
         },
         {
             path: "/dashboard/favorites",
-            element: <Favorites />
+            element: <Favorites />,
         },
         {
             path: "/dashboard/my-comments",
-            element: <MyComments />
+            element: <MyComments />,
         },
         {
             path: "/dashboard/change-password",

@@ -7,13 +7,13 @@ import CourseImg from '../../../../assets/images/courseImg.png'
 
 const CounterCourses = ({ title }) => {
     return (
-        <DashboardPartsBody className="flex-col">
+        <DashboardPartsBody className="flex-col text-[16px] w-[350px]">
             <DashboardPartsTitle className="py-[10px]">
                 <p> {title} </p>
             </DashboardPartsTitle>
             <div className="p-3 w-full h-full">
                 <div className="bg-white w-full h-full rounded-[10px] flex gap-[15px] p-[10px] justify-center items-center shadow-[10px_10px_5px_0_#00000029]">
-                    <div className="flex justify-center items-center shrink-0 w-40 max-[1550px]:w-36">
+                    <div className="flex items-center w-2/3">
                         <img src={CourseImg} alt="عکس دوره" className="w-[90%]" />
                     </div>
                     <div className="flex flex-col gap-3 justify-center text-nowrap">

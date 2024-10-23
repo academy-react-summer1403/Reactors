@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useDispatch } from 'react-redux'
 
@@ -9,17 +9,20 @@ import { CoursesStatus } from '../../../components/Dashboard/Dashboard Pages/Cou
 import { ProfileProgress } from '../../../components/Dashboard/Dashboard Pages/Counter/ProfileProgress'
 import { getUserInfo } from '../../../core/services/api/dashboard'
 
-import { handleEmail, handlePhoneNumber } from '../../../redux/userInfo'
+import { handleEmail, handleNationalCode, handlePhoneNumber, handleProfileCompletionPercentage } from '../../../redux/userInfo'
 
 const Counter = () => {
 
     const dispatch = useDispatch()
+    const [profileCompletionPercentage, setProfileCompletionPercentage] = useState()
 
     const userInfo = async () => {
         const result = await getUserInfo()
         console.log(result)
         dispatch(handleEmail(result.email))
         dispatch(handlePhoneNumber(result.phoneNumber))
+        dispatch(handleNationalCode(result.nationalCode))
+        setProfileCompletionPercentage(result.profileCompletionPercentage)
     }
 
     useEffect(() => {
@@ -36,10 +39,10 @@ const Counter = () => {
 
                 <div className="flex gap-5 max-[900px]:flex-wrap max-[900px]:justify-center">
                     <UserInformation />
-                    <div className="flex flex-col gap-5 w-1/2 max-[900px]:w-full">
+                    <div className="flex flex-col gap-5 w-[55%] max-[900px]:w-full">
                         <CoursesStatus />
-                        <div className="flex gap-5">
-                            <ProfileProgress />
+                        <div className="flex gap-5 justify-center">
+                            <ProfileProgress percentage={profileCompletionPercentage} />
                             <CounterCourses title="دوره های من" />
                         </div>
                     </div>

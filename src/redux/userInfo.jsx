@@ -13,7 +13,8 @@ const userInfo = createSlice({
         gender: "",
         userAbout: "",
         telegramLink: "",
-        linkdinProfile: ""
+        linkdinProfile: "",
+        profileCompletionPercentage: ""
     },
     reducers: {
         handleFirstName: (state, action) => {
@@ -49,8 +50,11 @@ const userInfo = createSlice({
         handleLinkdinProfile: (state, action) => {
             state.linkdinProfile = action.payload
         },
+        handleProfileCompletionPercentage: (state, action) => {
+            state.profileCompletionPercentage = action.payload
+        }
     }
 })
 
-export const {handleFirstName, handleLastName, handlePhoneNumber, handleNationalCode, handleBirthday, handleHomeAddress, handleEmail, handleGender, handleUserAbout, handleTelegramLink, handleLinkdinProfile} = userInfo.actions
+export const { handleFirstName, handleLastName, handlePhoneNumber, handleNationalCode, handleBirthday, handleHomeAddress, handleEmail, handleGender, handleUserAbout, handleTelegramLink, handleLinkdinProfile, handleProfileCompletionPercentage } = userInfo.actions
 export default userInfo.reducer

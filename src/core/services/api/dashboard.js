@@ -26,3 +26,21 @@ export const getReservedCourses = async () => {
         return false
     }
 }
+
+export const getFavoriteCourses = async () => {
+    try {
+        const response = await http.get("/SharePanel/GetMyFavoriteCourses")
+        return response
+    } catch (error) {
+        return false
+    }
+}
+
+export const getFavoriteArticles = async () => {
+    try {
+        const response = await http.get("/SharePanel/GetMyFavoriteNews")
+        return response
+    } catch (error) {
+        return false
+    }
+}

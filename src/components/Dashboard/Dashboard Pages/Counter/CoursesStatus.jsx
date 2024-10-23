@@ -5,11 +5,11 @@ import { StatusProgress } from '../../../common/Dashboard/StatusProgress'
 
 const CoursesStatus = () => {
     return (
-        <DashboardPartsBody className="flex-col">
+        <DashboardPartsBody className="flex-col w-full">
             <DashboardPartsTitle className="py-5">
                 <p> وضعیت دوره های من </p>
             </DashboardPartsTitle>
-            <div className="pt-5 px-10 pb-10">
+            <div className="pt-5 px-10 pb-10 text-[16px]">
                 <StatusProgress color="#5BE1B9" title="دوره های من - پرداخت شده" />
                 <StatusProgress color="#158B68" title="دوره های تایید شده - پرداخت نشده" />
                 <StatusProgress color="#5BE1B9" title="دوره های رزرو شده" />
