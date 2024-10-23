@@ -11,14 +11,21 @@ import key from "../../../assets/Image/key.png";
 import NewsUserComment from "./User Comment/UserComment";
 import Comment from "./Form/Comment";
 
-const NewsContainer = ({newsDetail}) => {
+import dateModifier from "../../../core/utils/dateModifier";
+
+const NewsContainer = ({ newsDetail,commentDetail}) => {
   const {
-    likeCount,
-    dissLikeCount,
-    autor,
+    currentLikeCount,
+    currentDissLikeCount,
+    currentView,
     addUserFullName,
+    insertDate,
+    keyword,
+    googleTitle,
+    googleDescribe,
+    currentRate,
   } = newsDetail;
-  
+
   const [cardType, setCardType] = useState("userReview");
 
   const handleReviewForm = () => {
@@ -41,49 +48,25 @@ const NewsContainer = ({newsDetail}) => {
         </div>
         <div className="bg-white p-6  flex-col rounded-[30px] shadow-md px-9">
           <h1 className="text-[30px] w-full flex flex-col items-center">
-            عنوان مقاله
+            {googleTitle}
           </h1>
           <div className="text-gray-700 pt-8">
-            لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط توسعه
-            دهندگان وب، تایپوگراف ها و طراحان استفاده می شود. تکه های لاتین متن
-            نشان می دهد که یک پروژه در حال توسعه است. لورم ایپسوم فقط برای توسعه
-            دهندگان وب نیست. طراحان گرافیک نیز از آن با نرم افزارهای مختلفی
-            مانند فوتوشاپ استفاده می کنند. لورم ایپسوم محبوب ترین و
-            استانداردترین متن ساختگی است که توسط توسعه دهندگان وب، تایپوگراف ها
-            و طراحان استفاده می شود. تکه های لاتین متن نشان می دهد که یک پروژه
-            در حال توسعه است. لورم ایپسوم فقط برای توسعه دهندگان وب نیست.
-            <p className="pt-8">
-              طراحان گرافیک نیز از آن با نرم افزارهای مختلفی مانند فوتوشاپ
-              استفاده می کنند. لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی
-              است که توسط توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می
-              شود. تکه های لاتین متن نشان می دهد که یک پروژه در حال توسعه است.
-              لورم ایپسوم فقط برای توسعه دهندگان وب نیست. طراحان گرافیک نیز از
-              آن با نرم افزارهای مختلفی مانند فوتوشاپ استفاده می کنند.
-            </p>
-            <p className="pt-8">
-              لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط
-              توسعه دهندگان وب، تایپوگراف ها و طراحان استفاده می شود. تکه های
-              لاتین متن نشان می دهد که یک پروژه در حال توسعه است. لورم ایپسوم
-              فقط برای توسعه دهندگان وب نیست. طراحان گرافیک نیز از آن با نرم
-              افزارهای مختلفی مانند فوتوشاپ استفاده می کنند. لورم ایپسوم محبوب
-              ترین و استانداردترین متن ساختگی است که توسط توسعه دهندگان وب،
-              تایپوگراف ها و طراحان استفاده می شود. تکه های لاتین متن نشان می
-              دهد که یک پروژه در حال توسعه است.
-            </p>
+            {googleDescribe}
           </div>
           <div className="flex flex-row-reverse justify-between items-center">
             <div className="flex flex-row-reverse gap-4">
               <span>
                 <img src={like} />
-               <p className="text-black">{likeCount}</p> 
+                <p className="text-black text-[12px]">{currentLikeCount}</p>
               </span>
 
               <span>
                 <img src={disLike} />
-                {dissLikeCount}
+                <p className="text-black text-[12px]">{currentDissLikeCount}</p>
               </span>
               <span>
                 <img src={Star} />
+                <p className="text-black text-[12px]">{currentRate}</p>
               </span>
             </div>
             <div className="flex flex-row gap-11 py-8">
@@ -95,20 +78,22 @@ const NewsContainer = ({newsDetail}) => {
               </div>
 
               <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#807A7A] w-full">1124</span>
+                <span className="text-[13px] text-[#807A7A] w-full">
+                  {currentView}
+                </span>
                 <img src={view} />
               </div>
 
               <div className="flex flex-row-reverse gap-3">
                 <span className="text-[13px] text-[#807A7A] w-full">
-                  مهر 1402
+                  {dateModifier(insertDate)}
                 </span>
                 <img src={calender} />
               </div>
 
               <div className="flex flex-row-reverse gap-3">
                 <span className="text-[13px] text-[#807A7A] w-full">
-                  کلمات کلیدی
+                  {keyword}
                 </span>
                 <img src={key} />
               </div>
@@ -118,12 +103,12 @@ const NewsContainer = ({newsDetail}) => {
         <div className="flex flex-row rounded-[15px] px-28 py-3">
           <button
             type="button"
-                onClick={handleReviewForm}
-                className={
-                  cardType === "reviewForm"
-                    ? "w-1/2 py-2 text-center rounded-[5px] bg-[#A4F6DE]"
-                    : "w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[5px] text-center"
-                }
+            onClick={handleReviewForm}
+            className={
+              cardType === "reviewForm"
+                ? "w-1/2 py-2 text-center rounded-[5px] bg-[#A4F6DE]"
+                : "w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[5px] text-center"
+            }
           >
             ثبت نظر
           </button>
@@ -134,14 +119,15 @@ const NewsContainer = ({newsDetail}) => {
               cardType === "userReview"
                 ? "w-1/2 py-2 text-center rounded-[5px] bg-[#A4F6DE]"
                 : "w-1/2 py-2 border-2 border-[#A4F6DE] rounded-[5px] text-center"
-            }          >
+            }
+          >
             نظرات کاربران
           </button>
         </div>
 
         <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
           {/* <NewsUserComment /> */}
-          {cardType === "userReview" ? <NewsUserComment /> : <Comment />}
+          {cardType === "userReview" ? <NewsUserComment commentDetail={commentDetail} /> : <Comment />}
         </div>
       </div>
     </div>

@@ -4,7 +4,12 @@ import reply from "../../../../assets/Image/reply.png";
 import like from "../../../../assets/Image/like.png";
 import disLike from "../../../../assets/Image/dislike.png";
 
-const NewsUserComment = () => {
+const NewsUserComment = ({ commentDetail }) => {
+  const {
+    title,
+    replyCount,
+    
+  } = commentDetail;
   return (
     <div>
       <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
@@ -13,11 +18,12 @@ const NewsUserComment = () => {
             <div>
               <img src={user} />
             </div>
-            <h2 className="text-[15px]">عنوان : عنوان نظر</h2>
+            <h2 className="text-[15px]">عنوان : {title}</h2>
           </div>
           <div className="flex flex-row gap-4">
-            <img src={like} />
-            <img src={disLike} />
+            <div>{replyCount}</div>
+            <img src={like}/>
+            <img src={disLike}/>
             <img src={reply} />
           </div>
         </div>

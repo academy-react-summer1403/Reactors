@@ -8,14 +8,14 @@ import { getNewsId } from "../../core/services/api/getNewsID";
 
 const NewsDetails = () => {
   const [newsDetail, setNewsDetail] = useState([]);
-  const { id } = useParams();
+  const [commentDetail, setCommentDetail] = useState([]);
 
+  const { id } = useParams();
   const getNewsDetails = async () => {
     const newsDetail = await getNewsId(id);
-    setNewsDetail(newsDetail);
+    setNewsDetail(newsDetail.detailsNewsDto);
+    setCommentDetail(newsDetail.commentDtos);
   };
-
-  console.log("news Id :", id);
 
   console.log(newsDetail, "newsDetail : ");
 
@@ -26,7 +26,7 @@ const NewsDetails = () => {
     <>
       <Header />
       <div className="flex flex-col px-16 py-[70px] ">
-        <NewsContainer newsDetail={newsDetail}/>
+        <NewsContainer newsDetail={newsDetail} commentDetail={commentDetail}  />
       </div>
       <div className="flex flex-col py-[37px]">
         <div className="pb-[80px]">

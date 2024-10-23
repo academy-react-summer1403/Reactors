@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import like from "../assets/like.png";
 import disLike from "../assets/disLike.png";
 import Star from "../assets/Star.png";
@@ -6,6 +6,9 @@ import CourseRate from "../assets/Image/CourseRate.png";
 import dateModifire from "../core/utils/dateModifier";
 import notfoundImage from "../assets/Image/notfoundImage.webp";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { postCourseReserve } from "../core/services/api/postCourseReserve";
+import toast from "react-hot-toast";
 
 const Card = ({ data }) => {
   const {
@@ -22,6 +25,18 @@ const Card = ({ data }) => {
     courseId,
     dissLikeCount,
   } = data;
+
+  // const [reservButton, setReservButton] = useState([]);
+
+  // const reserCoureseButton = async () => {
+  //   const reservButton = await postCourseReserve()
+  //   setReservButton(reservButton.courseFilterDtos);
+  //   console.log(reservButton, "reserv");
+  // }
+
+  // useEffect(() => {
+  //   reserCoureseButton();
+  // }, []);
 
   return (
     <div className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
