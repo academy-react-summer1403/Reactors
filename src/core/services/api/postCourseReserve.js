@@ -1,13 +1,12 @@
 import { baseUrl } from "../../../configs";
 import http from "../interceptor"; //axios//
 
-export const postCourseReserve = async () => {
+export const postCourseReserve = async (courseId) => {
     try {
-        console.log("Fetching started...");
-        const result = await http.post("/CourseReserve/ReserveAdd")
+        const result = await http.post("/CourseReserve/ReserveAdd",courseId);
        
         return result
     } catch (error) {
-        return error;
+        return false;
     }
 }

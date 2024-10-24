@@ -40,7 +40,7 @@ const Login = () => {
         if (result.success) {
             setItem("token", result.token)
             toast.success("خوش آمدید")
-            navigate("/")
+            navigate("/Home")
         }
     }
 

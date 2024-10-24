@@ -9,22 +9,12 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postCourseReserve } from "../core/services/api/postCourseReserve";
 import toast from "react-hot-toast";
+import { postCourseLike } from "../core/services/api/postCourseLike";
+import { postCourseDisLike } from "../core/services/api/postCourseDisLike";
+import { postfaouriteUser } from "../core/services/api/postFavouriteUser";
 
 const Card = ({ data }) => {
-  const {
-    teacherName,
-    statusName,
-    cost,
-    likeCount,
-    userIsLiked,
-    courseRate,
-    title,
-    describe,
-    tumbImageAddress,
-    lastUpdate,
-    courseId,
-    dissLikeCount,
-  } = data;
+  const { teacherName,statusName,cost,likeCount,userIsLiked,courseRate,title,describe,tumbImageAddress, lastUpdate,courseId,dissLikeCount} = data;
 
   // const [reservButton, setReservButton] = useState([]);
 
@@ -38,6 +28,34 @@ const Card = ({ data }) => {
   //   reserCoureseButton();
   // }, []);
 
+  const [reservButton, setReservButton] = useState([]);
+
+  const postcourseReserve = async () => {
+    const reservButton = await postCourseReserve(courseId)
+    setReservButton(reservButton)
+  } 
+
+  const [userLike, setUserLike] = useState([]);
+
+  const postLikeUser = async () => {
+    const userLike = await postCourseLike(courseId)
+    setUserLike(userLike)
+  } 
+
+  const [userDisLike, setUserDisLike] = useState([]);
+
+  const postDiseLikeUser = async () => {
+    const userDisLike = await postCourseDisLike(courseId)
+    setUserDisLike(userDisLike)
+  } 
+
+  const [userFavourite, setuserFavourite] = useState([]);
+
+  const postFavouriteUser = async () => {
+    const userFavourite = await postfaouriteUser(courseId)
+    setuserFavourite(userFavourite)
+  } 
+
   return (
     <div className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
       <img
@@ -47,17 +65,17 @@ const Card = ({ data }) => {
 
       <div className="flex justify-between flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
         <div className="flex justify-between flex-row-reverse gap-2">
-          <p className="text-[#089E71]">
+          <p className="text-[#089E71] cursor-pointer" onClick={postLikeUser}>
             <img className="flex items-center" src={like} />
             {likeCount}
           </p>
 
-          <p className="text-[#089E71]">
+          <p className="text-[#089E71]" onClick={postDiseLikeUser}>
             <img className="flex items-center" src={disLike} />
             {dissLikeCount}
           </p>
 
-          <p className="text-[#089E71]">
+          <p className="text-[#089E71]" onClick={postFavouriteUser}>
             <img className="flex items-center" src={Star} />
             {userIsLiked}
           </p>
@@ -96,12 +114,13 @@ const Card = ({ data }) => {
       </p>
 
       <div className="flex justify-between w-[90%] gap-2 pb-[10px]">
-        <button className="bg-[#5BE1B9] text-black py-2 w-[80%] rounded-lg">
+        <button onClick={()=>postcourseReserve()} className="bg-[#5BE1B9] text-black py-2 w-[80%] rounded-lg">
           رزرو دوره
         </button>
 
         <button className="bg-white border border-[#5BE1B9] text-black py-2 w-[80%] rounded-lg">
           <Link to={"/CourseDetails/" + courseId}>جزئیات دوره</Link>
+          
         </button>
       </div>
     </div>
