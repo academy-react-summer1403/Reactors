@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules'
 import { ProfileImagesSlider } from './Profile Images Slider';
 import { Field, Form, Formik } from 'formik';
+import { addProfileImage } from '../../../../core/services/api/dashboard';
 
 const style = {
     position: 'absolute',
@@ -31,6 +32,13 @@ const EditProfileImage = () => {
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const addUserProfileImage = async (values) => {
+        const profileImage = new FormData()
+        profileImage.append("formFile", values.image)
+        const result = await addProfileImage(profileImage)
+        console.log(result)
+    }
 
     return (
         <DashboardPartsBody className="flex-col">
@@ -53,15 +61,18 @@ const EditProfileImage = () => {
                         <div className="w-full flex flex-col mb-5">
                             <ProfileImagesSlider />
                         </div>
-                        <Formik>
-                            <Form className="w-full flex flex-col justify-center items-center gap-5">
-                                <div className="flex flex-col gap-2 justify-center items-center">
-                                    <label htmlFor="filePicker" className="py-[10px] px-5 border border-[#158B68] rounded-[5px]"> انتخاب فایل </label>
-                                    <Field type="file" id="filePicker" className="" />
-                                    <p> JPG or PNG no larger than 5 MB </p>
-                                </div>
-                                <EditButton> آپلود عکس </EditButton>
-                            </Form>
+                        <Formik initialValues={{ image: "" }} onSubmit={(values) => addUserProfileImage(values)}>
+                            {(form) => (
+                                <Form className="w-full flex flex-col justify-center items-center gap-5">
+                                    <div className="flex flex-col gap-2 justify-center items-center">
+                                        <label htmlFor="filePicker" className="py-[10px] px-5 border border-[#158B68] rounded-[5px]"> انتخاب فایل </label>
+                                        <Field type="file" name="image" id="filePicker" className="hidden" />
+                                        <p className="text-center text-[#12926C]"> {form.values.image} </p>
+                                        <p className="font-semibold"> JPG or PNG no larger than 5 MB </p>
+                                    </div>
+                                    <EditButton type="submit"> آپلود عکس </EditButton>
+                                </Form>
+                            )}
                         </Formik>
                     </Box>
                 </Modal>

@@ -38,7 +38,7 @@ const MyFavoriteCourses = () => {
             />
             <TableBody>
                 {favoriteCourses?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : favoriteCourses?.map((item, key) => <TableRow key={key}>
-                        <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
+                        <TableCell className="flex gap-3 items-center" style={{ minWidth: "200px" }}>
                             <img src={item.tumbImageAddress} alt="" className="w-16" />
                             {item.courseTitle}
                         </TableCell>

@@ -16,6 +16,8 @@ const userInfo = createSlice({
         linkdinProfile: "",
         profileCompletionPercentage: "",
         receiveMessageEvent: false,
+        profileImages: "",
+        currentProfileImage: "",
     },
     reducers: {
         handleFirstName: (state, action) => {
@@ -56,9 +58,15 @@ const userInfo = createSlice({
         },
         handleReceiveMessageEvent: (state, action) => {
             state.receiveMessageEvent = action.payload
+        },
+        handleProfileImages: (state, action) => {
+            state.profileImages = action.payload
+        },
+        handleCurrentProfileImage: (state, action) => {
+            state.currentProfileImage = action.payload
         }
     }
 })
 
-export const { handleFirstName, handleLastName, handlePhoneNumber, handleNationalCode, handleBirthday, handleHomeAddress, handleEmail, handleGender, handleUserAbout, handleTelegramLink, handleLinkdinProfile, handleProfileCompletionPercentage, handleReceiveMessageEvent } = userInfo.actions
+export const { handleFirstName, handleLastName, handlePhoneNumber, handleNationalCode, handleBirthday, handleHomeAddress, handleEmail, handleGender, handleUserAbout, handleTelegramLink, handleLinkdinProfile, handleProfileCompletionPercentage, handleReceiveMessageEvent, handleProfileImages, handleCurrentProfileImage } = userInfo.actions
 export default userInfo.reducer

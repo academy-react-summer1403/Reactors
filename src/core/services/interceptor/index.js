@@ -1,6 +1,7 @@
 import axios from "axios";
 import { clearStorage, getItem, removeItem } from "../../utils/storage.services";
 import toast from "react-hot-toast";
+import { logout } from "../../utils/logout.services";
 
 const baseURL = "https://classapi.sepehracademy.ir/api"
 
@@ -21,9 +22,7 @@ const onError = (err) => {
     if (err.message === "Network Error") toast.error("اتصال اینترنت خود را چک کنید")
 
     if (err.response.status === 401){
-        clearStorage()
-        removeItem('token'); 
-        window.location.pathname = '/'; // or login
+        logout()
     }
 
         if (err.response.status >= 400 && err.response.status < 500) {

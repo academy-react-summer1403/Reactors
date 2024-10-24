@@ -5,6 +5,7 @@ import { FaRegHeart, FaRegUser } from 'react-icons/fa6'
 import { GrAppsRounded } from 'react-icons/gr'
 import { HiOutlineHome, HiOutlineKey, HiOutlineLogout, HiOutlineShoppingBag, HiOutlineVideoCamera } from 'react-icons/hi'
 import { DashboardOptions } from './DashboardOptions'
+import { LogoutButton } from './LogoutButton'
 
 const OptionsHolder = () => {
     return (
@@ -25,7 +26,7 @@ const OptionsHolder = () => {
 
                 <div className="mt-20 flex flex-col gap-[10px]">
                     <DashboardOptions title="بازگشت به خانه" icon={<HiOutlineHome />} url="/" />
-                    <DashboardOptions title="خروج" icon={<HiOutlineLogout />} />
+                    <LogoutButton />
                 </div>
 
             </ul>

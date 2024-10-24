@@ -72,6 +72,15 @@ export const changePassword = async (newPassword) => {
     }
 }
 
+export const addProfileImage = async (profile) => {
+    try {
+        const response = await http.post("/SharePanel/AddProfileImage", profile)
+        return response
+    } catch (error) {
+        return false
+    }
+}
+
 export const editProfile = async (userInfo) => {
     try {
         const response = await http.put("/SharePanel/UpdateProfileInfo", userInfo)
