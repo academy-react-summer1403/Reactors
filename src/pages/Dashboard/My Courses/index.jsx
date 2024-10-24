@@ -29,24 +29,19 @@ const MyCourses = () => {
     return (
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
-                first="نام دوره"
-                second="نام استاد"
-                third="نام ترم"
-                forth="نام گروه"
-                fifth="تاریخ شروع"
-                sixth="وضعیت پرداخت"
+                tableHeaders={["نام دوره", "نام استاد", "نام ترم", "نام گروه", "تاریخ شروع", "وضعیت پرداخت"]}
             />
             <TableBody>
-                {myCourses?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : myCourses?.map((item) => <TableRow>
-                    <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
-                        <img src={CourseImg} alt="" className="w-16" />
+                {["jdalskdj", "askdjaslk"].map((item, key) => <TableRow key={key}>
+                    <TableCell className="flex gap-1 items-center">
+                        <img src={CourseImg} alt="" className="w-12" />
                         نکست جی اس
                     </TableCell>
-                    <TableCell className="pr-6"> استاد بحر </TableCell>
+                    <TableCell> استاد بحر </TableCell>
                     <TableCell> بهار </TableCell>
-                    <TableCell className="pl-6"> سه شنبه </TableCell>
-                    <TableCell className="pl-3"> 1403/03/16 </TableCell>
-                    <TableCell className="pr-10"> پرداخت نشده </TableCell>
+                    <TableCell> سه شنبه </TableCell>
+                    <TableCell> 1403/03/16 </TableCell>
+                    <TableCell> پرداخت نشده </TableCell>
                 </TableRow>)}
             </TableBody>
             {myCourses.length === 0 ? null : <TablePagination />}
