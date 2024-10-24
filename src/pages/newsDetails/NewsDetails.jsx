@@ -5,6 +5,7 @@ import { Header } from "../../components/common/Header/Header";
 import { Footer } from "../../components/common/Footer/Footer";
 import { useParams } from "react-router-dom";
 import { getNewsId } from "../../core/services/api/getNewsID";
+import { useQuery } from "react-query";
 
 const NewsDetails = () => {
   const [newsDetail, setNewsDetail] = useState([]);
@@ -22,6 +23,16 @@ const NewsDetails = () => {
   useEffect(() => {
     getNewsDetails();
   }, []);
+
+
+  const { data: newsesDetails } = useQuery({
+    queryKey: ["newsDetails"],
+    queryFn: () => {
+      const result = getNewsId(id);
+      return result;
+    },
+  });
+
   return (
     <>
       <div className="flex flex-col px-16 py-[70px] ">

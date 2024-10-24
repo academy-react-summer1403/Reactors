@@ -10,10 +10,24 @@ import calender from "../../../assets/Image/calender.png";
 import key from "../../../assets/Image/key.png";
 import NewsUserComment from "./User Comment/UserComment";
 import Comment from "./Form/Comment";
+import {
+  BiDislike,
+  BiLike,
+  BiSolidDislike,
+  BiSolidLike,
+  BiSolidStar,
+  BiSolidTrafficBarrier,
+  BiStar,
+} from "react-icons/bi";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import toast from "react-hot-toast";
 
 import dateModifier from "../../../core/utils/dateModifier";
+import { postNewsLike } from "../../../core/services/api/postNewsLike";
+import { postNewsDisLike } from "../../../core/services/api/postNewsDislike";
+import { postNewsFav } from "../../../core/services/api/postNewsFav";
 
-const NewsContainer = ({ newsDetail,commentDetail}) => {
+const NewsContainer = ({ newsDetail, commentDetail }) => {
   const {
     currentLikeCount,
     currentDissLikeCount,
@@ -24,7 +38,59 @@ const NewsContainer = ({ newsDetail,commentDetail}) => {
     googleTitle,
     googleDescribe,
     currentRate,
+    currentUserIsLike,
+    currentUserIsDissLike,
+    isCurrentUserFavorite,
+    id,
   } = newsDetail;
+
+  const queryClient = useQueryClient();
+
+  const likeMutation = useMutation({
+    mutationFn: postNewsLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["newsList"] });
+      toast("این دوره رو پسندیدی!", {
+        icon: "👍",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postLikeUser = () => {
+    const userLike = likeMutation.mutate(id);
+  };
+
+  const disLikeMutation = useMutation({
+    mutationFn: postNewsDisLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["newsList"] });
+      toast("این دوره رو نپسندیدی!", {
+        icon: "👎",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postDiseLikeUser = async () => {
+    const userDisLike = disLikeMutation.mutate(id);
+  };
+
+  const favMutation = useMutation({
+    mutationFn: postNewsFav,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["newsList"] });
+      toast.success("به دوره های مورد علاقه اضافه شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postFavouriteUser = () => {
+    const result = favMutation.mutate(id);
+  };
 
   const [cardType, setCardType] = useState("userReview");
 
@@ -50,24 +116,46 @@ const NewsContainer = ({ newsDetail,commentDetail}) => {
           <h1 className="text-[30px] w-full flex flex-col items-center">
             {googleTitle}
           </h1>
-          <div className="text-gray-700 pt-8">
-            {googleDescribe}
-          </div>
+          <div className="text-gray-700 pt-8">{googleDescribe}</div>
           <div className="flex flex-row-reverse justify-between items-center">
             <div className="flex flex-row-reverse gap-4">
-              <span>
-                <img src={like} />
-                <p className="text-black text-[12px]">{currentLikeCount}</p>
-              </span>
+              <div
+                className="text-[#089E71] flex items-center flex-col cursor-pointer "
+                onClick={postLikeUser}
+              >
+                {currentUserIsLike ? (
+                  <BiSolidLike className="text-2xl" />
+                ) : (
+                  <BiLike className="text-2xl" />
+                )}
 
-              <span>
-                <img src={disLike} />
-                <p className="text-black text-[12px]">{currentDissLikeCount}</p>
-              </span>
-              <span>
-                <img src={Star} />
-                <p className="text-black text-[12px]">{currentRate}</p>
-              </span>
+                <p>{currentLikeCount}</p>
+              </div>
+
+              <div
+                className="text-[#089E71] flex flex-col items-center cursor-pointer"
+                onClick={postDiseLikeUser}
+              >
+                {currentUserIsDissLike ? (
+                  <BiSolidDislike className="text-2xl" />
+                ) : (
+                  <BiDislike className="text-2xl" />
+                )}
+
+                <p>{currentDissLikeCount}</p>
+              </div>
+
+              <div
+                className="text-[#089E71] cursor-pointer"
+                onClick={postFavouriteUser}
+              >
+                {isCurrentUserFavorite ? (
+                  <BiSolidStar className="text-2xl" />
+                ) : (
+                  <BiStar className="text-2xl" />
+                )}
+              </div>
+
             </div>
             <div className="flex flex-row gap-11 py-8">
               <div className="flex flex-row-reverse gap-3">
@@ -127,7 +215,11 @@ const NewsContainer = ({ newsDetail,commentDetail}) => {
 
         <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
           {/* <NewsUserComment /> */}
-          {cardType === "userReview" ? <NewsUserComment commentDetail={commentDetail} /> : <Comment />}
+          {cardType === "userReview" ? (
+            <NewsUserComment commentDetail={commentDetail} />
+          ) : (
+            <Comment />
+          )}
         </div>
       </div>
     </div>

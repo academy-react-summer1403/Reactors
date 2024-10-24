@@ -4,15 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNews } from "../../core/services/api/news";
 import { CardWrapper } from "../CardWrapper/CardWarpper";
 import { handlePageNumber } from "../../Redux/NewsSlice";
+import { useQuery } from "react-query";
 
 const BlogList = () => {
   const dispatch = useDispatch();
 
-  const {PageNumber, SearchInput, SortingCol, SortingType,categoryName} = useSelector(
-    (state) => {
+  const { PageNumber, SearchInput, SortingCol, SortingType, categoryName } =
+    useSelector((state) => {
       return state.news;
-    }
-  );
+    });
   const [blogList, setBlogList] = useState([]);
 
   const getBlogList = async () => {
@@ -35,9 +35,32 @@ const BlogList = () => {
     getBlogList();
   }, [SearchInput, PageNumber, SortingCol, SortingType, categoryName]);
 
+
+  const { data: newsesList } = useQuery({
+    queryKey: [
+      "newsList",
+      PageNumber,
+      SearchInput,
+      SortingCol,
+      SortingType,
+      categoryName,
+    ],
+    queryFn: () => {
+      const result = getNews(
+        PageNumber,
+        SearchInput,
+        SortingCol,
+        SortingType,
+        categoryName,
+      );
+      return result;
+    },
+  });
+
+
   return (
     <div className="flex flex-col min-h-[400px] border border-[#EFEFEF] bg-[#FFFFFF] gap-3 p-4 rounded-[30px] shadow-2xl">
-      <CardWrapper blogList={blogList}/>
+      <CardWrapper blogList={blogList} />
       <PaginationWrapper count={10} handleChangePage={handleChangePage} />
     </div>
   );

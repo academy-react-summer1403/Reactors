@@ -6,8 +6,24 @@ import Cdbg from "../../../assets/Image/Cdbg.png";
 import download from "../../../assets/Image/download.png";
 import Comment from "./Form/Comment";
 import UserComment from "./User Comment/UserComment";
+import { postCourseLike } from "../../../core/services/api/postCourseLike";
+import { postCourseDisLike } from "../../../core/services/api/postCourseDisLike";
+import { postfaouriteUser } from "../../../core/services/api/postFavouriteUser";
+import {
+  BiDislike,
+  BiLike,
+  BiSolidDislike,
+  BiSolidLike,
+  BiSolidStar,
+  BiSolidTrafficBarrier,
+  BiStar,
+} from "react-icons/bi";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import toast from "react-hot-toast";
 
 const MiddleDetails = ({ courseDetail }) => {
+  const queryClient = useQueryClient();
+
   const [cardType, setCardType] = useState("userReview");
 
   const handleReviewForm = () => {
@@ -25,7 +41,56 @@ const MiddleDetails = ({ courseDetail }) => {
     dissLikeCount,
     isUserFavorite,
     describe,
+    courseId,
+    currentUserLike,
+    currentUserDissLike,
   } = courseDetail;
+
+  const likeMutation = useMutation({
+    mutationFn: postCourseLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseDetails"] });
+      toast("این دوره رو پسندیدی!", {
+        icon: "👍",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postLikeUser = () => {
+    const userLike = likeMutation.mutate(courseId);
+  };
+
+  const disLikeMutation = useMutation({
+    mutationFn: postCourseDisLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseDetails"] });
+      toast("این دوره رو نپسندیدی!", {
+        icon: "👎",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postDiseLikeUser = async () => {
+    const userDisLike = disLikeMutation.mutate(courseId);
+  };
+
+  const favMutation = useMutation({
+    mutationFn: postfaouriteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseDetails"] });
+      toast.success("به دوره های مورد علاقه اضافه شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postFavouriteUser = () => {
+    const result = favMutation.mutate(courseId);
+  };
 
   return (
     <div className="min-h-screen bg-[#FBF6F6] rounded-[40px] flex justify-center p-6">
@@ -48,18 +113,42 @@ const MiddleDetails = ({ courseDetail }) => {
                 <h1 className="font-bold text-lg w-full">{title}</h1>
 
                 <div className="flex flex-row-reverse gap-4 w-full">
-                  <button className="text-gray-500 hover:text-green-500">
-                    <img src={like} />
-                    {likeCount}
-                  </button>
-                  <button className="text-gray-500 hover:text-red-500">
-                    <img src={disLike} />
-                    {dissLikeCount}
-                  </button>
-                  <button className="text-gray-500 hover:text-yellow-500">
-                    <img src={Star} />
-                    {isUserFavorite}0
-                  </button>
+                  <div
+                    className="text-[#089E71] flex items-center flex-col cursor-pointer "
+                    onClick={postLikeUser}
+                  >
+                    {currentUserLike ? (
+                      <BiSolidLike className="text-2xl" />
+                    ) : (
+                      <BiLike className="text-2xl" />
+                    )}
+
+                    <p>{likeCount}</p>
+                  </div>
+
+                  <div
+                    className="text-[#089E71] flex flex-col items-center cursor-pointer"
+                    onClick={postDiseLikeUser}
+                  >
+                    {currentUserDissLike ? (
+                      <BiSolidDislike className="text-2xl" />
+                    ) : (
+                      <BiDislike className="text-2xl" />
+                    )}
+
+                    <p>{dissLikeCount}</p>
+                  </div>
+
+                  <div
+                    className="text-[#089E71] cursor-pointer"
+                    onClick={postFavouriteUser}
+                  >
+                    {isUserFavorite ? (
+                      <BiSolidStar className="text-2xl" />
+                    ) : (
+                      <BiStar className="text-2xl" />
+                    )}
+                  </div>
                 </div>
               </div>
               <div className="text-gray-700 ">{describe}</div>

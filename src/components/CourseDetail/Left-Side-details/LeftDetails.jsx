@@ -1,5 +1,9 @@
 import React from "react";
 import dateModifier from "../../../core/utils/dateModifier";
+import { postCourseReserve } from "../../../core/services/api/postCourseReserve";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import toast from "react-hot-toast";
+
 
 const LeftDetails = ({ courseDetail }) => {
   const {
@@ -14,15 +18,33 @@ const LeftDetails = ({ courseDetail }) => {
     commentCount,
     currentRate,
     insertDate,
+    courseId,
   } = courseDetail;
+
+  const queryClient = useQueryClient();
+
+  const reserveMutation = useMutation({
+    mutationFn: postCourseReserve,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseDetails"] });
+      toast.success(" دوره رزرو شد!", {
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postReserve = () => {
+    const userReserve = reserveMutation.mutate(courseId);
+  };
+
+
 
   const date1 = new Date(startTime);
   const date2 = new Date(endTime);
 
   const difference = Math.abs(date2 - date1);
   const dateDifference = Math.floor(difference / (1000 * 60 * 60));
-
-  console.log(dateDifference);
 
   return (
     <div className="min-h-screen w-full bg-[#FBF6F6] rounded-[30px] flex justify-center p-6">
@@ -69,9 +91,9 @@ const LeftDetails = ({ courseDetail }) => {
         </div>
         {/* دایو 3: اطلاعات تاریخی */}
         <div className="bg-white p-4 w-[300px] space-y-2 rounded-[26px] text-[#12926C]">
-          <h3 className="flex flex-row">تاریخ بروزرسانی :
-          <p className="text-black px-1"> {dateModifier(insertDate)}</p>
-
+          <h3 className="flex flex-row">
+            تاریخ بروزرسانی :
+            <p className="text-black px-1"> {dateModifier(insertDate)}</p>
           </h3>
           <p className="flex flex-row">
             شروع دوره :
@@ -84,7 +106,10 @@ const LeftDetails = ({ courseDetail }) => {
         </div>
         {/* دکمه رزرو دوره */}
         <div className="md:col-span-2">
-          <button className="w-full bg-[#5BE1B9] text-black py-3 rounded-lg shadow-lg text-center">
+          <button
+            onClick={postReserve}
+            className="w-full bg-[#5BE1B9] text-black py-3 rounded-lg shadow-lg text-center"
+          >
             رزرو دوره
           </button>
         </div>

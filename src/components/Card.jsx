@@ -41,12 +41,23 @@ const Card = ({ data }) => {
     userFavorite,
   } = data;
 
-  const [reservButton, setReservButton] = useState([]);
   const queryClient = useQueryClient();
-  const postcourseReserve = async () => {
-    const reservButton = await postCourseReserve(courseId);
-    setReservButton(reservButton);
+
+  const reserveMutation = useMutation({
+    mutationFn: postCourseReserve,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success("این دوره رزرو شد!", {
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postReserve = () => {
+    const userReserve = reserveMutation.mutate(courseId);
   };
+
 
   const likeMutation = useMutation({
     mutationFn: postCourseLike,
@@ -175,7 +186,7 @@ const Card = ({ data }) => {
 
       <div className="flex justify-between w-[90%] gap-2 pb-[10px]">
         <button
-          onClick={() => postcourseReserve()}
+          onClick={postReserve}
           className="bg-[#5BE1B9] text-black py-2 w-[80%] rounded-lg"
         >
           رزرو دوره
