@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { DashboardPartsBody } from '../../../common/Dashboard/Styled DashboardPages/StyledDashboardPartsBody'
 import { ComplexTableHeader } from '../../../common/Dashboard/Dashboard Tables/ComplexTableHeader'
 import { TableBody } from '../../../common/Dashboard/Dashboard Tables/Styled Dashboard Tables/StyledTableBody'
@@ -8,9 +8,24 @@ import { TableCell } from '../../../common/Dashboard/Dashboard Tables/Styled Das
 
 import CourseImg from '../../../../assets/images/courseImg2.png'
 import { IoIosMore } from 'react-icons/io'
+import { getCourseComments } from '../../../../core/services/api/dashboard'
+import { NoneItems } from '../../../common/Dashboard/Dashboard Tables/NoneItems'
 
 
 const MyCourseComments = () => {
+
+    const [courseComments, setCourseComments] = useState([])
+
+    const getMyCourseComments = async () => {
+        const result = await getCourseComments()
+        console.log(result)
+        setCourseComments(result.myCommentsDtos)
+    }
+
+    useEffect(() => {
+        getMyCourseComments()
+    }, [])
+
     return (
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
@@ -22,17 +37,18 @@ const MyCourseComments = () => {
                 sixth="جزئیات"
             />
             <TableBody>
-                <TableRow>
+                {courseComments?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : courseComments?.map((item, key) => <TableRow key={key}>
                     <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
-                        <img src={CourseImg} alt="" className="w-16" />
-                        نکست جی اس
+                        <img src="" alt="" className="w-16" />
+                        salam
                     </TableCell>
-                    <TableCell> استاد بحر </TableCell>
-                    <TableCell> بهار </TableCell>
-                    <TableCell> سه شنبه </TableCell>
+                    <TableCell> {23} </TableCell>
+                    <TableCell> {102} </TableCell>
+                    <TableCell> {4.3} </TableCell>
                     <TableCell> 1403/03/16 </TableCell>
-                    <TableCell className="pr-[85px]"> <IoIosMore className="size-8" /> </TableCell>
+                    <TableCell> <HiOutlineTrash className="size-8" /> </TableCell>
                 </TableRow>
+                )}
             </TableBody>
         </DashboardPartsBody>
     )

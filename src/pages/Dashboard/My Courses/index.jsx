@@ -37,7 +37,7 @@ const MyCourses = () => {
                 sixth="وضعیت پرداخت"
             />
             <TableBody>
-                {myCourses.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : myCourses.map((item) => <TableRow>
+                {myCourses?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : myCourses?.map((item) => <TableRow>
                     <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
                         <img src={CourseImg} alt="" className="w-16" />
                         نکست جی اس

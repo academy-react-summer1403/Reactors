@@ -10,11 +10,12 @@ const userInfo = createSlice({
         birthday: "",
         homeAddress: "",
         email: "",
-        gender: "",
+        gender: false,
         userAbout: "",
         telegramLink: "",
         linkdinProfile: "",
-        profileCompletionPercentage: ""
+        profileCompletionPercentage: "",
+        receiveMessageEvent: false,
     },
     reducers: {
         handleFirstName: (state, action) => {
@@ -52,9 +53,12 @@ const userInfo = createSlice({
         },
         handleProfileCompletionPercentage: (state, action) => {
             state.profileCompletionPercentage = action.payload
+        },
+        handleReceiveMessageEvent: (state, action) => {
+            state.receiveMessageEvent = action.payload
         }
     }
 })
 
-export const { handleFirstName, handleLastName, handlePhoneNumber, handleNationalCode, handleBirthday, handleHomeAddress, handleEmail, handleGender, handleUserAbout, handleTelegramLink, handleLinkdinProfile, handleProfileCompletionPercentage } = userInfo.actions
+export const { handleFirstName, handleLastName, handlePhoneNumber, handleNationalCode, handleBirthday, handleHomeAddress, handleEmail, handleGender, handleUserAbout, handleTelegramLink, handleLinkdinProfile, handleProfileCompletionPercentage, handleReceiveMessageEvent } = userInfo.actions
 export default userInfo.reducer

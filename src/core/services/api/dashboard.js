@@ -44,3 +44,39 @@ export const getFavoriteArticles = async () => {
         return false
     }
 }
+
+export const getCourseComments = async () => {
+    try {
+        const response = await http.get("/SharePanel/GetMyCoursesComments")
+        return response
+    } catch (error) {
+        return false
+    }
+}
+
+export const getArticlesComments = async () => {
+    try {
+        const response = await http.get("/SharePanel/GetMyNewsComments")
+        return response
+    } catch (error) {
+        return false
+    }
+}
+
+export const changePassword = async (newPassword) => {
+    try {
+        const response = await http.post("/SharePanel/ChangePassword", newPassword)
+        return response
+    } catch (error) {
+        return false
+    }
+}
+
+export const editProfile = async (userInfo) => {
+    try {
+        const response = await http.put("/SharePanel/UpdateProfileInfo", userInfo)
+        return response
+    } catch (error) {
+        return false
+    }
+}

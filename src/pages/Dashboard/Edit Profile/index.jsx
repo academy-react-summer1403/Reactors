@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Formik } from 'formik'
 import { useSelector } from 'react-redux'
 
@@ -11,10 +11,44 @@ import { EditProfileImage } from '../../../components/Dashboard/Dashboard Pages/
 import { ConfirmButton } from '../../../components/common/Auth/Styled Form/StyledConfirmButton'
 
 import '../../../components/Dashboard/Dashboard Pages/Edit Profile/Options Style/toggle.css'
+import { setFormData } from '../../../core/utils/setFormData'
+import { editProfile } from '../../../core/services/api/dashboard'
 
 const EditProfile = () => {
 
     const userInfo = useSelector((state) => state.userInfo)
+
+    const editUserProfile = async (values) => {
+        const userProfile = new FormData()
+        const birthday = new Date(values.birthday)
+        // const userProfileObj = {
+        //     LName: values.lastName,
+        //     FName: values.firstName,
+        //     UserAbout: values.userAbout,
+        //     LinkdinProfile: values.linkdinProfile,
+        //     TelegramLink: values.telegramLink,
+        //     ReceiveMessageEvent: values.receiveMessageEvent,
+        //     HomeAdderess: values.homeAddress,
+        //     NationalCode: values.nationalCode,
+        //     Gender: values.gender,
+        //     BirthDay: values.birthday
+        // }
+        // setFormData(userProfileObj, userProfile)
+        // const result = await editProfile(userProfile)
+        // console.log(result)
+        userProfile.append("LName", values.lastName)
+        userProfile.append("FName", values.firstName)
+        userProfile.append("UserAbout", values.userAbout)
+        userProfile.append("LinkdinProfile", values.linkdinProfile)
+        userProfile.append("TelegramLink", values.telegramLink)
+        userProfile.append("ReceiveMessageEvent", values.receiveMessageEvent)
+        userProfile.append("HomeAdderess", values.homeAddress)
+        userProfile.append("NationalCode", values.nationalCode)
+        userProfile.append("Gender", values.gender)
+        userProfile.append("BirthDay", birthday)
+        const result = await editProfile(userProfile)
+        console.log(result)
+    }
 
     return (
         <div className="w-full h-full flex gap-5">
@@ -38,8 +72,11 @@ const EditProfile = () => {
                     gender: userInfo.gender,
                     userAbout: userInfo.userAbout,
                     telegramLink: userInfo.telegramLink,
-                    linkdinProfile: userInfo.linkdinProfile
-                }}>
+                    linkdinProfile: userInfo.linkdinProfile,
+                    receiveMessageEvent: userInfo.receiveMessageEvent
+                }}
+                    onSubmit={(values) => editUserProfile(values)}
+                >
                     <Form className="py-4 px-10 flex flex-col gap-1">
                         <div className="flex gap-5">
                             <EditProfileInput inputTitle="نام" name="firstName" />
@@ -60,7 +97,7 @@ const EditProfile = () => {
                             <EditProfileInput inputTitle="لینک تلگرام" name="telegramLink" />
                             <EditProfileInput inputTitle="پروفایل لینکدین" name="linkdinProfile" />
                         </div>
-                        <ConfirmButton className="mt-10"> ثبت تغییرات </ConfirmButton>
+                        <ConfirmButton type="submit" className="mt-10"> ثبت تغییرات </ConfirmButton>
                     </Form>
                 </Formik>
             </DashboardPartsBody>
