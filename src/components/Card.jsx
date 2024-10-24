@@ -12,49 +12,87 @@ import toast from "react-hot-toast";
 import { postCourseLike } from "../core/services/api/postCourseLike";
 import { postCourseDisLike } from "../core/services/api/postCourseDisLike";
 import { postfaouriteUser } from "../core/services/api/postFavouriteUser";
+import {
+  BiDislike,
+  BiLike,
+  BiSolidDislike,
+  BiSolidLike,
+  BiSolidStar,
+  BiSolidTrafficBarrier,
+  BiStar,
+} from "react-icons/bi";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const Card = ({ data }) => {
-  const { teacherName,statusName,cost,likeCount,userIsLiked,courseRate,title,describe,tumbImageAddress, lastUpdate,courseId,dissLikeCount} = data;
-
-  // const [reservButton, setReservButton] = useState([]);
-
-  // const reserCoureseButton = async () => {
-  //   const reservButton = await postCourseReserve()
-  //   setReservButton(reservButton.courseFilterDtos);
-  //   console.log(reservButton, "reserv");
-  // }
-
-  // useEffect(() => {
-  //   reserCoureseButton();
-  // }, []);
+  const {
+    teacherName,
+    statusName,
+    cost,
+    likeCount,
+    userIsLiked,
+    currentUserDissLike,
+    courseRate,
+    title,
+    describe,
+    tumbImageAddress,
+    lastUpdate,
+    courseId,
+    dissLikeCount,
+    userFavorite,
+  } = data;
 
   const [reservButton, setReservButton] = useState([]);
-
+  const queryClient = useQueryClient();
   const postcourseReserve = async () => {
-    const reservButton = await postCourseReserve(courseId)
-    setReservButton(reservButton)
-  } 
+    const reservButton = await postCourseReserve(courseId);
+    setReservButton(reservButton);
+  };
 
-  const [userLike, setUserLike] = useState([]);
+  const likeMutation = useMutation({
+    mutationFn: postCourseLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast("این دوره رو پسندیدی!", {
+        icon: "👍",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postLikeUser = () => {
+    const userLike = likeMutation.mutate(courseId);
+  };
 
-  const postLikeUser = async () => {
-    const userLike = await postCourseLike(courseId)
-    setUserLike(userLike)
-  } 
-
-  const [userDisLike, setUserDisLike] = useState([]);
-
+  const disLikeMutation = useMutation({
+    mutationFn: postCourseDisLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast("این دوره رو نپسندیدی!", {
+        icon: "👎",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
   const postDiseLikeUser = async () => {
-    const userDisLike = await postCourseDisLike(courseId)
-    setUserDisLike(userDisLike)
-  } 
+    const userDisLike = disLikeMutation.mutate(courseId);
+  };
 
-  const [userFavourite, setuserFavourite] = useState([]);
-
-  const postFavouriteUser = async () => {
-    const userFavourite = await postfaouriteUser(courseId)
-    setuserFavourite(userFavourite)
-  } 
+  const favMutation = useMutation({
+    mutationFn: postfaouriteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success("به دوره های مورد علاقه اضافه شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postFavouriteUser = () => {
+    const result = favMutation.mutate(courseId);
+  };
 
   return (
     <div className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
@@ -65,20 +103,42 @@ const Card = ({ data }) => {
 
       <div className="flex justify-between flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
         <div className="flex justify-between flex-row-reverse gap-2">
-          <p className="text-[#089E71] cursor-pointer" onClick={postLikeUser}>
-            <img className="flex items-center" src={like} />
-            {likeCount}
-          </p>
+          <div
+            className="text-[#089E71] flex items-center flex-col cursor-pointer "
+            onClick={postLikeUser}
+          >
+            {userIsLiked ? (
+              <BiSolidLike className="text-2xl" />
+            ) : (
+              <BiLike className="text-2xl" />
+            )}
 
-          <p className="text-[#089E71]" onClick={postDiseLikeUser}>
-            <img className="flex items-center" src={disLike} />
-            {dissLikeCount}
-          </p>
+            <p>{likeCount}</p>
+          </div>
 
-          <p className="text-[#089E71]" onClick={postFavouriteUser}>
-            <img className="flex items-center" src={Star} />
-            {userIsLiked}
-          </p>
+          <div
+            className="text-[#089E71] flex flex-col items-center cursor-pointer"
+            onClick={postDiseLikeUser}
+          >
+            {currentUserDissLike ? (
+              <BiSolidDislike className="text-2xl" />
+            ) : (
+              <BiDislike className="text-2xl" />
+            )}
+
+            <p>{dissLikeCount}</p>
+          </div>
+
+          <div
+            className="text-[#089E71] cursor-pointer"
+            onClick={postFavouriteUser}
+          >
+            {userFavorite ? (
+              <BiSolidStar className="text-2xl" />
+            ) : (
+              <BiStar className="text-2xl" />
+            )}
+          </div>
         </div>
 
         <div className="flex justify-between items-center px-4 pb-2 text-[12px] text-[#158B68] rounded-[12px] bg-[#BFF4E4] ">
@@ -114,13 +174,15 @@ const Card = ({ data }) => {
       </p>
 
       <div className="flex justify-between w-[90%] gap-2 pb-[10px]">
-        <button onClick={()=>postcourseReserve()} className="bg-[#5BE1B9] text-black py-2 w-[80%] rounded-lg">
+        <button
+          onClick={() => postcourseReserve()}
+          className="bg-[#5BE1B9] text-black py-2 w-[80%] rounded-lg"
+        >
           رزرو دوره
         </button>
 
         <button className="bg-white border border-[#5BE1B9] text-black py-2 w-[80%] rounded-lg">
-          <Link to={"/CourseDetails/" + courseId}>جزئیات دوره</Link>
-          
+          <Link to={"/course-details/" + courseId}>جزئیات دوره</Link>
         </button>
       </div>
     </div>

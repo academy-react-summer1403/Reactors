@@ -7,10 +7,8 @@ import CourseDetail from "../../components/CourseDetail/CourseDetail";
 const CourseDetails = () => {
   return (
     <>
-      <Header />
       <CourseDetail/>
       <Slider/>
-      <Footer/>
     </>
   );
 };

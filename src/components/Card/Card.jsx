@@ -83,7 +83,7 @@ const Card = ({ data }) => {
       </p>
 
       <div className=" text-[#807A7A] flex pr-[119px] border-t border-[#158B68] py-2 w-[90%]">
-      <Link to={"/NewsDetails/" + id}>جزئیات دوره</Link>
+      <Link to={"/news-details/" + id}>جزئیات دوره</Link>
 
       </div>
     </div>

@@ -24,7 +24,6 @@ const NewsDetails = () => {
   }, []);
   return (
     <>
-      <Header />
       <div className="flex flex-col px-16 py-[70px] ">
         <NewsContainer newsDetail={newsDetail} commentDetail={commentDetail}  />
       </div>
@@ -40,7 +39,6 @@ const NewsDetails = () => {
         <Slider></Slider>
       </div>
 
-      <Footer />
     </>
   );
 };

@@ -13,7 +13,7 @@ const CardWrapper = ({ course }) => {
           CardView ? "grid lg:grid-cols-3" : "sm:grid-cols-2"
         } grid items-center gap-5 `}
       >
-        {course.map((item) => {
+        {course?.map((item) => {
           if (CardView) {
             return <Card key={item.courseId} data={item} />;
           } else {

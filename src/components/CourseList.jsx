@@ -7,6 +7,8 @@ import "../app/App.css";
 import { useDispatch, useSelector } from "react-redux";
 import PaginationWrapper from "./Pagination/Pagination";
 import { handlePageNumber } from "../Redux/CourseSlice";
+import { useQuery } from "react-query";
+import { getCourseList } from "../core/services/api/courseList";
 
 
 const CoursLists = () => {
@@ -27,47 +29,42 @@ const CoursLists = () => {
     return state.Courses;
   });
 
-  const [course, setCourseList] = useState([]);
 
-  const getCours = async () => {
-    const courses = await getCoursList(
-      typeName,
-      levelName,
+  const {data:courseslist} = useQuery({
+    queryKey:['courseList',levelName,
       techName,
       PageNumber,
       SearchInput,
       SortingCol,
       SortingType,
       CostUp,
-      CostDown
-    );
-    setCourseList(courses.courseFilterDtos);
-  };
+      CostDown],
+    queryFn:()=>{
+      const result = getCoursList(typeName,
+        levelName,
+        techName,
+        PageNumber,
+        SearchInput,
+        SortingCol,
+        SortingType,
+        CostUp,
+        CostDown)
+        return result
+    }
+  })
+
 
   const handleChangePage = (event, newPage) => {
     console.log("page :", newPage);
     dispatch(handlePageNumber(newPage));
   };
 
-  useEffect(() => {
-    getCours();
-  }, [
-    typeName,
-    levelName,
-    techName,
-    SearchInput,
-    PageNumber,
-    SortingCol,
-    SortingType,
-    CostUp,
-    CostDown,
-  ]);
 
   return (
     <>
 
-      <div className="flex flex-col min-h-[400px]  border border-[#EFEFEF] bg-white gap-3 p-4 rounded-[30px] shadow-2xl">
-        <CardWrapper course={course} />
+      <div className="flex flex-col min-h-[400px] w-full  border border-[#EFEFEF] bg-white gap-3 p-4 rounded-[30px] shadow-2xl">
+        <CardWrapper course={courseslist?.courseFilterDtos} />
         <PaginationWrapper count={10} handleChangePage={handleChangePage} />
       </div>
 

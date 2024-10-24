@@ -3,14 +3,11 @@ import { CoursLists } from "../components/CourseList";
 import { Bar } from "../components/TopBar/bar";
 import Filter from "../components/Filter/Filter";
 import Slider from "../components/Slider/Slider";
-import { Header } from "../components/Header/header";
-import { Footer } from "../components/Footer/footer";
 import CardSlider from "../components/Slider/CourseList Slider/CardSlider";
 
 const CoursesList = () => {
   return (
     <>
-      <Header />
 
       <div className="flex flex-col justify-between items-center">
         <h2 className="text-[30px] pt-[50px]">لیست دوره ها </h2>
@@ -18,7 +15,7 @@ const CoursesList = () => {
         <div className="w-full py-9 px-17 flex justify-between items-center">
           <Bar />
         </div>
-        <div className="flex flex-row-reverse gap-2">
+        <div className="flex flex-row-reverse gap-2 w-full">
           <CoursLists />
           <Filter />
         </div>
@@ -35,7 +32,6 @@ const CoursesList = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
