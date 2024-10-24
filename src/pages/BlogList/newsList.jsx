@@ -10,8 +10,8 @@ const NewsList = () => {
   return (
     <>
       <div className="flex flex-col justify-between  items-center">
-        <h2 className=" text-[30px] py-24">لیست اخبار و مقالات </h2>
-        <div className="w-[90%] py-9 px-17 bg-[#FBF6F6] rounded-[37px] flex justify-between items-center">
+        <h2 className="text-[30px] pt-[50px]">لیست اخبار و مقالات </h2>
+        <div className="w-full py-9 px-17 flex justify-between items-center">
           <Bar />
         </div>
       </div>
