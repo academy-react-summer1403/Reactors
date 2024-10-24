@@ -143,10 +143,10 @@ const Card = ({ data }) => {
 
       <div className="flex justify-between flex-row-reverse items-center text-sm w-full px-4">
         <div className="">
-          <div className="flex flex-row-reverse gap-2 text-[#8C9F9A] text-[12px] w-full ">
-            <img src={rate}></img>
-            {currentRate}
-          </div>
+        <div className="flex flex-row">
+          <span>{currentRate}</span>
+          <BiSolidStar className="text-xl text-[#bff4e4]" />
+        </div>
         </div>
         <div className="flex flex-row">
           <img

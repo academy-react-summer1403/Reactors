@@ -47,8 +47,7 @@ const Card = ({ data }) => {
     mutationFn: postCourseReserve,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["courseList"] });
-      toast.success("این دوره رزرو شد!", {
-      });
+      toast.success("این دوره رزرو شد!", {});
     },
     onError: () => {
       toast.error("خطا");
@@ -57,7 +56,6 @@ const Card = ({ data }) => {
   const postReserve = () => {
     const userReserve = reserveMutation.mutate(courseId);
   };
-
 
   const likeMutation = useMutation({
     mutationFn: postCourseLike,
@@ -167,8 +165,10 @@ const Card = ({ data }) => {
             {teacherName}
           </div>
         </div>
-        <span className="pr-[137px] ">{courseRate}</span>
-        <img src={CourseRate} />
+        <div className="flex flex-row">
+          <span>{courseRate}</span>
+          <BiSolidStar className="text-xl text-yellow-300" />
+        </div>
       </div>
 
       <div className="flex justify-between items-center text-[12px] text-[#158B68] w-full px-4 pb-4">

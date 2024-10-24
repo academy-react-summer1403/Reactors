@@ -8,6 +8,8 @@ const NewsUserComment = ({ commentDetail }) => {
   const {
     title,
     replyCount,
+    autor
+    
     
   } = commentDetail;
   return (
@@ -18,7 +20,7 @@ const NewsUserComment = ({ commentDetail }) => {
             <div>
               <img src={user} />
             </div>
-            <h2 className="text-[15px]">عنوان : {title}</h2>
+            <h2 className="text-[15px]">عنوان : {autor}</h2>
           </div>
           <div className="flex flex-row gap-4">
             <div>{replyCount}</div>

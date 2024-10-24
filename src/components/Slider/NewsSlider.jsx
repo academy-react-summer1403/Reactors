@@ -10,8 +10,9 @@ import './styles.css';
 
 // import required modules
 // import { Pagination } from 'swiper/modules';
-import Card from '../LandingPage/Teachers/Card/Card';
+// import Card from '../LandingPage/Teachers/Card/Card';
 import { getNewsList } from '../../core/services/api/newsList';
+import { Card } from '../Card/Card';
 
 export default function NewsSlider() {
   const [news, setnews] = useState([]);
@@ -32,10 +33,6 @@ export default function NewsSlider() {
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
-        // pagination={{
-        //   clickable: true,
-        // }}
-        // modules={[Pagination]}
         className="mySwiper"
       >
           {news.map((item, index) => {

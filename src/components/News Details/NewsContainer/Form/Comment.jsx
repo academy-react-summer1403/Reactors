@@ -1,7 +1,9 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
+import { getNewsComment } from "../../../../core/services/api/getNewsComment";
 
 const Comment = () => {
+
   return (
     <div>
       <Formik

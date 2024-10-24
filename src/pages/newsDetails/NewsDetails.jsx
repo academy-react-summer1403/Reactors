@@ -6,10 +6,11 @@ import { Footer } from "../../components/common/Footer/Footer";
 import { useParams } from "react-router-dom";
 import { getNewsId } from "../../core/services/api/getNewsID";
 import { useQuery } from "react-query";
+import { getNewsComment } from "../../core/services/api/getNewsComment";
 
 const NewsDetails = () => {
   const [newsDetail, setNewsDetail] = useState([]);
-  const [commentDetail, setCommentDetail] = useState([]);
+  // const [commentDetail, setCommentDetail] = useState([]);
 
   const { id } = useParams();
   const getNewsDetails = async () => {
@@ -22,6 +23,20 @@ const NewsDetails = () => {
 
   useEffect(() => {
     getNewsDetails();
+  }, []);
+
+  const [commentDetail, setCommentDetail] = useState([]);
+
+  // const { id } = useParams();
+  const getNewsUserComment = async () => {
+    const commentDetail = await getNewsComment(id);
+    setCommentDetail(commentDetail);
+  };
+
+  console.log(commentDetail, "commentDetail : ");
+
+  useEffect(() => {
+    getNewsUserComment();
   }, []);
 
 
