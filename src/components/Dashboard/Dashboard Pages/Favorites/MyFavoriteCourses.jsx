@@ -29,14 +29,24 @@ const MyFavoriteCourses = () => {
     return (
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
-                first="نام دوره"
-                second="نام استاد"
-                third="نوع دوره"
-                forth="سطح دوره"
-                fifth="تاریخ شروع"
-                sixth="حذف"
+                tableHeaders={["نام دورخ", "sdfsdf", "dcmskdlskd", "kjhasdjks", "askdhakjk", "askdhaksd"]}
+                // first="نام دوره"
+                // second="نام استاد"
+                // third="نوع دوره"
+                // forth="سطح دوره"
+                // fifth="تاریخ شروع"
+                // sixth="حذف"
             />
-            <TableBody>
+            <div className='grid grid-cols-6 '>
+                <p className='truncate '>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos iusto quo laborum, laboriosam enim cum placeat reprehenderit ut, nulla dignissimos beatae assumenda veniam ipsa. Voluptate minima cupiditate non inventore error.</p>
+                <p>asdad</p>
+                <p>asdad</p>
+                <p>asdad</p>
+                <p>asdad</p>
+                <p>asdad</p>
+
+            </div>
+            {/* <TableBody>
                 {favoriteCourses?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : favoriteCourses?.map((item, key) => <TableRow key={key}>
                         <TableCell className="flex gap-3 items-center" style={{ minWidth: "200px" }}>
                             <img src={item.tumbImageAddress} alt="" className="w-16" />
@@ -49,7 +59,7 @@ const MyFavoriteCourses = () => {
                         <TableCell> <HiOutlineTrash className="size-8" /> </TableCell>
                     </TableRow>
                 )}
-            </TableBody>
+            </TableBody> */}
         </DashboardPartsBody>
     )
 }
