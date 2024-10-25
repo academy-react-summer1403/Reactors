@@ -200,7 +200,7 @@ const Footer = () => {
               <span className="sr-only">Dribbble account</span>
             </a>
           </div>
-          <div className="flex flex-row-reverse pl-10">
+          <div className="flex flex-row-reverse pl-10 items-center gap-[10px]">
             <span className="text-sm text-black sm:text-right dark:text-black ">
               کلیه حقوق این وب سایت توسط آکادمی اچ وان محفوظ است ©
             </span>

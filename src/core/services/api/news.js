@@ -13,3 +13,4 @@ export const getNews = async (PageNumber,SearchInput,SortingCol,SortingType,cate
         return [];
     }
 };
+

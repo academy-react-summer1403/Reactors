@@ -147,13 +147,11 @@ const Card = ({ data }) => {
             <BiSolidStar className="text-xl text-[#bff4e4]" />
           </div>
         </div>
-        <div className="flex flex-row ">
-          <div className="w-8 h-8 ">
+        <div className="flex flex-row">
           <img
-            className="rounded-full w-full h-full "
+            className="rounded-full w-[33px] h-[34px] "
             src={addUserProfileImage}
           />
-          </div>
           <div className="pt-[5px] pr-[10px]">{addUserFullName}</div>
         </div>
       </div>

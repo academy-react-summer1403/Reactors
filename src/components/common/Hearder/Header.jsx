@@ -30,7 +30,7 @@ const Header = () => {
             className="hidden justify-between  items-center w-full lg:flex lg:w-auto lg:order-1"
             id="mobile-menu-2"
           >
-            <ul className="flex flex-col  font-medium lg:flex-row lg:space-x  pr-[147px]">
+            <ul className="flex flex-col  font-medium lg:flex-row lg:space-x  pr-[147px] gap-[5px]">
               <li>
                 <NavLink
                   to="/"

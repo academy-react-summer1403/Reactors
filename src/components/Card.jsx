@@ -40,8 +40,12 @@ const Card = ({ data }) => {
     courseId,
     dissLikeCount,
     userFavorite,
+    userFavoriteId,
     userLikedId
   } = data;
+
+  console.log(userFavoriteId);
+
   const queryClient = useQueryClient();
   
   const reserveMutation = useMutation({
