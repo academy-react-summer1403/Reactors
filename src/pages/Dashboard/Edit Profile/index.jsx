@@ -20,7 +20,7 @@ const EditProfile = () => {
 
     const editUserProfile = async (values) => {
         const userProfile = new FormData()
-        const birthday = new Date(values.birthday)
+        const birthday = new Date(values.birthday).toISOString()
         // const userProfileObj = {
         //     LName: values.lastName,
         //     FName: values.firstName,
@@ -47,6 +47,7 @@ const EditProfile = () => {
         userProfile.append("Gender", values.gender)
         userProfile.append("BirthDay", birthday)
         const result = await editProfile(userProfile)
+        console.log(birthday)
         console.log(result)
     }
 
@@ -90,7 +91,13 @@ const EditProfile = () => {
                         <EditProfileInput inputTitle="آدرس منزل" name="homeAddress" />
                         <div className="flex gap-5">
                             <EditProfileInput inputTitle="ایمیل" name="email" value={userInfo.email} />
-                            <EditProfileInput inputTitle="جنسیت" name="gender" style={{ width: "30%" }} />
+                            <div>
+                            <select className="flex flex-col gap-[10px] w-1/3">
+                                <option value={false}> زن </option>
+                                <option value={true}> مرد </option>
+                            </select>
+                            </div>
+                            
                         </div>
                         <EditProfileInput inputTitle="درباره من" name="userAbout" />
                         <div className="flex gap-5">

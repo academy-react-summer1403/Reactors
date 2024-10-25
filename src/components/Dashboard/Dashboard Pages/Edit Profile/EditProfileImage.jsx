@@ -29,17 +29,20 @@ const style = {
 const EditProfileImage = () => {
 
     const [open, setOpen] = useState(false)
-
+    const [file,setFile] = useState()
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const addUserProfileImage = async (values) => {
+    const addUserProfileImage = async () => {
         const profileImage = new FormData()
-        profileImage.append("formFile", values.image)
+        profileImage.append("formFile", file)
         const result = await addProfileImage(profileImage)
         console.log(result)
     }
 
+    const handleUploadImage =(value) => {
+        setFile(value.target.files[0])
+    }
     return (
         <DashboardPartsBody className="flex-col">
             <DashboardPartsTitle className="p-5">
@@ -66,7 +69,7 @@ const EditProfileImage = () => {
                                 <Form className="w-full flex flex-col justify-center items-center gap-5">
                                     <div className="flex flex-col gap-2 justify-center items-center">
                                         <label htmlFor="filePicker" className="py-[10px] px-5 border border-[#158B68] rounded-[5px]"> انتخاب فایل </label>
-                                        <Field type="file" name="image" id="filePicker" className="hidden" />
+                                        <Field onChange={handleUploadImage} type="file" name="image" id="filePicker" className="hidden" accept='images/*' />
                                         <p className="text-center text-[#12926C]"> {form.values.image} </p>
                                         <p className="font-semibold"> JPG or PNG no larger than 5 MB </p>
                                     </div>

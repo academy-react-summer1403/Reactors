@@ -77,7 +77,7 @@ export const addProfileImage = async (profile) => {
         const response = await http.post("/SharePanel/AddProfileImage", profile)
         return response
     } catch (error) {
-        return false
+        throw false
     }
 }
 
