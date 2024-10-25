@@ -1,7 +1,11 @@
 import axios from "axios";
+<<<<<<< HEAD
 import { clearStorage, getItem, removeItem } from "../../utils/storage.services";
 import toast from "react-hot-toast";
 import { logout } from "../../utils/logout.services";
+=======
+import { clearStorage, getItem, removeItem } from "../common/storage.services";
+>>>>>>> develop
 
 const baseURL = "https://classapi.sepehracademy.ir/api"
 
@@ -11,7 +15,6 @@ const instance = axios.create({
 
 
 const onSuccess = (response) => {
-    toast.success("عملیات با موفقیت انجام شد")
     return response.data;
 };
 
@@ -19,15 +22,10 @@ const onSuccess = (response) => {
 const onError = (err) => {
     console.log(err);
 
-    if (err.message === "Network Error") toast.error("اتصال اینترنت خود را چک کنید")
-
     if (err.response.status === 401){
         logout()
     }
 
-        if (err.response.status >= 400 && err.response.status < 500) {
-            toast.error("درخواست نامعتبر است")
-        }
 
     return Promise.reject(err);
 };
