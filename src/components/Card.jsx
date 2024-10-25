@@ -22,6 +22,7 @@ import {
   BiStar,
 } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { deleteCourseLike } from "../core/services/api/deleteCourseLike";
 
 const Card = ({ data }) => {
   const {
@@ -39,10 +40,10 @@ const Card = ({ data }) => {
     courseId,
     dissLikeCount,
     userFavorite,
+    userLikedId
   } = data;
-
   const queryClient = useQueryClient();
-
+  
   const reserveMutation = useMutation({
     mutationFn: postCourseReserve,
     onSuccess: () => {
@@ -103,6 +104,27 @@ const Card = ({ data }) => {
     const result = favMutation.mutate(courseId);
   };
 
+
+  
+
+  const deleteCourseLikeMutation = useMutation({
+    mutationFn: deleteCourseLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const deleteCourseLikeUser = () => {
+    console.log(userLikedId,'asdada',userIsLiked,courseId)
+    const formData = new FormData();
+    formData.append("CourseLikeId", userLikedId);
+    const result = deleteCourseLikeMutation.mutate(formData);
+
+  };
+
   return (
     <div className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
       <img
@@ -114,7 +136,15 @@ const Card = ({ data }) => {
         <div className="flex justify-between flex-row-reverse gap-2">
           <div
             className="text-[#089E71] flex items-center flex-col cursor-pointer "
-            onClick={postLikeUser}
+            onClick={() => {
+              if(userIsLiked){
+                deleteCourseLikeUser()
+                console.log("dhfskdhfj")
+              }
+              else{
+                postLikeUser()
+              }
+            }}
           >
             {userIsLiked ? (
               <BiSolidLike className="text-2xl" />

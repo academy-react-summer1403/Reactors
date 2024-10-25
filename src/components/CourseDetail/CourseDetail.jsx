@@ -4,20 +4,13 @@ import MiddleDetails from "./Middle-Side-details/MiddleDetails";
 import { getCoursId } from "../../core/services/api/getCourseID";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
+import SyncLoader from "react-spinners/SyncLoader";
+import { formDataModifier } from "../../core/utils/formdataConverter";
 
 const CourseDetail = () => {
-  const [courseDetail, setCourseDetails] = useState([]);
   const { courseId } = useParams();
 
-  const getcourseDetails = async () => {
-    const courseDetail = await getCoursId(courseId);
-    setCourseDetails(courseDetail);
-  };
-  useEffect(() => {
-    getcourseDetails();
-  }, []);
-
-  const { data: coursesDetails } = useQuery({
+  const { data: coursesDetails, isLoading } = useQuery({
     queryKey: ["courseDetails"],
     queryFn: () => {
       const result = getCoursId(courseId);
@@ -25,15 +18,28 @@ const CourseDetail = () => {
     },
   });
 
+  if (coursesDetails){
+    const formData = formDataModifier(coursesDetails)
+    console.log(formData);
+  }
+  
   return (
     <div>
       <div className="flex flex-row-reverse px-16 py-[70px] gap-5">
-        <div>
-          <LeftDetails courseDetail={courseDetail} />
-        </div>
-        <div>
-          <MiddleDetails courseDetail={courseDetail} />
-        </div>
+        {isLoading ? (
+          <div className="flex items-center justify-center w-full">
+            <SyncLoader size={24} color="#a4f6de" />{" "}
+          </div>
+        ) : (
+          <>
+            <div>
+              <LeftDetails courseDetail={coursesDetails} />
+            </div>
+            <div>
+              <MiddleDetails courseDetail={coursesDetails} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

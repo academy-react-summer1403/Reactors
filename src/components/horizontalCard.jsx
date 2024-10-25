@@ -8,7 +8,22 @@ import dateModifier from "../core/utils/dateModifier";
 import notfoundImage from "../assets/Image/notfoundImage.webp";
 import dateModifire from "../core/utils/dateModifier";
 import { Link } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { postCourseReserve } from "../core/services/api/postCourseReserve";
+import toast from "react-hot-toast";
+import { postCourseLike } from "../core/services/api/postCourseLike";
+import { postCourseDisLike } from "../core/services/api/postCourseDisLike";
+import { postfaouriteUser } from "../core/services/api/postFavouriteUser";
+import {
+  BiDislike,
+  BiLike,
+  BiSolidDislike,
+  BiSolidLike,
+  BiSolidStar,
+  BiSolidTrafficBarrier,
+  BiStar,
+} from "react-icons/bi";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const HorizontalCard = ({ data }) => {
   const {
@@ -26,9 +41,70 @@ const HorizontalCard = ({ data }) => {
     dissLikeCount,
     readMore,
     reserv,
+    currentUserDissLike,
+    userFavorite,
   } = data;
-  // const navigate = useNavigate()
+  const queryClient = useQueryClient();
 
+  const reserveMutation = useMutation({
+    mutationFn: postCourseReserve,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success("این دوره رزرو شد!", {});
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postReserve = () => {
+    const userReserve = reserveMutation.mutate(courseId);
+  };
+
+  const likeMutation = useMutation({
+    mutationFn: postCourseLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast("این دوره رو پسندیدی!", {
+        icon: "👍",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postLikeUser = () => {
+    const userLike = likeMutation.mutate(courseId);
+  };
+
+  const disLikeMutation = useMutation({
+    mutationFn: postCourseDisLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast("این دوره رو نپسندیدی!", {
+        icon: "👎",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postDiseLikeUser = async () => {
+    const userDisLike = disLikeMutation.mutate(courseId);
+  };
+
+  const favMutation = useMutation({
+    mutationFn: postfaouriteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success("به دوره های مورد علاقه اضافه شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postFavouriteUser = () => {
+    const result = favMutation.mutate(courseId);
+  };
   return (
     <div>
       <div
@@ -47,15 +123,41 @@ const HorizontalCard = ({ data }) => {
           <div className="text-[15px]">{title}</div>
           <div className="flex justify-between flex-row items-center px-4 py-[1px] text-sm min-w-full gap-2">
             <div className="flex justify-between flex-row gap-2">
-              <p className="text-[#089E71]">
-                <img className="flex items-center" src={like} />
-                {likeCount}
-              </p>
+              <div
+                className="text-[#089E71] flex items-center flex-col cursor-pointer "
+                onClick={postLikeUser}
+              >
+                {userIsLiked ? (
+                  <BiSolidLike className="text-2xl" />
+                ) : (
+                  <BiLike className="text-2xl" />
+                )}
 
-              <p className="text-[#089E71]">
-                <img className="flex items-center" src={disLike} />
-                {dissLikeCount}
-              </p>
+                <p>{likeCount}</p>
+              </div>
+
+              <div
+                className="text-[#089E71] flex flex-col items-center cursor-pointer"
+                onClick={postDiseLikeUser}
+              >
+                {currentUserDissLike ? (
+                  <BiSolidDislike className="text-2xl" />
+                ) : (
+                  <BiDislike className="text-2xl" />
+                )}
+
+                <p>{dissLikeCount}</p>
+              </div>
+              <div
+                className="text-[#089E71] cursor-pointer"
+                onClick={postFavouriteUser}
+              >
+                {userFavorite ? (
+                  <BiSolidStar className="text-2xl" />
+                ) : (
+                  <BiStar className="text-2xl" />
+                )}
+              </div>
             </div>
 
             <div className="flex mr-[-21px] justify-between items-center px-4 pb-2 text-[12px] text-[#158B68] rounded-[12px] bg-[#BFF4E4] ">
@@ -80,26 +182,15 @@ const HorizontalCard = ({ data }) => {
           <div className="flex justify-between gap-2 pb-[7px]">
             <button
               className="bg-[#5BE1B9] text-black py-2 w-[112px] rounded-lg"
-              onClick={() => navigate("/ProductDetail/" + courseId)}
-            >
-              {reserv} رزرو دوره
+              onClick={postReserve}
+              >
+              رزرو دوره
             </button>
 
-            <button
-              className="bg-white border border-[#5BE1B9] text-black py-2 w-[112px] rounded-lg"
-              onClick={() => navigate("/ProductDetail/" + courseId)}
-            >
-              <Link
-                to={"/CourseDetails"}
-                className={({ isActive }) =>
-                  `${
-                    isActive && "bg-[#6D676757] text-[#158B68]"
-                  } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
-                }
-              >
-                جزئیات دوره
-              </Link>
-              {readMore} 
+            <button className="bg-white border border-[#5BE1B9] text-black py-2 w-[112px] rounded-lg">
+              <Link to={"/course-details/" + courseId}>جزئیات دوره</Link>
+
+              {readMore}
             </button>
           </div>
         </div>

@@ -27,7 +27,7 @@ import { postNewsLike } from "../../../core/services/api/postNewsLike";
 import { postNewsDisLike } from "../../../core/services/api/postNewsDislike";
 import { postNewsFav } from "../../../core/services/api/postNewsFav";
 
-const NewsContainer = ({ newsDetail, commentDetail }) => {
+const NewsContainer = ({ newsesDetails, commentDetail }) => {
   const {
     currentLikeCount,
     currentDissLikeCount,
@@ -42,7 +42,7 @@ const NewsContainer = ({ newsDetail, commentDetail }) => {
     currentUserIsDissLike,
     isCurrentUserFavorite,
     id,
-  } = newsDetail;
+  } = newsesDetails;
 
   const queryClient = useQueryClient();
 

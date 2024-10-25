@@ -9,7 +9,7 @@ const ChangeBar = () => {
   const { CardView } = useSelector((state) => state.Courses);
 
   return (
-    <div className="flex flex-row items-center rounded-full border w-3/4 px-8 border-[#158B68] bg-[#FFFFFF] py-4">
+    <div className="flex flex-row items-center rounded-full border w-full px-11 gap-7 border-[#158B68] bg-[#FFFFFF] py-4">
       <div className="px-2">
         <img
           onClick={() => dispatch(handleCardView(true))}

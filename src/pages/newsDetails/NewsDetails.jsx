@@ -7,51 +7,36 @@ import { useParams } from "react-router-dom";
 import { getNewsId } from "../../core/services/api/getNewsID";
 import { useQuery } from "react-query";
 import { getNewsComment } from "../../core/services/api/getNewsComment";
+import SyncLoader from "react-spinners/SyncLoader";
+import { formDataModifier } from "../../core/utils/formdataConverter";
 
 const NewsDetails = () => {
-  const [newsDetail, setNewsDetail] = useState([]);
-  // const [commentDetail, setCommentDetail] = useState([]);
-
   const { id } = useParams();
-  const getNewsDetails = async () => {
-    const newsDetail = await getNewsId(id);
-    setNewsDetail(newsDetail.detailsNewsDto);
-    setCommentDetail(newsDetail.commentDtos);
-  };
 
-  console.log(newsDetail, "newsDetail : ");
-
-  useEffect(() => {
-    getNewsDetails();
-  }, []);
-
-  const [commentDetail, setCommentDetail] = useState([]);
-
-  // const { id } = useParams();
-  const getNewsUserComment = async () => {
-    const commentDetail = await getNewsComment(id);
-    setCommentDetail(commentDetail);
-  };
-
-  console.log(commentDetail, "commentDetail : ");
-
-  useEffect(() => {
-    getNewsUserComment();
-  }, []);
-
-
-  const { data: newsesDetails } = useQuery({
+  const { data: newsesDetails, isLoading } = useQuery({
     queryKey: ["newsDetails"],
     queryFn: () => {
       const result = getNewsId(id);
       return result;
     },
-  });
-
+  })
+  ;
   return (
     <>
       <div className="flex flex-col px-16 py-[70px] ">
-        <NewsContainer newsDetail={newsDetail} commentDetail={commentDetail}  />
+        {isLoading ? (
+          <div className="flex items-center justify-center w-full">
+            <SyncLoader size={24} color="#a4f6de" />{" "}
+          </div>
+        ) : (
+          <>
+            <NewsContainer
+
+            newsesDetails={newsesDetails?.detailsNewsDto}
+              commentDetail={newsesDetails?.detailsNewsDto}
+            />
+          </>
+        )}
       </div>
       <div className="flex flex-col py-[37px]">
         <div className="pb-[80px]">
@@ -64,7 +49,6 @@ const NewsDetails = () => {
         </div>
         <Slider></Slider>
       </div>
-
     </>
   );
 };
