@@ -29,12 +29,13 @@ const MyCourseComments = () => {
     return (
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
-                first="نام دوره"
-                second="عنوان نظر"
-                third="تعداد پاسخ"
-                forth="تاریخ ارسال"
-                fifth="وضعیت"
-                sixth="جزئیات"
+                tableHeaders={["نام دوره", "عنوان نظر", "تعداد پاسخ", "تاریخ ارسال", "وضعیت", "جزئیات"]}
+                // first="نام دوره"
+                // second="عنوان نظر"
+                // third="تعداد پاسخ"
+                // forth="تاریخ ارسال"
+                // fifth="وضعیت"
+                // sixth="جزئیات"
             />
             <TableBody>
                 {courseComments?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : courseComments?.map((item, key) => <TableRow key={key}>

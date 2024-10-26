@@ -13,6 +13,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules'
 import { ProfileImagesSlider } from './Profile Images Slider';
 import { Field, Form, Formik } from 'formik';
 import { addProfileImage } from '../../../../core/services/api/dashboard';
+import { useSelector } from 'react-redux';
 
 const style = {
     position: 'absolute',
@@ -29,9 +30,10 @@ const style = {
 const EditProfileImage = () => {
 
     const [open, setOpen] = useState(false)
-    const [file,setFile] = useState()
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [file, setFile] = useState()
+    const handleOpen = () => setOpen(true)
+    const handleClose = () => setOpen(false)
+    const { userProfile } = useSelector((state) => state.userInfo)
 
     const addUserProfileImage = async () => {
         const profileImage = new FormData()
@@ -40,7 +42,7 @@ const EditProfileImage = () => {
         console.log(result)
     }
 
-    const handleUploadImage =(value) => {
+    const handleUploadImage = (value) => {
         setFile(value.target.files[0])
     }
     return (
@@ -50,7 +52,7 @@ const EditProfileImage = () => {
             </DashboardPartsTitle>
             <div className="p-6 flex flex-col items-center gap-5">
                 <div>
-                    <img src={Profile} alt="" />
+                    <img src={userProfile?.currentPictureAddress} alt="" className="rounded-full" />
                 </div>
                 <Button onClick={handleOpen} style={{
                     padding: "10px 20px",

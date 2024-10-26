@@ -13,7 +13,7 @@ const ProfileProgress = ({ percentage }) => {
                     trailColor: "#E1E1E1",
                     pathColor: "#158B68",
                     textColor: "black"
-                })} className="w-[120px]"/>
+                })}/>
             </div>
             <p className="text-nowrap p-3 text-[17px]"> درصد تکمیل پروفایل </p>
         </DashboardPartsBody>
