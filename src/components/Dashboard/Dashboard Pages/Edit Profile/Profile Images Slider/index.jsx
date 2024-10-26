@@ -14,6 +14,7 @@ const ProfileImagesSlider = () => {
             <Swiper
                 dir="ltr"
                 loop={true}
+                
                 cssMode={true}
                 navigation={true}
                 pagination={{ clickable: true }}

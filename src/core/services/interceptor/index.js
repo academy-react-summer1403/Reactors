@@ -1,11 +1,7 @@
 import axios from "axios";
-<<<<<<< HEAD
-import { clearStorage, getItem, removeItem } from "../../utils/storage.services";
-import toast from "react-hot-toast";
+
 import { logout } from "../../utils/logout.services";
-=======
 import { clearStorage, getItem, removeItem } from "../common/storage.services";
->>>>>>> develop
 
 const baseURL = "https://classapi.sepehracademy.ir/api"
 

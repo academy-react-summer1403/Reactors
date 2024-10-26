@@ -9,7 +9,7 @@ import { CoursesStatus } from '../../../components/Dashboard/Dashboard Pages/Cou
 import { ProfileProgress } from '../../../components/Dashboard/Dashboard Pages/Counter/ProfileProgress'
 import { getUserInfo } from '../../../core/services/api/dashboard'
 
-import { handleEmail, handleNationalCode, handlePhoneNumber, handleProfileCompletionPercentage, handleProfileImages } from '../../../redux/userInfo'
+// import { handleEmail, handleNationalCode, handlePhoneNumber, handleProfileCompletionPercentage, handleProfileImages, handleUserProfile } from '../../../redux/userInfo'
 
 const Counter = () => {
 
@@ -19,10 +19,11 @@ const Counter = () => {
     const userInfo = async () => {
         const result = await getUserInfo()
         console.log(result)
-        dispatch(handleEmail(result.email))
-        dispatch(handlePhoneNumber(result.phoneNumber))
-        dispatch(handleNationalCode(result.nationalCode))
-        dispatch(handleProfileImages(result.userImage))
+        // dispatch(handleEmail(result.email))
+        // dispatch(handlePhoneNumber(result.phoneNumber))
+        // dispatch(handleNationalCode(result.nationalCode))
+        // dispatch(handleProfileImages(result.userImage))
+        dispatch(handleUserProfile(result))
         setProfileCompletionPercentage(result.profileCompletionPercentage)
     }
 
