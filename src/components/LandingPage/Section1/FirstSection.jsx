@@ -31,7 +31,7 @@ const FirstSection = () => {
           </p>
           <button className="bg-[#12926C] text-white px-4 py-3 rounded-[51px]">
             <Link
-              to={"/CourseList"}
+              to={"/course-list"}
               className={({ isActive }) =>
                 `${
                   isActive && "bg-[#6D676757] text-[#158B68]"

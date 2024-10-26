@@ -17,7 +17,7 @@ export default function Slider() {
 
   const getNews = async () => {
     const sameNews = await getSameNews();
-    setSameNews(sameNews);
+    setSameNews(sameNews.news);
     console.log(sameNews, "courseTop");
   };
 
@@ -32,7 +32,7 @@ export default function Slider() {
         spaceBetween={30}
         className="mySwiper"
       >
-          {sameNews.map((item, index) => {
+          {sameNews?.map((item, index) => {
             return (
               <SwiperSlide  key={index}>
                 <Card data={item} />

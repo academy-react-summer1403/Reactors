@@ -65,7 +65,7 @@ const Suggestion = () => {
             placeholder="متن ..."
             onChange={formik.handleChange}
             value={formik.values.message}
-            className="border-2 border-[#158B68] p-2 rounded w-full focus:outline-none focus:border-blue-500"
+            className="border-2 border-[#158B68] resize-none h-[160px] p-2 rounded w-full focus:outline-none focus:border-blue-500"
           ></textarea>
           {formik.errors.message ? (
             <div className="text-red-500 text-sm">{formik.errors.message}</div>
