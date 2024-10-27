@@ -126,7 +126,6 @@ const Card = ({ data }) => {
     const formData = new FormData();
     formData.append("CourseLikeId", userLikedId);
     const result = deleteCourseLikeMutation.mutate(formData);
-
   };
 
   return (
