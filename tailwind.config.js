@@ -6,7 +6,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily : {
+        'Yekan-Bakh ' : 'Yekan Bakh'
+      }
+    },
   },
   plugins: [],
 }
