@@ -47,7 +47,10 @@ const NewsDetails = () => {
             ساختن دنیایی بهتر، یک دوره در یک زمان
           </div>
         </div>
-        <Slider></Slider>
+        <div>
+        <Slider/>
+          
+        </div>
       </div>
     </>
   );
