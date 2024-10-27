@@ -4,22 +4,25 @@ import h1 from "../../../assets/Image/h1.png";
 import basket from "../../../assets/Image/basket.png";
 import search from "../../../assets/Image/search.png";
 import { NavLink } from "react-router-dom";
+import SlidBar from "../../Header/Side Bar/SideBar";
 
 const Header = () => {
   return (
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-1 py-2.5 dark:bg-[#A4F6DE]">
         <div className="flex flex-row-reverse justify-between items-center mx-auto max-w-screen-xl">
-            
           <div className=" flex flex-row-reverse items-center gap-2 px-4">
             <img className="" src={profile}></img>
-              <img className=" pl-2" src={basket}></img>
-              <img className="pl-2" src={search}></img>
+            <img className=" pl-2" src={basket}></img>
+            <img className="pl-2" src={search}></img>
           </div>
 
           <a href="https://flowbite.com" className="flex items-center"></a>
 
+
           <div className="flex flex-row-reverse items-center lg:order-2  ">
+          <SlidBar />
+
             <span className="pr-2 text-[18px] text-[#22445D] ">
               آکادامی اچ وان
             </span>
@@ -34,7 +37,11 @@ const Header = () => {
               <li>
                 <NavLink
                   to="/"
-                  className={({isActive}) => `${isActive && "bg-[#6D676757] text-[#158B68]"} text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `}
+                  className={({ isActive }) =>
+                    `${
+                      isActive && "bg-[#6D676757] text-[#158B68]"
+                    } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
+                  }
                 >
                   صفحه اصلی
                 </NavLink>
@@ -43,7 +50,11 @@ const Header = () => {
               <li>
                 <NavLink
                   to="/course-list"
-                  className={({isActive}) => `${isActive && "bg-[#6D676757] text-[#158B68]"} text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `}
+                  className={({ isActive }) =>
+                    `${
+                      isActive && "bg-[#6D676757] text-[#158B68]"
+                    } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
+                  }
                 >
                   دوره ها
                 </NavLink>
@@ -52,16 +63,24 @@ const Header = () => {
               <li>
                 <NavLink
                   to="/news-list"
-                  className={({isActive}) => `${isActive && "bg-[#6D676757] text-[#158B68]"} text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `}
+                  className={({ isActive }) =>
+                    `${
+                      isActive && "bg-[#6D676757] text-[#158B68]"
+                    } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
+                  }
                 >
                   مقالات
                 </NavLink>
               </li>
 
               <li>
-              <NavLink
+                <NavLink
                   to="/AboutUs"
-                  className={({isActive}) => `${isActive && "bg-[#6D676757] text-[#158B68]"} text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `}
+                  className={({ isActive }) =>
+                    `${
+                      isActive && "bg-[#6D676757] text-[#158B68]"
+                    } text-gray-800 dark:text-teal-950  hover:bg-[#6D676757] rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 `
+                  }
                 >
                   درباره ما
                 </NavLink>

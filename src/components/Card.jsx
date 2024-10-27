@@ -130,11 +130,13 @@ const Card = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
+    <div className="flex flex-col gap-6 items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
+      <div className="w-full h-[240px] flex items-center justify-center">
       <img
-        className="flex justify-center pb-4 rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px] min-w-full min-h-[200px] "
+        className="w-full h-full rounded-t-2xl "
         src={tumbImageAddress ? tumbImageAddress : notfoundImage}
       />
+      </div>
 
       <div className="flex justify-between flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
         <div className="flex justify-between flex-row-reverse gap-2">
