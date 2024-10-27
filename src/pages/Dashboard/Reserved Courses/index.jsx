@@ -24,12 +24,13 @@ const ReservedCourses = () => {
     return (
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
-                first="نام دوره"
-                second="نام استاد"
-                third="نام ترم"
-                forth="تاریخ شروع"
-                fifth="وضعیت تایید"
-                sixth="حذف"
+                tableHeaders={["نام دوره", "نام استاد", "نام ترم", "تاریخ شروع", "وضعیت تایید", "حذف"]}
+                // first="نام دوره"
+                // second="نام استاد"
+                // third="نام ترم"
+                // forth="تاریخ شروع"
+                // fifth="وضعیت تایید"
+                // sixth="حذف"
             />
             <TableBody>
                 <TableRow>

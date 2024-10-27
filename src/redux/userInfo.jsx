@@ -73,5 +73,5 @@ const userInfo = createSlice({
 })
 
 // export const { handleFirstName, handleLastName, handlePhoneNumber, handleNationalCode, handleBirthday, handleHomeAddress, handleEmail, handleGender, handleUserAbout, handleTelegramLink, handleLinkdinProfile, handleProfileCompletionPercentage, handleReceiveMessageEvent, handleProfileImages, handleCurrentProfileImage } = userInfo.actions
-export const {handleUserProfile} = userInfo.actions
+export const { handleUserProfile } = userInfo.actions
 export default userInfo.reducer

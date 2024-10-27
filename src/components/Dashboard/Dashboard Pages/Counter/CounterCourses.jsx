@@ -5,16 +5,16 @@ import { DashboardPartsTitle } from '../../../common/Dashboard/Styled DashboardP
 
 import CourseImg from '../../../../assets/images/courseImg.png'
 
-const CounterCourses = ({ title }) => {
+const CounterCourses = ({ title, responsive }) => {
     return (
-        <DashboardPartsBody className="flex-col text-[16px] w-[350px]">
+        <DashboardPartsBody className={`flex-col text-[16px] w-[350px] ${responsive}`}>
             <DashboardPartsTitle className="py-[10px]">
                 <p> {title} </p>
             </DashboardPartsTitle>
             <div className="p-3 w-full h-full">
                 <div className="bg-white w-full h-full rounded-[10px] flex gap-[15px] p-[10px] justify-center items-center shadow-[10px_10px_5px_0_#00000029]">
-                    <div className="flex items-center w-2/3">
-                        <img src={CourseImg} alt="عکس دوره" className="w-[90%]" />
+                    <div className="flex items-center w-1/3">
+                        <img src={CourseImg} alt="عکس دوره" className="w-[160px]" />
                     </div>
                     <div className="flex flex-col gap-3 justify-center text-nowrap">
                         <p> عنوان: دوره </p>

@@ -32,16 +32,16 @@ const MyCourses = () => {
                 tableHeaders={["نام دوره", "نام استاد", "نام ترم", "نام گروه", "تاریخ شروع", "وضعیت پرداخت"]}
             />
             <TableBody>
-                {["jdalskdj", "askdjaslk"].map((item, key) => <TableRow key={key}>
+                {myCourses?.map((item, key) => <TableRow key={key}>
                     <TableCell className="flex gap-1 items-center">
-                        <img src={CourseImg} alt="" className="w-12" />
-                        نکست جی اس
+                        <img src={item.tumbImageAddress} alt="" className="w-12" />
+                        {item.courseTitle}
                     </TableCell>
-                    <TableCell> استاد بحر </TableCell>
-                    <TableCell> بهار </TableCell>
-                    <TableCell> سه شنبه </TableCell>
+                    <TableCell> {item.fullName} </TableCell>
+                    <TableCell> {item.termName} </TableCell>
+                    <TableCell> {item.groupName} </TableCell>
                     <TableCell> 1403/03/16 </TableCell>
-                    <TableCell> پرداخت نشده </TableCell>
+                    <TableCell> {item.paymentStatus} </TableCell>
                 </TableRow>)}
             </TableBody>
             {myCourses.length === 0 ? null : <TablePagination />}

@@ -29,12 +29,13 @@ const MyFavoriteArticles = () => {
     return (
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
-                first="عنوان مقاله"
-                second="تعداد لایک"
-                third="تعداد بازدید"
-                forth="امتیاز"
-                fifth="آخرین بروزرسانی"
-                sixth="حذف"
+            tableHeaders={["عنوان مقاله", "تعداد لایک", "تعداد بازدید", "امتیاز", "آخرین بروزرسانی", "حذف"]}
+                // first="عنوان مقاله"
+                // second="تعداد لایک"
+                // third="تعداد بازدید"
+                // forth="امتیاز"
+                // fifth="آخرین بروزرسانی"
+                // sixth="حذف"
             />
             <TableBody>
                 {favoriteArticles?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : favoriteArticles?.map((item, key) => <TableRow key={key}>

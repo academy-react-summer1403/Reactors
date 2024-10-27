@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Field, Form, Formik } from 'formik'
 import { useSelector } from 'react-redux'
 
@@ -16,10 +16,8 @@ import { editProfile } from '../../../core/services/api/dashboard'
 
 const EditProfile = () => {
 
-    const {userProfile} = useSelector((state) =>{
-        return state.userInfo
-    })
-    console.log(userProfile)
+    const { userProfile } = useSelector((state) => state.userInfo)
+
     const editUserProfile = async (values) => {
         const userProfileInfo = new FormData()
         const birthday = new Date(values.birthday).toISOString()
@@ -65,49 +63,52 @@ const EditProfile = () => {
                     <p> مشخصات کاربر </p>
                 </DashboardPartsTitle>
                 <Formik initialValues={{
-                    firstName: "userInfo.firstName",
-                    lastName: "userInfo.lastName",
-                    phoneNumber: "userInfo.phoneNumber",
-                    nationalCode: "userInfo.nationalCode",
-                    birthday:" userInfo.birthday",
-                    homeAddress: "userInfo.homeAddress",
-                    email: "userInfo.email",
-                    gender: "userInfo.gender,",
-                    userAbout: "userInfo.userAbout",
-                    telegramLink: "userInfo.telegramLink",
-                    linkdinProfile: "userInfo.linkdinProfile",
-                    receiveMessageEvent: "userInfo.receiveMessageEvent"
+                    firstName: userProfile?.fName,
+                    lastName: userProfile?.lName,
+                    phoneNumber: userProfile?.phoneNumber,
+                    nationalCode: userProfile?.nationalCode,
+                    birthday: userProfile?.birthDay,
+                    homeAddress: userProfile?.homeAdderess,
+                    email: userProfile?.email,
+                    gender: userProfile?.gender,
+                    userAbout: userProfile?.userAbout,
+                    telegramLink: userProfile?.telegramLink,
+                    linkdinProfile: userProfile?.linkdinProfile,
+                    receiveMessageEvent: userProfile?.receiveMessageEvent
                 }}
                     onSubmit={(values) => editUserProfile(values)}
                 >
-                    <Form className="py-4 px-10 flex flex-col gap-1">
-                        <div className="flex gap-5">
-                            <EditProfileInput inputTitle="نام" name="firstName" />
-                            <EditProfileInput inputTitle="نام خانوادگی" name="lastName" />
-                        </div>
-                        <EditProfileInput inputTitle="شماره همراه" name="phoneNumber" value={userProfile?.phoneNumber} />
-                        <div className="flex gap-5">
-                            <EditProfileInput inputTitle="شماره ملی" name="nationalCode" />
-                            <EditProfileInput inputTitle="تاریخ تولد" name="birthday" type="date" />
-                        </div>
-                        <EditProfileInput inputTitle="آدرس منزل" name="homeAddress" />
-                        <div className="flex gap-5">
-                            <EditProfileInput inputTitle="ایمیل" name="email" value={userProfile?.email} />
-                            <div>
-                            <select className="flex flex-col gap-[10px] w-1/3">
-                                <option value={false}> زن </option>
-                                <option value={true}> مرد </option>
-                            </select>
+                    {(form) => (
+                        <Form className="py-4 px-10 flex flex-col gap-1">
+                            <div className="flex gap-5">
+                                <EditProfileInput inputTitle="نام" name="firstName" value={form.values.firstName} />
+                                <EditProfileInput inputTitle="نام خانوادگی" name="lastName" value={form.values.lastName} />
                             </div>
-                            
-                        </div>
-                        <EditProfileInput inputTitle="درباره من" name="userAbout" />
-                        <div className="flex gap-5">
-                            <EditProfileInput inputTitle="لینک تلگرام" name="telegramLink" />
-                            <EditProfileInput inputTitle="پروفایل لینکدین" name="linkdinProfile" />
-                        </div>
-                        <ConfirmButton type="submit" className="mt-10"> ثبت تغییرات </ConfirmButton>
-                    </Form>
+                            <EditProfileInput inputTitle="شماره همراه" name="phoneNumber" value={form.values.phoneNumber} />
+                            <div className="flex gap-5">
+                                <EditProfileInput inputTitle="شماره ملی" name="nationalCode" value={form.values.nationalCode} />
+                                <EditProfileInput inputTitle="تاریخ تولد" name="birthday" type="date" />
+                            </div>
+                            <EditProfileInput inputTitle="آدرس منزل" name="homeAddress" value={form.values.homeAddress} />
+                            <div className="flex gap-5">
+                                <EditProfileInput inputTitle="ایمیل" name="email" value={form.values.email} />
+                                <div className="flex flex-col gap-[10px] w-1/3">
+                                    <p className="text-[#158B68] text-[20px]"> جنسیت </p>
+                                    <select name="gender" className="px-[15px] py-5 flex gap-[5px] bg-white rounded-[15px] border-2 border-[#158B68] outline-none">
+                                        <option value={false}> زن </option>
+                                        <option value={true}> مرد </option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <EditProfileInput inputTitle="درباره من" name="userAbout" value={form.values.userAbout} />
+                            <div className="flex gap-5">
+                                <EditProfileInput inputTitle="لینک تلگرام" name="telegramLink" value={form.values.telegramLink} />
+                                <EditProfileInput inputTitle="پروفایل لینکدین" name="linkdinProfile" value={form.values.linkdinProfile} />
+                            </div>
+                            <ConfirmButton type="submit" className="mt-10"> ثبت تغییرات </ConfirmButton>
+                        </Form>
+                    )}
                 </Formik>
             </DashboardPartsBody>
         </div>
