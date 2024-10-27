@@ -7,11 +7,10 @@
   text-align: center;
   font-size: 18px;
   background: #fff;
-
+min-width: 300px;
 padding-bottom: 30px;
   padding-top: 40px;
   cursor: grab;
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;

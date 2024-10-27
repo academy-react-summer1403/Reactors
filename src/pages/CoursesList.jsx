@@ -25,8 +25,6 @@ const CoursesList = () => {
             ساختن دنیایی بهتر، یک دوره در یک زمان
           </h2>
           <div
-            dir="rtl"
-            className="flex flex-row-reverse pl-[9.3rem] pr-[9.3rem] pb-[10px] "
           >
             <CardSlider/>
           </div>

@@ -43,7 +43,6 @@ const BlogList = () => {
     },
   });
 
-  console.log(blogList , "newsList")
 
 
   return (

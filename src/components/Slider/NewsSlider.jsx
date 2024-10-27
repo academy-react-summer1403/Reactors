@@ -19,7 +19,6 @@ export default function NewsSlider() {
   const getnews = async () => {
     const {news} = await getSameNews();
     setnews(news);
-    console.log(news, "newsSlider List");
   };
 
   useEffect(() => {

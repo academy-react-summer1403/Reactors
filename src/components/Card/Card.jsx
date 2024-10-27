@@ -19,6 +19,7 @@ import { postNewsLike } from "../../core/services/api/postNewsLike";
 import toast from "react-hot-toast";
 import { postNewsDisLike } from "../../core/services/api/postNewsDislike";
 import { postNewsFav } from "../../core/services/api/postNewsFav";
+import { deletenewseLike } from "../../core/services/api/deleteNewsLike";
 
 const Card = ({ data }) => {
   const {
@@ -35,6 +36,7 @@ const Card = ({ data }) => {
     id,
     currentUserIsLike,
     currentUserIsDissLike,
+    likeId
   } = data;
   const queryClient = useQueryClient();
 
@@ -84,6 +86,23 @@ const Card = ({ data }) => {
     const result = favMutation.mutate(id);
   };
 
+  const deleteNewseLikeMutation = useMutation({
+    mutationFn: deletenewseLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["newsList"] });
+      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const deletenewseLikeUser = () => {
+    console.log(likeId,'News Like Id :',currentUserIsLike,id)
+    const formData = new FormData();
+    formData.append("News Like Id2", likeId);
+    const result = deleteNewseLikeMutation.mutate(formData);
+  };
+
   return (
     <div className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
       <img
@@ -95,8 +114,15 @@ const Card = ({ data }) => {
         <div className="flex justify-between flex-row-reverse gap-2">
           <div
             className="text-[#089E71] flex items-center flex-col cursor-pointer "
-            onClick={postLikeUser}
-          >
+            onClick={() => {
+              if(currentUserIsLike){
+                deletenewseLikeUser()
+                console.log("dhfskdhfj")
+              }
+              else{
+                postLikeUser()
+              }
+            }}          >
             {currentUserIsLike ? (
               <BiSolidLike className="text-2xl" />
             ) : (

@@ -4,7 +4,7 @@ import h1 from "../../../assets/Image/h1.png";
 const Footer = () => {
   return (
     <footer className="bg-white dark:bg-[#A4F6DE]">
-      <div className="mx-auto w-full max-w-screen-xl p-12 py-6 lg:py-8">
+      <div className="mx-auto max-w-7xl p-12 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-row-reverse pl-[7rem] md:justify-between">
           <div className="flex flex-row-reverse gap-[14rem]">
             <div>

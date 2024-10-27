@@ -10,8 +10,6 @@ import "./styles.css";
 
 import { getCourseTop } from "../../core/services/api/getCourseTop";
 import { Card } from "../Card";
-// import { getCourseList } from '../../core/services/api/courseList';
-// import Card from '../LandingPage/Teachers/Card/Card';
 
 export default function Slider() {
   const [course, setcourse] = useState([]);
@@ -28,16 +26,6 @@ export default function Slider() {
 
   return (
     <>
-      {/* <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        modules={[Navigation]}
-        width={990}
-        height={400}
-        
-      >
-          {courseTop.map((item, index) => { */}
-
       <Swiper slidesPerView={3} spaceBetween={30} className="mySwiper">
         {course.map((item, index) => {
           return (
