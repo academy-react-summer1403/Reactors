@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-
 import { NavLink } from "react-router-dom";
-import {AnimatePresence, motion} from 'framer-motion'
+import { AnimatePresence, motion } from "framer-motion";
 export default function SlidBar() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +19,7 @@ export default function SlidBar() {
               className="text-white focus:outline-none"
             >
               <svg
-                className="w-6 h-6"
+                className="w-6 h-6 text-green-700"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -37,51 +36,77 @@ export default function SlidBar() {
           </div>
         </div>
       </div>
-      <AnimatePresence>{isOpen && (
-        <>
-        <motion.div initial={{x:200}} animate={{x:0}} exit={{x:200}} transition={{duration:0.35}} className="md:hidden flex flex-col fixed right-0 min-w-[240px] py-10
-         items-center bottom-0 top-0 bg-slate-500 z-20">
-                   {" "}
-          <div className="px-1 pt-1 pb-3 space-y-1 flex flex-col">
-                       {" "}
-            <a
-              href="#home"
-              className=" px-2 py-2 rounded-md text-base font-medium hover:bg-gray-700"
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ x: 200 }}
+              animate={{ x: 0 }}
+              exit={{ x: 200 }}
+              transition={{ duration: 0.35 }}
+              className="md:hidden flex flex-col fixed right-0 min-w-[240px] py-10
+         items-center bottom-0 top-0 bg-[#22c7ab] z-20"
             >
-              صفحه اصلی
-            </a>
-                       {" "}
-            <a
-              href="#courses"
-              className=" px-2 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-            >
-              دوره ها
-            </a>
-                       {" "}
-            <a
-              href="#news"
-              className=" px-2 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-            >
-              اخبار مقالات
-            </a>
-                       {" "}
-            <a
-              href="#about"
-              className=" px-2 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-            >
-              درباره ما
-            </a>
-                     {" "}
-          </div>
-                 {" "}
-        </motion.div>
-        <div className="absolute top-0 bottom-0 w-full z-10" onClick={()=>{
-            setIsOpen(false)
-        }}></div>
-        </>
-      )}
+              <div className="px-1 pt-1 pb-3 space-y-1 flex flex-col">
+                <a className="py-2">
+                  <NavLink
+                    to="/"
+                    className={({ isActive }) =>
+                      `${
+                        isActive && " text-white bg-[#1a9a85]"
+                      }  px-16 py-2 rounded-md text-base font-medium hover:bg-[#1a9a85]`
+                    }
+                  >
+                    صفحه اصلی
+                  </NavLink>
+                </a>
+                <a className="py-2">
+                  <NavLink
+                    to="/course-list"
+                    className={({ isActive }) =>
+                      `${
+                        isActive && " text-white bg-[#1a9a85]"
+                      }  px-16 py-2 rounded-md text-base font-medium hover:bg-[#1a9a85]`
+                    }
+                  >
+                    دوره ها
+                  </NavLink>
+                </a>
+                <a className="py-2">
+                  <NavLink
+                    to="/news-list"
+                    className={({ isActive }) =>
+                      `${
+                        isActive && " text-white bg-[#1a9a85]"
+                      }  px-16 py-2 rounded-md text-base font-medium hover:bg-[#1a9a85]`
+                    }
+                  >
+                    مقالات
+                  </NavLink>
+                </a>
+                <a className="py-2">
+                  <NavLink
+                    to="/AboutUs"
+                    className={({ isActive }) =>
+                      `${
+                        isActive && " text-white bg-[#1a9a85]"
+                      }  px-16 py-2 rounded-md text-base font-medium hover:bg-[#1a9a85]`
+                    }
+                  >
+                    درباره ما
+                  </NavLink>
+                </a>
+              </div>
+            </motion.div>
+            <div
+              className="absolute top-0 bottom-0 w-full z-10"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            ></div>
+          </>
+        )}
       </AnimatePresence>
-      
     </nav>
   );
 }

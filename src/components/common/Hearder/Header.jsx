@@ -19,9 +19,8 @@ const Header = () => {
 
           <a href="https://flowbite.com" className="flex items-center"></a>
 
-
           <div className="flex flex-row-reverse items-center lg:order-2  ">
-          <SlidBar />
+            <SlidBar />
 
             <span className="pr-2 text-[18px] text-[#22445D] ">
               آکادامی اچ وان
