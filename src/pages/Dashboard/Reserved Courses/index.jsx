@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HiOutlineTrash } from "react-icons/hi2"
 
 import { DashboardPartsBody } from '../../../components/common/Dashboard/Styled DashboardPages/StyledDashboardPartsBody'
@@ -9,12 +9,24 @@ import { TableCell } from '../../../components/common/Dashboard/Dashboard Tables
 
 import CourseImg from '../../../assets/images/courseImg2.png'
 import { getReservedCourses } from '../../../core/services/api/dashboard'
+import { NoneItems } from '../../../components/common/Dashboard/Dashboard Tables/NoneItems'
+import { getCoursId } from '../../../core/services/api/getCourseID'
 
 const ReservedCourses = () => {
 
+    const [courseReserved, setCourseReserved] = useState([])
+    const [courseId, setCourseId] = useState()
+
     const getMyReservedCourses = async () => {
         const result = await getReservedCourses()
+        setCourseReserved(result)
+        setCourseId(result.courseId)
         console.log(result)
+    }
+
+    const getReservedCoursesById = async () => {
+        const result = await getCoursId(courseId)
+        return result
     }
 
     useEffect(() => {
@@ -33,17 +45,17 @@ const ReservedCourses = () => {
                 // sixth="حذف"
             />
             <TableBody>
-                <TableRow>
+                {courseReserved?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : courseReserved?.map((item, key) => <TableRow key={key}>
                     <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
-                        <img src={CourseImg} alt="" className="w-16" />
-                        نکست جی اس
+                        <img src="" alt="" className="w-16" />
+                        {item.courseName}
                     </TableCell>
-                    <TableCell className="pr-3"> استاد بحر </TableCell>
-                    <TableCell className="pl-5"> بهار </TableCell>
-                    <TableCell className="pl-[45px]"> سه شنبه </TableCell>
-                    <TableCell className="pl-3"> 1403/03/16 </TableCell>
-                    <TableCell className="flex justify-center items-center pr-[55px]"> <HiOutlineTrash className="size-8" /> </TableCell>
-                </TableRow>
+                    <TableCell> {} </TableCell>
+                    <TableCell> {} </TableCell>
+                    <TableCell> {item.reserverDate} </TableCell>
+                    <TableCell> {item.accept ? "تایید شده" : "تایید نشده"} </TableCell>
+                    <TableCell> <HiOutlineTrash className="size-8" /> </TableCell>
+                </TableRow>)}
             </TableBody>
         </DashboardPartsBody>
     )

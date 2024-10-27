@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules'
 
@@ -16,6 +16,7 @@ const ProfileImagesSlider = () => {
     const { userProfile } = useSelector((state) => state.userInfo)
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
+    const [imageIndex, setImageIndex] = useState()
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
@@ -26,18 +27,36 @@ const ProfileImagesSlider = () => {
     }
 
     const getProileImageIndex = () => {
-        for (let i; i < userProfile?.userImage.length; i++) {
-            if (userProfile?.userImage[i] === userProfile?.currentPictureAddress) {
-                return i
-            }
-        }
+        // for (let i; i < userProfile?.userImage.length; i++) {
+        //     console.log(i, "index")
+        //     if (userProfile?.userImage[i].puctureAddress == userProfile?.currentPictureAddress) {
+
+        //         return i
+        //     }
+        // }
+
+
+
+        setImageIndex(userProfile?.userImage.findIndex((item) => {
+            return item.puctureAddress == userProfile?.currentPictureAddress
+        }))
+
+
     }
+
+    useEffect(() => {
+        getProileImageIndex()
+        console.log(imageIndex)
+
+    }, [imageIndex])
+
 
     return (
         <div className="w-full h-full">
-            <Swiper
+            {imageIndex && <Swiper
                 dir="ltr"
                 loop={true}
+                initialSlide={imageIndex}
                 cssMode={true}
                 navigation={true}
                 pagination={{ clickable: true }}
@@ -46,17 +65,10 @@ const ProfileImagesSlider = () => {
                 modules={[Navigation, Pagination, Mousewheel, Keyboard]}
                 className="mySwiper"
             >
-                {/* <SwiperSlide>
-                    <div className="w-1/2 h-full flex justify-center items-center mb-2">
-                        <img src={profile} alt="" className="shrink-0 pb-10" />
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide> */}
                 {userProfile?.userImage.map((item, key) => <SwiperSlide key={key}>
                     <div className="w-1/2 h-full flex justify-center items-center mb-2 relative">
                         <img src={item.puctureAddress} alt="" className="shrink-0" />
-                        <Button 
+                        <Button
                             className="absolute top-0 right-1 w-10 border-none"
                             id="basic-button"
                             aria-controls={open ? 'basic-menu' : undefined}
@@ -80,7 +92,8 @@ const ProfileImagesSlider = () => {
                     </div>
                 </SwiperSlide>)}
 
-            </Swiper>
+            </Swiper>}
+
         </div>
     )
 }

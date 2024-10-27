@@ -14,6 +14,8 @@ import { ProfileImagesSlider } from './Profile Images Slider';
 import { Field, Form, Formik } from 'formik';
 import { addProfileImage } from '../../../../core/services/api/dashboard';
 import { useSelector } from 'react-redux';
+import { useMutation, useQueryClient } from 'react-query';
+import toast from 'react-hot-toast';
 
 const style = {
     position: 'absolute',
@@ -35,15 +37,24 @@ const EditProfileImage = () => {
     const handleClose = () => setOpen(false)
     const { userProfile } = useSelector((state) => state.userInfo)
 
-    const addUserProfileImage = async () => {
-        const profileImage = new FormData()
-        profileImage.append("formFile", file)
-        const result = await addProfileImage(profileImage)
-        console.log(result)
+    const addUserProfileImage = () => {
+        
     }
 
+    const client = useQueryClient()
+
+    const mutation = useMutation({
+        mutationFn: addProfileImage,
+        onSuccess: () => {
+            toast.success("پروفایل با موفقیت اضافه شد")
+            client.invalidateQueries({queryKey: ["userInfo"]})
+        }
+    })
+
     const handleUploadImage = (value) => {
-        setFile(value.target.files[0])
+        const profileImage = new FormData()
+        profileImage.append("formFile", value.target.files[0])
+        mutation.mutate(profileImage)
     }
     return (
         <DashboardPartsBody className="flex-col">
@@ -75,7 +86,7 @@ const EditProfileImage = () => {
                                         <p className="text-center text-[#12926C]"> {form.values.image} </p>
                                         <p className="font-semibold"> JPG or PNG no larger than 5 MB </p>
                                     </div>
-                                    <EditButton type="submit"> آپلود عکس </EditButton>
+                                    {/* <EditButton type="submit"> آپلود عکس </EditButton> */}
                                 </Form>
                             )}
                         </Formik>

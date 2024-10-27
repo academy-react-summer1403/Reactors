@@ -10,6 +10,7 @@ import CourseImg from '../../../../assets/images/courseImg2.png'
 import { IoIosMore } from 'react-icons/io'
 import { getArticlesComments } from '../../../../core/services/api/dashboard'
 import { NoneItems } from '../../../common/Dashboard/Dashboard Tables/NoneItems'
+import { HiOutlineTrash } from 'react-icons/hi2'
 
 
 const MyArticleComments = () => {
@@ -41,13 +42,13 @@ const MyArticleComments = () => {
                 {articleComments?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : articleComments?.map((item, key) => <TableRow key={key}>
                     <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
                         <img src="" alt="" className="w-16" />
-                        salam
+                        {item.courseTitle}
                     </TableCell>
-                    <TableCell> {23} </TableCell>
-                    <TableCell> {102} </TableCell>
-                    <TableCell> {4.3} </TableCell>
-                    <TableCell> 1403/03/16 </TableCell>
-                    <TableCell> <HiOutlineTrash className="size-8" /> </TableCell>
+                    <TableCell> {item.title} </TableCell>
+                    <TableCell> {item.replyCount} </TableCell>
+                    <TableCell> {item.insertDate} </TableCell>
+                    <TableCell> {item.accept ? "تایید شده" : "تایید نشده"} </TableCell>
+                    <TableCell> ... </TableCell>
                 </TableRow>
                 )}
             </TableBody>

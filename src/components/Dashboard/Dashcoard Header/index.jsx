@@ -9,6 +9,7 @@ import { HeaderOptions } from '../../common/Header/Header Options/HeaderOptions'
 import { HiOutlineEyeDropper } from 'react-icons/hi2'
 import { ShopBasketSapn } from '../../common/Header/Header Options/Styled Header Options/StyledShopBasketSpan'
 import { UserProfile } from '../../common/Header/UserProfile'
+import basket from '../../../assets/Image/basket.png'
 
 const DashboardHeader = () => {
     return (
@@ -19,8 +20,8 @@ const DashboardHeader = () => {
             </div>
             <HeaderOptionsHolder>
                 <HeaderOptions icon={<HiOutlineEyeDropper />} />
-                <HeaderOptions icon={<HiOutlineMoon />} />
-                <HeaderOptions icon={<HiOutlineShoppingBag />} span={<ShopBasketSapn> 3 </ShopBasketSapn>} />
+                {/* <HeaderOptions icon={<HiOutlineMoon />} /> */}
+                <HeaderOptions icon={<HiOutlineShoppingBag />} />
                 <UserProfile />
             </HeaderOptionsHolder>
         </HeaderBody>
