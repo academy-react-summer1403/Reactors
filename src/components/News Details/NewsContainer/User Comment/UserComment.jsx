@@ -1,7 +1,4 @@
 import React from "react";
-import reply from "../../../../assets/Image/reply.png";
-import like from "../../../../assets/Image/like.png";
-import disLike from "../../../../assets/Image/dislike.png";
 import {
   BiUserCircle,
   BiDislike,

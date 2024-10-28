@@ -1,13 +1,5 @@
 import React, { useState } from "react";
 import bgUp from "../../../assets/Image/bgUp.png";
-import like from "../../../assets/Image/like.png";
-import disLike from "../../../assets/Image/dislike.png";
-import Star from "../../../assets/Image/star.png";
-
-import author from "../../../assets/Image/author.png";
-import view from "../../../assets/Image/view.png";
-import calender from "../../../assets/Image/calender.png";
-import key from "../../../assets/Image/key.png";
 import NewsUserComment from "./User Comment/UserComment";
 import Comment from "./Form/Comment";
 import {

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import like from "../../../assets/Image/like.png";
-import disLike from "../../../assets/Image/dislike.png";
-import Star from "../../../assets/Image/star.png";
+
 import Cdbg from "../../../assets/Image/Cdbg.png";
 // import download from "../../../assets/Image/download.png";
 import Comment from "./Form/Comment";
