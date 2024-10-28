@@ -23,7 +23,7 @@ const Comment = () => {
                 as="textarea"
                 placeholder="متن"
                 rows="4"
-                className="p-2 border-2 border-[#158B68] rounded-md text-[#807A7A]"
+                className="p-2 border-2 border-[#158B68] w-full resize-none h-[160px] rounded-md text-[#807A7A]"
               />
             </div>
 

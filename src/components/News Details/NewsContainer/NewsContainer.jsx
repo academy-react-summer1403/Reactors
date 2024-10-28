@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import bgUp from "../../../assets/Image/bgUp.png";
-import like from "../../../assets/Image/like.png";
-import disLike from "../../../assets/Image/dislike.png";
-import Star from "../../../assets/Image/star.png";
-
-import author from "../../../assets/Image/author.png";
-import view from "../../../assets/Image/view.png";
-import calender from "../../../assets/Image/calender.png";
-import key from "../../../assets/Image/key.png";
 import NewsUserComment from "./User Comment/UserComment";
 import Comment from "./Form/Comment";
 import {
+  BiCalendar,
   BiDislike,
   BiLike,
   BiSolidDislike,
@@ -18,7 +11,10 @@ import {
   BiSolidStar,
   BiSolidTrafficBarrier,
   BiStar,
+  BiUser,
 } from "react-icons/bi";
+import { MdOutlineVisibility } from "react-icons/md";
+import { IoKeyOutline } from "react-icons/io5";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 
@@ -26,8 +22,19 @@ import dateModifier from "../../../core/utils/dateModifier";
 import { postNewsLike } from "../../../core/services/api/postNewsLike";
 import { postNewsDisLike } from "../../../core/services/api/postNewsDislike";
 import { postNewsFav } from "../../../core/services/api/postNewsFav";
+import { getNewsComments } from "../../../core/services/api/getNewsID";
+import SyncLoader from "react-spinners/SyncLoader";
+import CommentWrapper from "../News Details Wrapper/CommentWrapper";
 
 const NewsContainer = ({ newsesDetails, commentDetail }) => {
+  const { data: newsesComments, isLoading } = useQuery({
+    queryKey: ["newsComments"],
+    queryFn: () => {
+      const result = getNewsComments(id);
+      return result;
+    },
+  });
+
   const {
     currentLikeCount,
     currentDissLikeCount,
@@ -117,7 +124,7 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
             {googleTitle}
           </h1>
           <div className="text-gray-700 pt-8">{googleDescribe}</div>
-          <div className="flex flex-row-reverse justify-between items-center">
+          <div className="flex flex-row-reverse justify-between items-center gap-6">
             <div className="flex flex-row-reverse gap-4">
               <div
                 className="text-[#089E71] flex items-center flex-col cursor-pointer "
@@ -155,35 +162,33 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
                   <BiStar className="text-2xl" />
                 )}
               </div>
-
             </div>
-            <div className="flex flex-row gap-11 py-8">
-              <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#126F94] w-full">
+
+            <div className="flex flex-row gap-7 py-8 min-w-36">
+              <div className="flex flex-row-reverse gap-2">
+                <span className="text-[13px] text-[#126F94] ">
                   نام نویسنده :{addUserFullName}
                 </span>
-                <img src={author} />
+                <BiUser className="text-2xl text-[#158B68]" />
               </div>
 
-              <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#807A7A] w-full">
+              <div className="flex flex-row-reverse gap-2">
+                <span className="text-[13px] text-[#807A7A]">
                   {currentView}
                 </span>
-                <img src={view} />
+                <MdOutlineVisibility className="text-2xl text-[#158B68]" />{" "}
               </div>
 
-              <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#807A7A] w-full">
+              <div className="flex flex-row-reverse gap-2">
+                <span className="text-[13px] text-[#807A7A]">
                   {dateModifier(insertDate)}
                 </span>
-                <img src={calender} />
+                <BiCalendar className="text-2xl text-[#158B68]" />
               </div>
 
-              <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#807A7A] w-full">
-                  {keyword}
-                </span>
-                <img src={key} />
+              <div className="flex flex-row-reverse gap-2">
+                <span className="text-[13px] text-[#807A7A] ">{keyword}</span>
+                <IoKeyOutline className="text-2xl text-[#158B68]" />{" "}
               </div>
             </div>
           </div>
@@ -214,12 +219,20 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
         </div>
 
         <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
-          {/* <NewsUserComment /> */}
-          {cardType === "userReview" ? (
-            <NewsUserComment commentDetail={commentDetail} />
+          {isLoading ? (
+            <div className="flex items-center justify-center w-full">
+              <SyncLoader size={24} color="#a4f6de" />{" "}
+            </div>
           ) : (
-            <Comment />
+            <>
+              {cardType === "userReview" ? (
+                <NewsUserComment newsComment={newsesComments} />
+              ) : (
+                <Comment />
+              )}
+            </>
           )}
+          <CommentWrapper newsComment={newsesComments} />
         </div>
       </div>
     </div>

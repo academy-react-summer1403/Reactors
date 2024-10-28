@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import like from "../../../assets/Image/like.png";
-import disLike from "../../../assets/Image/dislike.png";
-import Star from "../../../assets/Image/star.png";
+
 import Cdbg from "../../../assets/Image/Cdbg.png";
-import download from "../../../assets/Image/download.png";
+// import download from "../../../assets/Image/download.png";
 import Comment from "./Form/Comment";
 import UserComment from "./User Comment/UserComment";
 import { postCourseLike } from "../../../core/services/api/postCourseLike";
@@ -20,8 +18,20 @@ import {
 } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
+import { getCourseComments } from "../../../core/services/api/getCourseID";
+import SyncLoader from "react-spinners/SyncLoader";
+import { CardWrapperComment } from "../Card Details Wrapper/CardWrapper";
 
 const MiddleDetails = ({ courseDetail }) => {
+  
+  const { data: coursesComments, isLoading } = useQuery({
+    queryKey: ["courseComments"],
+    queryFn: () => {
+      const result = getCourseComments(courseId);
+      return result;
+    },
+  });
+
   const queryClient = useQueryClient();
 
   const [cardType, setCardType] = useState("userReview");
@@ -161,14 +171,13 @@ const MiddleDetails = ({ courseDetail }) => {
             <div className=" flex-col rounded-[30px] flex items-center justify-center p-6 ">
               <img
                 src="https://ad-exchange.fr/wp-content/uploads/2019/04/Video_mobile_800x533.jpg"
-                alt="image"
                 className="w-full h-[340px] object-cover rounded-[30px]"
               />
             </div>
             <ul className="flex flex-col gap-4">
               <div className="flex flex-row border-b pb-3 gap-20">
                 <li>ویدیو 1: معرفی دوره</li>
-                <img className="pl-6" src={download} />
+                {/* <img className="pl-6" src={download} /> */}
               </div>
               <li className="border-b pb-3">ویدیو 2: نصب و پیکربندی ابزارها</li>
               <li className="border-b pb-3">ویدیو 3: شروع برنامه‌نویسی</li>
@@ -202,7 +211,20 @@ const MiddleDetails = ({ courseDetail }) => {
                 نظرات کاربران
               </button>
             </div>
-            {cardType === "userReview" ? <UserComment /> : <Comment />}
+            {isLoading ? (
+              <div className="flex items-center justify-center w-full">
+                <SyncLoader size={24} color="#a4f6de" />{" "}
+              </div>
+            ) : (
+              <>
+                {cardType === "userReview" ? (
+                  <UserComment courseComment={coursesComments} />
+                ) : (
+                  <Comment />
+                )}
+              </>
+            )}
+            <CardWrapperComment courseComment={coursesComments} />
           </div>
         </div>
       </div>
