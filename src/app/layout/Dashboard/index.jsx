@@ -9,25 +9,26 @@ import { DashboardHeader } from '../../../components/Dashboard/Dashcoard Header'
 import { useDispatch } from 'react-redux'
 import { getUserInfo } from '../../../core/services/api/dashboard'
 import { handleUserProfile } from '../../../Redux/userInfo'
+import { useQuery } from 'react-query'
 
 
 const DashboardLayout = () => {
 
     const dispatch = useDispatch()
 
-    const userInfo = async () => {
-        const result = await getUserInfo()
-        // console.log(result)
-        // dispatch(handleEmail(result.email))
-        // dispatch(handlePhoneNumber(result.phoneNumber))
-        // dispatch(handleNationalCode(result.nationalCode))
-        // dispatch(handleProfileImages(result.userImage))
-        dispatch(handleUserProfile(result))
-    }
+    // const userInfo = async () => {
+    //     const result = await getUserInfo()
+    //     dispatch(handleUserProfile(result))
+    // }
+
+    const { data: userInfo } = useQuery({
+        queryKey: ["userInfo"],
+        queryFn: getUserInfo
+    })
 
     useEffect(() => {
-        userInfo()
-    }, [])
+        dispatch(handleUserProfile(userInfo))
+    }, [userInfo])
 
     return (
         <div className="w-full h-full flex text-[#22445D] text-[18px]">

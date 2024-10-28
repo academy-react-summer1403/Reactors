@@ -94,10 +94,10 @@ const EditProfile = () => {
                                 <EditProfileInput inputTitle="ایمیل" name="email" value={form.values.email} />
                                 <div className="flex flex-col gap-[10px] w-1/3">
                                     <p className="text-[#158B68] text-[20px]"> جنسیت </p>
-                                    <select name="gender" className="px-[15px] py-5 flex gap-[5px] bg-white rounded-[15px] border-2 border-[#158B68] outline-none">
+                                    <Field as="select" name="gender" className="px-[15px] py-5 flex gap-[5px] bg-white rounded-[15px] border-2 border-[#158B68] outline-none">
                                         <option value={false}> زن </option>
                                         <option value={true}> مرد </option>
-                                    </select>
+                                    </Field>
                                 </div>
 
                             </div>
