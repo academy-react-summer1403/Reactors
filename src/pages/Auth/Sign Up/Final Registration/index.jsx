@@ -19,11 +19,14 @@ import { ButtonHolder } from '../../../../components/common/Auth/Styled Form/Sty
 import { ConfirmButton } from '../../../../components/common/Auth/Styled Form/StyledConfirmButton'
 
 import image from '../../../../assets/images/finalRegister.svg'
+import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const FinalRegistration = () => {
 
     const { phoneNumber } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const register = async (values) => {
         const userData = {
@@ -32,6 +35,14 @@ const FinalRegistration = () => {
             phoneNumber: values.phoneNumber
         }
         const result = await finalRegisteration(userData)
+        if (result.success) {
+            toast.success("ثبت نام با موفقیت انجام شد")
+            navigate("/authentication")
+        }
+
+        else if (!result.success) {
+            toast.error("خطا")
+        }
         console.log(result)
     }
 
