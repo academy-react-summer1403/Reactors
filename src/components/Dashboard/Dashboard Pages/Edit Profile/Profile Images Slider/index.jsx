@@ -13,10 +13,10 @@ import { Menu, MenuItem } from '@mui/material'
 import { useMutation, useQueryClient } from 'react-query'
 import { deleteProfileImage, selectProfileImage } from '../../../../../core/services/api/dashboard'
 import toast from 'react-hot-toast'
-import {motion,AnimatePresence} from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const ProfileImagesSlider = () => {
-    const [dropdownIsOpen,setDropdownIsOpen] = useState(false)
+    const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
     const { userProfile } = useSelector((state) => state.userInfo)
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
@@ -41,7 +41,7 @@ const ProfileImagesSlider = () => {
         mutationFn: selectProfileImage,
         onSuccess: () => {
             toast.success("عملیات با موفقیت انجام شد")
-            client.invalidateQueries({queryKey: ["userInfo"]})
+            client.invalidateQueries({ queryKey: ["userInfo"] })
         }
     })
 
@@ -49,7 +49,7 @@ const ProfileImagesSlider = () => {
         mutationFn: deleteProfileImage,
         onSuccess: () => {
             toast.success("پروفایل شما حذف شد")
-            client.invalidateQueries({queryKey: ["userInfo"]})
+            client.invalidateQueries({ queryKey: ["userInfo"] })
         }
     })
 
@@ -72,49 +72,50 @@ const ProfileImagesSlider = () => {
 
     return (
         <>
-        <div className='fixed top-0 left-0  bottom-0 right-0 ' onClick={()=>{
-            setDropdownIsOpen(false)
-        }}></div>
-        <div className="w-full h-full">
-            {imageIndex && <Swiper
-                dir="ltr"
-                loop={true}
-                initialSlide={imageIndex}
-                cssMode={true}
-                navigation={true}
-                pagination={{ clickable: true }}
-                mousewheel={true}
-                keyboard={true}
-                modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                className="mySwiper"
-            >
-                {userProfile?.userImage.map((item, key) =>{
-                    
-                    return (
-                         <SwiperSlide key={key}>
-                        <div className="w-1/2 h-full flex justify-center items-center mb-2 relative">
-                            <img src={item.puctureAddress} alt="" className="shrink-0" />
-                            <div className='absolute top-0 right-0' onClick={()=>{
-                                setDropdownIsOpen(!dropdownIsOpen)
-                            }}>
-                            
-                                <HiOutlineDotsVertical size={32}/>
-                                <AnimatePresence mode='wait'>
-                                {dropdownIsOpen && <motion.div onClick={()=>{
-                                    console.log(item.id);
-                                    setDropdownIsOpen(false)
-                                    }} initial={{y:-100}} animate={{y:-0}} exit={{y:-100}} className='bg-white px-4 py-2 absolute top-0 left-0'>
-                                        click
-                                    </motion.div>}
-                                </AnimatePresence>
-                            </div>
-                        </div>
-                    </SwiperSlide>)
-                })}
+            {/* <div className='fixed top-0 left-0  bottom-0 right-0 ' onClick={() => {
+                setDropdownIsOpen(false)
+            }}></div> */}
+            <div className="w-full h-full">
+                { <Swiper
+                    dir="ltr"
+                    loop={true}
+                    initialSlide={imageIndex}
+                    cssMode={true}
+                    navigation={true}
+                    pagination={{ clickable: true }}
+                    mousewheel={true}
+                    keyboard={true}
+                    modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+                    className="mySwiper"
+                >
+                    {userProfile?.userImage.map((item, key) => {
 
-            </Swiper>}
+                        return (
+                            <SwiperSlide key={key}>
+                                <div className="w-1/2 h-full flex justify-center items-center mb-2 relative">
+                                    <img src={item.puctureAddress} alt="" className="shrink-0" />
+                                    <div className='absolute top-0 right-0' onClick={() => {
+                                        setDropdownIsOpen(!dropdownIsOpen)
+                                    }}>
 
-        </div>
+                                        <HiOutlineDotsVertical size={32} />
+                                        <AnimatePresence mode='wait'>
+                                            {dropdownIsOpen && <motion.div onClick={() => {
+                                                console.log(item.id);
+                                                setDropdownIsOpen(false)
+                                            }} initial={{ y: -150 }} animate={{ y: -0 }} exit={{ y: -150 }} className='bg-white px-4 py-2 absolute top-0 left-0 flex flex-col gap-3 rounded-md shadow-md'>
+                                                <div onClick={() => handleSelectProfileImage(item.id)}> انتخاب </div>
+                                                <div onClick={() => handleDeleteProfile(item.id)}> حذف </div>
+                                            </motion.div>}
+                                        </AnimatePresence>
+                                    </div>
+                                </div>
+                            </SwiperSlide>)
+                    })}
+
+                </Swiper>}
+
+            </div>
         </>
     )
 }

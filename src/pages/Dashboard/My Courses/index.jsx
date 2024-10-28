@@ -12,20 +12,28 @@ import { TablePagination } from '../../../components/common/Dashboard/Dashboard 
 import CourseImg from '../../../assets/images/courseImg2.png'
 import { NoneItems } from '../../../components/common/Dashboard/Dashboard Tables/NoneItems'
 import dateModifier from '../../../core/utils/dateModifier'
+import { useQuery } from 'react-query'
 
 const MyCourses = () => {
 
-    const [myCourses, setMyCourses] = useState([])
+    // const [myCourses, setMyCourses] = useState([])
 
-    const getAllMyCourses = async () => {
-        const result = await getMyCourses()
-        setMyCourses(result.listOfMyCourses)
-        console.log(result)
-    }
+    // const getAllMyCourses = async () => {
+    //     const result = await getMyCourses()
+    //     setMyCourses(result.listOfMyCourses)
+    //     console.log(result)
+    // }
 
-    useEffect(() => {
-        getAllMyCourses()
-    }, [])
+    const { data: myCourses } = useQuery({
+        queryKey: ["myCourses"],
+        queryFn: getMyCourses
+    }) 
+
+    console.log(myCourses)
+
+    // useEffect(() => {
+    //     getAllMyCourses()
+    // }, [])
 
     return (
         <DashboardPartsBody className="flex flex-col">
@@ -33,7 +41,7 @@ const MyCourses = () => {
                 tableHeaders={["نام دوره", "نام استاد", "نام ترم", "نام گروه", "تاریخ شروع", "وضعیت پرداخت"]}
             />
             <TableBody>
-                {myCourses?.map((item, key) => <TableRow key={key}>
+                {myCourses?.listOfMyCourses.length === 0 ? <NoneItems title={"دوره ای وجود ندارد"} /> :  myCourses?.map((item, key) => <TableRow key={key}>
                     <TableCell className="flex gap-1 items-center">
                         <img src={item.tumbImageAddress} alt="" className="w-12" />
                         {item.courseTitle}
@@ -45,7 +53,7 @@ const MyCourses = () => {
                     <TableCell> {item.paymentStatus} </TableCell>
                 </TableRow>)}
             </TableBody>
-            {myCourses.length === 0 ? null : <TablePagination />}
+            {/* { <TablePagination />} */}
         </DashboardPartsBody>
     )
 }

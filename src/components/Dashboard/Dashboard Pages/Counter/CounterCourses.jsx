@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { DashboardPartsBody } from '../../../common/Dashboard/Styled DashboardPages/StyledDashboardPartsBody'
 import { DashboardPartsTitle } from '../../../common/Dashboard/Styled DashboardPages/StyledDashboardPartsTitle'
 
 import CourseImg from '../../../../assets/images/courseImg.png'
+import { getCourseTop } from '../../../../core/services/api/getCourseTop'
 
-const CounterCourses = ({ title, responsive }) => {
+const CounterCourses = ({ title, responsive, courseTitle, teacher, cost }) => {
+
+
     return (
         <DashboardPartsBody className={`flex-col text-[16px] w-[350px] ${responsive}`}>
             <DashboardPartsTitle className="py-[10px]">
@@ -17,9 +20,9 @@ const CounterCourses = ({ title, responsive }) => {
                         <img src={CourseImg} alt="عکس دوره" className="w-[160px]" />
                     </div>
                     <div className="flex flex-col gap-3 justify-center text-nowrap">
-                        <p> عنوان: دوره </p>
-                        <p> نام مدرس: استاد </p>
-                        <p> قیمت: <span className="text-[#E11818]"> 3.000.000 </span> تومان </p>
+                        <p> عنوان: {courseTitle} </p>
+                        <p> نام مدرس: {teacher} </p>
+                        <p> قیمت: <span className="text-[#E11818]"> {cost} </span> تومان </p>
                     </div>
                 </div>
             </div>

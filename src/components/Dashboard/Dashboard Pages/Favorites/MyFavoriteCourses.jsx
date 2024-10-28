@@ -11,6 +11,7 @@ import { TableCell } from '../../../common/Dashboard/Dashboard Tables/Styled Das
 
 import CourseImg from '../../../../assets/images/courseImg2.png'
 import { NoneItems } from '../../../common/Dashboard/Dashboard Tables/NoneItems'
+import dateModifier from '../../../../core/utils/dateModifier'
 
 const MyFavoriteCourses = () => {
 
@@ -49,7 +50,7 @@ const MyFavoriteCourses = () => {
                         <TableCell> {item.teacheName} </TableCell>
                         <TableCell> {item.typeName} </TableCell>
                         <TableCell> {item.levelName} </TableCell>
-                        <TableCell> 1403/03/16 </TableCell>
+                        <TableCell> {dateModifier(item.lastUpdate)} </TableCell>
                         <TableCell> <HiOutlineTrash className="size-8" /> </TableCell>
                     </TableRow>
                 )}

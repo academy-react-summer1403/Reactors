@@ -15,6 +15,7 @@ import { ConfirmButton } from '../../../components/common/Auth/Styled Form/Style
 
 import ChangePasswordImg from '../../../assets/images/changePassword.png'
 import { changePassword } from '../../../core/services/api/dashboard'
+import toast from 'react-hot-toast'
 
 const ChangePassword = () => {
 
@@ -24,6 +25,9 @@ const ChangePassword = () => {
             newPassword: values.newPassword
         }
         const result = await changePassword(newPassword)
+        if (result.success) {
+            toast.success("تغییر رمز با موفقیت انجام شد")
+        }
         console.log(result)
     }
 

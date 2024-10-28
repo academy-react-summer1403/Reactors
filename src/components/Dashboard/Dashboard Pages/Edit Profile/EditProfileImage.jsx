@@ -78,7 +78,7 @@ const EditProfileImage = () => {
                                 <Form className="w-full flex flex-col justify-center items-center gap-5">
                                     <div className="flex flex-col gap-2 justify-center items-center">
                                         <label htmlFor="filePicker" className="py-[10px] px-5 border border-[#158B68] rounded-[5px]"> انتخاب فایل </label>
-                                        <Field onChange={handleUploadImage} type="file" name="image" id="filePicker" className="hidden" accept='images/*' />
+                                        <Field onChange={handleUploadImage} type="file" name="image" id="filePicker" className="hidden z-[999]" accept='images/*' />
                                         <p className="text-center text-[#12926C]"> {form.values.image} </p>
                                         <p className="font-semibold"> JPG or PNG no larger than 5 MB </p>
                                     </div>
