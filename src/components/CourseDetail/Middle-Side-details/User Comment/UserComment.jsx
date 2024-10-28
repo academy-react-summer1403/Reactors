@@ -3,8 +3,16 @@ import like from "../../../../assets/Image/like.png";
 import disLike from "../../../../assets/Image/dislike.png";
 import user from "../../../../assets/Image/user.png";
 import reply from "../../../../assets/Image/reply.png";
-
-
+import {
+  BiUserCircle,
+  BiDislike,
+  BiLike,
+  BiSolidDislike,
+  BiSolidLike,
+  BiSolidStar,
+  BiStar,
+} from "react-icons/bi";
+import { LiaReplySolid } from "react-icons/lia";
 
 const UserComment = () => {
   return (
@@ -12,15 +20,15 @@ const UserComment = () => {
       <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div>
-              <img src={user} />
+            <div className="text-4xl text-[#158B68]">
+              <BiUserCircle />
             </div>
             <h2 className="text-[15px]">عنوان : عنوان نظر</h2>
           </div>
           <div className="flex flex-row gap-4">
-            <img src={like} />
-            <img src={disLike} />
-            <img src={reply} />
+            <BiLike className="text-2xl text-[#158B68]" />
+            <BiDislike className="text-2xl text-[#158B68]" />
+            <LiaReplySolid className="text-2xl text-[#158B68]" />
           </div>
         </div>
         <div className="text-gray-700 pt-5 min-h-[110px]">

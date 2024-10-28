@@ -11,6 +11,7 @@ import key from "../../../assets/Image/key.png";
 import NewsUserComment from "./User Comment/UserComment";
 import Comment from "./Form/Comment";
 import {
+  BiCalendar,
   BiDislike,
   BiLike,
   BiSolidDislike,
@@ -18,7 +19,10 @@ import {
   BiSolidStar,
   BiSolidTrafficBarrier,
   BiStar,
+  BiUser,
 } from "react-icons/bi";
+import { MdOutlineVisibility } from "react-icons/md";
+import { IoKeyOutline } from "react-icons/io5";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 
@@ -117,7 +121,7 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
             {googleTitle}
           </h1>
           <div className="text-gray-700 pt-8">{googleDescribe}</div>
-          <div className="flex flex-row-reverse justify-between items-center">
+          <div className="flex flex-row-reverse justify-between items-center gap-6">
             <div className="flex flex-row-reverse gap-4">
               <div
                 className="text-[#089E71] flex items-center flex-col cursor-pointer "
@@ -155,35 +159,35 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
                   <BiStar className="text-2xl" />
                 )}
               </div>
-
             </div>
-            <div className="flex flex-row gap-11 py-8">
-              <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#126F94] w-full">
+
+            <div className="flex flex-row gap-7 py-8 min-w-36">
+              <div className="flex flex-row-reverse gap-2">
+                <span className="text-[13px] text-[#126F94] ">
                   نام نویسنده :{addUserFullName}
                 </span>
-                <img src={author} />
+                <BiUser className="text-2xl text-[#158B68]" />
               </div>
 
-              <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#807A7A] w-full">
+              <div className="flex flex-row-reverse gap-2">
+                <span className="text-[13px] text-[#807A7A]">
                   {currentView}
                 </span>
-                <img src={view} />
+                <MdOutlineVisibility className="text-2xl text-[#158B68]" />{" "}
               </div>
 
-              <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#807A7A] w-full">
+              <div className="flex flex-row-reverse gap-2">
+                <span className="text-[13px] text-[#807A7A]">
                   {dateModifier(insertDate)}
                 </span>
-                <img src={calender} />
+                <BiCalendar className="text-2xl text-[#158B68]" />
               </div>
 
-              <div className="flex flex-row-reverse gap-3">
-                <span className="text-[13px] text-[#807A7A] w-full">
+              <div className="flex flex-row-reverse gap-2">
+                <span className="text-[13px] text-[#807A7A] ">
                   {keyword}
                 </span>
-                <img src={key} />
+                <IoKeyOutline className="text-2xl text-[#158B68]" />{" "}
               </div>
             </div>
           </div>
