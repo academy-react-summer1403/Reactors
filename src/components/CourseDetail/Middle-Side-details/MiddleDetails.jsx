@@ -3,7 +3,7 @@ import like from "../../../assets/Image/like.png";
 import disLike from "../../../assets/Image/dislike.png";
 import Star from "../../../assets/Image/star.png";
 import Cdbg from "../../../assets/Image/Cdbg.png";
-import download from "../../../assets/Image/download.png";
+// import download from "../../../assets/Image/download.png";
 import Comment from "./Form/Comment";
 import UserComment from "./User Comment/UserComment";
 import { postCourseLike } from "../../../core/services/api/postCourseLike";
@@ -168,7 +168,7 @@ const MiddleDetails = ({ courseDetail }) => {
             <ul className="flex flex-col gap-4">
               <div className="flex flex-row border-b pb-3 gap-20">
                 <li>ویدیو 1: معرفی دوره</li>
-                <img className="pl-6" src={download} />
+                {/* <img className="pl-6" src={download} /> */}
               </div>
               <li className="border-b pb-3">ویدیو 2: نصب و پیکربندی ابزارها</li>
               <li className="border-b pb-3">ویدیو 3: شروع برنامه‌نویسی</li>

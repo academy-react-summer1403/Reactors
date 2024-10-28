@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik } from "formik";
+import {Formik, Form, Field, useFormik } from "formik";
 import * as Yup from "yup";
 import sug from "../../../assets/Image/sug.png";
 
@@ -18,7 +18,7 @@ const Suggestion = () => {
       message: Yup.string().required("متن الزامی است"),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(values);
     },
   });
   return (
