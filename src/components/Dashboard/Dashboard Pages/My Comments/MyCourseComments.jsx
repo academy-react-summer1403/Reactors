@@ -11,6 +11,7 @@ import { IoIosMore } from 'react-icons/io'
 import { getCourseComments } from '../../../../core/services/api/dashboard'
 import { NoneItems } from '../../../common/Dashboard/Dashboard Tables/NoneItems'
 import { HiOutlineTrash } from 'react-icons/hi2'
+import dateModifier from '../../../../core/utils/dateModifier'
 
 
 const MyCourseComments = () => {
@@ -46,7 +47,7 @@ const MyCourseComments = () => {
                     </TableCell>
                     <TableCell> {item.title} </TableCell>
                     <TableCell> {item.replyCount} </TableCell>
-                    <TableCell> {item.insertDate} </TableCell>
+                    <TableCell> {dateModifier(item.insertDate)} </TableCell>
                     <TableCell> {item.accept ? "تایید شده" : "تایید نشده"} </TableCell>
                     <TableCell> ... </TableCell>
                 </TableRow>

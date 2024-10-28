@@ -81,11 +81,27 @@ export const addProfileImage = async (profile) => {
     }
 }
 
+export const selectProfileImage = async (profile) => {
+    try {
+        const response = await http.post("/SharePanel/SelectProfileImage", profile)
+    } catch (error) {
+        throw error
+    }
+}
+
 export const editProfile = async (userInfo) => {
     try {
         const response = await http.put("/SharePanel/UpdateProfileInfo", userInfo)
         return response
     } catch (error) {
         return false
+    }
+}
+
+export const deleteProfileImage = async (profile) => {
+    try {
+        const response = await http.delete("/SharePanel/DeleteProfileImage",profile)
+    } catch (error) {
+        throw error
     }
 }

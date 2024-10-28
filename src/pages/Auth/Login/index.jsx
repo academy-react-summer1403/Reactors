@@ -42,6 +42,10 @@ const Login = () => {
             toast.success("خوش آمدید")
             navigate("/")
         }
+
+        else if (!result.success) {
+            toast.error("خطا")
+        }
     }
 
     useEffect(() => {

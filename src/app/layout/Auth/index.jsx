@@ -8,11 +8,11 @@ import { HomePageIcon } from '../../../components/Auth/HomePageIcon'
 
 const AuthLayout = () => {
     return (
-        <div className="w-screen h-screen flex justify-center items-center px-[100px] py-[50px]">
+        <div className="w-screen h-screen flex justify-center items-center px-[100px] py-[50px] max-[600px]:px-[50px]">
             {/* <Login /> */}
             <AuthBody>
                 <AuthCover />
-                <FormBody>
+                <FormBody className="w-1/2 max-[1000px]:w-full">
                     <HomePageIcon />
                     <Outlet />
                 </FormBody>

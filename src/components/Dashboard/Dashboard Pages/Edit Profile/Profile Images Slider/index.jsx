@@ -10,6 +10,9 @@ import profile from '../../../../../assets/images/profile.png'
 import { useSelector } from 'react-redux'
 import { Button } from 'flowbite-react'
 import { Menu, MenuItem } from '@mui/material'
+import { useMutation, useQueryClient } from 'react-query'
+import { deleteProfileImage, selectProfileImage } from '../../../../../core/services/api/dashboard'
+import toast from 'react-hot-toast'
 
 const ProfileImagesSlider = () => {
 
@@ -17,6 +20,7 @@ const ProfileImagesSlider = () => {
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
     const [imageIndex, setImageIndex] = useState()
+    const client = useQueryClient()
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
@@ -27,27 +31,41 @@ const ProfileImagesSlider = () => {
     }
 
     const getProileImageIndex = () => {
-        // for (let i; i < userProfile?.userImage.length; i++) {
-        //     console.log(i, "index")
-        //     if (userProfile?.userImage[i].puctureAddress == userProfile?.currentPictureAddress) {
-
-        //         return i
-        //     }
-        // }
-
-
-
         setImageIndex(userProfile?.userImage.findIndex((item) => {
             return item.puctureAddress == userProfile?.currentPictureAddress
         }))
+    }
 
+    const mutationSelect = useMutation({
+        mutationFn: selectProfileImage,
+        onSuccess: () => {
+            toast.success("عملیات با موفقیت انجام شد")
+            client.invalidateQueries({queryKey: ["userInfo"]})
+        }
+    })
 
+    const mutationDelete = useMutation({
+        mutationFn: deleteProfileImage,
+        onSuccess: () => {
+            toast.success("پروفایل شما حذف شد")
+            client.invalidateQueries({queryKey: ["userInfo"]})
+        }
+    })
+
+    const handleSelectProfileImage = (id) => {
+        const selectedImage = new FormData()
+        selectedImage.append("ImageId", id)
+        mutationSelect.mutate(selectedImage)
+    }
+
+    const handleDeleteProfile = (id) => {
+        const deletedImage = new FormData()
+        deletedImage.append("DeleteEntityId", id)
+        mutationDelete.mutate(deletedImage)
     }
 
     useEffect(() => {
         getProileImageIndex()
-        console.log(imageIndex)
-
     }, [imageIndex])
 
 
@@ -86,7 +104,11 @@ const ProfileImagesSlider = () => {
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <MenuItem onClick={handleClose}> انتخاب </MenuItem>
+                            <MenuItem onClick={() => {
+                                // handleSelectProfileImage(item.id)
+                                console.log(item.id)
+                                handleClose()
+                            }}> انتخاب </MenuItem>
                             <MenuItem onClick={handleClose}> حذف </MenuItem>
                         </Menu>
                     </div>

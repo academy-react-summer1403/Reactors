@@ -7,5 +7,6 @@ export const AuthBody = styled.div({
     display: "flex",
     flexDirection: "row-reverse",
     background: "#FBF6F6",
-    boxShadow: "10px 10px 5px 0 #00000029"
+    boxShadow: "10px 10px 5px 0 #00000029",
+    overflowY: "scroll"
 })

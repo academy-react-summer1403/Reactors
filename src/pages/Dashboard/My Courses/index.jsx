@@ -11,6 +11,7 @@ import { TablePagination } from '../../../components/common/Dashboard/Dashboard 
 
 import CourseImg from '../../../assets/images/courseImg2.png'
 import { NoneItems } from '../../../components/common/Dashboard/Dashboard Tables/NoneItems'
+import dateModifier from '../../../core/utils/dateModifier'
 
 const MyCourses = () => {
 
@@ -40,7 +41,7 @@ const MyCourses = () => {
                     <TableCell> {item.fullName} </TableCell>
                     <TableCell> {item.termName} </TableCell>
                     <TableCell> {item.groupName} </TableCell>
-                    <TableCell> 1403/03/16 </TableCell>
+                    <TableCell> {dateModifier(item.lastUpdate)} </TableCell>
                     <TableCell> {item.paymentStatus} </TableCell>
                 </TableRow>)}
             </TableBody>

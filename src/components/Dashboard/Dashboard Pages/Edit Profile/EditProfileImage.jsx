@@ -37,10 +37,6 @@ const EditProfileImage = () => {
     const handleClose = () => setOpen(false)
     const { userProfile } = useSelector((state) => state.userInfo)
 
-    const addUserProfileImage = () => {
-        
-    }
-
     const client = useQueryClient()
 
     const mutation = useMutation({

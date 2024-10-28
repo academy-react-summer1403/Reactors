@@ -11,6 +11,7 @@ import CourseImg from '../../../assets/images/courseImg2.png'
 import { getReservedCourses } from '../../../core/services/api/dashboard'
 import { NoneItems } from '../../../components/common/Dashboard/Dashboard Tables/NoneItems'
 import { getCoursId } from '../../../core/services/api/getCourseID'
+import dateModifier from '../../../core/utils/dateModifier'
 
 const ReservedCourses = () => {
 
@@ -36,7 +37,7 @@ const ReservedCourses = () => {
     return (
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
-                tableHeaders={["نام دوره", "نام استاد", "نام ترم", "تاریخ شروع", "وضعیت تایید", "حذف"]}
+                tableHeaders={["نام دوره", "نام استاد", "نام ترم", "تاریخ رزرو", "وضعیت تایید", "حذف"]}
                 // first="نام دوره"
                 // second="نام استاد"
                 // third="نام ترم"
@@ -52,7 +53,7 @@ const ReservedCourses = () => {
                     </TableCell>
                     <TableCell> {} </TableCell>
                     <TableCell> {} </TableCell>
-                    <TableCell> {item.reserverDate} </TableCell>
+                    <TableCell> {dateModifier(item.reserverDate)} </TableCell>
                     <TableCell> {item.accept ? "تایید شده" : "تایید نشده"} </TableCell>
                     <TableCell> <HiOutlineTrash className="size-8" /> </TableCell>
                 </TableRow>)}
