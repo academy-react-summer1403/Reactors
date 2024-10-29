@@ -22,8 +22,19 @@ import dateModifier from "../../../core/utils/dateModifier";
 import { postNewsLike } from "../../../core/services/api/postNewsLike";
 import { postNewsDisLike } from "../../../core/services/api/postNewsDislike";
 import { postNewsFav } from "../../../core/services/api/postNewsFav";
+import { getNewsComments } from "../../../core/services/api/getNewsID";
+import SyncLoader from "react-spinners/SyncLoader";
+import CommentWrapper from "../News Details Wrapper/CommentWrapper";
 
 const NewsContainer = ({ newsesDetails, commentDetail }) => {
+  const { data: newsesComments, isLoading } = useQuery({
+    queryKey: ["newsComments"],
+    queryFn: () => {
+      const result = getNewsComments(id);
+      return result;
+    },
+  });
+
   const {
     currentLikeCount,
     currentDissLikeCount,
@@ -176,9 +187,7 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
               </div>
 
               <div className="flex flex-row-reverse gap-2">
-                <span className="text-[13px] text-[#807A7A] ">
-                  {keyword}
-                </span>
+                <span className="text-[13px] text-[#807A7A] ">{keyword}</span>
                 <IoKeyOutline className="text-2xl text-[#158B68]" />{" "}
               </div>
             </div>
@@ -210,12 +219,20 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
         </div>
 
         <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
-          {/* <NewsUserComment /> */}
-          {cardType === "userReview" ? (
-            <NewsUserComment commentDetail={commentDetail} />
+          {isLoading ? (
+            <div className="flex items-center justify-center w-full">
+              <SyncLoader size={24} color="#a4f6de" />{" "}
+            </div>
           ) : (
-            <Comment />
+            <>
+              {cardType === "userReview" ? (
+                <NewsUserComment newsComment={newsesComments} />
+              ) : (
+                <Comment />
+              )}
+            </>
           )}
+          <CommentWrapper newsComment={newsesComments} />
         </div>
       </div>
     </div>

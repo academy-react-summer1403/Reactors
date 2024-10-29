@@ -23,6 +23,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { CardWrapperComment } from "../Card Details Wrapper/CardWrapper";
 
 const MiddleDetails = ({ courseDetail }) => {
+  
   const { data: coursesComments, isLoading } = useQuery({
     queryKey: ["courseComments"],
     queryFn: () => {

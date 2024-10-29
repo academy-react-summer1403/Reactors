@@ -10,8 +10,8 @@ import {
 } from "react-icons/bi";
 import { LiaReplySolid } from "react-icons/lia";
 
-const NewsUserComment = ({ commentDetail }) => {
-  const { title, replyCount, autor } = commentDetail;
+const NewsUserComment = ({ newsComment }) => {
+  const { title, replyCount, autor } = newsComment;
   return (
     <div>
       <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">

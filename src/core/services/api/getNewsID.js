@@ -14,3 +14,17 @@ export const getNewsId = async (id) => {
         return [];
     }
 };
+
+export const getNewsComments = async (id) => {
+    try {
+        const result = await http.get
+        (`/News/GetNewsComments?NewsId=${id}`);
+        console.log(result);
+        
+      return result;
+    } catch (error) {   
+        console.log(error);
+        return [];
+    }
+};
+
