@@ -97,7 +97,7 @@ const UserComment = ({ courseComment }) => {
               className="text-[#158B68] flex items-center flex-col cursor-pointer "
               onClick={postLikeUser}
             >
-              {currentUserEmotion ? (
+              {currentUserEmotion=="LIKED" ? (
                 <BiSolidLike className="text-2xl" />
               ) : (
                 <BiLike className="text-2xl" />
@@ -109,7 +109,7 @@ const UserComment = ({ courseComment }) => {
               className="text-[#158B68] flex items-center flex-col cursor-pointer "
               onClick={postDiseLikeUser}
             >
-              {currentUserEmotion ? (
+              {currentUserEmotion=="DISSLIKED" ? (
                 <BiSolidDislike className="text-2xl" />
               ) : (
                 <BiDislike className="text-2xl" />

@@ -125,7 +125,7 @@ const MiddleDetails = ({ courseDetail }) => {
                     className="text-[#089E71] flex items-center flex-col cursor-pointer "
                     onClick={postLikeUser}
                   >
-                    {currentUserLike ? (
+                    {currentUserLike=="1" ? (
                       <BiSolidLike className="text-2xl" />
                     ) : (
                       <BiLike className="text-2xl" />
@@ -138,7 +138,7 @@ const MiddleDetails = ({ courseDetail }) => {
                     className="text-[#089E71] flex flex-col items-center cursor-pointer"
                     onClick={postDiseLikeUser}
                   >
-                    {currentUserDissLike ? (
+                    {currentUserDissLike=="1" ? (
                       <BiSolidDislike className="text-2xl" />
                     ) : (
                       <BiDislike className="text-2xl" />

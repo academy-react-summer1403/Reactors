@@ -13,6 +13,7 @@ import dateModifier from "../../../../core/utils/dateModifier";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import user from "../../../../assets/Image/user.png";
+import { postNewsDisLikeComments, postNewsLikeComments } from "../../../../core/services/api/getNewsID";
 
 const NewsUserComment = ({ newsComment }) => {
   const {
@@ -27,12 +28,16 @@ const NewsUserComment = ({ newsComment }) => {
     dissLikeCount,
     currentUserIsDissLike,
     inserDate,
+    newsId,
+    id,
   } = newsComment;
+
+  console.log(newsId)
 
   const queryClient = useQueryClient();
 
   const likeMutation = useMutation({
-    // mutationFn: postCourseLike,
+    mutationFn: postNewsLikeComments,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["newsComments"] });
       toast("این دوره رو پسندیدی!", {
@@ -44,11 +49,11 @@ const NewsUserComment = ({ newsComment }) => {
     },
   });
   const postLikeUser = () => {
-    const userLike = likeMutation.mutate(courseId);
+    const userLike = likeMutation.mutate(id);
   };
 
   const disLikeMutation = useMutation({
-    // mutationFn: postCourseDisLike,
+    mutationFn: postNewsDisLikeComments,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["newsComments"] });
       toast("این دوره رو نپسندیدی!", {
@@ -60,7 +65,7 @@ const NewsUserComment = ({ newsComment }) => {
     },
   });
   const postDiseLikeUser = async () => {
-    const userDisLike = disLikeMutation.mutate(courseId);
+    const userDisLike = disLikeMutation.mutate(id);
   };
 
   const replyMutation = useMutation({
@@ -74,7 +79,7 @@ const NewsUserComment = ({ newsComment }) => {
     },
   });
   const postReplyUser = () => {
-    const result = replyMutation.mutate(courseId);
+    const result = replyMutation.mutate(id);
   };
 
   return (
@@ -106,7 +111,7 @@ const NewsUserComment = ({ newsComment }) => {
             </div>
             <div
               className="text-[#158B68] flex items-center flex-col cursor-pointer "
-              onClick={postLikeUser}
+              onClick={postDiseLikeUser}
             >
               {currentUserIsDissLike ? (
                 <BiSolidDislike className="text-2xl" />
