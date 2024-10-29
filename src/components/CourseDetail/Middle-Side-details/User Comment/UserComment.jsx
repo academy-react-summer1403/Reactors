@@ -27,9 +27,9 @@ const UserComment = ({ courseComment }) => {
     describe,
     insertDate,
     id,
+    currentUserEmotion,
   } = courseComment;
   const queryClient = useQueryClient();
-  console.log(courseComment)
 
   const likeMutation = useMutation({
     mutationFn: postCourseLikeComments,
@@ -97,10 +97,10 @@ const UserComment = ({ courseComment }) => {
               className="text-[#158B68] flex items-center flex-col cursor-pointer "
               onClick={postLikeUser}
             >
-              {currentUserLikeId ? (
-                <BiLike className="text-2xl" />
-              ) : (
+              {currentUserEmotion ? (
                 <BiSolidLike className="text-2xl" />
+              ) : (
+                <BiLike className="text-2xl" />
               )}
               {likeCount}
             </div>
@@ -109,10 +109,10 @@ const UserComment = ({ courseComment }) => {
               className="text-[#158B68] flex items-center flex-col cursor-pointer "
               onClick={postDiseLikeUser}
             >
-              {currentUserLikeId ? (
-                <BiDislike className="text-2xl" />
-              ) : (
+              {currentUserEmotion ? (
                 <BiSolidDislike className="text-2xl" />
+              ) : (
+                <BiDislike className="text-2xl" />
               )}
               {disslikeCount}
             </div>

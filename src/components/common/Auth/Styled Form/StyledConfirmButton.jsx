@@ -9,8 +9,5 @@ export const ConfirmButton = styled.button`
     font-size: 18px;
     transition: 0.2s;
 
-    &:hover {
-        background: red;
-    }
     
 `
