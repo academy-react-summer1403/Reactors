@@ -14,3 +14,16 @@ export const getCoursId = async (courseId) => {
         return [];
     }
 };
+
+export const getCourseComments = async (courseId) => {
+    try {
+        const result = await http.get
+        (`/Course/GetCourseCommnets/${courseId}`);
+        console.log(result);
+        
+      return result;
+    } catch (error) {   
+        console.log(error);
+        return [];
+    }
+};

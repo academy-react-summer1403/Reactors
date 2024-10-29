@@ -44,7 +44,7 @@ const Card = ({ data }) => {
     userLikedId
   } = data;
 
-  console.log(userFavoriteId);
+  // console.log(userFavoriteId);
 
   const queryClient = useQueryClient();
   
