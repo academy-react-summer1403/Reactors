@@ -22,7 +22,7 @@ const Suggestion = () => {
     },
   });
   return (
-    <div className="flex flex-row-reverse items-center justify-center min-h-screen bg-white">
+    <div className="flex flex-row-reverse items-center justify-center  bg-white">
       <div className="w-full md:w-1/2 px-11">
         <img src={sug} className="w-full py-7" />
       </div>

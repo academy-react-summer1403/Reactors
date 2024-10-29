@@ -109,7 +109,7 @@ const HorizontalCard = ({ data }) => {
     <div>
       <div
         dir="ltr"
-        className="flex flex-row-reverse items-center rounded-[10px] bg-white border "
+        className="flex flex-row-reverse  items-center rounded-[10px] bg-white border "
       >
         <div className="w-[280px]  flex items-center justify-center">
           <img
@@ -121,7 +121,7 @@ const HorizontalCard = ({ data }) => {
         {/* Course Content */}
         <div className="flex flex-col items-end w-full px-4 gap-2">
           <div className="text-[15px]">{title}</div>
-          <div className="flex justify-between flex-row items-center px-4 py-[1px] text-sm min-w-full gap-2">
+          <div className="flex justify-between flex-row items-center px-4 py-[1px] text-sm min-w-[90%] gap-2">
             <div className="flex justify-between flex-row gap-2">
               <div
                 className="text-[#089E71] flex items-center flex-col cursor-pointer "

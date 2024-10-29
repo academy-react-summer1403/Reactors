@@ -22,6 +22,7 @@ const LandingPage = () => {
       <div className="pb-12">
         <Slider />
       </div>
+
       <Teacher />
       <div className="pb-[40px] pt-[80px]">
         <div className="text-[30px] w-full flex flex-col items-center">
@@ -35,16 +36,17 @@ const LandingPage = () => {
         <NewsSlider />
       </div>
 
-      <div className="pb-[40px] pt-[20px]">
-        <div className="text-[30px] w-full flex flex-col items-center">
+      <div className="flex flex-col">
+        <div className="text-[30px]  flex flex-col items-center">
           پیشنهادات و انتقادات
         </div>
-        <div className="text-[15px] w-full flex flex-col items-center">
+        <div className="text-[15px]  flex flex-col items-center">
           نظرات خود را با ما درمیان بگذارید
         </div>
-      </div>
-      
       <Suggestion />
+
+      </div>
+
     </>
   );
 };
