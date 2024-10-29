@@ -69,12 +69,13 @@ const ProfileImagesSlider = () => {
         getProileImageIndex()
     }, [imageIndex])
 
-
+    console.log(userProfile?.userImage)
     return (
         <>
-            {/* <div className='fixed top-0 left-0  bottom-0 right-0 ' onClick={() => {
+        {dropdownIsOpen && <div className='fixed top-0 left-0  bottom-0 right-0 ' onClick={() => {
                 setDropdownIsOpen(false)
-            }}></div> */}
+            }}></div>}
+            
             <div className="w-full h-full">
                 { <Swiper
                     dir="ltr"

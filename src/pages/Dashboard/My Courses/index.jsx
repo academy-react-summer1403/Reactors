@@ -41,7 +41,7 @@ const MyCourses = () => {
                 tableHeaders={["نام دوره", "نام استاد", "نام ترم", "نام گروه", "تاریخ شروع", "وضعیت پرداخت"]}
             />
             <TableBody>
-                {myCourses?.listOfMyCourses.length === 0 ? <NoneItems title={"دوره ای وجود ندارد"} /> :  myCourses?.map((item, key) => <TableRow key={key}>
+                {myCourses?.listOfMyCourses.length === 0 ? <NoneItems title={"دوره ای وجود ندارد"} /> :  myCourses?.listOfMyCourses.map((item, key) => <TableRow key={key}>
                     <TableCell className="flex gap-1 items-center">
                         <img src={item.tumbImageAddress} alt="" className="w-12" />
                         {item.courseTitle}

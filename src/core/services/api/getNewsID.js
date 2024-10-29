@@ -28,16 +28,17 @@ export const getNewsComments = async (id) => {
     }
 };
 
-export const postNewsLikeComments = async (id) => {
+export const postNewsLikeComments = async (id,like=true) => {
+    console.log(id , "news id :",like)
+
     try {
         const result = await http.post
-        (`/News/NewsLike/`,{id});
+        (`/News/CommentLike/${id}?LikeType=${like}`,);
         console.log(result);
         
       return result;
     } catch (error) {   
-        console.log(error);
-        return [];
+        throw error
     }
 };
 
@@ -49,7 +50,6 @@ export const postNewsDisLikeComments = async (id) => {
         
       return result;
     } catch (error) {   
-        console.log(error);
-        return [];
+        throw error;
     }
 };

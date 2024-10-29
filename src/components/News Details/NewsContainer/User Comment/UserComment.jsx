@@ -49,8 +49,9 @@ const NewsUserComment = ({ newsComment }) => {
     },
   });
   const postLikeUser = () => {
-    const userLike = likeMutation.mutate(id);
+    likeMutation.mutate(id,true);
   };
+
 
   const disLikeMutation = useMutation({
     mutationFn: postNewsDisLikeComments,
@@ -79,7 +80,9 @@ const NewsUserComment = ({ newsComment }) => {
     },
   });
   const postReplyUser = () => {
-    const result = replyMutation.mutate(id);
+    const result = replyMutation.mutate(id
+
+    );
   };
 
   return (
