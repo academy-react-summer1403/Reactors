@@ -44,10 +44,10 @@ export default function SlidBar() {
               animate={{ x: 0 }}
               exit={{ x: 200 }}
               transition={{ duration: 0.35 }}
-              className="md:hidden flex flex-col fixed right-0 min-w-[240px] py-10
+              className="md:hidden flex flex-col fixed right-0 min-w-[440px] py-10
          items-center bottom-0 top-0 bg-[#22c7ab] z-20"
             >
-              <div className="px-1 pt-1 pb-3 space-y-1 flex flex-col">
+              <div className="px-1 pt-1 pb-3 space-y-1 flex flex-col ">
                 <a className="py-2">
                   <NavLink
                     to="/"

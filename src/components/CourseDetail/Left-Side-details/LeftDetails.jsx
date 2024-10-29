@@ -47,7 +47,7 @@ const LeftDetails = ({ courseDetail }) => {
   const dateDifference = Math.floor(difference / (1000 * 60 * 60));
 
   return (
-    <div className="min-h-screen w-full bg-[#FBF6F6] rounded-[30px] flex justify-center p-6">
+    <div className="w-full md:w-[300px] bg-[#fbf6f6] rounded-[30px] shadow-lg p-4 flex flex-col order-1 md:order-none">
       <div className="flex flex-col w-full min-w-64 gap-6">
         {/* دایو 1: اطلاعات دوره */}
         <div className="flex flex-col bg-white p-4 gap-2 rounded-[26px]  text-[#12926C]">
@@ -90,7 +90,7 @@ const LeftDetails = ({ courseDetail }) => {
           </p>
         </div>
         {/* دایو 3: اطلاعات تاریخی */}
-        <div className="bg-white p-4 w-[300px] space-y-2 rounded-[26px] text-[#12926C]">
+        <div className="bg-white p-4 space-y-2 rounded-[26px] text-[#12926C]">
           <h3 className="flex flex-row">
             تاریخ بروزرسانی :
             <p className="text-black px-1"> {dateModifier(insertDate)}</p>

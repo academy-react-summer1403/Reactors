@@ -5,6 +5,7 @@ import basket from "../../../assets/Image/basket.png";
 import search from "../../../assets/Image/search.png";
 import { Link, NavLink } from "react-router-dom";
 import SlidBar from "./Side Bar/SideBar";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,6 +19,9 @@ const Header = () => {
     }
   }, []);
 
+  const { userProfile } = useSelector((state) => state.userInfo)
+
+
   return (
     <header>
       <nav className="bg-white border-gray-200 px-4 lg:px-1 py-2.5 dark:bg-[#A4F6DE]">
@@ -25,7 +29,7 @@ const Header = () => {
           <div className=" flex flex-row-reverse items-center gap-2 px-4">
             {isLoggedIn ? (
               <Link to={"/dashboard/edit-profile"}>
-                <img className="" src={profile}></img>
+                <img className="size-full rounded-full w-12 border h-12" src={userProfile?.currentPictureAddress}></img>
               </Link>
             ) : (
               <button className="bg-[#00DF9D] text-[12px] p-4  text-black py-2 rounded-lg">

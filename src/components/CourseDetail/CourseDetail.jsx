@@ -25,7 +25,7 @@ const CourseDetail = () => {
   
   return (
     <div>
-      <div className="flex flex-row-reverse px-16 py-[70px] gap-5">
+      <div className="container mx-auto flex flex-col md:flex-row-reverse gap-6 py-6 px-10">
         {isLoading ? (
           <div className="flex items-center justify-center w-full">
             <SyncLoader size={24} color="#a4f6de" />{" "}

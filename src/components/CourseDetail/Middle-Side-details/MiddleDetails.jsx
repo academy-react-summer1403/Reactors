@@ -102,8 +102,8 @@ const MiddleDetails = ({ courseDetail }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF6F6] rounded-[40px] flex justify-center p-6">
-      <div className="grid grid-col w-full min-w-[700px]  gap-6">
+    <div className="w-full md:w-[95%]  bg-[#fbf6f6] rounded shadow-lg p-6 flex flex-col gap-6 order-2 md:order-none">
+      <div className="flex flex-col   gap-4">
         {/* دایو عکس در بالای همه */}
         <div className=" flex-col rounded-[30px] flex items-center justify-center p-6 ">
           <img
@@ -169,15 +169,14 @@ const MiddleDetails = ({ courseDetail }) => {
             <div className=" flex-col rounded-[30px] flex items-center justify-center p-6 ">
               <img
                 src="https://ad-exchange.fr/wp-content/uploads/2019/04/Video_mobile_800x533.jpg"
-                className="w-full h-[340px] object-cover rounded-[30px]"
+                className="w-full h-[440px] object-cover rounded-[30px]"
               />
             </div>
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col text-nowrap w-full  gap-4">
               <div className="flex flex-row border-b pb-3 gap-20">
                 <li>ویدیو 1: معرفی دوره</li>
-                {/* <img className="pl-6" src={download} /> */}
               </div>
-              <li className="border-b pb-3">ویدیو 2: نصب و پیکربندی ابزارها</li>
+              <li className="border-b pb-3 ">ویدیو 2: نصب و پیکربندی ابزارها</li>
               <li className="border-b pb-3">ویدیو 3: شروع برنامه‌نویسی</li>
               <li className="border-b pb-3">ویدیو 4: نکات پیشرفته</li>
             </ul>
