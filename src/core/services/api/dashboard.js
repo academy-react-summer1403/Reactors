@@ -84,6 +84,7 @@ export const addProfileImage = async (profile) => {
 export const selectProfileImage = async (profile) => {
     try {
         const response = await http.post("/SharePanel/SelectProfileImage", profile)
+        return response
     } catch (error) {
         throw error
     }
@@ -101,7 +102,17 @@ export const editProfile = async (userInfo) => {
 export const deleteProfileImage = async (profile) => {
     try {
         const response = await http.delete("/SharePanel/DeleteProfileImage",profile)
+        return response
     } catch (error) {
         throw error
     }
 }
+
+export const deleteCourseReserve = async (reservedCourse) => {
+    try {
+        const response = await http.delete("/CourseReserve", reservedCourse)
+        return response
+    } catch (error) {
+        throw error
+    }
+} 

@@ -16,10 +16,13 @@ import { ButtonHolder } from '../../../../components/common/Auth/Styled Form/Sty
 import { ConfirmButton } from '../../../../components/common/Auth/Styled Form/StyledConfirmButton'
 
 import image from '../../../../assets/images/registerVerfy.svg'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const SignUpVerification = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { phoneNumber } = useSelector((state) => state.auth)
 
     const verifyUser = async (values) => {
@@ -28,6 +31,13 @@ const SignUpVerification = () => {
             verifyCode: values.verificationCode
         }
         const result = await verifyMessage(userVerification)
+        if (result.success) {
+            toast.custom("اطلاعات تکمیلی را وارد کنید")
+            navigate("/authentication/final-registeration")
+        }
+        else if (!result.success) {
+            toast.error("خطا")
+        }
         console.log(result)
     }
 
@@ -44,7 +54,7 @@ const SignUpVerification = () => {
                         <FormInput name="verificationCode" placeholder="کد تایید" icon={<HiOutlineFingerPrint className="w-10 h-[30px] text-[#158B68]" />} />
                     </FormInputsHolder>
                     <ButtonHolder style={{ marginTop: "80px" }}>
-                        <ConfirmButton> ورود </ConfirmButton>
+                        <ConfirmButton type='submit'> ورود </ConfirmButton>
                         <BackButton title="بازگشت به صفحه قبل" url="/authentication/signup" />
                     </ButtonHolder>
                 </FormSection>

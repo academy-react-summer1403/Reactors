@@ -15,7 +15,7 @@ const WelcomeUser = () => {
                 <img src={CounterImg} alt="" className="w-[100%] h-[100%] max-[1550px]:w-[80%]" />
             </div>
             <div className="flex flex-col gap-5 justify-center">
-                <p className="text-[30px] max-[1500px]:text-[25px]"> سلام {userProfile?.fName + " " + userProfile?.lName}، خوش آمدید! </p>
+                <p className="text-[30px] max-[1500px]:text-[25px]"> سلام {userProfile?.fName && userProfile?.lName ? userProfile?.fName + " " + userProfile?.lName : ""}، خوش آمدید! </p>
                 <p className="text-[18px]"> {userProfile?.userAbout} </p>
             </div>
         </DashboardPartsBody>

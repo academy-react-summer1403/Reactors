@@ -40,7 +40,7 @@ const MyArticleComments = () => {
                 // sixth="جزئیات"
             />
             <TableBody>
-                {articleComments?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : articleComments?.map((item, key) => <TableRow key={key}>
+                {articleComments?.length === 0 ? <NoneItems title="نظری وجود ندارد" /> : articleComments?.map((item, key) => <TableRow key={key}>
                     <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
                         <img src="" alt="" className="w-16" />
                         {item.courseTitle}

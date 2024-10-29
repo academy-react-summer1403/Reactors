@@ -12,32 +12,48 @@ import { getReservedCourses } from '../../../core/services/api/dashboard'
 import { NoneItems } from '../../../components/common/Dashboard/Dashboard Tables/NoneItems'
 import { getCoursId } from '../../../core/services/api/getCourseID'
 import dateModifier from '../../../core/utils/dateModifier'
+import { useMutation, useQuery } from 'react-query'
+import { deleteCourseReserve } from '../../../core/services/api/dashboard'
+import toast from 'react-hot-toast'
 
 const ReservedCourses = () => {
 
-    const [courseReserved, setCourseReserved] = useState([])
+    // const [courseReserved, setCourseReserved] = useState([])
     const [courseId, setCourseId] = useState()
 
-    const getMyReservedCourses = async () => {
-        const result = await getReservedCourses()
-        setCourseReserved(result)
-        setCourseId(result.courseId)
-        console.log(result)
+    // const getMyReservedCourses = async () => {
+    //     const result = await getReservedCourses()
+    //     setCourseReserved(result)
+    //     setCourseId(result.courseId)
+    //     console.log(result)
+    // }
+
+    const { data: courseReserved } = useQuery({
+        queryKey: ["courseReserved"],
+        queryFn: getReservedCourses
+    })
+
+    const deleteReservedCourse = (courseId) => {
+        const deletedCourse = { id: courseId }
+        mutation.mutate(deletedCourse)
     }
 
-    const getReservedCoursesById = async () => {
-        const result = await getCoursId(courseId)
-        return result
-    }
+    const mutation = useMutation({
+        mutationFn: deleteCourseReserve,
+        onSuccess: () => {
+            toast.success("دوره حذف شد")
+        },
+        onError: () => {
+            toast.error("خطا")
+        }
 
-    useEffect(() => {
-        getMyReservedCourses()
-    }, [])
+    })
 
     return (
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
-                tableHeaders={["نام دوره", "نام استاد", "نام ترم", "تاریخ رزرو", "وضعیت تایید", "حذف"]}
+                tableHeaders={["نام دوره", "تاریخ رزرو", "وضعیت تایید", "حذف"]}
+                gridTemp="1fr 1fr 1fr 1fr"
                 // first="نام دوره"
                 // second="نام استاد"
                 // third="نام ترم"
@@ -46,16 +62,14 @@ const ReservedCourses = () => {
                 // sixth="حذف"
             />
             <TableBody>
-                {courseReserved?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : courseReserved?.map((item, key) => <TableRow key={key}>
+                {courseReserved?.length === 0 ? <NoneItems title="دوره ای وجود ندارد" /> : courseReserved?.map((item, key) => <TableRow key={key} style={{ gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
                     <TableCell className="flex gap-5 items-center" style={{ minWidth: "200px" }}>
                         <img src="" alt="" className="w-16" />
                         {item.courseName}
                     </TableCell>
-                    <TableCell> {} </TableCell>
-                    <TableCell> {} </TableCell>
                     <TableCell> {dateModifier(item.reserverDate)} </TableCell>
                     <TableCell> {item.accept ? "تایید شده" : "تایید نشده"} </TableCell>
-                    <TableCell> <HiOutlineTrash className="size-8" /> </TableCell>
+                    <TableCell> <HiOutlineTrash className="size-8" onClick={() => deleteReservedCourse(item.courseId)} /> </TableCell>
                 </TableRow>)}
             </TableBody>
         </DashboardPartsBody>

@@ -13,29 +13,17 @@ import { ConfirmButton } from '../../../components/common/Auth/Styled Form/Style
 import '../../../components/Dashboard/Dashboard Pages/Edit Profile/Options Style/toggle.css'
 import { setFormData } from '../../../core/utils/setFormData'
 import { editProfile } from '../../../core/services/api/dashboard'
+import toast from 'react-hot-toast'
+import { useMutation, useQueryClient } from 'react-query'
 
 const EditProfile = () => {
 
     const { userProfile } = useSelector((state) => state.userInfo)
+    const client = useQueryClient()
 
     const editUserProfile = async (values) => {
         const userProfileInfo = new FormData()
         const birthday = new Date(values.birthday).toISOString()
-        // const userProfileObj = {
-        //     LName: values.lastName,
-        //     FName: values.firstName,
-        //     UserAbout: values.userAbout,
-        //     LinkdinProfile: values.linkdinProfile,
-        //     TelegramLink: values.telegramLink,
-        //     ReceiveMessageEvent: values.receiveMessageEvent,
-        //     HomeAdderess: values.homeAddress,
-        //     NationalCode: values.nationalCode,
-        //     Gender: values.gender,
-        //     BirthDay: values.birthday
-        // }
-        // setFormData(userProfileObj, userProfileInfo)
-        // const result = await editProfile(userProfileInfo)
-        // console.log(result)
         userProfileInfo.append("LName", values.lastName)
         userProfileInfo.append("FName", values.firstName)
         userProfileInfo.append("UserAbout", values.userAbout)
@@ -46,23 +34,35 @@ const EditProfile = () => {
         userProfileInfo.append("NationalCode", values.nationalCode)
         userProfileInfo.append("Gender", values.gender)
         userProfileInfo.append("BirthDay", birthday)
-        const result = await editProfile(userProfile)
+        // const result = await editProfile(userProfileInfo)
+        mutation.mutate(userProfileInfo)
+        console.log(userProfileInfo)
         console.log(birthday)
-        console.log(result)
     }
 
+    const mutation = useMutation({
+        mutationFn: editProfile,
+        onSuccess: () => {
+            toast.success("ویرایش پروفایل با موفقیت انجام شد")
+            client.invalidateQueries({ queryKey: ["userInfo"] })
+        },
+        onError: () => {
+            toast.error("خطا")
+        }
+    })
+
     return (
-        <div className="w-full h-full flex gap-5">
-            <div className="flex flex-col gap-5 w-1/3">
+        <div className="w-full h-full flex gap-5 max-[900px]:flex-wrap">
+            <div className="flex flex-col gap-5 w-1/3 max-[900px]:w-full">
                 <EditProfileImage />
                 <TwoStepPassword />
             </div>
 
-            <DashboardPartsBody className="flex-col w-2/3">
+            <DashboardPartsBody className="flex-col w-2/3 max-[900px]:w-full">
                 <DashboardPartsTitle className="py-5">
                     <p> مشخصات کاربر </p>
                 </DashboardPartsTitle>
-                <Formik initialValues={{
+                {userProfile && <Formik initialValues={{
                     firstName: userProfile?.fName,
                     lastName: userProfile?.lName,
                     phoneNumber: userProfile?.phoneNumber,
@@ -109,7 +109,7 @@ const EditProfile = () => {
                             <ConfirmButton type="submit" className="mt-10"> ثبت تغییرات </ConfirmButton>
                         </Form>
                     )}
-                </Formik>
+                </Formik>}
             </DashboardPartsBody>
         </div>
     )

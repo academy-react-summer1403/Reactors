@@ -22,7 +22,7 @@ const UserInformation = () => {
                     <div className="max-[900px]:mt-5">
                         <img src={userProfile?.currentPictureAddress} alt="" className="mb-[12px] rounded-full" />
                     </div>
-                    <p> {userProfile?.fName + " " + userProfile?.lName} </p>
+                    <p> {userProfile?.fName && userProfile?.lName ? userProfile?.fName + " " + userProfile?.lName : "نام کاربری"} </p>
                 </div>
 
                 <div className="flex gap-5 justify-center max-xl:text-[16px] max-[1100px]:text-[18px]">

@@ -11,6 +11,7 @@ import { TableCell } from '../../../common/Dashboard/Dashboard Tables/Styled Das
 import CourseImg from '../../../../assets/images/courseImg2.png'
 import { getFavoriteArticles } from '../../../../core/services/api/dashboard'
 import { NoneItems } from '../../../common/Dashboard/Dashboard Tables/NoneItems'
+import dateModifier from '../../../../core/utils/dateModifier'
 
 const MyFavoriteArticles = () => {
 
@@ -46,7 +47,7 @@ const MyFavoriteArticles = () => {
                     <TableCell> {item.currentLikeCount} </TableCell>
                     <TableCell> {item.currentView} </TableCell>
                     <TableCell> {item.currentRate} </TableCell>
-                    <TableCell> 1403/03/16 </TableCell>
+                    <TableCell> {dateModifier(item.updateDate)} </TableCell>
                     <TableCell> <HiOutlineTrash className="size-8" /> </TableCell>
                 </TableRow>
                 )}
