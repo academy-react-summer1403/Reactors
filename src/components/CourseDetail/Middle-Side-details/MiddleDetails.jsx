@@ -23,7 +23,6 @@ import SyncLoader from "react-spinners/SyncLoader";
 import { CardWrapperComment } from "../Card Details Wrapper/CardWrapper";
 
 const MiddleDetails = ({ courseDetail }) => {
-  
   const { data: coursesComments, isLoading } = useQuery({
     queryKey: ["courseComments"],
     queryFn: () => {
@@ -104,8 +103,7 @@ const MiddleDetails = ({ courseDetail }) => {
 
   return (
     <div className="min-h-screen bg-[#FBF6F6] rounded-[40px] flex justify-center p-6">
-      {/* گرید اصلی */}
-      <div className="flex flex-col w-full min-w-[300px]  gap-6">
+      <div className="grid grid-col w-full min-w-[700px]  gap-6">
         {/* دایو عکس در بالای همه */}
         <div className=" flex-col rounded-[30px] flex items-center justify-center p-6 ">
           <img
@@ -218,13 +216,12 @@ const MiddleDetails = ({ courseDetail }) => {
             ) : (
               <>
                 {cardType === "userReview" ? (
-                  <UserComment courseComment={coursesComments} />
+                  <CardWrapperComment courseComment={coursesComments} />
                 ) : (
                   <Comment />
                 )}
               </>
             )}
-            <CardWrapperComment courseComment={coursesComments} />
           </div>
         </div>
       </div>

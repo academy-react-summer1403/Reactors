@@ -26,7 +26,7 @@ const DropDown = () => {
           value={null}
           onChange={handleSortChange}
         >
-          <option className="border-[#158B68]" value={null}>
+          <option className="border-[#158B68" value={null}>
             مرتب سازی
           </option>
           <option value="newest">جدید ترین</option>

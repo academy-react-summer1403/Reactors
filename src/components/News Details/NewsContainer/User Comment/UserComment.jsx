@@ -9,42 +9,128 @@ import {
   BiStar,
 } from "react-icons/bi";
 import { LiaReplySolid } from "react-icons/lia";
+import dateModifier from "../../../../core/utils/dateModifier";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import toast from "react-hot-toast";
+import user from "../../../../assets/Image/user.png";
 
 const NewsUserComment = ({ newsComment }) => {
-  const { title, replyCount, autor } = newsComment;
+  const {
+    title,
+    describe,
+    replyCount,
+    autor,
+    pictureAddress,
+    currentUserLikeId,
+    likeCount,
+    currentUserIsLike,
+    dissLikeCount,
+    currentUserIsDissLike,
+    inserDate,
+  } = newsComment;
+
+  const queryClient = useQueryClient();
+
+  const likeMutation = useMutation({
+    // mutationFn: postCourseLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["newsComments"] });
+      toast("این دوره رو پسندیدی!", {
+        icon: "👍",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postLikeUser = () => {
+    const userLike = likeMutation.mutate(courseId);
+  };
+
+  const disLikeMutation = useMutation({
+    // mutationFn: postCourseDisLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["newsComments"] });
+      toast("این دوره رو نپسندیدی!", {
+        icon: "👎",
+      });
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postDiseLikeUser = async () => {
+    const userDisLike = disLikeMutation.mutate(courseId);
+  };
+
+  const replyMutation = useMutation({
+    // mutationFn: postfaouriteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["newsComments"] });
+      toast.success("ریپلای شما ثبت شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const postReplyUser = () => {
+    const result = replyMutation.mutate(courseId);
+  };
+
   return (
     <div>
       <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="text-4xl text-[#158B68]">
-              <BiUserCircle />
+              <img
+                className="w-14 rounded-full"
+                src={pictureAddress ? pictureAddress : user}
+              />
             </div>
-            <h2 className="text-[15px]">عنوان : {autor}</h2>
+            <h2 className="text-[15px] text-nowrap">
+              {autor ? autor : "عنوان"} : {title}
+            </h2>
           </div>
           <div className="flex flex-row gap-4">
-            <div>{replyCount}</div>
-              <BiLike className="text-2xl text-[#158B68]" />
-              <BiDislike  className="text-2xl text-[#158B68]"/>
-              <LiaReplySolid className="text-2xl text-[#158B68]" />
+            <div
+              className="text-[#158B68] flex items-center flex-col cursor-pointer "
+              onClick={postLikeUser}
+            >
+              {currentUserIsLike ? (
+                <BiSolidLike className="text-2xl" />
+              ) : (
+                <BiLike className="text-2xl" />
+              )}
+              {likeCount}
+            </div>
+            <div
+              className="text-[#158B68] flex items-center flex-col cursor-pointer "
+              onClick={postLikeUser}
+            >
+              {currentUserIsDissLike ? (
+                <BiSolidDislike className="text-2xl" />
+              ) : (
+                <BiDislike className="text-2xl" />
+              )}
+              {dissLikeCount}
+            </div>
+            <div className="text-[#158B68] flex items-center flex-col cursor-pointer ">
+              <LiaReplySolid className="text-2xl" />
+              <p>{replyCount}</p>
+            </div>
           </div>
         </div>
-        <div className="text-gray-700 pt-5 min-h-[110px]">
-          لورم ایپسوم محبوب ترین و استانداردترین متن ساختگی است که توسط توسعه
-          دهندگان وب، تایپوگراف ها و طراحان استفاده می شود. تکه های لاتین متن
-          نشان می دهد که یک پروژه در حال توسعه است. لورم ایپسوم فقط برای توسعه
-          دهندگان وب نیست. طراحان گرافیک نیز از آن با نرم افزارهای مختلفی مانند
-          فوتوشاپ استفاده می کنند. لورم ایپسوم محبوب ترین و استانداردترین متن
-          ساختگی است که توسط توسعه دهندگان وب،
-        </div>
+        <div className="text-gray-700 pt-5 min-h-[110px]">{describe}</div>
         <div className="flex flex-row-reverse justify-between items-center text-xs text-gray-500">
-          <span>2024-10-15 | 12:45 </span>
+          <span>{dateModifier(inserDate)}</span>
         </div>
       </div>
       <div className="p-4 pt-1 flex flex-row-reverse gap-6">
         <p className="text-[14px] text-[#158B68]">پاسخ ها</p>
         <p className="text-[14px] text-[#158B68]">پاسخ دادن</p>
       </div>
+      
     </div>
   );
 };

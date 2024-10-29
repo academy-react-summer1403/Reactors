@@ -226,13 +226,12 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
           ) : (
             <>
               {cardType === "userReview" ? (
-                <NewsUserComment newsComment={newsesComments} />
+                <CommentWrapper newsComment={newsesComments} />
               ) : (
                 <Comment />
               )}
             </>
           )}
-          <CommentWrapper newsComment={newsesComments} />
         </div>
       </div>
     </div>

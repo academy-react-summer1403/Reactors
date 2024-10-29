@@ -29,7 +29,7 @@ const Dropdown = () => {
         <option className="border-[#158B68]  bg-[#FFFFFF]" value={null}>مرتب سازی</option>
         <option className="" value="newest">جدید ترین</option>
         <option value="oldest">
-          <p className="!font-Yekan-Bakh ">قدیمی ترین</p>
+          قدیمی ترین
         </option>
         <option value="cheap">ارزان ترین</option>
         <option value="expensive">گران ترین</option>

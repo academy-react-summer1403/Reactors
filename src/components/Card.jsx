@@ -23,6 +23,7 @@ import {
 } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deleteCourseLike } from "../core/services/api/deleteCourseLike";
+import { deleteCourseFav } from "../core/services/api/deleteCourseFav";
 
 const Card = ({ data }) => {
   const {
@@ -128,6 +129,23 @@ const Card = ({ data }) => {
     const result = deleteCourseLikeMutation.mutate(formData);
   };
 
+  const deleteCourseFavMutation = useMutation({
+    mutationFn: deleteCourseFav,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const deleteCourseFavUser = () => {
+    console.log(userFavoriteId,'fav',userFavorite,courseId)
+    const formData = new FormData();
+    formData.append("CourseFavoriteId", userFavoriteId);
+    const result = deleteCourseFavMutation.mutate(formData);
+  };
+
   return (
     <div className="flex flex-col gap-6 items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
       <div className="w-full h-[240px] flex items-center justify-center">
@@ -175,8 +193,14 @@ const Card = ({ data }) => {
 
           <div
             className="text-[#089E71] cursor-pointer"
-            onClick={postFavouriteUser}
-          >
+            onClick={() => {
+              if(userFavorite){
+                deleteCourseFavUser()
+              }
+              else{
+                postFavouriteUser()
+              }
+            }}          >
             {userFavorite ? (
               <BiSolidStar className="text-2xl" />
             ) : (

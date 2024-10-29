@@ -27,3 +27,30 @@ export const getCourseComments = async (courseId) => {
         return [];
     }
 };
+
+export const postCourseLikeComments = async (id) => {
+    try {
+        const result = await http.post
+        (`/Course/AddCourseCommentLike?CourseCommandId=${id}`);
+        console.log(result);
+        
+      return result;
+    } catch (error) {   
+        console.log(error);
+        return [];
+    }
+};
+
+export const postCourseDisLikeComments = async (id) => {
+    try {
+        const result = await http.post
+        (`/Course/AddCourseCommentDissLike?CourseCommandId=${id}`);
+        console.log(result);
+        
+      return result;
+    } catch (error) {   
+        console.log(error);
+        return [];
+    }
+};
+

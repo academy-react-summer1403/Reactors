@@ -12,6 +12,7 @@ import { LiaReplySolid } from "react-icons/lia";
 import dateModifier from "../../../../core/utils/dateModifier";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
+import { postCourseDisLikeComments, postCourseLikeComments } from "../../../../core/services/api/getCourseID";
 
 const UserComment = ({ courseComment }) => {
   const {
@@ -25,11 +26,13 @@ const UserComment = ({ courseComment }) => {
     title,
     describe,
     insertDate,
+    id,
   } = courseComment;
   const queryClient = useQueryClient();
+  console.log(courseComment)
 
   const likeMutation = useMutation({
-    // mutationFn: postCourseLike,
+    mutationFn: postCourseLikeComments,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["courseComments"] });
       toast("این دوره رو پسندیدی!", {
@@ -41,11 +44,11 @@ const UserComment = ({ courseComment }) => {
     },
   });
   const postLikeUser = () => {
-    const userLike = likeMutation.mutate(courseId);
+    const userLike = likeMutation.mutate(id);
   };
 
   const disLikeMutation = useMutation({
-    // mutationFn: postCourseDisLike,
+    mutationFn: postCourseDisLikeComments,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["courseComments"] });
       toast("این دوره رو نپسندیدی!", {
@@ -57,7 +60,7 @@ const UserComment = ({ courseComment }) => {
     },
   });
   const postDiseLikeUser = async () => {
-    const userDisLike = disLikeMutation.mutate(courseId);
+    const userDisLike = disLikeMutation.mutate(id);
   };
 
   const replyMutation = useMutation({
@@ -70,8 +73,8 @@ const UserComment = ({ courseComment }) => {
       toast.error("خطا");
     },
   });
-  const postFavouriteUser = () => {
-    const result = replyMutation.mutate(courseId);
+  const postReplyUser = () => {
+    const result = replyMutation.mutate(id);
   };
 
   return (
