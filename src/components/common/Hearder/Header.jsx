@@ -28,7 +28,7 @@ const Header = () => {
         <div className="flex flex-row-reverse justify-between items-center mx-auto max-w-screen-xl">
           <div className=" flex flex-row-reverse items-center gap-2 px-4">
             {isLoggedIn ? (
-              <Link to={"/dashboard/edit-profile"}>
+              <Link to={"/dashboard/user-overview"}>
                 <img className="size-full rounded-full w-12 border h-12" src={userProfile?.currentPictureAddress}></img>
               </Link>
             ) : (

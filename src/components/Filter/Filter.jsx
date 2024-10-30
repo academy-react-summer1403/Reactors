@@ -73,7 +73,7 @@ const Filter = () => {
 
   return (
     <div className="flex items-start pr-[36px] ">
-      <div className="flex flex-col  h-[469px] w-[230px] bg-[#FBF6F6] shadow-md rounded-[30px] text-center py-8 px-[10px]">
+      <div className="flex flex-col  h-[499px] w-[230px] bg-[#FBF6F6] shadow-md rounded-[30px] text-center py-8 px-[10px]">
         <div className="flex items-center justify-center pb-5 pl-3">
         
         <div className="pl-2">

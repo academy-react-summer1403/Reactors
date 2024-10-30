@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { BiSolidError } from 'react-icons/bi';
 import { logout } from '../../../core/utils/logout.services';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -23,6 +24,7 @@ const LogoutButton = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const navigate = useNavigate()
 
     return (
         <div className="w-full">
@@ -45,7 +47,10 @@ const LogoutButton = () => {
                             <p className="text-[20px] font-semibold"> آیا مطمئن هستید؟ </p>
                         </div>
                         <div className="flex flex-row-reverse gap-[5px]">
-                            <button onClick={logout} className="bg-[#158B68] text-white rounded-[5px] py-[10px] px-[20px] shadow-[0_3px_3px_0_#57575729]"> بله </button>
+                            <button onClick={()=>{
+                                logout()
+                                navigate("/")
+                            }} className="bg-[#158B68] text-white rounded-[5px] py-[10px] px-[20px] shadow-[0_3px_3px_0_#57575729]"> بله </button>
                             <button onClick={handleClose} className="bg-white text-[#158B68] border border-[#158B68] rounded-[5px] py-[10px] px-[20px] shadow-[0_3px_3px_0_#57575729]"> خیر </button>
                         </div>
                     </div>

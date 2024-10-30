@@ -11,7 +11,7 @@ export default function SlidBar() {
 
   return (
     <nav className=" text-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="md:hidden">
             <button
@@ -44,7 +44,7 @@ export default function SlidBar() {
               animate={{ x: 0 }}
               exit={{ x: 200 }}
               transition={{ duration: 0.35 }}
-              className="md:hidden flex flex-col fixed right-0 min-w-[440px] py-10
+              className="md:hidden flex flex-col fixed right-0 min-w-[340px] py-10
          items-center bottom-0 top-0 bg-[#22c7ab] z-20"
             >
               <div className="px-1 pt-1 pb-3 space-y-1 flex flex-col ">
@@ -66,7 +66,7 @@ export default function SlidBar() {
                     className={({ isActive }) =>
                       `${
                         isActive && " text-white bg-[#1a9a85]"
-                      }  px-16 py-2 rounded-md text-base font-medium hover:bg-[#1a9a85]`
+                      }  px-20 py-2 rounded-md text-base font-medium hover:bg-[#1a9a85]`
                     }
                   >
                     دوره ها

@@ -3,6 +3,7 @@ import { auth } from "./auth.router.jsx";
 import { dashboard } from "./dashboard.router.jsx";
 import App from "../../app/index.jsx";
 import { mainPage } from "./mainPage.router.jsx";
+import Error from "../../pages/Error Page/Error.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -12,7 +13,10 @@ export const router = createBrowserRouter([
             auth,
             dashboard,
             mainPage,
-          
         ]
+    },
+    {
+        path: "*",
+        element: <Error />,
     }
 ])

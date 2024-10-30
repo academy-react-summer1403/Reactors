@@ -10,7 +10,7 @@ const NotFound = () => {
       </div>
       <button className="bg-[#12926C] text-white px-8 py-3 rounded-[11px]">
         <Link
-          to="/Home"
+          to="/"
           className={({ isActive }) =>
             `${
               isActive && "bg-[#6D676757] text-[#158B68]"
@@ -18,7 +18,7 @@ const NotFound = () => {
           }
         >
           بازگشت به خانه
-        </Link>{" "}
+        </Link>{""}
       </button>
     </div>
   );

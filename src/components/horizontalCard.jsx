@@ -109,7 +109,7 @@ const HorizontalCard = ({ data }) => {
     <div>
       <div
         dir="ltr"
-        className="flex flex-row-reverse  items-center rounded-[10px] bg-white border "
+        className="flex flex-row-reverse  items-center rounded-[10px] bg-[#fbf6f6] border "
       >
         <div className="w-[280px]  flex items-center justify-center">
           <img

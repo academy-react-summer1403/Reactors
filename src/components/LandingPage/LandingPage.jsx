@@ -19,7 +19,7 @@ const LandingPage = () => {
           ساختن دنیایی بهتر، یک دوره در یک زمان
         </div>
       </div>
-      <div className="pb-12">
+      <div className="p-10">
         <Slider />
       </div>
 
@@ -32,7 +32,7 @@ const LandingPage = () => {
           ساختن دنیایی بهتر، یک دوره در یک زمان
         </div>
       </div>
-      <div className="pb-12">
+      <div className="p-10">
         <NewsSlider />
       </div>
 

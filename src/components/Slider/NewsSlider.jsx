@@ -26,7 +26,7 @@ export default function NewsSlider() {
   }, []);
 
   return (
-    <>
+    <div className="">
       <Swiper slidesPerView={3} spaceBetween={30} className="mySwiper">
         {news?.slice(0,3).map((item, index) => {
           return (
@@ -36,6 +36,6 @@ export default function NewsSlider() {
           );
         })}
       </Swiper>
-    </>
+    </div>
   );
 }
