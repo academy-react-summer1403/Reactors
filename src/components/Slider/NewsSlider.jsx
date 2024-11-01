@@ -8,9 +8,6 @@ import "swiper/css/pagination";
 
 import "./styles.css";
 
-// import required modules
-// import { Pagination } from 'swiper/modules';
-// import Card from '../LandingPage/Teachers/Card/Card';
 import { Card } from "../Card/Card";
 import { getSameNews } from "../../core/services/api/getSameNews";
 

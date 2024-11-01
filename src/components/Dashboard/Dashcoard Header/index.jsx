@@ -29,7 +29,7 @@ const DashboardHeader = () => {
                 <H1Academy />
             </div>
             <HeaderOptionsHolder>
-                <HeaderOptions icon={<HiOutlineEyeDropper />} />
+                {/* <HeaderOptions icon={<HiOutlineEyeDropper />} /> */}
                 {/* <HeaderOptions icon={<HiOutlineMoon />} /> */}
                 <HeaderOptions icon={<HiOutlineShoppingBag />} />
                 <UserProfile />

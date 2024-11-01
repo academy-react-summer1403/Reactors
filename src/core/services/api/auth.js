@@ -14,7 +14,7 @@ export const sendVerifyMessage = async (phoneNumber) => {
         const response = await http.post("/Sign/SendVerifyMessage", phoneNumber)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -23,7 +23,7 @@ export const verifyMessage = async (verifyCode) => {
         const response = await http.post("/Sign/VerifyMessage", verifyCode)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -32,7 +32,7 @@ export const finalRegisteration = async (userData) => {
         const response = await http.post("/Sign/Register", userData)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -41,7 +41,7 @@ export const forgetPassword = async (email) => {
         const response = await http.post("/Sign/ForgetPassword", email)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -50,7 +50,7 @@ export const getConfigValue = async (configValue) => {
         const response = http.get("/Sign/Reset/" + configValue)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -59,6 +59,6 @@ export const changePassword = async (newPassword) => {
         const response = await http.post("/Sign/Reset", newPassword)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }

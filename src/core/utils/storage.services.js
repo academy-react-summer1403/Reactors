@@ -4,12 +4,12 @@ const setItem = (key, value) => {
 
 const getItem = (key) => {
     if (localStorage.getItem(key)) return JSON.parse(localStorage.getItem(key));
-    return false;
+    throw error;
 };
 
 const getItemGeneric = (key) => {
     if (localStorage.getItem(key)) return localStorage.getItem(key);
-    return false;
+    throw error;
 };
 
 const setItemGeneric = (key, value) => {
@@ -17,7 +17,7 @@ const setItemGeneric = (key, value) => {
 };
 
 const removeItem = (key) => {
-    if (getItem(key) === false) return false;
+    if (getItem(key) === false) throw error;
     localStorage.removeItem(key);
 };
 

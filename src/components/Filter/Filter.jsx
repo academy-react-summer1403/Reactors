@@ -72,7 +72,7 @@ const Filter = () => {
   };
 
   return (
-    <div className="flex items-start pr-[36px] ">
+    <div className="flex items-start">
       <div className="flex flex-col  h-[499px] w-[230px] bg-[#FBF6F6] shadow-md rounded-[30px] text-center py-8 px-[10px]">
         <div className="flex items-center justify-center pb-5 pl-3">
         
@@ -138,7 +138,7 @@ const Filter = () => {
           <label className=" text-gray-700 text-sm text-right font-bold pb-2">
             رنج قیمت: ريال {CostDown} تا {CostUp}
           </label>
-          <Box sx={{ width: 208 }}>
+          <Box sx={{ width: 205 }}>
             <Slider
               getAriaLabel={() => "price range"}
               value={[CostDown, CostUp]}

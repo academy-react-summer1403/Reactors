@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Field, Form, Formik } from 'formik'
 import { useSelector } from 'react-redux'
 
-import { TwoStepPassword } from '../../../components/Dashboard/Dashboard Pages/Edit Profile/TwoStepPassword'
 import { EditProfileInput } from '../../../components/common/Dashboard/Edit Profile Form/EditProfileInput'
 
 import { DashboardPartsBody } from '../../../components/common/Dashboard/Styled DashboardPages/StyledDashboardPartsBody'
@@ -55,7 +54,6 @@ const EditProfile = () => {
         <div className="w-full h-full flex gap-5 max-[900px]:flex-wrap">
             <div className="flex flex-col gap-5 w-1/3 max-[900px]:w-full">
                 <EditProfileImage />
-                <TwoStepPassword />
             </div>
 
             <DashboardPartsBody className="flex-col w-2/3 max-[900px]:w-full">

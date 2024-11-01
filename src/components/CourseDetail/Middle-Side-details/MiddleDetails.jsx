@@ -21,6 +21,7 @@ import toast from "react-hot-toast";
 import { getCourseComments } from "../../../core/services/api/getCourseID";
 import SyncLoader from "react-spinners/SyncLoader";
 import { CardWrapperComment } from "../Card Details Wrapper/CardWrapper";
+import { postSendComment } from "../../../core/services/api/sendComment";
 
 const MiddleDetails = ({ courseDetail }) => {
   const { data: coursesComments, isLoading } = useQuery({
@@ -30,6 +31,15 @@ const MiddleDetails = ({ courseDetail }) => {
       return result;
     },
   });
+
+
+  // const { data: SendComments} = useQuery({
+  //   queryKey: ["sendComments"],
+  //   queryFn: () => {
+  //     const result = postSendComment(courseId);
+  //     return result;
+  //   },
+  // });
 
   const queryClient = useQueryClient();
 
@@ -101,14 +111,15 @@ const MiddleDetails = ({ courseDetail }) => {
     const result = favMutation.mutate(courseId);
   };
 
+  console.log(imageAddress)
+
   return (
-    <div className="w-full md:w-[95%]  bg-[#fbf6f6] rounded shadow-lg p-6 flex flex-col gap-6 order-2 md:order-none">
+    <div className="w-full md:w-[95%] bg-[#fbf6f6] rounded-[30px] shadow-lg p-6 flex flex-col gap-6 order-2 md:order-none">
       <div className="flex flex-col   gap-4">
-        {/* دایو عکس در بالای همه */}
-        <div className=" flex-col rounded-[30px] flex items-center justify-center p-6 ">
+        <div className=" flex-col object-cover rounded-[30px] flex items-center justify-center p-1 ">
           <img
             className="w-full h-[340px] object-cover rounded-[30px]"
-            src={imageAddress ? imageAddress : Cdbg}
+            src={imageAddress ? imageAddress : "https://hasthemes.com/blog/wp-content/uploads/2020/05/best-10-react-js-ecommerce-templates-of-2021.webp"}
           />
         </div>
 
@@ -166,10 +177,10 @@ const MiddleDetails = ({ courseDetail }) => {
           {/* دایو ویدیوهای دوره */}
           <div className="bg-white p-6 flex-col rounded-[30px] shadow-md">
             <h2 className="font-bold text-lg mb-4">ویدیوهای دوره</h2>
-            <div className=" flex-col rounded-[30px] flex items-center justify-center p-6 ">
+            <div className=" flex-col rounded-[30px] flex items-center justify-center p-4 ">
               <img
                 src="https://ad-exchange.fr/wp-content/uploads/2019/04/Video_mobile_800x533.jpg"
-                className="w-full h-[440px] object-cover rounded-[30px]"
+                className="w-full  h-[420px] object-cover rounded-[30px]"
               />
             </div>
             <ul className="flex flex-col text-nowrap w-full  gap-4">
@@ -217,7 +228,7 @@ const MiddleDetails = ({ courseDetail }) => {
                 {cardType === "userReview" ? (
                   <CardWrapperComment courseComment={coursesComments} />
                 ) : (
-                  <Comment />
+                  <Comment/>
                 )}
               </>
             )}

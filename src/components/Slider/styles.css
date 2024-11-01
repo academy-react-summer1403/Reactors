@@ -16,10 +16,8 @@ padding-bottom: 30px;
   align-items: center;
 }
 
-/* .swiper-slide  img {
-  display: block;
-  width: 100%;
-  height: 100%;
+.swiper-slide  img {
+
   object-fit: cover;
-} */
+}
 

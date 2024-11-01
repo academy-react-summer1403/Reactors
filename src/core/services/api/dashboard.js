@@ -5,16 +5,17 @@ export const getUserInfo = async () => {
         const response = await http.get("/SharePanel/GetProfileInfo")
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
 export const getMyCourses = async () => {
     try {
         const response = await http.get("/SharePanel/GetMyCourses?PageNumber=1&RowsOfPage=10&SortingCol=DESC&SortType=LastUpdate&Query=")
+        console.log(response)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -23,7 +24,7 @@ export const getReservedCourses = async () => {
         const response = await http.get("/SharePanel/GetMyCoursesReserve")
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -32,7 +33,7 @@ export const getFavoriteCourses = async () => {
         const response = await http.get("/SharePanel/GetMyFavoriteCourses")
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -41,7 +42,7 @@ export const getFavoriteArticles = async () => {
         const response = await http.get("/SharePanel/GetMyFavoriteNews")
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -50,7 +51,7 @@ export const getCourseComments = async () => {
         const response = await http.get("/SharePanel/GetMyCoursesComments")
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -59,7 +60,7 @@ export const getArticlesComments = async () => {
         const response = await http.get("/SharePanel/GetMyNewsComments")
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -68,7 +69,7 @@ export const changePassword = async (newPassword) => {
         const response = await http.post("/SharePanel/ChangePassword", newPassword)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 
@@ -77,7 +78,7 @@ export const addProfileImage = async (profile) => {
         const response = await http.post("/SharePanel/AddProfileImage", profile)
         return response
     } catch (error) {
-        throw false
+        throw error
     }
 }
 
@@ -95,7 +96,7 @@ export const editProfile = async (userInfo) => {
         const response = await http.put("/SharePanel/UpdateProfileInfo", userInfo)
         return response
     } catch (error) {
-        return false
+        throw error
     }
 }
 

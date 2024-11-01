@@ -170,7 +170,7 @@ const HorizontalCard = ({ data }) => {
             {dateModifire(lastUpdate)}
           </div>
 
-          <div className="flex  flex-col pb-[19px] items-center justify-between">
+          <div className="flex h-20 overflow-hidden  flex-col pb-[19px] items-center justify-between">
             <div dir="rtl" className=" text-[11px] ">
               {describe}
             </div>

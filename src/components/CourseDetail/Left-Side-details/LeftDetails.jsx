@@ -48,58 +48,58 @@ const LeftDetails = ({ courseDetail }) => {
 
   return (
     <div className="w-full md:w-[300px] bg-[#fbf6f6] rounded-[30px] shadow-lg p-4 flex flex-col order-1 md:order-none">
-      <div className="flex flex-col w-full min-w-64 gap-6">
+      <div className="flex flex-col w-full min-w-64 gap-6 ">
         {/* دایو 1: اطلاعات دوره */}
-        <div className="flex flex-col bg-white p-4 gap-2 rounded-[26px]  text-[#12926C]">
-          <h3 className="flex flex-row">
-            مدرس دوره : <p className="text-black px-1">{teacherName}</p>
+        <div className="flex flex-col bg-white p-4 gap-2 rounded-[26px]   text-[#12926C]">
+          <h3 className="flex flex-row  justify-between">
+            مدرس دوره : <p className="text-black px-1 ">{teacherName}</p>
           </h3>
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between text-nowrap">
             هزینه تمام دوره: <p className="text-red-500  px-1">{cost}تومان</p>
           </p>
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between text-nowrap">
             تکنولوژی دوره :<p className="text-black px-1">{techs}</p>
           </p>
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between">
             سطح دوره :<p className="text-black px-1">{courseLevelName}</p>
           </p>
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between">
             ظرفیت دوره :<p className="text-black px-1">{capacity} نفر</p>
           </p>
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between">
             وضعیت دوره :<p className="text-black px-1">{courseStatusName}</p>
           </p>
         </div>
 
         {/* دایو 2: اطلاعات آماری دوره */}
         <div className="bg-white p-4 space-y-2 rounded-[26px]  text-[#12926C]">
-          <h3 className="flex flex-row">
+          <h3 className="flex flex-row justify-between">
             مدت زمان :<p className="text-black px-1">{dateDifference} ساعت</p>
           </h3>
 
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between">
             تعداد ویدیوها :<p className="text-black px-1">27 ویدیو</p>
           </p>
 
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between">
             تعداد نظرات :<p className="text-black px-1">{commentCount} نظر </p>
           </p>
 
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between">
             امتیاز دوره :<p className="text-black px-1">{currentRate}</p>
           </p>
         </div>
         {/* دایو 3: اطلاعات تاریخی */}
         <div className="bg-white p-4 space-y-2 rounded-[26px] text-[#12926C]">
-          <h3 className="flex flex-row">
+          <h3 className="flex flex-row justify-between text-nowrap">
             تاریخ بروزرسانی :
             <p className="text-black px-1"> {dateModifier(insertDate)}</p>
           </h3>
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between">
             شروع دوره :
             <p className="text-black px-1"> {dateModifier(startTime)}</p>
           </p>
-          <p className="flex flex-row">
+          <p className="flex flex-row justify-between">
             پایان دوره :
             <p className="text-black px-1"> {dateModifier(endTime)}</p>
           </p>

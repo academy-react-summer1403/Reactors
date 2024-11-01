@@ -7,6 +7,6 @@ export const postCourseLike = async (courseId) => {
         const result = await http.post("/Course/AddCourseLike?CourseId=" + courseId);       
         return result
     } catch (error) {
-        return false;
+        throw error;
     }
 }

@@ -9,6 +9,6 @@ export const postNewsDisLike = async (id) => {
        
         return result
     } catch (error) {
-        return false;
+        throw error;
     }
 }

@@ -1,16 +1,22 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
+import { postSendComment } from "../../../../core/services/api/sendComment";
+import { useParams } from "react-router-dom";
 
 const Comment = () => {
+  const { courseId } = useParams();
+
+
+  const handleSubmit = async (value) => {
+    await postSendComment(courseId)
+  }
+
   return (
     <div>
       <Formik
         initialValues={{ title: "", text: "" }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        {() => (
+        onSubmit={handleSubmit} >
+      
           <Form className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
               <Field
@@ -34,7 +40,6 @@ const Comment = () => {
               ثبت کردن
             </button>
           </Form>
-        )}
       </Formik>
     </div>
   );

@@ -104,20 +104,19 @@ const Card = ({ data }) => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
+    <div className="flex flex-col h-[500px]  items-center bg-[#FBF6F6]  shadow md:shadow-lg  shadow-slate-600/80 rounded-[30px]  min-h-[392px] w-full">
       <img
-        className="flex justify-center pb-4 rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px] min-w-full min-h-[200px] "
-        src={currentImageAddressTumb}
+        className="flex justify-center rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px] w-full min-w-52 min-h-[200px] "
+        src={currentImageAddressTumb?currentImageAddressTumb : "https://cdni.iconscout.com/illustration/premium/thumb/online-news-illustration-download-in-svg-png-gif-file-formats--mobile-virtual-phone-digital-people-activity-pack-illustrations-5817957.png?f=webp"}
       />
 
-      <div className="flex justify-between flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
+      <div className="flex justify-between pt-3 flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
         <div className="flex justify-between flex-row-reverse gap-2">
           <div
             className="text-[#089E71] flex items-center flex-col cursor-pointer "
             onClick={() => {
               if(currentUserIsLike){
                 deletenewseLikeUser()
-                console.log("dhfskdhfj")
               }
               else{
                 postLikeUser()

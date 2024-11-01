@@ -8,6 +8,6 @@ export const postCourseDisLike = async (courseId) => {
 
         return result
     } catch (error) {
-        return false;
+        throw error;
     }
 }
