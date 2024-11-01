@@ -8,6 +8,8 @@ const SortDictionary = {
   oldest: { SortingCol: "insertDate", SortingType: "ASC" },
   mostView: { SortingCol: "currentView", SortingType: "DESC" },
   mostLike: { SortingCol: "currentLikeCount", SortingType: "ASC" },
+  Sort : { SortingCol: "", SortingType: "" }
+
 };
 
 const DropDown = () => {
@@ -26,7 +28,7 @@ const DropDown = () => {
           value={null}
           onChange={handleSortChange}
         >
-          <option className="border-[#158B68" value={null}>
+          <option className="border-[#158B68" value="Sort">
             مرتب سازی
           </option>
           <option value="newest">جدید ترین</option>

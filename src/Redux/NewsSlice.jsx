@@ -8,6 +8,7 @@ const NewsSlice = createSlice({
         SortingCol: "",
         SortingType: "DESC",
         categoryName: "",
+        sort : "",
 
     },
     reducers: {

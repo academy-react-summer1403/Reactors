@@ -9,6 +9,7 @@ const SortDictionary = {
   expensive: { SortingCol: "Cost", SortingType: "DESC" },
   hardest: { SortingCol: "LevelName", SortingType: "DESC" },
   easiest: { SortingCol: "LevelName", SortingType: "ASC" },
+  Sort : { SortingCol: "", SortingType: "" }
 };
 
 const Dropdown = () => {
@@ -25,12 +26,12 @@ const Dropdown = () => {
         className="font-Yekan-Bakh gap-9 rounded-full border border-[#158B68] text-[16px] bg-[#FFFFFF] px-14 py-4"
         value={null}
         onChange={handleSortChange}
-        >
-        <option className="border-[#158B68]  bg-[#FFFFFF]" value={null}>مرتب سازی</option>
-        <option className="" value="newest">جدید ترین</option>
-        <option value="oldest">
-          قدیمی ترین
+      >
+        <option className="border-[#158B68]  bg-[#FFFFFF]" value="Sort">
+          مرتب سازی
         </option>
+        <option value="newest">جدید ترین</option>
+        <option value="oldest">قدیمی ترین</option>
         <option value="cheap">ارزان ترین</option>
         <option value="expensive">گران ترین</option>
         <option value="hardest">سخت ترین</option>

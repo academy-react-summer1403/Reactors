@@ -10,6 +10,9 @@ const Category = () => {
   const { categoryName } = useSelector((state) => {
     return state.news;
   });
+
+  const { sort } = useSelector((state) => state.news);
+
   const dispatch = useDispatch();
 
   const getCategory = async () => {
@@ -36,7 +39,7 @@ const Category = () => {
           value={categoryName}
           onChange={handleCategory}
         >
-          <option className="border-[#158B68]" value={null}>
+          <option className="border-[#158B68]" value={sort}>
             دسته بندی
           </option>
           {NewsCategory?.map((item) => {

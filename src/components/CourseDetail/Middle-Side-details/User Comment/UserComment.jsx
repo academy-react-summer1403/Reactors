@@ -81,10 +81,10 @@ const UserComment = ({ courseComment }) => {
     <div>
       <div className="bg-white p-6 px-7 flex-col rounded-[30px] shadow-md">
         <div className="flex justify-between items-center">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col items-center gap-4 md:flex-row">
             <div className="text-4xl text-[#158B68]">
               <img
-                className="w-14 rounded-full"
+                className="min-w-14 md:w-10 rounded-full "
                 src={pictureAddress ? pictureAddress : <BiUserCircle />}
               />
             </div>
@@ -92,7 +92,7 @@ const UserComment = ({ courseComment }) => {
               {author ? author : "عنوان"} : {title}
             </h2>
           </div>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-col gap-4 md:flex-row ">
             <div
               className="text-[#158B68] flex items-center flex-col cursor-pointer "
               onClick={postLikeUser}
