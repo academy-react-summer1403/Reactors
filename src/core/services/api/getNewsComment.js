@@ -12,3 +12,16 @@ export const getNewsComment = async (id) => {
         return error;
     }
 };
+
+// /News/CreateNewsComment
+
+export const postAddNewsComment = async (CommentNews) => {
+    try {
+        const result = await http.post("/News/CreateNewsComment",CommentNews);
+    
+      return result;
+    } catch (error) {   
+        console.log(error);
+        throw error;
+    }
+};

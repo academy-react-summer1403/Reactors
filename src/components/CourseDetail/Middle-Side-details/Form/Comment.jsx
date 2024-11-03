@@ -35,8 +35,6 @@ const Comment = () => {
     CommentData.append("Describe", values.Describe);
 
     mutation.mutate(CommentData)
-
-
   };
   
 

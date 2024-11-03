@@ -1,17 +1,45 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { getNewsComment } from "../../../../core/services/api/getNewsComment";
+import {
+  getNewsComment,
+  postAddNewsComment,
+} from "../../../../core/services/api/getNewsComment";
+import { useParams } from "react-router-dom";
+import { useMutation, useQueryClient } from "react-query";
+import toast from "react-hot-toast";
 
 const Comment = () => {
+  const { id } = useParams();
+  const { userId } = useParams();
+
+
+  const initialValues = {
+    title: "",
+    describe: "",
+  };
+
+  console.log(id,"newsy")
+
+  const handleSubmit = async (values) => {
+    const CommentNews = {
+      newsId: id,
+      title: values.title,
+      describe: values.describe,
+      userId: userId,
+    };
+    const result = await postAddNewsComment(CommentNews);
+    if (result.success) {
+      toast.success("نظر شما موفقیت ثبت شد");
+      navigate("/authentication");
+    } else if (!result.success) {
+      toast.error("ثبت نظر شما با خطا مواجه شد");
+    }
+    console.log(result);
+  };
 
   return (
     <div>
-      <Formik
-        initialValues={{ title: "", text: "" }}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {() => (
           <Form className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
@@ -21,7 +49,7 @@ const Comment = () => {
                 className="p-2 border-2 border-[#158B68] rounded-md "
               />
               <Field
-                name="text"
+                name="describe"
                 as="textarea"
                 placeholder="متن"
                 rows="4"

@@ -49,7 +49,10 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
     currentUserIsDissLike,
     isCurrentUserFavorite,
     id,
+    userId,
   } = newsesDetails;
+
+  console.log(userId,"user")
 
   const queryClient = useQueryClient();
 
