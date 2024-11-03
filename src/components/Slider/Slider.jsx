@@ -27,13 +27,17 @@ export default function Slider() {
   return (
     <>
       <Swiper slidesPerView={3} spaceBetween={30} className="mySwiper">
-        {course.map((item, index) => {
-          return (
-            <SwiperSlide key={index}>
-              <Card data={item} />
-            </SwiperSlide>
-          );
-        })}
+        {course && course.length > 0 ? (
+          course?.map((item, index) => {
+            return (
+              <SwiperSlide key={index}>
+                <Card data={item} />
+              </SwiperSlide>
+            );
+          })
+        ) : (
+          <p>در حال بارگذاری...</p>
+        )}
       </Swiper>
     </>
   );

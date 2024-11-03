@@ -111,7 +111,6 @@ const MiddleDetails = ({ courseDetail }) => {
     const result = favMutation.mutate(courseId);
   };
 
-  console.log(imageAddress)
 
   return (
     <div className="w-full md:w-[95%] bg-[#fbf6f6] rounded-[30px] shadow-lg p-6 flex flex-col gap-6 order-2 md:order-none">

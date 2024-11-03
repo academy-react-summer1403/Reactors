@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const CardWrapper = ({ course }) => {
   const { CardView } = useSelector((state) => state.Courses);
+  console.log(course , "Courses")
 
   return (
     <>

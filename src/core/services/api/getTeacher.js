@@ -9,6 +9,6 @@ export const getTeacher = async () => {
       return result;
     } catch (error) {   
         console.log(error);
-        return error;
+        throw error;
     }
 };

@@ -4,12 +4,12 @@ const setItem = (key, value) => {
   
   const getItem = (key) => {
     if (localStorage.getItem(key)) return JSON.parse(localStorage.getItem(key));
-    throw error;
+    return false;
   };
   
   const getItemGeneric = (key) => {
     if (localStorage.getItem(key)) return localStorage.getItem(key);
-    throw error;
+    return false;
   };
   
   const setItemGeneric = (key, value) => {

@@ -35,7 +35,7 @@ const UserComment = ({ courseComment }) => {
     mutationFn: postCourseLikeComments,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["courseComments"] });
-      toast("این دوره رو پسندیدی!", {
+      toast("این نظر رو پسندیدی!", {
         icon: "👍",
       });
     },
@@ -51,7 +51,7 @@ const UserComment = ({ courseComment }) => {
     mutationFn: postCourseDisLikeComments,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["courseComments"] });
-      toast("این دوره رو نپسندیدی!", {
+      toast("این نظر رو نپسندیدی!", {
         icon: "👎",
       });
     },

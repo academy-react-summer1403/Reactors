@@ -15,6 +15,8 @@ const Teacher = () => {
     getTeacherlist();
   }, []);
 
+  // console.log(teacherlist, "Teacher")
+
   return( 
     <div className="flex flex-col items-center bg-gradient-to-b from-[#EBF3F1] to-[#A4F6DE] py-12"> 
           <div className="pb-[40px] pt-[80px]">

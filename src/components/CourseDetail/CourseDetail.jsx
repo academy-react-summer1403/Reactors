@@ -20,7 +20,6 @@ const CourseDetail = () => {
 
   if (coursesDetails){
     const formData = formDataModifier(coursesDetails)
-    console.log(formData);
   }
   
   return (
