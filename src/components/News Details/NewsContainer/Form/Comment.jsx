@@ -30,7 +30,6 @@ const Comment = () => {
     const result = await postAddNewsComment(CommentNews);
     if (result.success) {
       toast.success("نظر شما موفقیت ثبت شد");
-      navigate("/authentication");
     } else if (!result.success) {
       toast.error("ثبت نظر شما با خطا مواجه شد");
     }

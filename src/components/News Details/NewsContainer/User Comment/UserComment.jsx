@@ -32,7 +32,6 @@ const NewsUserComment = ({ newsComment }) => {
     id,
   } = newsComment;
 
-  console.log(newsId)
 
   const queryClient = useQueryClient();
 
