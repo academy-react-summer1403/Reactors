@@ -35,6 +35,8 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
     },
   });
 
+
+
   const {
     currentLikeCount,
     currentDissLikeCount,
@@ -49,6 +51,7 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
     currentUserIsDissLike,
     isCurrentUserFavorite,
     id,
+    parentId,
     userId,
   } = newsesDetails;
 

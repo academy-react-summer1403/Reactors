@@ -25,3 +25,28 @@ export const postAddNewsComment = async (CommentNews) => {
         throw error;
     }
 };
+
+
+export const postAddReplyNewsComment = async (CommentReplyNews) => {
+    try {
+        const result = await http.post("/News/CreateNewsReplyComment",CommentReplyNews);
+    
+      return result;
+    } catch (error) {   
+        throw error;
+    }
+};
+
+
+export const getNewsReplyComments = async (parentId) => {
+    try {
+        const result = await http.get
+        (`/News/GetRepliesComments?Id=${parentId}`);
+        console.log(result);
+        
+      return result;
+    } catch (error) {   
+        console.log(error);
+        throw error;
+    }
+};

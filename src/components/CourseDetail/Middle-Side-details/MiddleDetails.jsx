@@ -33,13 +33,6 @@ const MiddleDetails = ({ courseDetail }) => {
   });
 
 
-  // const { data: SendComments} = useQuery({
-  //   queryKey: ["sendComments"],
-  //   queryFn: () => {
-  //     const result = postSendComment(courseId);
-  //     return result;
-  //   },
-  // });
 
   const queryClient = useQueryClient();
 

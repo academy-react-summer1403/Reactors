@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BiUserCircle,
   BiDislike,
@@ -12,7 +12,12 @@ import { LiaReplySolid } from "react-icons/lia";
 import dateModifier from "../../../../core/utils/dateModifier";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
-import { postCourseDisLikeComments, postCourseLikeComments } from "../../../../core/services/api/getCourseID";
+import {
+  postCourseDisLikeComments,
+  postCourseLikeComments,
+} from "../../../../core/services/api/getCourseID";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { postSendReplyComment } from "../../../../core/services/api/CourseReply";
 
 const UserComment = ({ courseComment }) => {
   const {
@@ -29,6 +34,37 @@ const UserComment = ({ courseComment }) => {
     id,
     currentUserEmotion,
   } = courseComment;
+
+  const [showReplyForm, setShowReplyForm] = useState(false);
+
+  const client = useQueryClient();
+
+  const initialValues = {
+    Title: "",
+    Describe: "",
+  };
+
+  const mutation = useMutation({
+    mutationFn: postSendReplyComment,
+    onSuccess: () => {
+      toast.success("ریپلای شما ثبت شد");
+      client.invalidateQueries({ queryKey: ["courseDetails"] });
+    },
+    onError: () => {
+      toast.error("ثبت ریپلای شما با خطا مواجه شد");
+    },
+  });
+
+  const handleSubmit = async (values) => {
+    const CommentData = new FormData();
+    CommentData.append("CourseId", courseId);
+
+    CommentData.append("Title", values.Title);
+    CommentData.append("Describe", values.Describe);
+
+    mutation.mutate(CommentData);
+  };
+
   const queryClient = useQueryClient();
 
   const likeMutation = useMutation({
@@ -97,7 +133,7 @@ const UserComment = ({ courseComment }) => {
               className="text-[#158B68] flex items-center flex-col cursor-pointer "
               onClick={postLikeUser}
             >
-              {currentUserEmotion=="LIKED" ? (
+              {currentUserEmotion == "LIKED" ? (
                 <BiSolidLike className="text-2xl" />
               ) : (
                 <BiLike className="text-2xl" />
@@ -109,14 +145,17 @@ const UserComment = ({ courseComment }) => {
               className="text-[#158B68] flex items-center flex-col cursor-pointer "
               onClick={postDiseLikeUser}
             >
-              {currentUserEmotion=="DISSLIKED" ? (
+              {currentUserEmotion == "DISSLIKED" ? (
                 <BiSolidDislike className="text-2xl" />
               ) : (
                 <BiDislike className="text-2xl" />
               )}
               {disslikeCount}
             </div>
-            <div className="text-[#158B68] flex items-center flex-col cursor-pointer ">
+            <div
+              className="text-[#158B68] flex items-center flex-col cursor-pointer "
+              onClick={() => setShowReplyForm(!showReplyForm)}
+            >
               <LiaReplySolid className="text-2xl" />
               <p>{acceptReplysCount}</p>
             </div>
@@ -128,8 +167,44 @@ const UserComment = ({ courseComment }) => {
         </div>
       </div>
       <div className="p-4 pt-1 flex flex-row-reverse gap-6">
-        <p className="text-[14px] text-[#158B68]">پاسخ ها</p>
-        <p className="text-[14px] text-[#158B68]">پاسخ دادن</p>
+        <button className="text-[14px] text-[#158B68] cursor-pointer">
+          پاسخ ها
+        </button>
+        <button
+          className="text-[14px] text-[#158B68] cursor-pointer"
+          onClick={() => setShowReplyForm(!showReplyForm)}
+        >
+          پاسخ دادن
+        </button>
+        {showReplyForm && (
+          <div className="reply-form flex items-center justify-start w-full  ">
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+              <Form className="flex flex-col gap-4">
+                <div className="">
+                  <Field
+                    name="Title"
+                    placeholder="عنوان"
+                    className="p-2 border-2 w-full border-[#158B68] rounded-md"
+                  />
+                  <Field
+                    name="Describe"
+                    as="textarea"
+                    placeholder="متن"
+                    rows="4"
+                    className="p-2 border-2 border-[#158B68] w-full resize-none h-[160px] rounded-md text-[#807A7A]"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="py-5 bg-[#5BE1B9] text-black rounded-[15px]"
+                >
+                  ثبت کردن
+                </button>
+              </Form>
+            </Formik>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BiUserCircle,
   BiDislike,
@@ -13,7 +13,18 @@ import dateModifier from "../../../../core/utils/dateModifier";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import user from "../../../../assets/Image/user.png";
-import { postNewsDisLikeComments, postNewsLikeComments } from "../../../../core/services/api/getNewsID";
+import {
+  postNewsDisLikeComments,
+  postNewsLikeComments,
+} from "../../../../core/services/api/getNewsID";
+import { Field, Form, Formik } from "formik";
+import { useParams } from "react-router-dom";
+import {
+  getNewsReplyComments,
+  postAddReplyNewsComment,
+} from "../../../../core/services/api/getNewsComment";
+import ReaplyCommentWrapper from "../../News Details Wrapper/ShowReplys";
+import NewsContainer from "../NewsContainer";
 
 const NewsUserComment = ({ newsComment }) => {
   const {
@@ -30,7 +41,43 @@ const NewsUserComment = ({ newsComment }) => {
     inserDate,
     newsId,
     id,
+    parentId,
   } = newsComment;
+
+  // console.log(parentId)
+
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [showReplies, setShowReplies] = useState(false);
+
+
+  const { data: newsesReplyComments, isLoading } = useQuery({
+    queryKey: ["newsReplyComments"],
+    queryFn: () => {
+      const result = getNewsReplyComments(parentId);
+      return result;
+    },
+  });
+
+  const initialValues = {
+    title: "",
+    describe: "",
+  };
+
+  const handleSubmit = async (values) => {
+    const CommentReplyNews = {
+      newsId: newsId,
+      title: values.title,
+      describe: values.describe,
+      parentId: id,
+    };
+    const result = await postAddReplyNewsComment(CommentReplyNews);
+    if (result.success) {
+      toast.success("ریپلای شما موفقیت ثبت شد");
+    } else if (!result.success) {
+      toast.error("ثبت ریپلای شما با خطا مواجه شد");
+    }
+    console.log(result);
+  };
 
 
   const queryClient = useQueryClient();
@@ -48,9 +95,8 @@ const NewsUserComment = ({ newsComment }) => {
     },
   });
   const postLikeUser = () => {
-    likeMutation.mutate(id,true);
+    likeMutation.mutate(id, true);
   };
-
 
   const disLikeMutation = useMutation({
     mutationFn: postNewsDisLikeComments,
@@ -79,9 +125,7 @@ const NewsUserComment = ({ newsComment }) => {
     },
   });
   const postReplyUser = () => {
-    const result = replyMutation.mutate(id
-
-    );
+    const result = replyMutation.mutate(id);
   };
 
   return (
@@ -134,10 +178,60 @@ const NewsUserComment = ({ newsComment }) => {
         </div>
       </div>
       <div className="p-4 pt-1 flex flex-row-reverse gap-6">
-        <p className="text-[14px] text-[#158B68]">پاسخ ها</p>
-        <p className="text-[14px] text-[#158B68]">پاسخ دادن</p>
+        <button
+          className="text-[14px] text-[#158B68] cursor-pointer"
+          onClick={() => setShowReplies(!showReplies)}
+        >
+          پاسخ ها
+        </button>
+        {showReplies && (
+          <div className="replies-list">
+            {newsesReplyComments?.map((item) => {
+              return (
+                  <NewsContainer />
+              );
+            })}
+          </div>
+        )}
+
+        <button
+          className="text-[14px] text-[#158B68] cursor-pointer"
+          onClick={() => setShowReplyForm(!showReplyForm)}
+        >
+          پاسخ دادن
+        </button>
+        {showReplyForm && (
+          <div className="reply-form flex items-center justify-start w-full  ">
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+              {() => (
+                <Form className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <Field
+                      name="title"
+                      placeholder="عنوان"
+                      className="p-2 border-2 border-[#158B68] rounded-md "
+                    />
+                    <Field
+                      name="describe"
+                      as="textarea"
+                      placeholder="متن"
+                      rows="4"
+                      className="p-2 border-2 border-[#158B68] w-full resize-none h-[160px] rounded-md text-[#807A7A]"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="py-5 bg-[#5BE1B9] text-black rounded-[15px]"
+                  >
+                    ثبت کردن
+                  </button>
+                </Form>
+              )}
+            </Formik>
+          </div>
+        )}
       </div>
-      
     </div>
   );
 };
