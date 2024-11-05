@@ -35,6 +35,8 @@ const UserComment = ({ courseComment }) => {
     currentUserEmotion,
   } = courseComment;
 
+  console.log(courseId , "Course")
+
   const [showReplyForm, setShowReplyForm] = useState(false);
 
   const client = useQueryClient();
@@ -58,6 +60,7 @@ const UserComment = ({ courseComment }) => {
   const handleSubmit = async (values) => {
     const CommentData = new FormData();
     CommentData.append("CourseId", courseId);
+    
 
     CommentData.append("Title", values.Title);
     CommentData.append("Describe", values.Describe);

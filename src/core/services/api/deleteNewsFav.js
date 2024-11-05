@@ -1,10 +1,9 @@
 import { baseUrl } from "../../../configs";
 import http from "../interceptor"; //axios//
 
-export const deleteCourseFav= async (formdata) => {
-    console.log(formdata);
+export const deletenewseFav = async (RemoveFavNews) => {
     try {
-        const result = await http.delete("/Course/DeleteCourseFavorite",{data: formdata});
+        const result = await http.delete("/News/DeleteFavoriteNews",{data: RemoveFavNews});
 
         return result
     } catch (error) {

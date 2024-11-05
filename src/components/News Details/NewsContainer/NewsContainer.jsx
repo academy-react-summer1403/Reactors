@@ -25,6 +25,8 @@ import { postNewsFav } from "../../../core/services/api/postNewsFav";
 import { getNewsComments } from "../../../core/services/api/getNewsID";
 import SyncLoader from "react-spinners/SyncLoader";
 import CommentWrapper from "../News Details Wrapper/CommentWrapper";
+import { deletenewseLike } from "../../../core/services/api/deleteNewsLike";
+import { deletenewseFav } from "../../../core/services/api/deleteNewsFav";
 
 const NewsContainer = ({ newsesDetails, commentDetail }) => {
   const { data: newsesComments, isLoading } = useQuery({
@@ -52,6 +54,8 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
     isCurrentUserFavorite,
     id,
     parentId,
+    currentUserLikeId,
+    currentUserFavoriteId,
     userId,
   } = newsesDetails;
 
@@ -115,6 +119,32 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
     setCardType("userReview");
   };
 
+  const handleSubmit = async () => {
+    const RemoveLikeNews = {
+      deleteEntityId: currentUserLikeId,
+    };
+    const result = await deletenewseLike(RemoveLikeNews);
+    if (result.success) {
+      toast.success("از لایک این مقاله منصرف شدی");
+    } else if (!result.success) {
+      toast.error("عملیات دیس لایک مقاله با خطا مواجه شد");
+    }
+    console.log(result);
+  };
+
+  const handleDeleteFav = async () => {
+    const RemoveFavNews = {
+      deleteEntityId: currentUserFavoriteId,
+    };
+    const result = await deletenewseFav(RemoveFavNews);
+    if (result.success) {
+      toast.success("این مقاله از موردعلاقه ها حذف شد");
+    } else if (!result.success) {
+      toast.error("عملیات حذف موردعلاقه مقاله با خطا مواجه شد");
+    }
+    console.log(result);
+  };
+
   return (
     <div className="min-h-screen bg-[#FBF6F6] rounded-[40px] flex justify-center p-6 ">
       <div className="flex flex-col w-full min-w-[100px]  gap-6">
@@ -134,8 +164,14 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
             <div className="flex flex-row-reverse gap-4">
               <div
                 className="text-[#089E71] flex items-center flex-col cursor-pointer "
-                onClick={postLikeUser}
-              >
+                onClick={() => {
+                  if(currentUserIsLike){
+                    handleSubmit()
+                  }
+                  else{
+                    postLikeUser()
+                  }
+                }}          >
                 {currentUserIsLike ? (
                   <BiSolidLike className="text-2xl" />
                 ) : (
@@ -160,8 +196,14 @@ const NewsContainer = ({ newsesDetails, commentDetail }) => {
 
               <div
                 className="text-[#089E71] cursor-pointer"
-                onClick={postFavouriteUser}
-              >
+                onClick={() => {
+                  if(isCurrentUserFavorite){
+                    handleDeleteFav()
+                  }
+                  else{
+                    postFavouriteUser()
+                  }
+                }}          >
                 {isCurrentUserFavorite ? (
                   <BiSolidStar className="text-2xl" />
                 ) : (

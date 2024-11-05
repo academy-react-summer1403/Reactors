@@ -22,6 +22,8 @@ import { getCourseComments } from "../../../core/services/api/getCourseID";
 import SyncLoader from "react-spinners/SyncLoader";
 import { CardWrapperComment } from "../Card Details Wrapper/CardWrapper";
 import { postSendComment } from "../../../core/services/api/sendComment";
+import { deleteCourseLike } from "../../../core/services/api/deleteCourseLike";
+import { deleteCourseFav } from "../../../core/services/api/deleteCourseFav";
 
 const MiddleDetails = ({ courseDetail }) => {
   const { data: coursesComments, isLoading } = useQuery({
@@ -31,8 +33,6 @@ const MiddleDetails = ({ courseDetail }) => {
       return result;
     },
   });
-
-
 
   const queryClient = useQueryClient();
 
@@ -50,12 +50,14 @@ const MiddleDetails = ({ courseDetail }) => {
     title,
     imageAddress,
     likeCount,
+    userLikeId,
     dissLikeCount,
     isUserFavorite,
     describe,
     courseId,
     currentUserLike,
     currentUserDissLike,
+    userFavoriteId,
   } = courseDetail;
 
   const likeMutation = useMutation({
@@ -104,6 +106,38 @@ const MiddleDetails = ({ courseDetail }) => {
     const result = favMutation.mutate(courseId);
   };
 
+  const deleteCourseLikeMutation = useMutation({
+    mutationFn: deleteCourseLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
+    },
+    onError: () => {
+      toast.error("حذف لایک با خطا مواجه شد");
+    },
+  });
+  const deleteCourseLikeUser = () => {
+    const formData = new FormData();
+    formData.append("CourseLikeId", userLikeId);
+    const result = deleteCourseLikeMutation.mutate(formData);
+  };
+
+  const deleteCourseFavMutation = useMutation({
+    mutationFn: deleteCourseFav,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const deleteCourseFavUser = () => {
+    const formData = new FormData();
+    formData.append("CourseFavoriteId", userFavoriteId);
+    const result = deleteCourseFavMutation.mutate(formData);
+  };
+
 
   return (
     <div className="w-full md:w-[95%] bg-[#fbf6f6] rounded-[30px] shadow-lg p-6 flex flex-col gap-6 order-2 md:order-none">
@@ -111,7 +145,11 @@ const MiddleDetails = ({ courseDetail }) => {
         <div className=" flex-col object-cover rounded-[30px] flex items-center justify-center p-1 ">
           <img
             className="w-full h-[340px] object-cover rounded-[30px]"
-            src={imageAddress ? imageAddress : "https://hasthemes.com/blog/wp-content/uploads/2020/05/best-10-react-js-ecommerce-templates-of-2021.webp"}
+            src={
+              imageAddress
+                ? imageAddress
+                : "https://hasthemes.com/blog/wp-content/uploads/2020/05/best-10-react-js-ecommerce-templates-of-2021.webp"
+            }
           />
         </div>
 
@@ -126,9 +164,15 @@ const MiddleDetails = ({ courseDetail }) => {
                 <div className="flex flex-row-reverse gap-4 w-full">
                   <div
                     className="text-[#089E71] flex items-center flex-col cursor-pointer "
-                    onClick={postLikeUser}
+                    onClick={() => {
+                      if (currentUserLike == "1") {
+                        deleteCourseLikeUser();
+                      } else {
+                        postLikeUser();
+                      }
+                    }}
                   >
-                    {currentUserLike=="1" ? (
+                    {currentUserLike == "1" ? (
                       <BiSolidLike className="text-2xl" />
                     ) : (
                       <BiLike className="text-2xl" />
@@ -141,7 +185,7 @@ const MiddleDetails = ({ courseDetail }) => {
                     className="text-[#089E71] flex flex-col items-center cursor-pointer"
                     onClick={postDiseLikeUser}
                   >
-                    {currentUserDissLike=="1" ? (
+                    {currentUserDissLike == "1" ? (
                       <BiSolidDislike className="text-2xl" />
                     ) : (
                       <BiDislike className="text-2xl" />
@@ -152,8 +196,14 @@ const MiddleDetails = ({ courseDetail }) => {
 
                   <div
                     className="text-[#089E71] cursor-pointer"
-                    onClick={postFavouriteUser}
-                  >
+                    onClick={() => {
+                      if(isUserFavorite){
+                        deleteCourseFavUser()
+                      }
+                      else{
+                        postFavouriteUser()
+                      }
+                    }}          >
                     {isUserFavorite ? (
                       <BiSolidStar className="text-2xl" />
                     ) : (
@@ -179,7 +229,9 @@ const MiddleDetails = ({ courseDetail }) => {
               <div className="flex flex-row border-b pb-3 gap-20">
                 <li>ویدیو 1: معرفی دوره</li>
               </div>
-              <li className="border-b pb-3 ">ویدیو 2: نصب و پیکربندی ابزارها</li>
+              <li className="border-b pb-3 ">
+                ویدیو 2: نصب و پیکربندی ابزارها
+              </li>
               <li className="border-b pb-3">ویدیو 3: شروع برنامه‌نویسی</li>
               <li className="border-b pb-3">ویدیو 4: نکات پیشرفته</li>
             </ul>
@@ -220,7 +272,7 @@ const MiddleDetails = ({ courseDetail }) => {
                 {cardType === "userReview" ? (
                   <CardWrapperComment courseComment={coursesComments} />
                 ) : (
-                  <Comment/>
+                  <Comment />
                 )}
               </>
             )}

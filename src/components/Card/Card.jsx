@@ -20,6 +20,7 @@ import toast from "react-hot-toast";
 import { postNewsDisLike } from "../../core/services/api/postNewsDislike";
 import { postNewsFav } from "../../core/services/api/postNewsFav";
 import { deletenewseLike } from "../../core/services/api/deleteNewsLike";
+import { deletenewseFav } from "../../core/services/api/deleteNewsFav";
 
 const Card = ({ data }) => {
   const {
@@ -36,6 +37,7 @@ const Card = ({ data }) => {
     id,
     currentUserIsLike,
     currentUserIsDissLike,
+    currentUserFavoriteId,
     likeId
   } = data;
   const queryClient = useQueryClient();
@@ -44,7 +46,7 @@ const Card = ({ data }) => {
     mutationFn: postNewsLike,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["newsList"] });
-      toast("این دوره رو پسندیدی!", {
+      toast("این اخبار رو پسندیدی!", {
         icon: "👍",
       });
     },
@@ -60,7 +62,7 @@ const Card = ({ data }) => {
     mutationFn: postNewsDisLike,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["newsList"] });
-      toast("این دوره رو نپسندیدی!", {
+      toast("این اخبار رو نپسندیدی!", {
         icon: "👎",
       });
     },
@@ -76,7 +78,7 @@ const Card = ({ data }) => {
     mutationFn: postNewsFav,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["newsList"] });
-      toast.success("به دوره های مورد علاقه اضافه شد");
+      toast.success("به اخبار های مورد علاقه اضافه شد");
     },
     onError: () => {
       toast.error("خطا");
@@ -86,21 +88,30 @@ const Card = ({ data }) => {
     const result = favMutation.mutate(id);
   };
 
-  const deleteNewseLikeMutation = useMutation({
-    mutationFn: deletenewseLike,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["newsList"] });
-      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
-    },
-    onError: () => {
-      toast.error("خطا");
-    },
-  });
-  const deletenewseLikeUser = () => {
-    console.log(likeId,'News Like Id :',currentUserIsLike,id)
-    const formData = new FormData();
-    formData.append("News Like Id2", likeId);
-    const result = deleteNewseLikeMutation.mutate(formData);
+  const handleSubmit = async () => {
+    const RemoveLikeNews = {
+      deleteEntityId: likeId,
+    };
+    const result = await deletenewseLike(RemoveLikeNews);
+    if (result.success) {
+      toast.success("این مقاله رو دیس لایک کردی");
+    } else if (!result.success) {
+      toast.error("عملیات دیس لایک مقاله با خطا مواجه شد");
+    }
+    console.log(result);
+  };
+
+  const handleDeleteFav = async () => {
+    const RemoveFavNews = {
+      deleteEntityId: currentUserFavoriteId,
+    };
+    const result = await deletenewseFav(RemoveFavNews);
+    if (result.success) {
+      toast.success("این مقاله از موردعلاقه ها حذف شد");
+    } else if (!result.success) {
+      toast.error("عملیات حذف موردعلاقه مقاله با خطا مواجه شد");
+    }
+    console.log(result);
   };
 
   return (
@@ -116,7 +127,7 @@ const Card = ({ data }) => {
             className="text-[#089E71] flex items-center flex-col cursor-pointer "
             onClick={() => {
               if(currentUserIsLike){
-                deletenewseLikeUser()
+                handleSubmit()
               }
               else{
                 postLikeUser()
@@ -146,8 +157,14 @@ const Card = ({ data }) => {
 
           <div
             className="text-[#089E71] cursor-pointer"
-            onClick={postFavouriteUser}
-          >
+            onClick={() => {
+              if(isCurrentUserFavorite){
+                handleDeleteFav()
+              }
+              else{
+                postFavouriteUser()
+              }
+            }}          >
             {isCurrentUserFavorite ? (
               <BiSolidStar className="text-2xl" />
             ) : (

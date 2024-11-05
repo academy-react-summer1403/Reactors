@@ -42,14 +42,16 @@ export const postNewsLikeComments = async (id,like=true) => {
     }
 };
 
-export const postNewsDisLikeComments = async (id) => {
+export const postNewsDisLikeComments = async (id,like=false) => {
+    console.log(id , "news id :",like)
+
     try {
         const result = await http.post
-        (`/News/NewsDissLike/${id}`);
+        (`/News/CommentLike/${id}?LikeType=${like}`,);
         console.log(result);
         
       return result;
     } catch (error) {   
-        throw error;
+        throw error
     }
 };

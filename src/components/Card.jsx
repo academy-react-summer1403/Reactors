@@ -45,7 +45,9 @@ const Card = ({ data }) => {
     userLikedId
   } = data;
 
-  // console.log(userFavoriteId);
+
+
+  // console.log(userIsLiked , "userIsLiked");
 
   const queryClient = useQueryClient();
   
@@ -119,15 +121,15 @@ const Card = ({ data }) => {
       toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
     },
     onError: () => {
-      toast.error("خطا");
+      toast.error("حذف لایک با خطا مواجه شد");
     },
   });
   const deleteCourseLikeUser = () => {
-    console.log(userLikedId,'asdada',userIsLiked,courseId)
     const formData = new FormData();
     formData.append("CourseLikeId", userLikedId);
     const result = deleteCourseLikeMutation.mutate(formData);
   };
+
 
   const deleteCourseFavMutation = useMutation({
     mutationFn: deleteCourseFav,
@@ -148,12 +150,10 @@ const Card = ({ data }) => {
 
   return (
     <div className="flex flex-col gap-6 items-center bg-[#FBF6F6]  shadow md:shadow-lg h-[700px]  shadow-slate-600/80 rounded-[30px] min-h-[392px] w-full">
-      {/* <div className="w-full h-[240px] flex items-center justify-center"> */}
       <img
         className="flex justify-center rounded-tl-[1rem] rounded-tr-[1rem] object-cover object-center h-[250px] w-full min-w-52 min-h-[200px] "
         src={tumbImageAddress ? tumbImageAddress : "https://hasthemes.com/blog/wp-content/uploads/2020/05/best-10-react-js-ecommerce-templates-of-2021.webp"}
       />
-      {/* </div> */}
 
       <div className="flex justify-between flex-row-reverse items-center px-4 py-[1px] text-sm min-w-full gap-2">
         <div className="flex justify-between flex-row-reverse gap-2">
@@ -162,7 +162,6 @@ const Card = ({ data }) => {
             onClick={() => {
               if(userIsLiked){
                 deleteCourseLikeUser()
-                console.log("dhfskdhfj")
               }
               else{
                 postLikeUser()
