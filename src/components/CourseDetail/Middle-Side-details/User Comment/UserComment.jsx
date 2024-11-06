@@ -18,6 +18,7 @@ import {
 } from "../../../../core/services/api/getCourseID";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { postSendReplyComment } from "../../../../core/services/api/CourseReply";
+import { getNewsReply } from "../../../../core/services/api/getCourseReply";
 
 const UserComment = ({ courseComment }) => {
   const {
@@ -45,6 +46,11 @@ const UserComment = ({ courseComment }) => {
     Title: "",
     Describe: "",
   };
+
+  // const { data: showUserReply } = useQuery({
+  //   queryKey: ["showUserReply"],
+  //   queryFn: getNewsReply(),
+  // });
 
   const mutation = useMutation({
     mutationFn: postSendReplyComment,
@@ -171,6 +177,15 @@ const UserComment = ({ courseComment }) => {
       </div>
       <div className="p-4 pt-1 flex flex-row-reverse gap-6">
         <button className="text-[14px] text-[#158B68] cursor-pointer">
+        {/* {showUserReply?.length === 0 ? (
+          <p>دوره ای وجود ندارد</p>
+        ) : (
+          showUserReply?.map(() => (
+            <UserComment/>
+          ))
+
+        )} */}
+
           پاسخ ها
         </button>
         <button

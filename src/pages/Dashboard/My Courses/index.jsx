@@ -18,24 +18,12 @@ import { Link, useParams } from "react-router-dom";
 const MyCourses = () => {
   const { courseId } = useParams();
 
-  // const [myCourses, setMyCourses] = useState([])
-
-  // const getAllMyCourses = async () => {
-  //     const result = await getMyCourses()
-  //     setMyCourses(result.listOfMyCourses)
-  //     console.log(result)
-  // }
 
   const { data: myCourses } = useQuery({
     queryKey: ["myCourses"],
     queryFn: getMyCourses,
   });
 
-  console.log(myCourses);
-
-  // useEffect(() => {
-  //     getAllMyCourses()
-  // }, [])
 
   return (
     <DashboardPartsBody className="flex flex-col">
@@ -55,7 +43,6 @@ const MyCourses = () => {
         ) : (
           myCourses?.listOfMyCourses.map((item, key) => (
             <TableRow key={key} className="cursor-pointer">
-              {/* <Link to={"/course-details/" + courseId}>جزئیات دوره</Link> */}
 
               <TableCell className="flex gap-1 items-center">
                 <img src={item.tumbImageAddress} alt="" className="w-12" />
@@ -72,7 +59,6 @@ const MyCourses = () => {
           ))
         )}
       </TableBody>
-      {/* { <TablePagination />} */}
     </DashboardPartsBody>
   );
 };

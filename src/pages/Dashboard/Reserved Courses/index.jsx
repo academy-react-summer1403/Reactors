@@ -18,28 +18,16 @@ import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 
 const ReservedCourses = () => {
-  //   console.log(courseId, "id : ");
-
-  // const [courseReserved, setCourseReserved] = useState([])
-  // const [courseId, setCourseId] = useState()
-
-  // const getMyReservedCourses = async () => {
-  //     const result = await getReservedCourses()
-  //     setCourseReserved(result)
-  //     setCourseId(result.courseId)
-  //     console.log(result)
-  // }
-
   const { data: courseReserved } = useQuery({
     queryKey: ["courseReserved"],
     queryFn: getReservedCourses,
   });
   console.log(courseReserved, "courseReserved : ");
 
-  // const deleteReservedCourse = (courseId) => {
-  //     const deletedCourse = { id: courseId }
-  //     mutation.mutate(deletedCourse)
-  // }
+  const deleteReservedCourse = (courseId) => {
+    const deletedCourse = { id: courseId }; //courseId?
+    mutation.mutate(deletedCourse);
+  };
 
   const mutation = useMutation({
     mutationFn: deleteCourseReserve,
@@ -56,12 +44,6 @@ const ReservedCourses = () => {
       <ComplexTableHeader
         tableHeaders={["نام دوره", "تاریخ رزرو", "وضعیت تایید", "حذف"]}
         gridTemp="1fr 1fr 1fr 1fr"
-        // first="نام دوره"
-        // second="نام استاد"
-        // third="نام ترم"
-        // forth="تاریخ شروع"
-        // fifth="وضعیت تایید"
-        // sixth="حذف"
       />
       <TableBody>
         {courseReserved?.length === 0 ? (

@@ -12,20 +12,36 @@ import { TableCell } from "../../../common/Dashboard/Dashboard Tables/Styled Das
 import CourseImg from "../../../../assets/images/courseImg2.png";
 import { NoneItems } from "../../../common/Dashboard/Dashboard Tables/NoneItems";
 import dateModifier from "../../../../core/utils/dateModifier";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useMutation, useQuery } from "react-query";
+import { deleteCourseFav } from "../../../../core/services/api/deleteCourseFav";
+import toast from "react-hot-toast";
 
 const MyFavoriteCourses = () => {
-  const [favoriteCourses, setFavoriteCourses] = useState([]);
 
-  const getMyFavoriteCourses = async () => {
-    const result = await getFavoriteCourses();
-    console.log(result);
-    setFavoriteCourses(result.favoriteCourseDto);
+  const { userFavoriteId } = useParams();
+
+
+  const { data: favoriteCourses } = useQuery({
+    queryKey: ["favoriteCourses"],
+    queryFn: getFavoriteCourses,
+  });
+
+  const deleteCourseFavMutation = useMutation({
+    mutationFn: deleteCourseFav,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["favoriteCourses"] });
+      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const deleteCourseFavUser = () => {
+    const formData = new FormData();
+    formData.append("CourseFavoriteId", userFavoriteId); //userFavoriteId?
+    const result = deleteCourseFavMutation.mutate(formData);
   };
-
-  useEffect(() => {
-    getMyFavoriteCourses();
-  }, []);
 
   return (
     <DashboardPartsBody className="flex flex-col">
@@ -49,10 +65,10 @@ const MyFavoriteCourses = () => {
 
             </div> */}
       <TableBody>
-        {favoriteCourses?.length === 0 ? (
+        {favoriteCourses?.favoriteCourseDto.length === 0 ? (
           <NoneItems title="دوره ای وجود ندارد" />
         ) : (
-          favoriteCourses?.map((item, key) => (
+          favoriteCourses?.favoriteCourseDto.map((item, key) => (
             <TableRow key={key}>
               <TableCell className="flex gap-6 pl-7 items-center">
                 <img src={item.tumbImageAddress} alt="" className="w-12" />
@@ -66,7 +82,10 @@ const MyFavoriteCourses = () => {
               <TableCell> {dateModifier(item.lastUpdate)} </TableCell>
               <TableCell>
                 {" "}
-                <HiOutlineTrash className="size-8" />{" "}
+                <HiOutlineTrash
+                  className="size-8"
+                  onClick={() => deleteCourseFavUser(item.courseId)}
+                />{" "}
               </TableCell>
             </TableRow>
           ))

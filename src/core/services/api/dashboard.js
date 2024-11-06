@@ -111,9 +111,9 @@ export const deleteProfileImage = async (profile) => {
 
 export const deleteCourseReserve = async (reservedCourse) => {
     try {
-        const response = await http.delete("/CourseReserve", reservedCourse)
+        const response = await http.delete("/CourseReserve", {data : reservedCourse})
         return response
     } catch (error) {
-        throw error
+        throw false
     }
 } 

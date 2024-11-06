@@ -5,7 +5,7 @@ export const loginAPI = async (user) => {
         const response = await http.post("/Sign/Login", user)
         return response
     } catch (error) {
-        throw false
+        throw error
     }
 }
 

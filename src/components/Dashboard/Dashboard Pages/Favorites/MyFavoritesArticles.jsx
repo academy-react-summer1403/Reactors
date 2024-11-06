@@ -12,22 +12,34 @@ import CourseImg from "../../../../assets/images/courseImg2.png";
 import { getFavoriteArticles } from "../../../../core/services/api/dashboard";
 import { NoneItems } from "../../../common/Dashboard/Dashboard Tables/NoneItems";
 import dateModifier from "../../../../core/utils/dateModifier";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
+import { useMutation, useQuery } from "react-query";
+import { deletenewseFav } from "../../../../core/services/api/deleteNewsFav";
+import toast from "react-hot-toast";
 
 const MyFavoriteArticles = () => {
-  const [favoriteArticles, setFavoriteArticles] = useState([]);
+  const { favoriteId } = useParams();
 
-  const getMyFavoriteArticles = async () => {
-    const result = await getFavoriteArticles();
+  const { data: favoriteArticles } = useQuery({
+    queryKey: ["favoriteArticles"],
+    queryFn: getFavoriteArticles,
+  });
+
+  console.log(favoriteId);
+
+  const handleDeleteFav = async () => {
+    const RemoveFavNews = {
+      deleteEntityId: favoriteId, //favoriteId?
+    };
+    const result = await deletenewseFav(RemoveFavNews);
+    if (result.success) {
+      toast.success("این مقاله از موردعلاقه ها حذف شد");
+    } else if (!result.success) {
+      toast.error("عملیات حذف موردعلاقه مقاله با خطا مواجه شد");
+    }
     console.log(result);
-    setFavoriteArticles(result.myFavoriteNews);
   };
-
-  useEffect(() => {
-    getMyFavoriteArticles();
-  }, []);
-
-  console.log(favoriteArticles, "favorite articles");
 
   return (
     <DashboardPartsBody className="flex flex-col">
@@ -40,18 +52,12 @@ const MyFavoriteArticles = () => {
           "آخرین بروزرسانی",
           "حذف",
         ]}
-        // first="عنوان مقاله"
-        // second="تعداد لایک"
-        // third="تعداد بازدید"
-        // forth="امتیاز"
-        // fifth="آخرین بروزرسانی"
-        // sixth="حذف"
       />
       <TableBody>
-        {favoriteArticles?.length === 0 ? (
+        {favoriteArticles?.myFavoriteNews.length === 0 ? (
           <NoneItems title="دوره ای وجود ندارد" />
         ) : (
-          favoriteArticles?.map((item, key) => (
+          favoriteArticles?.myFavoriteNews.map((item, key) => (
             <TableRow key={key}>
               <TableCell
                 className="flex gap-5 items-center"
@@ -73,7 +79,10 @@ const MyFavoriteArticles = () => {
               <TableCell> {dateModifier(item.updateDate)} </TableCell>
               <TableCell>
                 {" "}
-                <HiOutlineTrash className="size-8" />{" "}
+                <HiOutlineTrash
+                  className="size-8"
+                  onClick={() => handleDeleteFav(item?.newsId)}
+                />{" "}
               </TableCell>
             </TableRow>
           ))
