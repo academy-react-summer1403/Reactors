@@ -36,9 +36,10 @@ const UserComment = ({ courseComment }) => {
     currentUserEmotion,
   } = courseComment;
 
-  console.log(courseId , "Course")
+  console.log(courseId, "Course");
 
   const [showReplyForm, setShowReplyForm] = useState(false);
+  const [showReply, setShowReply] = useState(false);
 
   const client = useQueryClient();
 
@@ -47,11 +48,14 @@ const UserComment = ({ courseComment }) => {
     Describe: "",
   };
 
-  // const { data: showUserReply } = useQuery({
-  //   queryKey: ["showUserReply"],
-  //   queryFn: getNewsReply(),
-  // });
-
+  const { data: showUserReply } = useQuery({
+    queryKey: ["showUserReply"],
+    queryFn: () => {
+      const res = getNewsReply(courseId, id);
+      return res;
+    },
+  });
+  console.log(showUserReply, "replyyyyyyyyyyyyy");
   const mutation = useMutation({
     mutationFn: postSendReplyComment,
     onSuccess: () => {
@@ -66,7 +70,6 @@ const UserComment = ({ courseComment }) => {
   const handleSubmit = async (values) => {
     const CommentData = new FormData();
     CommentData.append("CourseId", courseId);
-    
 
     CommentData.append("Title", values.Title);
     CommentData.append("Describe", values.Describe);
@@ -109,7 +112,7 @@ const UserComment = ({ courseComment }) => {
   };
 
   const replyMutation = useMutation({
-    // mutationFn: postfaouriteUser,
+    mutationFn: getNewsReply,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["courseComments"] });
       toast.success("ریپلای شما ثبت شد");
@@ -175,19 +178,79 @@ const UserComment = ({ courseComment }) => {
           <span>{dateModifier(insertDate)}</span>
         </div>
       </div>
-      <div className="p-4 pt-1 flex flex-row-reverse gap-6">
-        <button className="text-[14px] text-[#158B68] cursor-pointer">
-        {/* {showUserReply?.length === 0 ? (
-          <p>دوره ای وجود ندارد</p>
-        ) : (
-          showUserReply?.map(() => (
-            <UserComment/>
-          ))
 
-        )} */}
-
+      <div className="p-8 pt-1 flex flex-col gap-6">
+        <button
+          className="text-[14px] text-[#158B68] cursor-pointer"
+          onClick={() => setShowReply(!showReply)}
+        >
           پاسخ ها
         </button>
+        <div className="flex flex-col gap-4 items-end w-full">
+        {showReply && (          
+          showUserReply?.map((item) => (
+            <div className="bg-white w-[90%] p-6 px-7 flex-col rounded-[30px] shadow-md">
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col items-center gap-4 md:flex-row">
+                  <div className="text-4xl text-[#158B68]">
+                    <img
+                      className="min-w-14 md:w-10 rounded-full "
+                      src={
+                        item.pictureAddress ? (
+                          item.pictureAddress
+                        ) : (
+                          <BiUserCircle />
+                        )
+                      }
+                    />
+                  </div>
+                  <h2 className="text-[15px] text-nowrap">
+                    {item.author ? item.author : "عنوان"} : {item.title}
+                  </h2>
+                </div>
+                <div className="flex flex-col gap-4 md:flex-row ">
+                  <div
+                    className="text-[#158B68] flex items-center flex-col cursor-pointer "
+                    onClick={postLikeUser}
+                  >
+                    {item.currentUserEmotion == "LIKED" ? (
+                      <BiSolidLike className="text-2xl" />
+                    ) : (
+                      <BiLike className="text-2xl" />
+                    )}
+                    {item.likeCount}
+                  </div>
+
+                  <div
+                    className="text-[#158B68] flex items-center flex-col cursor-pointer "
+                    onClick={postDiseLikeUser}
+                  >
+                    {item.currentUserEmotion == "DISSLIKED" ? (
+                      <BiSolidDislike className="text-2xl" />
+                    ) : (
+                      <BiDislike className="text-2xl" />
+                    )}
+                    {item.disslikeCount}
+                  </div>
+                  <div
+                    className="text-[#158B68] flex items-center flex-col cursor-pointer "
+                    onClick={() => setShowReply(!showReply)}
+                  >
+                    <LiaReplySolid className="text-2xl" />
+                    <p>{item.acceptReplysCount}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="text-gray-700 pt-5 min-h-[110px]">
+                {item.describe}
+              </div>
+              <div className="flex flex-row-reverse justify-between items-center text-xs text-gray-500">
+                <span>{dateModifier(item.insertDate)}</span>
+              </div>
+            </div>
+          ))
+        )}
+    </div>
         <button
           className="text-[14px] text-[#158B68] cursor-pointer"
           onClick={() => setShowReplyForm(!showReplyForm)}

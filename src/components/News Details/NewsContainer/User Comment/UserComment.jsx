@@ -49,14 +49,15 @@ const NewsUserComment = ({ newsComment }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
 
-
-  const { data: newsesReplyComments, isLoading } = useQuery({
+  const { data: newsesReplyComments} = useQuery({
     queryKey: ["newsReplyComments"],
     queryFn: () => {
       const result = getNewsReplyComments(parentId);
       return result;
     },
   });
+
+  console.log(newsesReplyComments, "newsesReplyComments");
 
   const initialValues = {
     title: "",
@@ -78,7 +79,6 @@ const NewsUserComment = ({ newsComment }) => {
     }
     console.log(result);
   };
-
 
   const queryClient = useQueryClient();
 
@@ -114,19 +114,19 @@ const NewsUserComment = ({ newsComment }) => {
     const userDisLike = disLikeMutation.mutate(id);
   };
 
-  const replyMutation = useMutation({
-    // mutationFn: postfaouriteUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["newsComments"] });
-      toast.success("ریپلای شما ثبت شد");
-    },
-    onError: () => {
-      toast.error("خطا");
-    },
-  });
-  const postReplyUser = () => {
-    const result = replyMutation.mutate(id);
-  };
+  // const replyMutation = useMutation({
+  //   // mutationFn: postfaouriteUser,
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: ["newsComments"] });
+  //     toast.success("ریپلای شما ثبت شد");
+  //   },
+  //   onError: () => {
+  //     toast.error("خطا");
+  //   },
+  // });
+  // const postReplyUser = () => {
+  //   const result = replyMutation.mutate(id);
+  // };
 
   return (
     <div>
@@ -184,16 +184,68 @@ const NewsUserComment = ({ newsComment }) => {
         >
           پاسخ ها
         </button>
-        {showReplies && (
-          <div className="replies-list">
-            {newsesReplyComments?.map((item) => {
-              return (
-                  <NewsContainer />
-              );
-            })}
-          </div>
-        )}
-
+          {showReplies && (
+            <div className="replies-list">
+              {newsesReplyComments?.map((item) => {
+                console.log(item, "item ");
+                return (
+                  <div className="bg-white w-[90%] p-6 px-7 flex-col rounded-[30px] shadow-md">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <div className="text-4xl text-[#158B68]">
+                          <img
+                            className="w-14 rounded-full"
+                            src={
+                              item.pictureAddress
+                                ? item.pictureAddress
+                                : item.user
+                            }
+                          />
+                        </div>
+                        <h2 className="text-[15px] text-nowrap">
+                          {item.autor ? item.autor : "عنوان"} : {item.title}
+                        </h2>
+                      </div>
+                      <div className="flex flex-row gap-4">
+                        <div
+                          className="text-[#158B68] flex items-center flex-col cursor-pointer "
+                          onClick={postLikeUser}
+                        >
+                          {item.currentUserIsLike ? (
+                            <BiSolidLike className="text-2xl" />
+                          ) : (
+                            <BiLike className="text-2xl" />
+                          )}
+                          {item.likeCount}
+                        </div>
+                        <div
+                          className="text-[#158B68] flex items-center flex-col cursor-pointer "
+                          onClick={postDiseLikeUser}
+                        >
+                          {item.currentUserIsDissLike ? (
+                            <BiSolidDislike className="text-2xl" />
+                          ) : (
+                            <BiDislike className="text-2xl" />
+                          )}
+                          {item.dissLikeCount}
+                        </div>
+                        <div className="text-[#158B68] flex items-center flex-col cursor-pointer ">
+                          <LiaReplySolid className="text-2xl" />
+                          <p>{item.replyCount}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-gray-700 pt-5 min-h-[110px]">
+                      {item.describe}
+                    </div>
+                    <div className="flex flex-row-reverse justify-between items-center text-xs text-gray-500">
+                      <span>{dateModifier(item.inserDate)}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         <button
           className="text-[14px] text-[#158B68] cursor-pointer"
           onClick={() => setShowReplyForm(!showReplyForm)}

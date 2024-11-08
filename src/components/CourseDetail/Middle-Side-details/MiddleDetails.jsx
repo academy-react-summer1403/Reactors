@@ -59,6 +59,7 @@ const MiddleDetails = ({ courseDetail }) => {
     currentUserDissLike,
     userFavoriteId,
   } = courseDetail;
+  
 
   const likeMutation = useMutation({
     mutationFn: postCourseLike,
@@ -109,7 +110,7 @@ const MiddleDetails = ({ courseDetail }) => {
   const deleteCourseLikeMutation = useMutation({
     mutationFn: deleteCourseLike,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      queryClient.invalidateQueries({ queryKey: ["courseDetails"] });
       toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
     },
     onError: () => {
@@ -125,7 +126,7 @@ const MiddleDetails = ({ courseDetail }) => {
   const deleteCourseFavMutation = useMutation({
     mutationFn: deleteCourseFav,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      queryClient.invalidateQueries({ queryKey: ["courseDetails"] });
       toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
     },
     onError: () => {

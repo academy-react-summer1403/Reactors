@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className="bg-white dark:bg-[#A4F6DE]">
       <div className="mx-auto max-w-7xl p-12 px-4 sm:px-10 lg:px-8 ">
-        <div className="flex flex-row-reverse   sm:justify-between">
-          <div className="flex flex-row-reverse  md:flex-row-reverse gap-[5rem]">
+        <div className="flex flex-row-reverse justify-between  sm:justify-between">
+          <div className="flex flex-row-reverse justify-between w-full md:flex-row-reverse gap-[5rem]">
             <div>
               <h2 className="pb-4 text-base text-gray-900 ">اخبار آموزشگاه</h2>
 

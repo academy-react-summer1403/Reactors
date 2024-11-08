@@ -13,13 +13,15 @@ import CourseImg from "../../../../assets/images/courseImg2.png";
 import { NoneItems } from "../../../common/Dashboard/Dashboard Tables/NoneItems";
 import dateModifier from "../../../../core/utils/dateModifier";
 import { Link, useParams } from "react-router-dom";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { deleteCourseFav } from "../../../../core/services/api/deleteCourseFav";
 import toast from "react-hot-toast";
 
 const MyFavoriteCourses = () => {
 
   const { userFavoriteId } = useParams();
+
+  const queryClient = useQueryClient();
 
 
   const { data: favoriteCourses } = useQuery({
@@ -37,11 +39,14 @@ const MyFavoriteCourses = () => {
       toast.error("خطا");
     },
   });
-  const deleteCourseFavUser = () => {
+  const deleteCourseFavUser = (userFavoriteId) => {
     const formData = new FormData();
     formData.append("CourseFavoriteId", userFavoriteId); //userFavoriteId?
     const result = deleteCourseFavMutation.mutate(formData);
+
+    console.log(userFavoriteId , "userFavoriteId")
   };
+
 
   return (
     <DashboardPartsBody className="flex flex-col">
@@ -55,15 +60,7 @@ const MyFavoriteCourses = () => {
           "حذف",
         ]}
       />
-      {/* <div className='grid grid-cols-6 '>
-                <p className='truncate '>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos iusto quo laborum, laboriosam enim cum placeat reprehenderit ut, nulla dignissimos beatae assumenda veniam ipsa. Voluptate minima cupiditate non inventore error.</p>
-                <p>asdad</p>
-                <p>asdad</p>
-                <p>asdad</p>
-                <p>asdad</p>
-                <p>asdad</p>
 
-            </div> */}
       <TableBody>
         {favoriteCourses?.favoriteCourseDto.length === 0 ? (
           <NoneItems title="دوره ای وجود ندارد" />
@@ -84,7 +81,7 @@ const MyFavoriteCourses = () => {
                 {" "}
                 <HiOutlineTrash
                   className="size-8"
-                  onClick={() => deleteCourseFavUser(item.courseId)}
+                  onClick={() => deleteCourseFavUser(item.favoriteId)}
                 />{" "}
               </TableCell>
             </TableRow>

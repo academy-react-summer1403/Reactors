@@ -24,6 +24,8 @@ import {
   BiStar,
 } from "react-icons/bi";
 import { useMutation, useQuery, useQueryClient } from "react-query";
+import { deleteCourseLike } from "../core/services/api/deleteCourseLike";
+import { deleteCourseFav } from "../core/services/api/deleteCourseFav";
 
 const HorizontalCard = ({ data }) => {
   const {
@@ -42,9 +44,45 @@ const HorizontalCard = ({ data }) => {
     readMore,
     reserv,
     currentUserDissLike,
+    userLikedId,
     userFavorite,
+    userFavoriteId,
   } = data;
   const queryClient = useQueryClient();
+
+  const deleteCourseLikeMutation = useMutation({
+    mutationFn: deleteCourseLike,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
+    },
+    onError: () => {
+      toast.error("حذف لایک با خطا مواجه شد");
+    },
+  });
+  const deleteCourseLikeUser = () => {
+    const formData = new FormData();
+    formData.append("CourseLikeId", userLikedId);
+    const result = deleteCourseLikeMutation.mutate(formData);
+  };
+
+
+  const deleteCourseFavMutation = useMutation({
+    mutationFn: deleteCourseFav,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["courseList"] });
+      toast.success(" این دوره از دوره های موردعلاقه شما حذف شد");
+    },
+    onError: () => {
+      toast.error("خطا");
+    },
+  });
+  const deleteCourseFavUser = () => {
+    console.log(userFavoriteId,'fav',userFavorite,courseId)
+    const formData = new FormData();
+    formData.append("CourseFavoriteId", userFavoriteId);
+    const result = deleteCourseFavMutation.mutate(formData);
+  };
 
   const reserveMutation = useMutation({
     mutationFn: postCourseReserve,
@@ -125,7 +163,14 @@ const HorizontalCard = ({ data }) => {
             <div className="flex justify-between flex-row gap-2">
               <div
                 className="text-[#089E71] flex items-center flex-col cursor-pointer "
-                onClick={postLikeUser}
+                onClick={() => {
+                  if(userIsLiked){
+                    deleteCourseLikeUser()
+                  }
+                  else{
+                    postLikeUser()
+                  }
+                }}
               >
                 {userIsLiked ? (
                   <BiSolidLike className="text-2xl" />
@@ -150,8 +195,14 @@ const HorizontalCard = ({ data }) => {
               </div>
               <div
                 className="text-[#089E71] cursor-pointer"
-                onClick={postFavouriteUser}
-              >
+                onClick={() => {
+                  if(userFavorite){
+                    deleteCourseFavUser()
+                  }
+                  else{
+                    postFavouriteUser()
+                  }
+                }}          >
                 {userFavorite ? (
                   <BiSolidStar className="text-2xl" />
                 ) : (

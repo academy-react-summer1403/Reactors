@@ -41,8 +41,7 @@ export const postAddReplyNewsComment = async (CommentReplyNews) => {
 export const getNewsReplyComments = async (parentId) => {
     try {
         const result = await http.get
-        (`/News/GetRepliesComments?Id=${parentId}`);
-        console.log(result);
+        (`/News/GetRepliesComments?Id=`+parentId);
         
       return result;
     } catch (error) {   

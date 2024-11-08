@@ -58,7 +58,7 @@ const Card = ({ data }) => {
       toast.success("این دوره رزرو شد!", {});
     },
     onError: () => {
-      toast.error("خطا");
+      toast.error("این دوره از قبل رزرو شده");
     },
   });
   const postReserve = () => {

@@ -27,7 +27,9 @@ const ReservedCourses = () => {
   const deleteReservedCourse = (courseId) => {
     const deletedCourse = { id: courseId }; //courseId?
     mutation.mutate(deletedCourse);
+
   };
+
 
   const mutation = useMutation({
     mutationFn: deleteCourseReserve,

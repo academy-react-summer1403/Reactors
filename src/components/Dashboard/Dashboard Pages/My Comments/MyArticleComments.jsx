@@ -32,12 +32,6 @@ const MyArticleComments = () => {
         <DashboardPartsBody className="flex flex-col">
             <ComplexTableHeader
                 tableHeaders={["عنوان مقاله", "عنوان نظر", "تعداد پاسخ", "تاریخ ارسال", "وضعیت", "جزئیات"]}
-                // first="عنوان مقاله"
-                // second="عنوان نظر"
-                // third="تعداد پاسخ"
-                // forth="تاریخ ارسال"
-                // fifth="وضعیت"
-                // sixth="جزئیات"
             />
             <TableBody>
                 {articleComments?.length === 0 ? <NoneItems title="نظری وجود ندارد" /> : articleComments?.map((item, key) => <TableRow key={key}>

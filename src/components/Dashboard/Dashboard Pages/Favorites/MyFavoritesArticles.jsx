@@ -26,9 +26,9 @@ const MyFavoriteArticles = () => {
     queryFn: getFavoriteArticles,
   });
 
-  console.log(favoriteId);
+  console.log(favoriteArticles , "favoriteArticles");
 
-  const handleDeleteFav = async () => {
+  const handleDeleteFav = async (favoriteId) => {
     const RemoveFavNews = {
       deleteEntityId: favoriteId, //favoriteId?
     };
@@ -38,7 +38,6 @@ const MyFavoriteArticles = () => {
     } else if (!result.success) {
       toast.error("عملیات حذف موردعلاقه مقاله با خطا مواجه شد");
     }
-    console.log(result);
   };
 
   return (
@@ -81,7 +80,7 @@ const MyFavoriteArticles = () => {
                 {" "}
                 <HiOutlineTrash
                   className="size-8"
-                  onClick={() => handleDeleteFav(item?.newsId)}
+                  onClick={() => handleDeleteFav(item.favoriteId)}
                 />{" "}
               </TableCell>
             </TableRow>
